@@ -1,0 +1,185 @@
+
+    
+  <!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Enciclopedia de Animales Mexicanos</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+    }
+    header {
+      background: #065f46;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    nav {
+      background: #047857;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    nav a {
+      color: white;
+      padding: 15px 20px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    nav a:hover {
+      background: #059669;
+    }
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 20px;
+    }
+    .search-box {
+      margin: 20px 0;
+      text-align: center;
+    }
+    input[type="text"] {
+      padding: 10px;
+      width: 80%;
+      max-width: 400px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.03);
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .card-content {
+      padding: 15px;
+    }
+
+    .card-content h3 {
+      margin-top: 0;
+      color: #065f46;
+    }
+
+    footer {
+      background: #022c22;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Enciclopedia de Animales Mexicanos</h1>
+  <p>Una celebración del conocimiento, la biodiversidad y la cultura viva de México</p>
+</header>
+
+<nav>
+  <a href="#inicio">Inicio</a>
+  <a href="#galeria">Galería</a>
+  <a href="#ajolote">Ajolote</a>
+  <a href="#jaguar">Jaguar</a>
+  <a href="#quetzal">Quetzal</a>
+</nav>
+
+<section class="container" id="inicio">
+  <div class="search-box">
+    <input type="text" placeholder="Buscar animal..." onkeyup="filtrarAnimales(this.value)">
+  </div>
+
+  <div>
+    <h2>¿Qué es esta enciclopedia?</h2>
+    <p>
+      Este sitio busca documentar, celebrar y difundir el conocimiento sobre los animales nativos de México: su historia evolutiva, su contexto ecológico, su presencia simbólica en las culturas originarias y su importancia en la actualidad.
+    </p>
+  </div>
+</section>
+
+<section class="container" id="galeria">
+  <h2>Galería de Animales</h2>
+  <div class="card-grid" id="animalCards">
+
+    <div class="card" data-nombre="ajolote">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/76/Axolotl_2.jpg" alt="Ajolote">
+      <div class="card-content" id="ajolote">
+        <h3>Ajolote</h3>
+        <p><strong>Nombre científico:</strong> Ambystoma mexicanum</p>
+        <p><strong>Hábitat:</strong> Lagos del Valle de México (Xochimilco)</p>
+        <p><strong>Cultural:</strong> Mitología mexica; símbolo de regeneración.</p>
+      </div>
+    </div>
+
+    <div class="card" data-nombre="jaguar">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/8c/Jaguar_full_body_shot.jpg" alt="Jaguar">
+      <div class="card-content" id="jaguar">
+        <h3>Jaguar</h3>
+        <p><strong>Nombre científico:</strong> Panthera onca</p>
+        <p><strong>Hábitat:</strong> Selvas del sur de México</p>
+        <p><strong>Cultural:</strong> Deidad entre los mayas y mexicas.</p>
+      </div>
+    </div>
+
+    <div class="card" data-nombre="quetzal">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Pharomachrus_mocinno_-Costa_Rica-8.jpg" alt="Quetzal">
+      <div class="card-content" id="quetzal">
+        <h3>Quetzal</h3>
+        <p><strong>Nombre científico:</strong> Pharomachrus mocinno</p>
+        <p><strong>Hábitat:</strong> Bosques nubosos del sureste mexicano</p>
+        <p><strong>Cultural:</strong> Ave sagrada, símbolo de libertad.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Enciclopedia de Animales Mexicanos · Proyecto cultural y educativo sin fines de lucro</p>
+</footer>
+
+<script>
+  function filtrarAnimales(valor) {
+    const tarjetas = document.querySelectorAll('.card');
+    const filtro = valor.toLowerCase();
+
+    tarjetas.forEach(tarjeta => {
+      const nombre = tarjeta.getAttribute('data-nombre').toLowerCase();
+      tarjeta.style.display = nombre.includes(filtro) ? "block" : "none";
+    });
+  }
+</script>
+
+</body>
+</html>
+
