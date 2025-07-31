@@ -1132,3 +1132,17 @@ ul.link_menu li a:hover {
 .in_page .header {
      border-bottom: #3fe43d solid 2px;
 }
+
+/* Centrar logo en móviles */
+@media (max-width: 767px) {
+  .logo_section {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+  .logo {
+    margin: 0 auto !important;
+    text-align: center !important;
+  }
+}
