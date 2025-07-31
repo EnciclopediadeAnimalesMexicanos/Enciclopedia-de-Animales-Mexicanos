@@ -8,7 +8,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
       <!-- site metas -->
-      <title>limelight</title>
+      <title>Fichas | Enciclopedia de Animales Mexicanos</title>
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
@@ -28,6 +28,106 @@
       <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+      <!-- ...dentro de <head> agrega este bloque al final para mejorar el diseño... -->
+<style>
+/* Mejorar tarjetas de fichas */
+.animal-cards-section .card {
+  border-radius: 18px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+  border: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+  background: #fff;
+}
+.animal-cards-section .card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.13);
+}
+.animal-cards-section .card-img-top {
+  border-radius: 18px 18px 0 0;
+  object-fit: cover;
+  height: 220px;
+  background: #e8f5e9;
+}
+.animal-cards-section .card-title {
+  font-size: 1.3rem;
+  color: #1b5e20;
+  font-weight: bold;
+  margin-bottom: 0.2em;
+}
+.animal-cards-section em {
+  color: #388e3c;
+  font-size: 1rem;
+}
+.animal-cards-section ul.list-unstyled li {
+  margin-bottom: 0.3em;
+  font-size: 0.98rem;
+}
+.animal-cards-section a {
+  color: #1976d2;
+  text-decoration: underline;
+}
+.animal-cards-section a:hover {
+  color: #004ba0;
+}
+
+/* Mejorar formulario */
+#agregarFichaForm {
+  border-radius: 18px;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.09);
+  background: #f9fff9;
+  border: 1px solid #e0e0e0;
+}
+#agregarFichaForm h4 {
+  color: #1b5e20;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+#agregarFichaForm label {
+  font-weight: 500;
+  color: #388e3c;
+}
+#agregarFichaForm .form-control {
+  border-radius: 8px;
+  border: 1px solid #bdbdbd;
+  margin-bottom: 0.7em;
+}
+#agregarFichaForm .btn-success {
+  background: #388e3c;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5em 2em;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+#agregarFichaForm .btn-success:hover {
+  background: #1b5e20;
+}
+#mostrarFormBtn {
+  background: #1976d2;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5em 2em;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+#mostrarFormBtn:hover {
+  background: #004ba0;
+}
+#passwordError {
+  margin-top: 0.5em;
+}
+
+/* Responsive mejoras */
+@media (max-width: 767px) {
+  .animal-cards-section .card-img-top {
+    height: 150px;
+  }
+  #agregarFichaForm {
+    padding: 1em !important;
+  }
+}
+</style>
+<!-- ...fin del bloque de estilos... -->
    </head>
    <!-- body -->
    <body class="main-layout in_page">
@@ -71,7 +171,7 @@
                                  <a class="nav-link" href="gallery.html">Gallery</a>
                               </li>
                               <li class="nav-item active">
-                                 <a class="nav-link" href="testimonial.html"> Testimonial </a>
+                                 <a class="nav-link" href="testimonial.html"> Fichas </a>
                               </li>
                               <li class="nav-item">
                                  <a class="nav-link" href="contact.html">Contact Us</a>
@@ -86,104 +186,224 @@
       </header>
       <!-- end header inner -->
       <!-- end header -->
-      <!-- testimonial -->
-      <div class="Testimonial">
-         <div class="container-fluid">
-            <div class="row d_flex">
-               <div class="col-md-8 pad_left0">
-                  <div id="testimon" class="carousel slide banner_testimonial" data-ride="carousel">
-                     <ol class="carousel-indicators">
-                        <li data-target="#testimon" data-slide-to="0" class="active"></li>
-                        <li data-target="#testimon" data-slide-to="1"></li>
-                        <li data-target="#testimon" data-slide-to="2"></li>
-                     </ol>
-                     <div class="carousel-inner">
-                        <div class="carousel-item active">
-                           <div class="container">
-                              <div class="carousel-caption relative">
-                                 <div class="row">
-                                    <div class="col-md-6">
-                                       <div class="text_humai">
-                                          <i><img src="images/tett1.png" alt="#"/></i>
-                                          <span>HumouThere</span>
-                                          <p>T suffered alteration in some form, by injected humouThere are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humou</p>
-                                       </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                       <div class="text_humai">
-                                          <i><img src="images/tett2.png" alt="#"/></i>
-                                          <span>HumouThere</span>
-                                          <p>T suffered alteration in some form, by injected humouThere are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humou</p>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="carousel-item">
-                           <div class="container">
-                              <div class="carousel-caption relative">
-                                 <div class="row">
-                                    <div class="col-md-6">
-                                       <div class="text_humai">
-                                          <i><img src="images/tett1.png" alt="#"/></i>
-                                          <span>HumouThere</span>
-                                          <p>T suffered alteration in some form, by injected humouThere are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humou</p>
-                                       </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                       <div class="text_humai">
-                                          <i><img src="images/tett2.png" alt="#"/></i>
-                                          <span>HumouThere</span>
-                                          <p>T suffered alteration in some form, by injected humouThere are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humou</p>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="carousel-item">
-                           <div class="container">
-                              <div class="carousel-caption relative">
-                                 <div class="row">
-                                    <div class="col-md-6">
-                                       <div class="text_humai">
-                                          <i><img src="images/tett1.png" alt="#"/></i>
-                                          <span>HumouThere</span>
-                                          <p>T suffered alteration in some form, by injected humouThere are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humou</p>
-                                       </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                       <div class="text_humai">
-                                          <i><img src="images/tett2.png" alt="#"/></i>
-                                          <span>HumouThere</span>
-                                          <p>T suffered alteration in some form, by injected humouThere are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humou</p>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <a class="carousel-control-prev" href="#testimon" role="button" data-slide="prev">
-                     <i class="fa fa-angle-left" aria-hidden="true"></i>
-                     <span class="sr-only">Previous</span>
-                     </a>
-                     <a class="carousel-control-next" href="#testimon" role="button" data-slide="next">
-                     <i class="fa fa-angle-right" aria-hidden="true"></i>
-                     <span class="sr-only">Next</span>
-                     </a>
-                  </div>
-               </div>
-               <div class="col-md-4 ">
+      <!-- Fichas de Animales -->
+      <section id="animal-cards" class="animal-cards-section" style="background:#f7f7f7; padding:40px 0;">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
                   <div class="titlepage">
-                     <h2>Testimonial</h2>
+                     <h2>Fichas de Animales Mexicanos</h2>
+                     <p>Consulta o agrega información sobre especies representativas de la fauna mexicana.</p>
                   </div>
                </div>
             </div>
+            <div class="row" id="animalCardsContainer">
+               <!-- Las fichas se insertarán aquí dinámicamente -->
+            </div>
          </div>
-      </div>
-      <!-- end design -->
+      </section>
+      <!-- end animal cards -->
+      <!-- Botón para mostrar el formulario -->
+<div class="row">
+   <div class="col-md-12 mb-4 text-center">
+      <button id="mostrarFormBtn" class="btn btn-primary">Agregar ficha</button>
+   </div>
+</div>
+<!-- Formulario oculto por defecto -->
+<div class="row" id="formRow" style="display:none;">
+   <div class="col-md-12 mb-4">
+      <form id="agregarFichaForm" class="card card-body" style="max-width:700px;margin:auto;">
+         <h4>Agregar nueva ficha</h4>
+         <div id="passwordSection">
+            <div class="form-group">
+               <label>Contraseña para agregar ficha</label>
+               <input type="password" class="form-control" id="fichaPassword" required>
+            </div>
+            <button type="button" id="verificarPasswordBtn" class="btn btn-success">Verificar</button>
+            <div id="passwordError" style="color:red;display:none;">Contraseña incorrecta</div>
+         </div>
+         <div id="fichaFields" style="display:none;">
+            <div class="form-row">
+               <div class="form-group col-md-6">
+                  <label>Nombre común</label>
+                  <input type="text" class="form-control" id="nombre" required>
+               </div>
+               <div class="form-group col-md-6">
+                  <label>Nombre científico</label>
+                  <input type="text" class="form-control" id="cientifico" required>
+               </div>
+            </div>
+            <div class="form-group">
+               <label>URL de imagen</label>
+               <input type="text" class="form-control" id="imagen" placeholder="images/tuimagen.jpg" required>
+            </div>
+            <div class="form-group">
+               <label>Origen y distribución</label>
+               <input type="text" class="form-control" id="origen">
+            </div>
+            <div class="form-group">
+               <label>Clasificación zoológica</label>
+               <input type="text" class="form-control" id="clasificacion">
+            </div>
+            <div class="form-group">
+               <label>Reproducción</label>
+               <input type="text" class="form-control" id="reproduccion">
+            </div>
+            <div class="form-group">
+               <label>Hábitat</label>
+               <input type="text" class="form-control" id="habitat">
+            </div>
+            <div class="form-group">
+               <label>Estado de conservación</label>
+               <input type="text" class="form-control" id="conservacion">
+            </div>
+            <div class="form-group">
+               <label>Importancia ecológica</label>
+               <input type="text" class="form-control" id="ecologica">
+            </div>
+            <div class="form-group">
+               <label>Presencia en culturas mexicanas</label>
+               <input type="text" class="form-control" id="cultural">
+            </div>
+            <div class="form-group">
+               <label>Investigación contemporánea</label>
+               <input type="text" class="form-control" id="investigacion">
+            </div>
+            <div class="form-group">
+               <label>Referencias (separadas por coma, formato: texto|url)</label>
+               <input type="text" class="form-control" id="referencias" placeholder="CONABIO|https://..., UICN|https...">
+            </div>
+            <button type="submit" class="btn btn-success">Agregar ficha</button>
+         </div>
+      </form>
+   </div>
+</div>
+
+<script>
+      // filepath: c:\Users\Dante Yael\Downloads\Enciclopedia-de-Animales-Mexicanos\testimonial.html
+      let animales = [
+        {
+          nombre: "Ajolote",
+          cientifico: "Ambystoma mexicanum",
+          imagen: "images/ajolote.jpg",
+          origen: "Endémico de los lagos de Xochimilco y Chalco, CDMX.",
+          clasificacion: "Anfibio, Orden Caudata, Familia Ambystomatidae.",
+          reproduccion: "Ovíparo, fecundación externa.",
+          habitat: "Cuerpos de agua dulce con vegetación.",
+          conservacion: "En Peligro Crítico (NOM-059, UICN).",
+          ecologica: "Control de insectos y bioindicador de salud acuática.",
+          cultural: "Mitos mexicas, símbolo de regeneración.",
+          investigacion: "Regeneración de tejidos, biomedicina (UNAM, IPN).",
+          referencias: [
+            { texto: "UICN", url: "https://www.iucnredlist.org/species/1095/53947343" },
+            { texto: "CONABIO", url: "https://www.biodiversidad.gob.mx/especies/ajolote" }
+          ]
+        },
+        {
+          nombre: "Jaguar",
+          cientifico: "Panthera onca",
+          imagen: "images/jaguar.jpg",
+          origen: "Selvas de América, principalmente sur y sureste de México.",
+          clasificacion: "Mamífero, Orden Carnivora, Familia Felidae.",
+          reproduccion: "Vivíparo, camadas de 1-4 crías.",
+          habitat: "Selvas húmedas y secas, bosques tropicales.",
+          conservacion: "En peligro (NOM-059), Casi Amenazado (UICN).",
+          ecologica: "Depredador tope, regula poblaciones.",
+          cultural: "Dios jaguar en culturas prehispánicas, símbolo de poder.",
+          investigacion: "Conservación, monitoreo con cámaras trampa (UNAM, Alianza WWF-Telcel).",
+          referencias: [
+            { texto: "UICN", url: "https://www.iucnredlist.org/species/15953/123791436" },
+            { texto: "CONABIO", url: "https://www.biodiversidad.gob.mx/especies/jaguar" }
+          ]
+        }
+      ];
+
+      function crearFicha(animal) {
+        return `
+          <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card h-100">
+              <img src="${animal.imagen}" class="card-img-top" alt="${animal.nombre} (${animal.cientifico})">
+              <div class="card-body">
+                <h4 class="card-title">${animal.nombre}</h4>
+                <h6><em>${animal.cientifico}</em></h6>
+                <ul class="list-unstyled">
+                  <li><strong>Origen y distribución:</strong> ${animal.origen}</li>
+                  <li><strong>Clasificación zoológica:</strong> ${animal.clasificacion}</li>
+                  <li><strong>Reproducción:</strong> ${animal.reproduccion}</li>
+                  <li><strong>Hábitat:</strong> ${animal.habitat}</li>
+                  <li><strong>Estado de conservación:</strong> ${animal.conservacion}</li>
+                  <li><strong>Importancia ecológica:</strong> ${animal.ecologica}</li>
+                  <li><strong>Presencia en culturas mexicanas:</strong> ${animal.cultural}</li>
+                  <li><strong>Investigación contemporánea:</strong> ${animal.investigacion}</li>
+                  <li><strong>Referencias:</strong> 
+                    ${animal.referencias.map(ref => `<a href="${ref.url}" target="_blank">${ref.texto}</a>`).join(', ')}
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      function renderFichas() {
+  const container = document.getElementById('animalCardsContainer');
+  container.innerHTML = animales.map(crearFicha).join('');
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+  renderFichas();
+
+  // Mostrar formulario al dar click en el botón
+  document.getElementById('mostrarFormBtn').addEventListener('click', function() {
+    document.getElementById('formRow').style.display = 'block';
+    this.style.display = 'none';
+  });
+
+  // Verificar contraseña
+  document.getElementById('verificarPasswordBtn').addEventListener('click', function() {
+    const pass = document.getElementById('fichaPassword').value;
+    if (pass === "1234") {
+      document.getElementById('passwordSection').style.display = 'none';
+      document.getElementById('fichaFields').style.display = 'block';
+      document.getElementById('passwordError').style.display = 'none';
+    } else {
+      document.getElementById('passwordError').style.display = 'block';
+    }
+  });
+
+  // Manejo del formulario para agregar fichas
+  document.getElementById('agregarFichaForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const nuevaFicha = {
+      nombre: document.getElementById('nombre').value,
+      cientifico: document.getElementById('cientifico').value,
+      imagen: document.getElementById('imagen').value,
+      origen: document.getElementById('origen').value,
+      clasificacion: document.getElementById('clasificacion').value,
+      reproduccion: document.getElementById('reproduccion').value,
+      habitat: document.getElementById('habitat').value,
+      conservacion: document.getElementById('conservacion').value,
+      ecologica: document.getElementById('ecologica').value,
+      cultural: document.getElementById('cultural').value,
+      investigacion: document.getElementById('investigacion').value,
+      referencias: document.getElementById('referencias').value.split(',').map(ref => {
+        const [texto, url] = ref.split('|');
+        return { texto: texto.trim(), url: url.trim() };
+      })
+    };
+    animales.push(nuevaFicha);
+    renderFichas();
+    this.reset();
+    // Oculta el formulario y vuelve a mostrar el botón
+    document.getElementById('formRow').style.display = 'none';
+    document.getElementById('mostrarFormBtn').style.display = 'inline-block';
+    // Restablece el formulario para la próxima vez
+    document.getElementById('passwordSection').style.display = 'block';
+    document.getElementById('fichaFields').style.display = 'none';
+    document.getElementById('fichaPassword').value = '';
+  });
+});
+      </script>
        <!--  footer -->
     <footer>
    <div class="footer">
