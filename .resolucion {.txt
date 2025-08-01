@@ -1,0 +1,43 @@
+.resolucion {
+    width: 99%;
+    text-align: center;
+}
+
+/* Móvil */
+@media (max-width: 767px) {
+    .desktop {
+        display: none !important;
+    }
+    .tablet {
+        display: none !important;
+    }
+    .movil {
+        display: block !important;
+    }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 990px) {
+    .desktop {
+        display: none !important;
+    }
+    .movil {
+        display: none !important;
+    }
+    .tablet {
+        display: block !important;
+    }
+}
+
+/* Escritorio */
+@media (min-width: 991px) {
+    .tablet {
+        display: none !important;
+    }
+    .movil {
+        display: none !important;
+    }
+    .desktop {
+        display: block !important;
+    }
+}
