@@ -1,0 +1,62 @@
+[
+  {
+    "nombre": "Ajolote",
+    "nombreCientifico": "Ambystoma mexicanum",
+    "origen": "Cuenca del Valle de México",
+    "estatusConservacion": "En Peligro Crítico",
+    "habitat": "Lagos de agua dulce con vegetación abundante",
+    "reproduccion": "Ovovivípara, se reproduce bajo el agua",
+    "investigacion": "Modelo clave en biología regenerativa",
+    "importanciaCultural": "Figura mitológica en leyendas mexicas"  
+  },
+  {
+    "nombre": "Quetzal",
+    "nombreCientifico": "Pharomachrus mocinno",
+    "origen": "Bosques nubosos de América Central y México",
+    "estatusConservacion": "Casi Amenazado",
+    "habitat": "Bosques húmedos y montañas",
+    "reproduccion": "Sexuada, con una o dos crías por temporada",
+    "investigacion": "Estudios sobre biodiversidad y conservación",
+    "importanciaCultural": "Símbolo nacional de Guatemala"
+  },
+  {
+    "nombre": "Axolote",
+    "nombreCientifico": "Ambystoma mexicanum",
+    "origen": "Cuenca del Valle de México",
+    "estatusConservacion": "En Peligro Crítico",
+    "habitat": "Lagos de agua dulce con vegetación abundante",
+    "reproduccion": "Ovovivípara, se reproduce bajo el agua",
+    "investigacion": "Modelo clave en biología regenerativa",
+    "importanciaCultural": "Figura mitológica en leyendas mexicas"
+  },
+  {
+    "nombre": "Tortuga de Carey",
+    "nombreCientifico": "Eretmochelys imbricata",
+    "origen": "Regiones costeras tropicales del Atlántico y Pacífico",
+    "estatusConservacion": "En Peligro Crítico",
+    "habitat": "Arrecifes coralinos y zonas costeras",
+    "reproduccion": "Sexuada, con puesta de huevos en playas arenosas",
+    "investigacion": "Indicador de salud marina y conservación de arrecifes",
+    "importanciaCultural": "Usada en artesanías y mitología marina"
+  },
+  {
+    "nombre": "Jaguar",
+    "nombreCientifico": "Panthera onca",
+    "origen": "América tropical, especialmente en el sur de México",
+    "estatusConservacion": "Casi Amenazado",
+    "habitat": "Selvas tropicales, bosques y manglares",
+    "reproduccion": "Sexuada, con una o dos crías por camada",
+    "investigacion": "Indicador ecológico de la salud del ecosistema",
+    "importanciaCultural": "Símbolo de poder en la cultura maya"
+  },
+  {
+    "nombre": "Cacomixtle",
+    "nombreCientifico": "Bassariscus astutus",
+    "origen": "Zonas montañosas de México",
+    "estatusConservacion": "Preocupación Menor",
+    "habitat": "Bosques templados y desiertos rocosos",
+    "reproduccion": "Sexuada, entre primavera y verano",
+    "investigacion": "Estudios sobre adaptación urbana",
+    "importanciaCultural": "Presente en relatos rurales como animal astuto"
+  }
+]
