@@ -30,7 +30,49 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
       <!-- ...dentro de <head> agrega este bloque al final para mejorar el diseño... -->
 <style>
+<style>
+    .resolucion {
+        width: 99%;
+        text-align: center;
+    }
 
+    /* Móvil */
+    @media (max-width: 767px) {
+        .desktop {
+            display: none !important;
+        }
+        .tablet {
+            display: none !important;
+        }
+        .movil {
+            display: block !important;
+        }
+    }
+
+    /* Tablet */
+    @media (min-width: 768px) and (max-width: 990px) {
+        .desktop {
+            display: none !important;
+        }
+        .movil {
+            display: none !important;
+        }
+        .tablet {
+            display: block !important;
+        }
+    }
+    /* Escritorio */
+    @media (min-width: 991px) {
+        .tablet {
+            display: none !important;
+        }
+        .movil {
+            display: none !important;
+        }
+        .desktop {
+            display: block !important;
+        }
+    }
 /* Mejorar tarjetas de fichas */
 .animal-cards-section .card {
   border-radius: 18px;
@@ -147,7 +189,7 @@
                      <div class="full">
                         <div class="center-desk">
                            <div class="logo">
-                              <a href="index.html"><img src="images/logo.png" alt="#" /></a>
+                              <a href="index.html"><img src="images/Logo EAM.png" width="200" height="50" alt="#" /></a>
                            </div>
                         </div>
                      </div>
@@ -160,22 +202,22 @@
                         <div class="collapse navbar-collapse" id="navbarsExample04">
                            <ul class="navbar-nav mr-auto">
                               <li class="nav-item ">
-                                 <a class="nav-link" href="index.html">Home</a>
+                                 <a class="nav-link" href="index.html">Inicio</a>
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="about.html">About</a>
+                                 <a class="nav-link" href="about.html">Sobre Nosotros</a>
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="service.html">Services</a>
+                                 <a class="nav-link" href="service.html">Servicios</a>
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="gallery.html">Gallery</a>
+                                 <a class="nav-link" href="gallery.html">Galeria</a>
                               </li>
                               <li class="nav-item active">
                                  <a class="nav-link" href="testimonial.html"> Fichas </a>
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="contact.html">Contact Us</a>
+                                 <a class="nav-link" href="contact.html">Contacto</a>
                               </li>
                            </ul>
                         </div>
@@ -213,7 +255,7 @@
 <!-- Formulario oculto por defecto -->
 <div class="row" id="formRow" style="display:none;">
    <div class="col-md-12 mb-4">
-      <form id="agregarFichaForm" class="card card-body" style="max-width:700px;margin:auto;">
+      <form action=Fichas/ method="post id="agregarFichaForm class="card card-body" style="max-width:700px;margin:auto;">
          <h4>Agregar nueva ficha</h4>
          <div id="passwordSection">
             <div class="form-group">
@@ -286,7 +328,7 @@
         {
           nombre: "Ajolote",
           cientifico: "Ambystoma mexicanum",
-          imagen: "images/ajolote.jpg",
+          imagen:  "images/ajolote.png",
           origen: "Endémico de los lagos de Xochimilco y Chalco, CDMX.",
           clasificacion: "Anfibio, Orden Caudata, Familia Ambystomatidae.",
           reproduccion: "Ovíparo, fecundación externa.",
