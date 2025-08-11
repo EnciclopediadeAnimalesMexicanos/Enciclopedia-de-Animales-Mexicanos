@@ -1,712 +1,641 @@
 <!DOCTYPE html>
-<html lang="en">
-   <head>
-      <!-- basic -->
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <!-- mobile metas -->
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-      <!-- site metas -->
-      <title>Enciclopedia de Animales Mexicanos</title>
-      <meta name="keywords" content="">
-      <meta name="description" content="">
-      <meta name="author" content="">
-      <!-- bootstrap css -->
-      <link rel="stylesheet" href="css/bootstrap.min.css">
-      <!-- style css -->
-      <link rel="stylesheet" href="css/style.css">
-      <!-- Responsive-->
-      <link rel="stylesheet" href="css/responsive.css">
-      <!-- fevicon -->
-      <link rel="icon" href="images/fevicon.png" type="image/gif" />
-      <!-- Scrollbar Custom CSS -->
-      <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
-      <!-- Tweaks for older IEs-->
-      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
-      <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-      <style>
-    .resolucion {
-        width: 99%;
-        text-align: center;
-    }
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    /* Móvil */
-    @media (max-width: 767px) {
-        .desktop {
-            display: none !important;
-        }
-        .tablet {
-            display: none !important;
-        }
-        .movil {
-            display: block !important;
-        }
-    }
+    <title>Enciclopedia de Animales Mexicanos</title>
+    <meta name="description" content="Proyecto dedicado a la investigación, difusión y divulgación de la fauna de México: fichas de especies, recursos educativos y colaboraciones.">
+    <meta name="author" content="Enciclopedia de Animales Mexicanos">
 
-    /* Tablet */
-    @media (min-width: 768px) and (max-width: 990px) {
-        .desktop {
-            display: none !important;
-        }
-        .movil {
-            display: none !important;
-        }
-        .tablet {
-            display: block !important;
-        }
-    }
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- style css -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Responsive-->
+    <link rel="stylesheet" href="css/responsive.css">
+    <!-- fevicon -->
+    <link rel="icon" href="images/fevicon.png" type="image/gif">
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
 
-    /* Escritorio */
-    @media (min-width: 991px) {
-        .tablet {
-            display: none !important;
-        }
-        .movil {
-            display: none !important;
-        }
-        .desktop {
-            display: block !important;
-        }
-    }
-  </style>
-   </head>
-   <!-- body -->
-   <body class="main-layout">
-      <!-- loader  -->
-      <div class="loader_bg">
-         <div class="loader"><img src="images/loading.gif" alt="#"/></div>
+    <style>
+      /* Ajustes mínimos para responsive y accesibilidad sin cambiar la estructura */
+      img { max-width: 100%; height: auto; }
+      .navbar-nav .nav-link { white-space: nowrap; }
+      .read_more { cursor: pointer; }
+
+      /* Navbar sticky + sombra al hacer scroll */
+      .header { position: sticky; top: 0; z-index: 1030; background:#0a0f0a; }
+      .header.stuck { box-shadow: 0 6px 20px rgba(0,0,0,.18); }
+
+      /* Corrección visual de tarjetas/galería en móviles */
+      .gallery_img figure, .about_img figure { margin: 0; }
+
+      /* Ocultar loader si tarda (fallback) */
+      .loader_bg { display: none; }
+
+      /* Respeta usuarios con motion reducido */
+      @media (prefers-reduced-motion: reduce) {
+        .carousel, .carousel-item { transition: none !important; }
+      }
+    </style>
+  </head>
+  <body class="main-layout">
+    <!-- header -->
+    <header>
+      <div class="header" id="siteHeader">
+        <div class="container">
+          <div class="row align-items-center">
+            <div class="col-md-12 col-sm-3 col logo_section">
+              <div class="full">
+                <div class="center-desk">
+                  <div class="logo">
+                    <a href="index.html" aria-label="Ir al inicio">
+                      <img
+                        src="images/Logo EAM.png"
+                        alt="Enciclopedia de Animales Mexicanos"
+                        style="max-width:180px; border-radius:12px;"
+                        loading="eager"
+                        decoding="async"
+                        fetchpriority="high"
+                      />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-10 offset-md-1">
+              <nav class="navigation navbar navbar-expand-md navbar-dark" aria-label="Navegación principal">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Abrir menú">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarsExample04">
+                  <ul class="navbar-nav mr-auto">
+                     <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">Nosotros</a></li>
+                    <li class="nav-item active"><a class="nav-link" href="service.html">Servicios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">Galería</a></li>
+                    <li class="nav-item"><a class="nav-link" href="testimonial.html">Fichas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contacto</a></li>
+                  </ul>
+                </div>
+              </nav>
+            </div>
+          </div>
+        </div>
       </div>
-      <!-- end loader -->
-      <!-- header -->
-      <header>
-         <!-- header inner -->
-         <div class="header">
+    </header>
+    <!-- end header -->
+
+    <!-- banner -->
+    <section class="banner_main">
+      <div id="myCarousel" class="carousel slide banner" data-ride="carousel" aria-label="Mensajes principales">
+        <ol class="carousel-indicators">
+          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+          <li data-target="#myCarousel" data-slide-to="1"></li>
+          <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
             <div class="container">
-               <div class="row">
-                  <div class="col-md-12 col-sm-3 col logo_section">
-                     <div class="full">
-                        <div class="center-desk">
-                           <div class="logo">
-                              <a href="index.html">
-                                 <img src="images/Logo EAM.png" alt="Enciclopedia de Animales Mexicanos" style="max-width:180px; border-radius:12px;" />
-                              </a>
-                           </div>
-                        </div>
-                     </div>
+              <div class="carousel-caption relative">
+                <div class="row">
+                  <div class="col-md-7 offset-md-5">
+                    <div class="text-bg">
+                      <h1>Enciclopedia de<br>Animales Mexicanos</h1>
+                      <span>Investigación, Difusión y Divulgación</span>
+                      <a class="read_more" href="animales.html">Ver especies</a>
+                    </div>
                   </div>
-                  <div class="col-md-10 offset-md-1">
-                     <nav class="navigation navbar navbar-expand-md navbar-dark ">
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarsExample04">
-                           <!-- Cambia el menú de navegación -->
-<ul class="navbar-nav mr-auto">
-   <li class="nav-item active">
-      <a class="nav-link" href="index.html">Inicio</a>
-   </li>
-   <li class="nav-item">
-      <a class="nav-link" href="about.html">Nosotros</a>
-   </li>
-   <li class="nav-item">
-      <a class="nav-link" href="service.html">Servicio</a>
-   </li>
-   <li class="nav-item">
-      <a class="nav-link" href="gallery.html">Galeria</a>
-   </li>
-   <li class="nav-item">
-      <a class="nav-link" href="testimonial.html"> Fichas </a>
-   </li>
-   <li class="nav-item">
-      <a class="nav-link" href="contact.html">Contacto</a>
-   </li>
-</ul>
-<!-- ...existing code... -->
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="container">
+              <div class="carousel-caption relative">
+                <div class="row">
+                  <div class="col-md-7 offset-md-5">
+                    <div class="text-bg">
+                      <h1>Fichas verificadas</h1>
+                      <span>Taxonomía, distribución, hábitat y estado UICN</span>
+                      <a class="read_more" href="metodologia.html">Metodología</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="container">
+              <div class="carousel-caption relative">
+                <div class="row">
+                  <div class="col-md-7 offset-md-5">
+                    <div class="text-bg">
+                      <h1>Colabora con la EAM</h1>
+                      <span>Investigación y divulgación interdisciplinaria</span>
+                      <a class="read_more" href="contact.html">Contactar</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev" aria-label="Anterior">
+          <i class="fa fa-angle-left" aria-hidden="true"></i>
+          <span class="sr-only">Anterior</span>
+        </a>
+        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next" aria-label="Siguiente">
+          <i class="fa fa-angle-right" aria-hidden="true"></i>
+          <span class="sr-only">Siguiente</span>
+        </a>
+      </div>
+    </section>
 
-                        </div>
-                     </nav>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </header>
-      <!-- end header inner -->
-      <!-- end header -->
-      <!-- banner -->
-      <section class="banner_main">
-         <div id="myCarousel" class="carousel slide banner" data-ride="carousel">
-            <ol class="carousel-indicators">
-               <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-               <li data-target="#myCarousel" data-slide-to="1"></li>
-               <li data-target="#myCarousel" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner">
-               <div class="carousel-item active">
-                  <div class="container">
-                     <div class="carousel-caption relative">
-                        <div class="row">
-                           <div class="col-md-7 offset-md-5">
-                              <div class="text-bg">
-                                 <h1> Encilopedia de  <br>Animales Mexicanos</h1>
-                                 <span>Investigacion, Difusion y Divulgacion </span>
-                                 <a class="read_more" href="Javascript:void(0)">Read More</a>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="carousel-item">
-                  <div class="container">
-                     <div class="carousel-caption relative">
-                        <div class="row">
-                           <div class="col-md-7 offset-md-5">
-                              <div class="text-bg">
-                                 <h1> Enciclopedia <br> De Animales Mexicanos</h1>
-                                 <span>UAEMex</span>
-                                 <a class="read_more" href="Javascript:void(0)">Read More</a>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="carousel-item">
-                  <div class="container">
-                     <div class="carousel-caption relative">
-                        <div class="row">
-                           <div class="col-md-7 offset-md-5">
-                              <div class="text-bg">
-                                 <h1>EAM</h1>
-                                 <span>UNIVERSIDAD Autonononoma del Estado </span>
-                                 <a class="read_more" href="Javascript:void(0)">Read More</a>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-            <i class="fa fa-angle-left" aria-hidden="true"></i>
-            <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-            <i class="fa fa-angle-right" aria-hidden="true"></i>
-            <span class="sr-only">Next</span>
-            </a>
-         </div>
-      </section>
-      <!-- end banner -->
-      <!-- about -->
-      <div id="about" class="about">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-5">
-                  <div class="titlepage">
-                     <h2>Sobre <span class="green">la Enciclopedia</span></h2>
-                     <p>
-                        La <strong>Enciclopedia de Animales Mexicanos</strong> es un proyecto dedicado a la investigación, difusión y divulgación del conocimiento sobre la fauna de México. Nuestro objetivo es ofrecer información científica, histórica y cultural sobre las especies animales que habitan nuestro país, promoviendo su conservación y el respeto por la biodiversidad nacional. 
-                        <br><br>
-                        Aquí encontrarás fichas de especies, artículos de divulgación, recursos educativos y colaboraciones interdisciplinarias que enriquecen el conocimiento sobre la riqueza zoológica de México.
-                     </p>
-                     <a class="read_more" href="nosotros.html"> Conoce más</a>
-                  </div>
-               </div>
-               <div class="col-md-7">
-                  <div class="about_img">
-                     <figure><img src="images/Logo EAM.png" alt="Enciclopedia de Animales Mexicanos"/></figure>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-      <!-- end about -->
-      <!--  service -->
-      <div id="service" class="service">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-12">
-                  <div class="titlepage">
-                     <h2>Our <span class="green">Services</span></h2>
-                  </div>
-               </div>
-            </div>
-            <div class="row">
-               <div class="col-md-10 offset-md-1">
-                  <div class="row">
-                     <div class="col-md-4 col-sm-6">
-                        <div class="service_box">
-                           <i><img src="images/ajolote.png" alt="#"/></i>
-                           <h3>Retina Ready</h3>
-                           <p>many variations of passages <br>of Lorem Ipsum available,</p>
-                        </div>
-                     </div>
-                     <div class="col-md-4 offset-md-1 col-sm-6">
-                        <div class="service_box">
-                           <i><img src="images/ajolote.png" alt="#"/></i>
-                           <h3>Investigacion Etnografica</h3>
-                           <p>Colaboraciones Interdisicipinares</p>
-                        </div>
-                     </div>
-                     <div class="col-md-4 offset-md-3 col-sm-6 mar_top">
-                        <div class="service_box">
-                           <i><img src="images/ajolote.png" alt="#"/></i>
-                           <h3>Easy-to-Use</h3>
-                           <p>many variations of passages <br>of Lorem Ipsum available,</p>
-                        </div>
-                     </div>
-                     <div class="col-md-4 offset-md-1 col-sm-6 mar_top">
-                        <div class="service_box">
-                           <i><img src="images/ajolote.png" alt="#"/></i>
-                           <h3>Easy Import</h3>
-                           <p>many variations of passages <br>of Lorem Ipsum available,</p>
-                        </div>
-                     </div>
-                     <div class="col-md-12">
-                        <a class="read_more" href="Javascript:void(0)"> Read More</a>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-      <!-- end service -->
-      <!-- gallery -->
-      <div id="gallery"  class="gallery">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-12">
-                  <div class="titlepage">
-                     <h2>Our <span class="green">gallery</span></h2>
-                     <p>here are many variations of passages of Lorem Ipsum available, but the majority have suffer</p>
-                  </div>
-               </div>
-            </div>
-            <div class="row">
-               <div class="col-md-4 col-sm-6">
-                  <div class="gallery_text">
-                     <div class="galleryh3">
-                        <h3>Interior Design</h3>
-                        <p>of passages of Lorem <br>
-                           Ipsum available <br>
-                           , but the majority <br>
-                           have suffer
-                        </p>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-md-4 col-sm-6">
-                  <div class="gallery_img">
-                     <figure><img src="images/ajolote.png" alt="#"/></figure>
-                  </div>
-               </div>
-               <div class="col-md-4 col-sm-6">
-                  <div class="gallery_img">
-                     <figure><img src="images/ajolote.png" alt="#"/></figure>
-                  </div>
-               </div>
-               <div class="col-md-4 col-sm-6">
-                  <div class="gallery_img">
-                     <figure><img src="images/ajolote.png" alt="#"/></figure>
-                  </div>
-               </div>
-               <div class="col-md-4 col-sm-6">
-                  <div class="gallery_img">
-                     <figure><img src="images/ajolote.png" alt="#"/></figure>
-                  </div>
-               </div>
-               <div class="col-md-4 col-sm-6">
-                  <div class="gallery_text">
-                     <div class="galleryh3">
-                        <h3>Virginia no te robes el teeeee</h3>
-                        <p>of passages of Lorem <br>
-                           Ipsum available <br>
-                           , but the majority <br>
-                           have suffer
-                        </p>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-md-4 col-sm-6">
-                  <div class="gallery_text">
-                     <div class="galleryh3">
-                        <h3>Interior Design</h3>
-                        <p>of passages of Lorem <br>
-                           Ipsum available <br>
-                           , but the majority <br>
-                           have suffer
-                        </p>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-md-4 col-sm-6">
-                  <div class="gallery_img">
-                     <figure><img src="images/ajolote.png" alt="#"/></figure>
-                  </div>
-               </div>
-               <div class="col-md-4 col-sm-6">
-                  <div class="gallery_img">
-                     <figure><img src="images/ajolote.png" alt="#"/></figure>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-      <!-- end gallery -->
-      <!-- design -->
-      <div class="design">
-         <div class="container-fluid">
-            <div class="row d_flex">
-               <div class="col-md-5">
-                  <div id="design" class="carousel slide banner_design" data-ride="carousel">
-                     <ol class="carousel-indicators">
-                        <li data-target="#design" data-slide-to="0" class="active"></li>
-                        <li data-target="#design" data-slide-to="1"></li>
-                        <li data-target="#design" data-slide-to="2"></li>
-                     </ol>
-                     <div class="carousel-inner">
-                        <div class="carousel-item active">
-                           <div class="container">
-                              <div class="carousel-caption relative">
-                                 <div class="row">
-                                    <div class="col-md-12">
-                                       <div class="text_de">
-                                          <div class="titlepage">
-                                             <h2>Nuevas lineas de <span class="green">Investigacion</span></h2>
-                                          </div>
-                                          <p>Animales trasecendetalales</p>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="carousel-item">
-                           <div class="container">
-                              <div class="carousel-caption relative">
-                                 <div class="row">
-                                    <div class="col-md-12">
-                                       <div class="text_de">
-                                          <div class="titlepage">
-                                             <h2>New Ideas <span class="green">Design</span></h2>
-                                          </div>
-                                          <p>There are many variations of passages of Lorem Ipsum available, but theThere are many variations of passages of Lorem Ipsum available, but the</p>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="carousel-item">
-                           <div class="container">
-                              <div class="carousel-caption relative">
-                                 <div class="row">
-                                    <div class="col-md-12">
-                                       <div class="text_de">
-                                          <div class="titlepage">
-                                             <h2>New Ideas <span class="green">Design</span></h2>
-                                          </div>
-                                          <p>There are many variations of passages of Lorem Ipsum available, but theThere are many variations of passages of Lorem Ipsum available, but the</p>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <a class="carousel-control-prev" href="#design" role="button" data-slide="prev">
-                     <i class="fa fa-angle-left" aria-hidden="true"></i>
-                     <span class="sr-only">Anterior</span>
-                     </a>
-                     <a class="carousel-control-next" href="#design" role="button" data-slide="next">
-                     <i class="fa fa-angle-right" aria-hidden="true"></i>
-                     <span class="sr-only">Siguinte</span>
-                     </a>
-                  </div>
-               </div>
-               <div class="col-md-7 pad_roght0">
-                  <div class="design_img">
-                     <figure><img src="images/ajolote.png" alt="#"/></figure>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-      <!-- end design -->
-      <!-- latest news -->
-      <div  class="latest_news">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-12">
-                  <div class="titlepage">
-                     <h2>Avances inter <span class="green">disciplinarios</span></h2>
-                  </div>
-               </div>
-            </div>
-            <div class="row">
-               <div class="col-md-4 offset-md-2">
-                  <div id="new" class="news_box">
-                     <div class="news_img">
-                        <figure><img src="images/ajolote.png" alt="#"/></figure>
-                     </div>
-                     <div class="news_room">
-                        <span>Kant</span>
-                        <ul>
-                           <li><a href="Javascript:void(0)">Like <i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-                           <li><a href="Javascript:void(0)">Comment <i class="fa fa-comments-o" aria-hidden="true"></i></a></li>
-                           <li><a href="Javascript:void(0)">Share <i class="fa fa-share-alt" aria-hidden="true"></i></a></li>
-                        </ul>
-                        <h3>Algo de Derecho y A</h3>
-                        <p>It is a long established fact that a reader will be distracted by the readable content  </p>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-md-4 ">
-                  <div id="new" class="news_box">
-                     <div class="news_img mr_le">
-                        <figure><img src="images/ajolote.png" alt="#"/></figure>
-                     </div>
-                     <div class="news_room">
-                        <span> Dante </span>
-                        <ul>
-                           <li><a href="Javascript:void(0)">Like <i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-                           <li><a href="Javascript:void(0)">Comment <i class="fa fa-comments-o" aria-hidden="true"></i></a></li>
-                           <li><a href="Javascript:void(0)">Share <i class="fa fa-share-alt" aria-hidden="true"></i></a></li>
-                        </ul>
-                        <h3>Arquitectura</h3>
-                        <p>Algo sobre A y A nimales jaajakjakjka  </p>
-                     </div>
-                  </div>
-               </div>
-               <div class="col-md-12">
-               </div>
-            </div>
-         </div>
-      </div>
-      <!-- end latest news -->
-      <!-- testimonial -->
-      <div id="testimonial" class="Testimonial">
-         <div class="container-fluid">
-            <div class="row d_flex">
-               <div class="col-md-8 pad_left0">
-                  <div id="testimon" class="carousel slide banner_testimonial" data-ride="carousel">
-                     <ol class="carousel-indicators">
-                        <li data-target="#testimon" data-slide-to="0" class="active"></li>
-                        <li data-target="#testimon" data-slide-to="1"></li>
-                        <li data-target="#testimon" data-slide-to="2"></li>
-                     </ol>
-                     <div class="carousel-inner">
-                        <div class="carousel-item active">
-                           <div class="container">
-                              <div class="carousel-caption relative">
-                                 <div class="row">
-                                    <div class="col-md-6">
-                                       <div class="text_humai">
-                                          <i><img src="images/ajolote.png" alt="#"/></i>
-                                          <span>HumouThere</span>
-                                          <p>T suffered alteration in some form, by injected humouThere are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humou</p>
-                                       </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                       <div class="text_humai">
-                                          <i><img src="images/ajolote.png" alt="#"/></i>
-                                          <span>HumouThere</span>
-                                          <p>T suffered alteration in some form, by injected humouThere are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humou</p>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="carousel-item">
-                           <div class="container">
-                              <div class="carousel-caption relative">
-                                 <div class="row">
-                                    <div class="col-md-6">
-                                       <div class="text_humai">
-                                          <i><img src="images/ajolote.png" alt="#"/></i>
-                                          <span>HumouThere</span>
-                                          <p>T suffered alteration in some form, by injected humouThere are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humou</p>
-                                       </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                       <div class="text_humai">
-                                          <i><img src="images/ajolote.png" alt="#"/></i>
-                                          <span>HumouThere</span>
-                                          <p>T suffered alteration in some form, by injected humouThere are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humou</p>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                        <div class="carousel-item">
-                           <div class="container">
-                              <div class="carousel-caption relative">
-                                 <div class="row">
-                                    <div class="col-md-6">
-                                       <div class="text_humai">
-                                          <i><img src="images/ajolote.png" alt="#"/></i>
-                                          <span>HumouThere</span>
-                                          <p>T suffered alteration in some form, by injected humouThere are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humou</p>
-                                       </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                       <div class="text_humai">
-                                          <i><img src="images/ajolote.png" alt="#"/></i>
-                                          <span>HumouThere</span>
-                                          <p>T suffered alteration in some form, by injected humouThere are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humou</p>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div>
-                     </div>
-                     <a class="carousel-control-prev" href="#testimon" role="button" data-slide="prev">
-                     <i class="fa fa-angle-left" aria-hidden="true"></i>
-                     <span class="sr-only">Anterior</span>
-                     </a>
-                     <a class="carousel-control-next" href="#testimon" role="button" data-slide="next">
-                     <i class="fa fa-angle-right" aria-hidden="true"></i>
-                     <span class="sr-only">Sisguiente</span>
-                     </a>
-                  </div>
-               </div>
-               <div class="col-md-4 ">
-                  <div class="titlepage">
-                     <h2>Fichas</h2>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-      <!-- end design -->
-      <!--  contact -->
-      <div id="contact" class="contact">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-12">
-                  <div class="titlepage">
-                     <h2>Contactanos</h2>
-                  </div>
-               </div>
-            </div>
-            <div class="row">
-               <div class="col-md-6">
-                  <form  action=Fichas/ method="post id="request" class="main_form">
-                     <div class="row">
-                        <div class="col-md-12 ">
-                           <input class="contactus" placeholder="Name" type="type" name="Name"> 
-                        </div>
-                        <div class="col-md-12">
-                           <input class="contactus" placeholder="Email" type="type" name="Email"> 
-                        </div>
-                        <div class="col-md-12">
-                           <input class="contactus" placeholder="Phone Number" type="type" name="Phone Number">                          
-                        </div>
-                        <div class="col-md-12">
-                           <textarea class="textarea" placeholder="Message" type="type" Message="Name">Message</textarea>
-                        </div>
-                        <div class="col-md-12">
-                           <button class="send_btn">Enviar</button>
-                        </div>
-                     </div>
-                  </form>
-               </div>
-               <div class="col-md-6">
-                  <div class="map_main">
-                     <div class="map-responsive">
-                        <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0s1a7phLN0iaD6-UE7m4qP-z21pH0eSc&amp;q=Eiffel+Tower+Paris+France" width="600" height="345" frameborder="0" style="border:0; width: 100%;" allowfullscreen=""></iframe>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-      <!-- end contact -->
-       <!--  footer -->
-    <footer>
-   <div class="footer">
+    <!-- about -->
+    <div id="about" class="about">
       <div class="container">
-         <div class="row">
-            <!-- Redes sociales -->
-            <div class="col-md-3 col-sm-6">
-               <ul class="social_icon">
-                  <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                  <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                  <li><a href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
-                  <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-               </ul>
-               <p class="variat pad_roght2">
-                  Enciclopedia de los Animales Mexicanos es un proyecto de difusión del conocimiento zoológico, histórico y cultural, comprometido con la preservación y el estudio de la biodiversidad nacional.
-               </p>
+        <div class="row">
+          <div class="col-md-5">
+            <div class="titlepage">
+              <h2>Sobre <span class="green">la Enciclopedia</span></h2>
+              <p>
+                La <strong>Enciclopedia de Animales Mexicanos</strong> documenta la fauna del país con estándares académicos: nombre común y científico, distribución, hábitat, estado de conservación y referencias verificables. Nuestro propósito es promover la conservación y el conocimiento público.
+              </p>
+              <a class="read_more" href="nosotros.html">Conoce más</a>
             </div>
-
-            <!-- Ayuda o contacto -->
-            <div class="col-md-3 col-sm-6">
-               <h3>Contáctanos</h3>
-               <p class="variat pad_roght2">
-                  ¿Tienes dudas, comentarios o deseas colaborar? <br> Escríbenos a:<br>
-                  contacto <br>@EAM.org
-               </p>
+          </div>
+          <div class="col-md-7">
+            <div class="about_img">
+              <figure><img src="images/Logo EAM.png" alt="Logotipo de la EAM" loading="lazy" decoding="async" /></figure>
             </div>
-
-            <!-- Navegación -->
-            <div class="col-md-3 col-sm-6">
-               <h3>Enlaces útiles</h3>
-               <ul class="link_menu">
-                  <li><a href="index.html">Inicio</a></li>
-                  <li><a href="nosotros.html">¿Quiénes somos?</a></li>
-                  <li><a href="animales.html">Especies</a></li>
-                  <li><a href="lineas-investigacion.html">Líneas de investigación</a></li>
-                  <li><a href="colaboradores.html">Colaboradores</a></li>
-                  <li><a href="contacto.html">Contacto</a></li>
-               </ul>
-            </div>
-
-            <!-- Diseño / Filosofía -->
-            <div class="col-md-3 col-sm-6">
-               <h3>Nuestra visión</h3>
-               <p class="variat">
-                  La EAM nace del esfuerzo interdisciplinario por documentar y preservar el conocimiento etnohistórico y científico de las especies que habitan nuestro territorio.
-               </p>
-            </div>
-
-            <!-- Newsletter -->
-            <div class="col-md-6 offset-md-6">
-               <form id="newsletter" class="bottom_form">
-                  <input class="enter" placeholder="Tu correo electrónico" type="email" name="email">
-                  <button class="sub_btn">Suscribirme</button>
-               </form>
-            </div>
-         </div>
+          </div>
+        </div>
       </div>
+    </div>
 
-      <!-- Derechos de autor -->
-      <div class="copyright">
-         <div class="container">
+    <!-- service -->
+    <div id="service" class="service">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="titlepage">
+              <h2>Nuestros <span class="green">contenidos</span></h2>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-10 offset-md-1">
             <div class="row">
-               <div class="col-md-10 offset-md-1">
-                  <p>© 2025 Enciclopedia de los Animales Mexicanos. Todos los derechos reservados. Sitio desarrollado por el equipo EAM.</p>
-               </div>
+              <div class="col-md-4 col-sm-6">
+                <div class="service_box">
+                  <i><img src="images/ajolote.png" alt="Fichas de especies" loading="lazy" decoding="async"/></i>
+                  <h3>Fichas de especies</h3>
+                  <p>Información validada: taxonomía, distribución, hábitat y estado UICN.</p>
+                </div>
+              </div>
+              <div class="col-md-4 offset-md-1 col-sm-6">
+                <div class="service_box">
+                  <i><img src="images/ajolote.png" alt="Recursos educativos" loading="lazy" decoding="async"/></i>
+                  <h3>Recursos educativos</h3>
+                  <p>Guías y materiales para docentes y divulgadores.</p>
+                </div>
+              </div>
+              <div class="col-md-4 offset-md-3 col-sm-6 mar_top">
+                <div class="service_box">
+                  <i><img src="images/ajolote.png" alt="Colaboraciones" loading="lazy" decoding="async"/></i>
+                  <h3>Colaboraciones</h3>
+                  <p>Proyectos interdisciplinarios con instituciones y comunidades.</p>
+                </div>
+              </div>
+              <div class="col-md-4 offset-md-1 col-sm-6 mar_top">
+                <div class="service_box">
+                  <i><img src="images/ajolote.png" alt="Datos abiertos" loading="lazy" decoding="async"/></i>
+                  <h3>Datos abiertos</h3>
+                  <p>Publicación de conjuntos de datos y referencias trazables.</p>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <a class="read_more" href="animales.html">Explorar especies</a>
+              </div>
             </div>
-         </div>
+          </div>
+        </div>
       </div>
-   </div>
-</footer>
-      <!-- end footer -->
-      <!-- Javascript files-->
-      <script src="js/jquery.min.js"></script>
-      <script src="js/bootstrap.bundle.min.js"></script>
-      <script src="js/jquery-3.0.0.min.js"></script>
-      <!-- sidebar -->
-      <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-      <script src="js/custom.js"></script>
-   </body>
+    </div>
+
+    <!-- gallery -->
+    <div id="gallery" class="gallery">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="titlepage">
+              <h2>Nuestra <span class="green">galería</span></h2>
+              <p>Imágenes ilustrativas de especies (con licencias y créditos correspondientes).</p>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <!-- Mantengo tu layout, solo añado decoding/lazy -->
+          <div class="col-md-4 col-sm-6">
+            <div class="gallery_text">
+              <div class="galleryh3">
+                <h3>Ajolote</h3>
+                <p>Anfibio endémico de Xochimilco (Ambystoma mexicanum).</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6"><div class="gallery_img"><figure><img src="images/ajolote.png" alt="Ajolote" loading="lazy" decoding="async"/></figure></div></div>
+          <div class="col-md-4 col-sm-6"><div class="gallery_img"><figure><img src="images/ajolote.png" alt="Ajolote" loading="lazy" decoding="async"/></figure></div></div>
+          <div class="col-md-4 col-sm-6"><div class="gallery_img"><figure><img src="images/ajolote.png" alt="Ajolote" loading="lazy" decoding="async"/></figure></div></div>
+          <div class="col-md-4 col-sm-6"><div class="gallery_img"><figure><img src="images/ajolote.png" alt="Ajolote" loading="lazy" decoding="async"/></figure></div></div>
+          <div class="col-md-4 col-sm-6">
+            <div class="gallery_text">
+              <div class="galleryh3">
+                <h3>Colibrí</h3>
+                <p>Aves nectívoras de gran importancia polinizadora.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6"><div class="gallery_text"><div class="galleryh3"><h3>Jaguar</h3><p>Felino emblemático de Mesoamérica (Panthera onca).</p></div></div></div>
+          <div class="col-md-4 col-sm-6"><div class="gallery_img"><figure><img src="images/ajolote.png" alt="Imagen de ejemplo" loading="lazy" decoding="async"/></figure></div></div>
+          <div class="col-md-4 col-sm-6"><div class="gallery_img"><figure><img src="images/ajolote.png" alt="Imagen de ejemplo" loading="lazy" decoding="async"/></figure></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- design -->
+    <div class="design">
+      <div class="container-fluid">
+        <div class="row d_flex">
+          <div class="col-md-5">
+            <div id="design" class="carousel slide banner_design" data-ride="carousel" aria-label="Líneas de investigación">
+              <ol class="carousel-indicators">
+                <li data-target="#design" data-slide-to="0" class="active"></li>
+                <li data-target="#design" data-slide-to="1"></li>
+                <li data-target="#design" data-slide-to="2"></li>
+              </ol>
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <div class="container">
+                    <div class="carousel-caption relative">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="text_de">
+                            <div class="titlepage">
+                              <h2>Nuevas líneas de <span class="green">investigación</span></h2>
+                            </div>
+                            <p>Conservación de anfibios endémicos y monitoreo de hábitats urbanos.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div class="container">
+                    <div class="carousel-caption relative">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="text_de">
+                            <div class="titlepage">
+                              <h2>Divulgación <span class="green">científica</span></h2>
+                            </div>
+                            <p>Material didáctico para escuelas y actividades comunitarias.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div class="container">
+                    <div class="carousel-caption relative">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <div class="text_de">
+                            <div class="titlepage">
+                              <h2>Datos <span class="green">abiertos</span></h2>
+                            </div>
+                            <p>Publicación de conjuntos de datos y trazabilidad de fuentes.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <a class="carousel-control-prev" href="#design" role="button" data-slide="prev" aria-label="Anterior">
+                <i class="fa fa-angle-left" aria-hidden="true"></i>
+                <span class="sr-only">Anterior</span>
+              </a>
+              <a class="carousel-control-next" href="#design" role="button" data-slide="next" aria-label="Siguiente">
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+                <span class="sr-only">Siguiente</span>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-7 pad_roght0">
+            <div class="design_img">
+              <figure><img src="images/ajolote.png" alt="Ilustración de especie" loading="lazy" decoding="async"/></figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- latest news -->
+    <div class="latest_news">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="titlepage">
+              <h2>Avances <span class="green">interdisciplinarios</span></h2>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 offset-md-2">
+            <div id="new" class="news_box">
+              <div class="news_img"><figure><img src="images/ajolote.png" alt="Proyecto anfibios" loading="lazy" decoding="async"/></figure></div>
+              <div class="news_room">
+                <span>Conservación</span>
+                <ul>
+                  <li><a href="#">Like <i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
+                  <li><a href="#">Comment <i class="fa fa-comments-o" aria-hidden="true"></i></a></li>
+                  <li><a href="#">Share <i class="fa fa-share-alt" aria-hidden="true"></i></a></li>
+                </ul>
+                <h3>Programa de monitoreo de ajolotes</h3>
+                <p>Colaboración con laboratorios locales para evaluar calidad de agua y poblaciones.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div id="new" class="news_box">
+              <div class="news_img mr_le"><figure><img src="images/ajolote.png" alt="Material educativo" loading="lazy" decoding="async"/></figure></div>
+              <div class="news_room">
+                <span>Divulgación</span>
+                <ul>
+                  <li><a href="#">Like <i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
+                  <li><a href="#">Comment <i class="fa fa-comments-o" aria-hidden="true"></i></a></li>
+                  <li><a href="#">Share <i class="fa fa-share-alt" aria-hidden="true"></i></a></li>
+                </ul>
+                <h3>Talleres para escuelas</h3>
+                <p>Actividades sobre biodiversidad urbana y especies emblemáticas.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- testimonial / Fichas -->
+    <div id="testimonial" class="Testimonial">
+      <div class="container-fluid">
+        <div class="row d_flex">
+          <div class="col-md-8 pad_left0">
+            <div id="testimon" class="carousel slide banner_testimonial" data-ride="carousel" aria-label="Fichas destacadas">
+              <ol class="carousel-indicators">
+                <li data-target="#testimon" data-slide-to="0" class="active"></li>
+                <li data-target="#testimon" data-slide-to="1"></li>
+                <li data-target="#testimon" data-slide-to="2"></li>
+              </ol>
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <div class="container">
+                    <div class="carousel-caption relative">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="text_humai">
+                            <i><img src="images/ajolote.png" alt="Ajolote" loading="lazy" decoding="async"/></i>
+                            <span>Ajolote</span>
+                            <p>Ambystoma mexicanum — Especie endémica; indicador de salud de ecosistemas acuáticos.</p>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="text_humai">
+                            <i><img src="images/ajolote.png" alt="Colibrí" loading="lazy" decoding="async"/></i>
+                            <span>Colibrí</span>
+                            <p>Importante polinizador; diversidad alta en México.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div class="container">
+                    <div class="carousel-caption relative">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="text_humai">
+                            <i><img src="images/ajolote.png" alt="Jaguar" loading="lazy" decoding="async"/></i>
+                            <span>Jaguar</span>
+                            <p>Panthera onca — Felino emblemático; conservación en corredores biológicos.</p>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="text_humai">
+                            <i><img src="images/ajolote.png" alt="Perrito de la pradera" loading="lazy" decoding="async"/></i>
+                            <span>Perrito de la pradera</span>
+                            <p>Cynomys mexicanus — Ingeniero del ecosistema en pastizales.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="carousel-item">
+                  <div class="container">
+                    <div class="carousel-caption relative">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="text_humai">
+                            <i><img src="images/ajolote.png" alt="Vaquita marina" loading="lazy" decoding="async"/></i>
+                            <span>Vaquita marina</span>
+                            <p>Phocoena sinus — En peligro crítico; esfuerzo internacional de conservación.</p>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="text_humai">
+                            <i><img src="images/ajolote.png" alt="Tortuga caguama" loading="lazy" decoding="async"/></i>
+                            <span>Tortuga caguama</span>
+                            <p>Caretta caretta — Migraciones largas; protección de playas de anidación.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <a class="carousel-control-prev" href="#testimon" role="button" data-slide="prev" aria-label="Anterior">
+                <i class="fa fa-angle-left" aria-hidden="true"></i>
+                <span class="sr-only">Anterior</span>
+              </a>
+              <a class="carousel-control-next" href="#testimon" role="button" data-slide="next" aria-label="Siguiente">
+                <i class="fa fa-angle-right" aria-hidden="true"></i>
+                <span class="sr-only">Siguiente</span>
+              </a>
+            </div>
+          </div>
+          <div class="col-md-4 ">
+            <div class="titlepage">
+              <h2>Fichas</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- contact -->
+    <div id="contact" class="contact">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="titlepage"><h2>Contáctanos</h2></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <form action="Fichas/" method="post" id="request" class="main_form" novalidate>
+              <div class="row">
+                <div class="col-md-12">
+                  <label class="sr-only" for="name">Nombre</label>
+                  <input id="name" class="contactus" placeholder="Nombre" type="text" name="name" required>
+                </div>
+                <div class="col-md-12">
+                  <label class="sr-only" for="email">Email</label>
+                  <input id="email" class="contactus" placeholder="Email" type="email" name="email" required>
+                </div>
+                <div class="col-md-12">
+                  <label class="sr-only" for="phone">Teléfono</label>
+                  <input id="phone" class="contactus" placeholder="Teléfono" type="tel" name="phone">
+                </div>
+                <div class="col-md-12">
+                  <label class="sr-only" for="message">Mensaje</label>
+                  <textarea id="message" class="textarea" placeholder="Mensaje" name="message" rows="5"></textarea>
+                </div>
+                <div class="col-md-12">
+                  <button class="send_btn" type="submit">Enviar</button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="col-md-6">
+            <div class="map_main">
+              <div class="map-responsive">
+                <iframe
+                  title="Mapa"
+                  src="https://www.google.com/maps?q=Xochimilco,+CDMX&output=embed"
+                  width="600"
+                  height="345"
+                  frameborder="0"
+                  style="border:0; width: 100%;"
+                  allowfullscreen
+                  loading="lazy">
+                </iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- footer -->
+    <footer>
+      <div class="footer">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-3 col-sm-6">
+              <ul class="social_icon">
+                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                <li><a href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
+                <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+              </ul>
+              <p class="variat pad_roght2">
+                Enciclopedia de los Animales Mexicanos es un proyecto de difusión del conocimiento zoológico, histórico y cultural, comprometido con la preservación y el estudio de la biodiversidad nacional.
+              </p>
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <h3>Contáctanos</h3>
+              <p class="variat pad_roght2">
+                ¿Dudas o colaboraciones? Escríbenos:<br>
+                contacto@eam.org
+              </p>
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <h3>Enlaces útiles</h3>
+              <ul class="link_menu">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="nosotros.html">¿Quiénes somos?</a></li>
+                <li><a href="animales.html">Especies</a></li>
+                <li><a href="lineas-investigacion.html">Líneas de investigación</a></li>
+                <li><a href="colaboradores.html">Colaboradores</a></li>
+                <li><a href="contact.html">Contacto</a></li>
+              </ul>
+            </div>
+            <div class="col-md-3 col-sm-6">
+              <h3>Nuestra visión</h3>
+              <p class="variat">
+                Documentar y preservar el conocimiento etnohistórico y científico sobre la fauna de México, de forma abierta y verificable.
+              </p>
+            </div>
+            <div class="col-md-6 offset-md-6">
+              <form id="newsletter" class="bottom_form" action="#" method="post">
+                <label class="sr-only" for="newsletter-email">Correo</label>
+                <input id="newsletter-email" class="enter" placeholder="Tu correo electrónico" type="email" name="email" required>
+                <button class="sub_btn" type="submit">Suscribirme</button>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-10 offset-md-1">
+                <p>© 2025 Enciclopedia de los Animales Mexicanos. Todos los derechos reservados.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Javascript files (defer para mejor performance) -->
+    <script defer src="js/jquery.min.js"></script>
+    <script defer src="js/bootstrap.bundle.min.js"></script>
+    <script defer src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script defer src="js/custom.js"></script>
+
+    <script>
+      // Sombra al hacer scroll en header
+      (function(){
+        var h = document.getElementById('siteHeader');
+        function onScroll(){ (window.scrollY > 8) ? h.classList.add('stuck') : h.classList.remove('stuck'); }
+        onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+      })();
+
+      // Respeta reduced-motion en carruseles de Bootstrap
+      (function(){
+        try {
+          var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          if (reduce) {
+            ['myCarousel','testimon','design'].forEach(function(id){
+              var el = document.getElementById(id);
+              if (el && $(el).carousel) $(el).carousel({ interval: false, ride: false });
+            });
+          }
+        } catch(e){}
+      })();
+    </script>
+  </body>
 </html>
+

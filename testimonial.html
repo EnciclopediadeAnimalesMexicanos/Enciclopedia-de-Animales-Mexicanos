@@ -1,330 +1,314 @@
 <!DOCTYPE html>
-<html lang="en">
-   <head>
-      <!-- basic -->
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <!-- mobile metas -->
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-      <!-- site metas -->
-      <title>Fichas | Enciclopedia de Animales Mexicanos</title>
-      <meta name="keywords" content="">
-      <meta name="description" content="">
-      <meta name="author" content="">
-      <!-- bootstrap css -->
-      <link rel="stylesheet" href="css/bootstrap.min.css">
-      <!-- style css -->
-      <link rel="stylesheet" href="css/style.css">
-      <!-- Responsive-->
-      <link rel="stylesheet" href="css/responsive.css">
-      <!-- fevicon -->
-      <link rel="icon" href="images/fevicon.png" type="image/gif" />
-      <!-- Scrollbar Custom CSS -->
-      <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
-      <!-- Tweaks for older IEs-->
-      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
-      <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-      <!-- ...dentro de <head> agrega este bloque al final para mejorar el diseño... -->
-<style>
-<style>
-    .resolucion {
-        width: 99%;
-        text-align: center;
-    }
+<html lang="es">
+  <head>
+    <!-- básicos -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- móvil (solo una meta) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    /* Móvil */
-    @media (max-width: 767px) {
-        .desktop {
-            display: none !important;
-        }
-        .tablet {
-            display: none !important;
-        }
-        .movil {
-            display: block !important;
-        }
-    }
+    <title>Fichas | Enciclopedia de Animales Mexicanos</title>
+    <meta name="description" content="Consulta y agrega fichas verificadas de especies de la fauna mexicana.">
+    <meta name="author" content="Enciclopedia de Animales Mexicanos">
 
-    /* Tablet */
-    @media (min-width: 768px) and (max-width: 990px) {
-        .desktop {
-            display: none !important;
-        }
-        .movil {
-            display: none !important;
-        }
-        .tablet {
-            display: block !important;
-        }
-    }
-    /* Escritorio */
-    @media (min-width: 991px) {
-        .tablet {
-            display: none !important;
-        }
-        .movil {
-            display: none !important;
-        }
-        .desktop {
-            display: block !important;
-        }
-    }
-/* Mejorar tarjetas de fichas */
-.animal-cards-section .card {
-  border-radius: 18px;
-  box-shadow: 0 4px 18px rgba(0,0,0,0.08);
-  border: none;
-  transition: transform 0.2s, box-shadow 0.2s;
-  background: #fff;
-}
-.animal-cards-section .card:hover {
-  transform: translateY(-6px) scale(1.02);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.13);
-}
-.animal-cards-section .card-img-top {
-  border-radius: 18px 18px 0 0;
-  object-fit: cover;
-  height: 220px;
-  background: #e8f5e9;
-}
-.animal-cards-section .card-title {
-  font-size: 1.3rem;
-  color: #1b5e20;
-  font-weight: bold;
-  margin-bottom: 0.2em;
-}
-.animal-cards-section em {
-  color: #388e3c;
-  font-size: 1rem;
-}
-.animal-cards-section ul.list-unstyled li {
-  margin-bottom: 0.3em;
-  font-size: 0.98rem;
-}
-.animal-cards-section a {
-  color: #1976d2;
-  text-decoration: underline;
-}
-.animal-cards-section a:hover {
-  color: #004ba0;
-}
+    <!-- estilos -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="icon" href="images/fevicon.png" type="image/gif">
+    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
 
-/* Mejorar formulario */
-#agregarFichaForm {
-  border-radius: 18px;
-  box-shadow: 0 4px 18px rgba(0,0,0,0.09);
-  background: #f9fff9;
-  border: 1px solid #e0e0e0;
-}
-#agregarFichaForm h4 {
-  color: #1b5e20;
-  font-weight: bold;
-  margin-bottom: 1em;
-}
-#agregarFichaForm label {
-  font-weight: 500;
-  color: #388e3c;
-}
-#agregarFichaForm .form-control {
-  border-radius: 8px;
-  border: 1px solid #bdbdbd;
-  margin-bottom: 0.7em;
-}
-#agregarFichaForm .btn-success {
-  background: #388e3c;
-  border: none;
-  border-radius: 8px;
-  padding: 0.5em 2em;
-  font-weight: 600;
-  letter-spacing: 1px;
-}
-#agregarFichaForm .btn-success:hover {
-  background: #1b5e20;
-}
-#mostrarFormBtn {
-  background: #1976d2;
-  border: none;
-  border-radius: 8px;
-  padding: 0.5em 2em;
-  font-weight: 600;
-  letter-spacing: 1px;
-}
-#mostrarFormBtn:hover {
-  background: #004ba0;
-}
-#passwordError {
-  margin-top: 0.5em;
-}
+    <!-- ajustes de esta página -->
+    <style>
+      .resolucion { width: 99%; text-align: center; }
 
-/* Responsive mejoras */
-@media (max-width: 767px) {
-  .animal-cards-section .card-img-top {
-    height: 150px;
-  }
-  #agregarFichaForm {
-    padding: 1em !important;
-  }
-}
-</style>
-<!-- ...fin del bloque de estilos... -->
-   </head>
-   <!-- body -->
-   <body class="main-layout in_page">
-      <!-- loader  -->
-      <div class="loader_bg">
-         <div class="loader"><img src="images/loading.gif" alt="#"/></div>
+      /* Móvil */
+      @media (max-width: 767px) {
+        .desktop { display:none!important; }
+        .tablet  { display:none!important; }
+        .movil   { display:block!important; }
+      }
+      /* Tablet */
+      @media (min-width:768px) and (max-width:990px){
+        .desktop { display:none!important; }
+        .movil   { display:none!important; }
+        .tablet  { display:block!important; }
+      }
+      /* Escritorio */
+      @media (min-width:991px){
+        .tablet  { display:none!important; }
+        .movil   { display:none!important; }
+        .desktop { display:block!important; }
+      }
+
+      /* Tarjetas Fichas */
+      .animal-cards-section .card {
+        border-radius: 18px; box-shadow: 0 4px 18px rgba(0,0,0,.08);
+        border: none; transition: transform .2s, box-shadow .2s; background: #fff;
+      }
+      .animal-cards-section .card:hover {
+        transform: translateY(-6px) scale(1.02); box-shadow: 0 8px 32px rgba(0,0,0,.13);
+      }
+      .animal-cards-section .card-img-top {
+        border-radius: 18px 18px 0 0; object-fit: cover; height: 220px; background: #e8f5e9;
+      }
+      .animal-cards-section .card-title { font-size: 1.3rem; color: #1b5e20; font-weight: 700; margin-bottom: .2em; }
+      .animal-cards-section em { color: #388e3c; font-size: 1rem; }
+      .animal-cards-section ul.list-unstyled li { margin-bottom: .3em; font-size: .98rem; }
+      .animal-cards-section a { color: #1976d2; text-decoration: underline; }
+      .animal-cards-section a:hover { color: #004ba0; }
+
+      /* Formulario agregar ficha */
+      #agregarFichaForm {
+        border-radius: 18px; box-shadow: 0 4px 18px rgba(0,0,0,.09);
+        background: #f9fff9; border: 1px solid #e0e0e0;
+      }
+      #agregarFichaForm h4 { color:#1b5e20; font-weight:700; margin-bottom:1em; }
+      #agregarFichaForm label { font-weight:500; color:#388e3c; }
+      #agregarFichaForm .form-control { border-radius:8px; border:1px solid #bdbdbd; margin-bottom:.7em; }
+      #agregarFichaForm .btn-success { background:#388e3c; border:none; border-radius:8px; padding:.5em 2em; font-weight:600; letter-spacing:1px; }
+      #agregarFichaForm .btn-success:hover { background:#1b5e20; }
+      #mostrarFormBtn { background:#1976d2; border:none; border-radius:8px; padding:.5em 2em; font-weight:600; letter-spacing:1px; }
+      #mostrarFormBtn:hover { background:#004ba0; }
+      #passwordError { margin-top:.5em; color:#c62828; }
+
+      @media (max-width: 767px) {
+        .animal-cards-section .card-img-top { height: 150px; }
+        #agregarFichaForm { padding: 1em !important; }
+      }
+
+      /* pequeños fixes */
+      img { max-width: 100%; height: auto; display: block; }
+      .logo img { max-width: 180px; height: auto; border-radius: 12px; }
+      .titlepage h2 { margin-bottom: .5rem; }
+      .titlepage p  { color: #555; margin-bottom: 1.25rem; }
+    </style>
+  </head>
+
+  <body class="main-layout in_page">
+    <!-- loader -->
+    <div class="loader_bg">
+      <div class="loader"><img src="images/loading.gif" alt="Cargando..."></div>
+    </div>
+
+    <!-- header (consistente en todo el sitio) -->
+    <header>
+      <div class="header">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 col-sm-3 col logo_section">
+              <div class="full">
+                <div class="center-desk">
+                  <div class="logo">
+                    <a href="index.html"><img src="images/Logo EAM.png" alt="Enciclopedia de Animales Mexicanos"></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-10 offset-md-1">
+              <nav class="navigation navbar navbar-expand-md navbar-dark">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Abrir menú">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarsExample04">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">Nosotros</a></li>
+                    <li class="nav-item"><a class="nav-link" href="service.html">Servicios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">Galería</a></li>
+                    <li class="nav-item active"><a class="nav-link" href="testimonial.html">Fichas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contacto</a></li>
+                  </ul>
+                </div>
+              </nav>
+            </div>
+          </div>
+        </div>
       </div>
-      <!-- end loader -->
-      <!-- header -->
-      <header>
-         <!-- header inner -->
-         <div class="header">
-            <div class="container">
-               <div class="row">
-                  <div class="col-md-12 col-sm-3 col logo_section">
-                     <div class="full">
-                        <div class="center-desk">
-                           <div class="logo">
-                              <a href="index.html"><img src="images/Logo EAM.png" width="200" height="50" alt="#" /></a>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="col-md-10 offset-md-1">
-                     <nav class="navigation navbar navbar-expand-md navbar-dark ">
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarsExample04">
-                           <ul class="navbar-nav mr-auto">
-                              <li class="nav-item ">
-                                 <a class="nav-link" href="index.html">Inicio</a>
-                              </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" href="about.html">Sobre Nosotros</a>
-                              </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" href="service.html">Servicios</a>
-                              </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" href="gallery.html">Galeria</a>
-                              </li>
-                              <li class="nav-item active">
-                                 <a class="nav-link" href="testimonial.html"> Fichas </a>
-                              </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" href="contact.html">Contacto</a>
-                              </li>
-                           </ul>
-                        </div>
-                     </nav>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </header>
-      <!-- end header inner -->
-      <!-- end header -->
-      <!-- Fichas de Animales -->
-      <section id="animal-cards" class="animal-cards-section" style="background:#f7f7f7; padding:40px 0;">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-12">
-                  <div class="titlepage">
-                     <h2>Fichas de Animales Mexicanos</h2>
-                     <p>Consulta o agrega información sobre especies representativas de la fauna mexicana.</p>
-                  </div>
-               </div>
-            </div>
-            <div class="row" id="animalCardsContainer">
-               <!-- Las fichas se insertarán aquí dinámicamente -->
-            </div>
-         </div>
-      </section>
-      <!-- end animal cards -->
-      <!-- Botón para mostrar el formulario -->
-<div class="row">
-   <div class="col-md-12 mb-4 text-center">
-      <button id="mostrarFormBtn" class="btn btn-primary">Agregar ficha</button>
-   </div>
-</div>
-<!-- Formulario oculto por defecto -->
-<div class="row" id="formRow" style="display:none;">
-   <div class="col-md-12 mb-4">
-      <form action=Fichas/ method="post id="agregarFichaForm class="card card-body" style="max-width:700px;margin:auto;">
-         <h4>Agregar nueva ficha</h4>
-         <div id="passwordSection">
-            <div class="form-group">
-               <label>Contraseña para agregar ficha</label>
-               <input type="password" class="form-control" id="fichaPassword" required>
-            </div>
-            <button type="button" id="verificarPasswordBtn" class="btn btn-success">Verificar</button>
-            <div id="passwordError" style="color:red;display:none;">Contraseña incorrecta</div>
-         </div>
-         <div id="fichaFields" style="display:none;">
-            <div class="form-row">
-               <div class="form-group col-md-6">
-                  <label>Nombre común</label>
-                  <input type="text" class="form-control" id="nombre" required>
-               </div>
-               <div class="form-group col-md-6">
-                  <label>Nombre científico</label>
-                  <input type="text" class="form-control" id="cientifico" required>
-               </div>
-            </div>
-            <div class="form-group">
-               <label>URL de imagen</label>
-               <input type="text" class="form-control" id="imagen" placeholder="images/tuimagen.jpg" required>
-            </div>
-            <div class="form-group">
-               <label>Origen y distribución</label>
-               <input type="text" class="form-control" id="origen">
-            </div>
-            <div class="form-group">
-               <label>Clasificación zoológica</label>
-               <input type="text" class="form-control" id="clasificacion">
-            </div>
-            <div class="form-group">
-               <label>Reproducción</label>
-               <input type="text" class="form-control" id="reproduccion">
-            </div>
-            <div class="form-group">
-               <label>Hábitat</label>
-               <input type="text" class="form-control" id="habitat">
-            </div>
-            <div class="form-group">
-               <label>Estado de conservación</label>
-               <input type="text" class="form-control" id="conservacion">
-            </div>
-            <div class="form-group">
-               <label>Importancia ecológica</label>
-               <input type="text" class="form-control" id="ecologica">
-            </div>
-            <div class="form-group">
-               <label>Presencia en culturas mexicanas</label>
-               <input type="text" class="form-control" id="cultural">
-            </div>
-            <div class="form-group">
-               <label>Investigación contemporánea</label>
-               <input type="text" class="form-control" id="investigacion">
-            </div>
-            <div class="form-group">
-               <label>Referencias (separadas por coma, formato: texto|url)</label>
-               <input type="text" class="form-control" id="referencias" placeholder="CONABIO|https://..., UICN|https...">
-            </div>
-            <button type="submit" class="btn btn-success">Agregar ficha</button>
-         </div>
-      </form>
-   </div>
-</div>
+    </header>
 
-<script>
-      // filepath: c:\Users\Dante Yael\Downloads\Enciclopedia-de-Animales-Mexicanos\testimonial.html
-      let animales = [
+    <!-- Fichas -->
+    <section id="animal-cards" class="animal-cards-section" style="background:#f7f7f7; padding:40px 0;">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="titlepage">
+              <h2>Fichas de <span class="green">Animales Mexicanos</span></h2>
+              <p>Consulta o agrega información sobre especies representativas de la fauna mexicana.</p>
+            </div>
+          </div>
+        </div>
+        <div class="row" id="animalCardsContainer"></div>
+      </div>
+    </section>
+
+    <!-- Botón mostrar formulario -->
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 mb-4 text-center">
+          <button id="mostrarFormBtn" class="btn btn-primary">Agregar ficha</button>
+        </div>
+      </div>
+
+      <!-- Formulario (oculto por defecto) -->
+      <div class="row" id="formRow" style="display:none;">
+        <div class="col-md-12 mb-4">
+          <form action="Fichas/" method="post" id="agregarFichaForm" class="card card-body" style="max-width:700px;margin:auto;">
+            <h4>Agregar nueva ficha</h4>
+
+            <div id="passwordSection">
+              <div class="form-group">
+                <label for="fichaPassword">Contraseña para agregar ficha</label>
+                <input type="password" class="form-control" id="fichaPassword" required>
+              </div>
+              <button type="button" id="verificarPasswordBtn" class="btn btn-success">Verificar</button>
+              <div id="passwordError" style="display:none;">Contraseña incorrecta</div>
+            </div>
+
+            <div id="fichaFields" style="display:none;">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="nombre">Nombre común</label>
+                  <input type="text" class="form-control" id="nombre" required>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="cientifico">Nombre científico</label>
+                  <input type="text" class="form-control" id="cientifico" required>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="imagen">URL de imagen</label>
+                <input type="text" class="form-control" id="imagen" placeholder="images/tuimagen.jpg" required>
+              </div>
+
+              <div class="form-group">
+                <label for="origen">Origen y distribución</label>
+                <input type="text" class="form-control" id="origen">
+              </div>
+
+              <div class="form-group">
+                <label for="clasificacion">Clasificación zoológica</label>
+                <input type="text" class="form-control" id="clasificacion">
+              </div>
+
+              <div class="form-group">
+                <label for="reproduccion">Reproducción</label>
+                <input type="text" class="form-control" id="reproduccion">
+              </div>
+
+              <div class="form-group">
+                <label for="habitat">Hábitat</label>
+                <input type="text" class="form-control" id="habitat">
+              </div>
+
+              <div class="form-group">
+                <label for="conservacion">Estado de conservación</label>
+                <input type="text" class="form-control" id="conservacion">
+              </div>
+
+              <div class="form-group">
+                <label for="ecologica">Importancia ecológica</label>
+                <input type="text" class="form-control" id="ecologica">
+              </div>
+
+              <div class="form-group">
+                <label for="cultural">Presencia en culturas mexicanas</label>
+                <input type="text" class="form-control" id="cultural">
+              </div>
+
+              <div class="form-group">
+                <label for="investigacion">Investigación contemporánea</label>
+                <input type="text" class="form-control" id="investigacion">
+              </div>
+
+              <div class="form-group">
+                <label for="referencias">Referencias (coma; formato: texto|url)</label>
+                <input type="text" class="form-control" id="referencias" placeholder="CONABIO|https://..., UICN|https://...">
+              </div>
+
+              <button type="submit" class="btn btn-success">Agregar ficha</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- footer (intacto) -->
+    <footer>
+      <div class="footer">
+        <div class="container">
+          <div class="row">
+            <!-- Redes sociales -->
+            <div class="col-md-3 col-sm-6">
+              <ul class="social_icon">
+                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                <li><a href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
+                <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+              </ul>
+              <p class="variat pad_roght2">
+                Enciclopedia de los Animales Mexicanos es un proyecto de difusión del conocimiento zoológico, histórico y cultural.
+              </p>
+            </div>
+
+            <div class="col-md-3 col-sm-6">
+              <h3>Contáctanos</h3>
+              <p class="variat pad_roght2">
+                ¿Dudas o colaboraciones? <br> contacto@eam.org
+              </p>
+            </div>
+
+            <div class="col-md-3 col-sm-6">
+              <h3>Enlaces útiles</h3>
+              <ul class="link_menu">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="nosotros.html">¿Quiénes somos?</a></li>
+                <li><a href="animales.html">Especies</a></li>
+                <li><a href="lineas-investigacion.html">Líneas de investigación</a></li>
+                <li><a href="colaboradores.html">Colaboradores</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+              </ul>
+            </div>
+
+            <div class="col-md-3 col-sm-6">
+              <h3>Nuestra visión</h3>
+              <p class="variat">
+                Documentar y preservar conocimiento científico y tradicional sobre la fauna de México.
+              </p>
+            </div>
+
+            <div class="col-md-6 offset-md-6">
+              <form id="newsletter" class="bottom_form">
+                <input class="enter" placeholder="Tu correo electrónico" type="email" name="email">
+                <button class="sub_btn">Suscribirme</button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="copyright">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-10 offset-md-1">
+                <p>© 2025 Enciclopedia de los Animales Mexicanos. Todos los derechos reservados.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JS (sin duplicados) -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+
+    <script>
+      // ========= Semillas iniciales (no se guardan; solo base) =========
+      const animalesBase = [
         {
           nombre: "Ajolote",
           cientifico: "Ambystoma mexicanum",
@@ -346,14 +330,14 @@
           nombre: "Jaguar",
           cientifico: "Panthera onca",
           imagen: "images/jaguar.jpg",
-          origen: "Selvas de América, principalmente sur y sureste de México.",
+          origen: "Sur y sureste de México; selvas húmedas y secas.",
           clasificacion: "Mamífero, Orden Carnivora, Familia Felidae.",
-          reproduccion: "Vivíparo, camadas de 1-4 crías.",
+          reproduccion: "Vivíparo, camadas de 1–4 crías.",
           habitat: "Selvas húmedas y secas, bosques tropicales.",
-          conservacion: "En peligro (NOM-059), Casi Amenazado (UICN).",
+          conservacion: "En Peligro (NOM-059), Casi Amenazado (UICN).",
           ecologica: "Depredador tope, regula poblaciones.",
           cultural: "Dios jaguar en culturas prehispánicas, símbolo de poder.",
-          investigacion: "Conservación, monitoreo con cámaras trampa (UNAM, Alianza WWF-Telcel).",
+          investigacion: "Monitoreo con cámaras trampa; corredores biológicos.",
           referencias: [
             { texto: "UICN", url: "https://www.iucnredlist.org/species/15953/123791436" },
             { texto: "CONABIO", url: "https://www.biodiversidad.gob.mx/especies/jaguar" }
@@ -361,26 +345,48 @@
         }
       ];
 
+      // ========= Persistencia local =========
+      const STORAGE_KEY = 'eam_fichas';
+
+      function cargarGuardadas() {
+        try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); }
+        catch(e){ return []; }
+      }
+      function guardarNuevaFicha(ficha) {
+        const guardadas = cargarGuardadas();
+        guardadas.push(ficha);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(guardadas));
+      }
+
+      // ========= Utilidades =========
+      const escapeHTML = s => (s||'').replace(/[<>&"]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c]));
+
       function crearFicha(animal) {
+        const safe = (k) => escapeHTML(animal[k] || '-');
+        const refs = (animal.referencias||[])
+          .map(ref => `<a href="${escapeHTML(ref.url)}" target="_blank" rel="noopener">${escapeHTML(ref.texto)}</a>`)
+          .join(', ');
+
         return `
           <div class="col-md-6 col-lg-4 mb-4">
             <div class="card h-100">
-              <img src="${animal.imagen}" class="card-img-top" alt="${animal.nombre} (${animal.cientifico})">
+              <img src="${escapeHTML(animal.imagen)}"
+                   onerror="this.src='images/placeholder.jpg'; this.onerror=null;"
+                   class="card-img-top"
+                   alt="${escapeHTML(animal.nombre)} (${escapeHTML(animal.cientifico)})">
               <div class="card-body">
-                <h4 class="card-title">${animal.nombre}</h4>
-                <h6><em>${animal.cientifico}</em></h6>
+                <h4 class="card-title">${safe('nombre')}</h4>
+                <h6><em>${safe('cientifico')}</em></h6>
                 <ul class="list-unstyled">
-                  <li><strong>Origen y distribución:</strong> ${animal.origen}</li>
-                  <li><strong>Clasificación zoológica:</strong> ${animal.clasificacion}</li>
-                  <li><strong>Reproducción:</strong> ${animal.reproduccion}</li>
-                  <li><strong>Hábitat:</strong> ${animal.habitat}</li>
-                  <li><strong>Estado de conservación:</strong> ${animal.conservacion}</li>
-                  <li><strong>Importancia ecológica:</strong> ${animal.ecologica}</li>
-                  <li><strong>Presencia en culturas mexicanas:</strong> ${animal.cultural}</li>
-                  <li><strong>Investigación contemporánea:</strong> ${animal.investigacion}</li>
-                  <li><strong>Referencias:</strong> 
-                    ${animal.referencias.map(ref => `<a href="${ref.url}" target="_blank">${ref.texto}</a>`).join(', ')}
-                  </li>
+                  <li><strong>Origen y distribución:</strong> ${safe('origen')}</li>
+                  <li><strong>Clasificación zoológica:</strong> ${safe('clasificacion')}</li>
+                  <li><strong>Reproducción:</strong> ${safe('reproduccion')}</li>
+                  <li><strong>Hábitat:</strong> ${safe('habitat')}</li>
+                  <li><strong>Estado de conservación:</strong> ${safe('conservacion')}</li>
+                  <li><strong>Importancia ecológica:</strong> ${safe('ecologica')}</li>
+                  <li><strong>Presencia en culturas mexicanas:</strong> ${safe('cultural')}</li>
+                  <li><strong>Investigación contemporánea:</strong> ${safe('investigacion')}</li>
+                  <li><strong>Referencias:</strong> ${refs || '-'}</li>
                 </ul>
               </div>
             </div>
@@ -389,141 +395,75 @@
       }
 
       function renderFichas() {
-  const container = document.getElementById('animalCardsContainer');
-  container.innerHTML = animales.map(crearFicha).join('');
-}
+        const container = document.getElementById('animalCardsContainer');
+        const animalesAll = [...cargarGuardadas(), ...animalesBase];
+        container.innerHTML = animalesAll.map(crearFicha).join('');
+      }
 
-document.addEventListener("DOMContentLoaded", function() {
-  renderFichas();
+      document.addEventListener("DOMContentLoaded", () => {
+        renderFichas();
 
-  // Mostrar formulario al dar click en el botón
-  document.getElementById('mostrarFormBtn').addEventListener('click', function() {
-    document.getElementById('formRow').style.display = 'block';
-    this.style.display = 'none';
-  });
+        // Mostrar formulario
+        document.getElementById('mostrarFormBtn').addEventListener('click', function() {
+          document.getElementById('formRow').style.display = 'block';
+          this.style.display = 'none';
+        });
 
-  // Verificar contraseña
-  document.getElementById('verificarPasswordBtn').addEventListener('click', function() {
-    const pass = document.getElementById('fichaPassword').value;
-    if (pass === "1234") {
-      document.getElementById('passwordSection').style.display = 'none';
-      document.getElementById('fichaFields').style.display = 'block';
-      document.getElementById('passwordError').style.display = 'none';
-    } else {
-      document.getElementById('passwordError').style.display = 'block';
-    }
-  });
+        // Verificar contraseña (DEMO)
+        document.getElementById('verificarPasswordBtn').addEventListener('click', function() {
+          const pass = document.getElementById('fichaPassword').value;
+          if (pass === "1234") {
+            document.getElementById('passwordSection').style.display = 'none';
+            document.getElementById('fichaFields').style.display = 'block';
+            document.getElementById('passwordError').style.display = 'none';
+          } else {
+            document.getElementById('passwordError').style.display = 'block';
+          }
+        });
 
-  // Manejo del formulario para agregar fichas
-  document.getElementById('agregarFichaForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    const nuevaFicha = {
-      nombre: document.getElementById('nombre').value,
-      cientifico: document.getElementById('cientifico').value,
-      imagen: document.getElementById('imagen').value,
-      origen: document.getElementById('origen').value,
-      clasificacion: document.getElementById('clasificacion').value,
-      reproduccion: document.getElementById('reproduccion').value,
-      habitat: document.getElementById('habitat').value,
-      conservacion: document.getElementById('conservacion').value,
-      ecologica: document.getElementById('ecologica').value,
-      cultural: document.getElementById('cultural').value,
-      investigacion: document.getElementById('investigacion').value,
-      referencias: document.getElementById('referencias').value.split(',').map(ref => {
-        const [texto, url] = ref.split('|');
-        return { texto: texto.trim(), url: url.trim() };
-      })
-    };
-    animales.push(nuevaFicha);
-    renderFichas();
-    this.reset();
-    // Oculta el formulario y vuelve a mostrar el botón
-    document.getElementById('formRow').style.display = 'none';
-    document.getElementById('mostrarFormBtn').style.display = 'inline-block';
-    // Restablece el formulario para la próxima vez
-    document.getElementById('passwordSection').style.display = 'block';
-    document.getElementById('fichaFields').style.display = 'none';
-    document.getElementById('fichaPassword').value = '';
-  });
-});
-      </script>
-       <!--  footer -->
-    <footer>
-   <div class="footer">
-      <div class="container">
-         <div class="row">
-            <!-- Redes sociales -->
-            <div class="col-md-3 col-sm-6">
-               <ul class="social_icon">
-                  <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                  <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                  <li><a href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
-                  <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-               </ul>
-               <p class="variat pad_roght2">
-                  Enciclopedia de los Animales Mexicanos es un proyecto de difusión del conocimiento zoológico, histórico y cultural, comprometido con la preservación y el estudio de la biodiversidad nacional.
-               </p>
-            </div>
+        // Envío de nueva ficha
+        document.getElementById('agregarFichaForm').addEventListener('submit', function(event) {
+          event.preventDefault();
 
-            <!-- Ayuda o contacto -->
-            <div class="col-md-3 col-sm-6">
-               <h3>Contáctanos</h3>
-               <p class="variat pad_roght2">
-                  ¿Tienes dudas, comentarios o deseas colaborar? <br> Escríbenos a:<br>
-                  contacto <br>@EAM.org
-               </p>
-            </div>
+          const refsStr = document.getElementById('referencias').value.trim();
+          const referencias = refsStr
+            ? refsStr.split(',').map(r => {
+                const [texto, url] = r.split('|');
+                return { texto: escapeHTML((texto||'ref').trim()), url: (url||'#').trim() };
+              })
+            : [];
 
-            <!-- Navegación -->
-            <div class="col-md-3 col-sm-6">
-               <h3>Enlaces útiles</h3>
-               <ul class="link_menu">
-                  <li><a href="index.html">Inicio</a></li>
-                  <li><a href="nosotros.html">¿Quiénes somos?</a></li>
-                  <li><a href="animales.html">Especies</a></li>
-                  <li><a href="lineas-investigacion.html">Líneas de investigación</a></li>
-                  <li><a href="colaboradores.html">Colaboradores</a></li>
-                  <li><a href="contacto.html">Contacto</a></li>
-               </ul>
-            </div>
+          const nuevaFicha = {
+            nombre: document.getElementById('nombre').value.trim(),
+            cientifico: document.getElementById('cientifico').value.trim(),
+            imagen: document.getElementById('imagen').value.trim(),
+            origen: document.getElementById('origen').value.trim(),
+            clasificacion: document.getElementById('clasificacion').value.trim(),
+            reproduccion: document.getElementById('reproduccion').value.trim(),
+            habitat: document.getElementById('habitat').value.trim(),
+            conservacion: document.getElementById('conservacion').value.trim(),
+            ecologica: document.getElementById('ecologica').value.trim(),
+            cultural: document.getElementById('cultural').value.trim(),
+            investigacion: document.getElementById('investigacion').value.trim(),
+            referencias
+          };
 
-            <!-- Diseño / Filosofía -->
-            <div class="col-md-3 col-sm-6">
-               <h3>Nuestra visión</h3>
-               <p class="variat">
-                  La EAM nace del esfuerzo interdisciplinario por documentar y preservar el conocimiento etnohistórico y científico de las especies que habitan nuestro territorio.
-               </p>
-            </div>
+          guardarNuevaFicha(nuevaFicha);
+          renderFichas();
+          this.reset();
 
-            <!-- Newsletter -->
-            <div class="col-md-6 offset-md-6">
-               <form id="newsletter" class="bottom_form">
-                  <input class="enter" placeholder="Tu correo electrónico" type="email" name="email">
-                  <button class="sub_btn">Suscribirme</button>
-               </form>
-            </div>
-         </div>
-      </div>
+          // Oculta formulario y re-muestra botón
+          document.getElementById('formRow').style.display = 'none';
+          document.getElementById('mostrarFormBtn').style.display = 'inline-block';
 
-      <!-- Derechos de autor -->
-      <div class="copyright">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-10 offset-md-1">
-                  <p>© 2025 Enciclopedia de los Animales Mexicanos. Todos los derechos reservados. Sitio desarrollado por el equipo EAM.</p>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-</footer>
-      <!-- end footer -->
-      <!-- Javascript files-->
-      <script src="js/jquery.min.js"></script>
-      <script src="js/bootstrap.bundle.min.js"></script>
-      <script src="js/jquery-3.0.0.min.js"></script>
-      <!-- sidebar -->
-      <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-      <script src="js/custom.js"></script>
-   </body>
+          // Restablece secciones de seguridad
+          document.getElementById('passwordSection').style.display = 'block';
+          document.getElementById('fichaFields').style.display = 'none';
+          document.getElementById('fichaPassword').value = '';
+        });
+      });
+    </script>
+
+    <script src="js/custom.js"></script>
+  </body>
 </html>

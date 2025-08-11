@@ -1,242 +1,552 @@
 <!DOCTYPE html>
 <html lang="es">
-   <head>
-      <!-- basic -->
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <!-- mobile metas -->
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-      <!-- site metas -->
-      <title>Enciclopedia de Animales Mexicanos</title>
-      <meta name="keywords" content="fauna, animales mexicanos, zoología, biodiversidad, conservación">
-      <meta name="description" content="Proyecto académico para investigar, documentar y difundir la diversidad faunística de México">
-      <meta name="author" content="Equipo Interdisciplinario EAM">
-      <!-- bootstrap css -->
-      <link rel="stylesheet" href="css/bootstrap.min.css">
-      <!-- style css -->
-      <link rel="stylesheet" href="css/style.css">
-      <!-- Responsive-->
-      <link rel="stylesheet" href="css/responsive.css">
-      <!-- fevicon -->
-      <link rel="icon" href="images/fevicon.png" type="image/gif" />
-      <!-- Scrollbar Custom CSS -->
-      <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
-      <!-- FontAwesome -->
-      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
-      <style>
-    .resolucion {
-        width: 99%;
-        text-align: center;
-    }
+  <head>
+    <!-- basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    /* Móvil */
-    @media (max-width: 767px) {
-        .desktop {
-            display: none !important;
-        }
-        .tablet {
-            display: none !important;
-        }
-        .movil {
-            display: block !important;
-        }
-    }
+    <!-- site metas -->
+    <title>Enciclopedia de Animales Mexicanos</title>
+    <meta name="keywords" content="fauna, animales mexicanos, zoología, biodiversidad, conservación">
+    <meta name="description" content="Proyecto académico para investigar, documentar y difundir la diversidad faunística de México">
+    <meta name="author" content="Equipo Interdisciplinario EAM">
 
-    /* Tablet */
-    @media (min-width: 768px) and (max-width: 990px) {
-        .desktop {
-            display: none !important;
-        }
-        .movil {
-            display: none !important;
-        }
-        .tablet {
-            display: block !important;
-        }
-    }
+    <!-- bootstrap css -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- style css -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Responsive-->
+    <link rel="stylesheet" href="css/responsive.css">
+    <!-- fevicon -->
+    <link rel="icon" href="images/fevicon.png" type="image/gif" />
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
 
-    /* Escritorio */
-    @media (min-width: 991px) {
-        .tablet {
-            display: none !important;
-        }
-        .movil {
-            display: none !important;
-        }
-        .desktop {
-            display: block !important;
-        }
-    }
-  </style>
-   </head>
-   <body class="main-layout in_page">
-      <!-- loader  -->
-      <div class="loader_bg">
-         <div class="loader"><img src="images/loading.gif" alt="Cargando"/></div>
+    <style>
+      .resolucion { width: 99%; text-align: center; }
+
+      /* Móvil */
+      @media (max-width: 767px) {
+        .desktop { display: none !important; }
+        .tablet  { display: none !important; }
+        .movil   { display: block !important; }
+      }
+
+      /* Tablet */
+      @media (min-width: 768px) and (max-width: 990px) {
+        .desktop { display: none !important; }
+        .movil   { display: none !important; }
+        .tablet  { display: block !important; }
+      }
+
+      /* Escritorio */
+      @media (min-width: 991px) {
+        .tablet  { display: none !important; }
+        .movil   { display: none !important; }
+        .desktop { display: block !important; }
+      }
+
+      /* --- Convocatorias --- */
+      .convocatorias-section {
+        background: #f7f9f8;
+        padding: 40px 0;
+        border-top: 1px solid #e9ecef;
+      }
+      .convocatoria-card {
+        border: 1px solid #e3e6e8;
+        border-radius: 14px;
+        padding: 16px;
+        background: #fff;
+        height: 100%;
+        box-shadow: 0 4px 14px rgba(0,0,0,.06);
+        transition: transform .15s ease, box-shadow .15s ease;
+      }
+      .convocatoria-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 24px rgba(0,0,0,.1);
+      }
+      .convocatoria-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-bottom: .25rem;
+        color: #0f5132;
+      }
+      .convocatoria-meta {
+        font-size: .9rem;
+        color: #495057;
+        margin-bottom: .5rem;
+      }
+      .badge-vigente {
+        background: #e7f5ee;
+        color: #0f5132;
+        border: 1px solid #b7e4c7;
+        padding: .25rem .5rem;
+        border-radius: 999px;
+        font-size: .78rem;
+        font-weight: 600;
+      }
+      .badge-vencida {
+        background: #fff3f3;
+        color: #842029;
+        border: 1px solid #f5c2c7;
+        padding: .25rem .5rem;
+        border-radius: 999px;
+        font-size: .78rem;
+        font-weight: 600;
+      }
+      .convocatoria-actions a {
+        text-decoration: underline;
+      }
+      .form-note {
+        font-size: .9rem;
+        color: #6c757d;
+      }
+      .logo img { max-width: 180px; height: auto; border-radius: 12px; }
+    </style>
+  </head>
+
+  <body class="main-layout in_page">
+    <!-- loader  -->
+    <div class="loader_bg">
+      <div class="loader"><img src="images/loading.gif" alt="Cargando"/></div>
+    </div>
+
+    <!-- header -->
+    <header>
+      <div class="header">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 col-sm-3 col logo_section">
+              <div class="full">
+                <div class="center-desk">
+                  <div class="logo">
+                    <a href="index.html"><img src="images/Logo EAM.png" alt="Enciclopedia de Animales Mexicanos" /></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-10 offset-md-1">
+              <nav class="navigation navbar navbar-expand-md navbar-dark">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarsExample04">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">Nosotros</a></li>
+                    <li class="nav-item active"><a class="nav-link" href="service.html">Servicios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">Galería</a></li>
+                    <li class="nav-item"><a class="nav-link" href="testimonial.html">Fichas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contacto</a></li>
+                  </ul>
+                </div>
+              </nav>
+            </div>
+          </div>
+        </div>
       </div>
-      <!-- header -->
-      <header>
-         <div class="header">
-            <div class="container">
-               <div class="row">
-                  <div class="col-md-12 col-sm-3 col logo_section">
-                     <div class="full">
-                        <div class="center-desk">
-                           <div class="logo">
-                              <a href="index.html"><img src="images/Logo EAM.png" alt="Enciclopedia de Animales Mexicanos" style="max-width:180px; border-radius:12px;" /></a>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="col-md-10 offset-md-1">
-                     <nav class="navigation navbar navbar-expand-md navbar-dark">
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04">
-                        <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarsExample04">
-                           <ul class="navbar-nav mr-auto">
-                              <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
-                              <li class="nav-item"><a class="nav-link" href="about.html">Nosotros</a></li>
-                              <li class="nav-item active"><a class="nav-link" href="service.html">Servicios</a></li>
-                              <li class="nav-item"><a class="nav-link" href="gallery.html">Galería</a></li>
-                              <li class="nav-item"><a class="nav-link" href="testimonial.html">Testimonios</a></li>
-                              <li class="nav-item"><a class="nav-link" href="contact.html">Contacto</a></li>
-                           </ul>
-                        </div>
-                     </nav>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </header>
-      <!-- servicios -->
-      <div class="service">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-12">
-                  <div class="titlepage">
-                     <h2>Nuestros <span class="green">Servicios</span></h2>
-                  </div>
-               </div>
-            </div>
-            <div class="row">
-               <div class="col-md-10 offset-md-1">
-                  <div class="row">
-                     <div class="col-md-4 col-sm-6">
-                        <div class="service_box">
-                           <i><img src="images/service1.png" alt="Investigación"/></i>
-                           <h3>Investigación Faunística</h3>
-                           <p>Estudios científicos sobre especies animales mexicanas, con base en fuentes zoológicas, etnográficas e históricas.</p>
-                        </div>
-                     </div>
-                     <div class="col-md-4 offset-md-1 col-sm-6">
-                        <div class="service_box">
-                           <i><img src="images/service2.png" alt="Divulgación"/></i>
-                           <h3>Divulgación Educativa</h3>
-                           <p>Creación de contenidos accesibles para todo público: ilustraciones, infografías, cápsulas y podcasts.</p>
-                        </div>
-                     </div>
-                     <div class="col-md-4 offset-md-3 col-sm-6 mar_top">
-                        <div class="service_box">
-                           <i><img src="images/service3.png" alt="Accesibilidad"/></i>
-                           <h3>Accesibilidad Cultural</h3>
-                           <p>Materiales en lectura fácil, traducciones a lenguas originarias y versiones auditivas para poblaciones diversas.</p>
-                        </div>
-                     </div>
-                     <div class="col-md-4 offset-md-1 col-sm-6 mar_top">
-                        <div class="service_box">
-                           <i><img src="images/service4.png" alt="Base de datos"/></i>
-                           <h3>Base Enciclopédica</h3>
-                           <p>Fichas por especie con información científica, hábitat, presencia cultural, estado de conservación y bibliografía.</p>
-                        </div>
-                     </div>
-                     <div class="col-md-12">
-                        <a class="read_more" href="#">Ver más</a>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-      <!-- end servicios -->
-        <!--  footer -->
-    <footer>
-   <div class="footer">
+    </header>
+
+    <!-- servicios -->
+    <div class="service">
       <div class="container">
-         <div class="row">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="titlepage">
+              <h2>Nuestros <span class="green">Servicios</span></h2>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-10 offset-md-1">
+            <div class="row">
+              <div class="col-md-4 col-sm-6">
+                <div class="service_box">
+                  <i><img src="images/service1.png" alt="Investigación"/></i>
+                  <h3>Investigación Faunística</h3>
+                  <p>Estudios científicos sobre especies animales mexicanas, con base en fuentes zoológicas, etnográficas e históricas.</p>
+                </div>
+              </div>
+              <div class="col-md-4 offset-md-1 col-sm-6">
+                <div class="service_box">
+                  <i><img src="images/service2.png" alt="Divulgación"/></i>
+                  <h3>Divulgación Educativa</h3>
+                  <p>Creación de contenidos accesibles para todo público: ilustraciones, infografías, cápsulas y podcasts.</p>
+                </div>
+              </div>
+              <div class="col-md-4 offset-md-3 col-sm-6 mar_top">
+                <div class="service_box">
+                  <i><img src="images/service3.png" alt="Accesibilidad"/></i>
+                  <h3>Accesibilidad Cultural</h3>
+                  <p>Materiales en lectura fácil, traducciones a lenguas originarias y versiones auditivas para poblaciones diversas.</p>
+                </div>
+              </div>
+              <div class="col-md-4 offset-md-1 col-sm-6 mar_top">
+                <div class="service_box">
+                  <i><img src="images/service4.png" alt="Base de datos"/></i>
+                  <h3>Base Enciclopédica</h3>
+                  <p>Fichas por especie con información científica, hábitat, presencia cultural, estado de conservación y bibliografía.</p>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <a class="read_more" href="#">Ver más</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- end servicios -->
+
+    <!-- CONVOCATORIAS -->
+    <section class="convocatorias-section" id="convocatorias">
+      <div class="container">
+        <div class="row align-items-end">
+          <div class="col-md-8">
+            <div class="titlepage">
+              <h2>Convocatorias <span class="green">EAM</span></h2>
+              <p>Publica y consulta convocatorias de investigación, voluntariado, talleres y colaboraciones.</p>
+            </div>
+          </div>
+          <div class="col-md-4 text-md-right text-left mb-3">
+            <div class="btn-group" role="group" aria-label="Filtros">
+              <button class="btn btn-sm btn-outline-success" id="filtroVigentesBtn">Vigentes</button>
+              <button class="btn btn-sm btn-outline-secondary" id="filtroTodasBtn">Todas</button>
+            </div>
+            <button class="btn btn-sm btn-primary ml-2" id="mostrarFormConvBtn">Publicar convocatoria</button>
+          </div>
+        </div>
+
+        <!-- Formulario (oculto por contraseña) -->
+        <div class="row" id="formConvRow" style="display:none;">
+          <div class="col-lg-10 col-xl-8 mx-auto">
+            <div class="card card-body" style="border-radius:14px; box-shadow:0 4px 16px rgba(0,0,0,.08);">
+              <h5 class="mb-3">Nueva convocatoria</h5>
+
+              <div id="convPassSection">
+                <div class="form-group">
+                  <label for="convPassword">Contraseña de publicación</label>
+                  <input type="password" id="convPassword" class="form-control" placeholder="••••" required>
+                  <small id="convPassError" class="text-danger d-none">Contraseña incorrecta.</small>
+                </div>
+                <button class="btn btn-success" id="verificarConvPassBtn" type="button">Verificar</button>
+              </div>
+
+              <form id="convForm" class="mt-3" style="display:none;">
+                <div class="form-group">
+                  <label for="convTitulo">Título</label>
+                  <input type="text" id="convTitulo" class="form-control" placeholder="p. ej. Voluntariado para monitoreo de anfibios" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="convDesc">Descripción breve</label>
+                  <textarea id="convDesc" class="form-control" rows="3" placeholder="Objetivo, requisitos principales, lugar..." required></textarea>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label for="convFecha">Fecha límite</label>
+                    <input type="date" id="convFecha" class="form-control" required>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label for="convTipo">Tipo</label>
+                    <select id="convTipo" class="form-control">
+                      <option>Investigación</option>
+                      <option>Voluntariado</option>
+                      <option>Taller</option>
+                      <option>Beca/Apoyo</option>
+                      <option>Otro</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="convLink">Enlace (sitio o documento)</label>
+                  <input type="url" id="convLink" class="form-control" placeholder="https://...">
+                  <small class="form-note">Recomendado: sube el PDF a tu repositorio o drive y pega el enlace.</small>
+                </div>
+
+                <div class="form-group">
+                  <label for="convArchivo">Archivo (opcional, local)</label>
+                  <input type="file" id="convArchivo" class="form-control-file" accept=".pdf,.png,.jpg,.jpeg">
+                  <small class="form-note">Si cargas un archivo local, se mostrará solo en este navegador (no se sube al servidor).</small>
+                </div>
+
+                <div class="d-flex align-items-center">
+                  <button type="submit" class="btn btn-success">Publicar</button>
+                  <span id="convFormStatus" class="ml-3 text-muted"></span>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Listado -->
+        <div class="row mt-4" id="convListRow">
+          <!-- Tarjetas se insertan aquí -->
+        </div>
+      </div>
+    </section>
+    <!-- FIN CONVOCATORIAS -->
+
+    <!--  footer -->
+    <footer>
+      <div class="footer">
+        <div class="container">
+          <div class="row">
             <!-- Redes sociales -->
             <div class="col-md-3 col-sm-6">
-               <ul class="social_icon">
-                  <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                  <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                  <li><a href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
-                  <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-               </ul>
-               <p class="variat pad_roght2">
-                  Enciclopedia de los Animales Mexicanos es un proyecto de difusión del conocimiento zoológico, histórico y cultural, comprometido con la preservación y el estudio de la biodiversidad nacional.
-               </p>
+              <ul class="social_icon">
+                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                <li><a href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
+                <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+              </ul>
+              <p class="variat pad_roght2">
+                Enciclopedia de los Animales Mexicanos es un proyecto de difusión del conocimiento zoológico, histórico y cultural, comprometido con la preservación y el estudio de la biodiversidad nacional.
+              </p>
             </div>
 
             <!-- Ayuda o contacto -->
             <div class="col-md-3 col-sm-6">
-               <h3>Contáctanos</h3>
-               <p class="variat pad_roght2">
-                  ¿Tienes dudas, comentarios o deseas colaborar? <br> Escríbenos a:<br>
-                  contacto <br>@EAM.org
-               </p>
+              <h3>Contáctanos</h3>
+              <p class="variat pad_roght2">
+                ¿Tienes dudas, comentarios o deseas colaborar? <br> Escríbenos a:<br>
+                contacto <br>@EAM.org
+              </p>
             </div>
 
             <!-- Navegación -->
             <div class="col-md-3 col-sm-6">
-               <h3>Enlaces útiles</h3>
-               <ul class="link_menu">
-                  <li><a href="index.html">Inicio</a></li>
-                  <li><a href="nosotros.html">¿Quiénes somos?</a></li>
-                  <li><a href="animales.html">Especies</a></li>
-                  <li><a href="lineas-investigacion.html">Líneas de investigación</a></li>
-                  <li><a href="colaboradores.html">Colaboradores</a></li>
-                  <li><a href="contacto.html">Contacto</a></li>
-               </ul>
+              <h3>Enlaces útiles</h3>
+              <ul class="link_menu">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="nosotros.html">¿Quiénes somos?</a></li>
+                <li><a href="animales.html">Especies</a></li>
+                <li><a href="lineas-investigacion.html">Líneas de investigación</a></li>
+                <li><a href="colaboradores.html">Colaboradores</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+              </ul>
             </div>
 
             <!-- Diseño / Filosofía -->
             <div class="col-md-3 col-sm-6">
-               <h3>Nuestra visión</h3>
-               <p class="variat">
-                  La EAM nace del esfuerzo interdisciplinario por documentar y preservar el conocimiento etnohistórico y científico de las especies que habitan nuestro territorio.
-               </p>
+              <h3>Nuestra visión</h3>
+              <p class="variat">
+                La EAM nace del esfuerzo interdisciplinario por documentar y preservar el conocimiento etnohistórico y científico de las especies que habitan nuestro territorio.
+              </p>
             </div>
 
             <!-- Newsletter -->
             <div class="col-md-6 offset-md-6">
-               <form id="newsletter" class="bottom_form">
-                  <input class="enter" placeholder="Tu correo electrónico" type="email" name="email">
-                  <button class="sub_btn">Suscribirme</button>
-               </form>
+              <form id="newsletter" class="bottom_form">
+                <input class="enter" placeholder="Tu correo electrónico" type="email" name="email">
+                <button class="sub_btn">Suscribirme</button>
+              </form>
             </div>
-         </div>
-      </div>
+          </div>
+        </div>
 
-      <!-- Derechos de autor -->
-      <div class="copyright">
-         <div class="container">
+        <!-- Derechos de autor -->
+        <div class="copyright">
+          <div class="container">
             <div class="row">
-               <div class="col-md-10 offset-md-1">
-                  <p>© 2025 Enciclopedia de los Animales Mexicanos. Todos los derechos reservados. Sitio desarrollado por el equipo EAM.</p>
-               </div>
+              <div class="col-md-10 offset-md-1">
+                <p>© 2025 Enciclopedia de los Animales Mexicanos. Todos los derechos reservados. Sitio desarrollado por el equipo EAM.</p>
+              </div>
             </div>
-         </div>
+          </div>
+        </div>
       </div>
-   </div>
-</footer>
-      <!-- end footer -->
-      <!-- JS -->
-      <script src="js/jquery.min.js"></script>
-      <script src="js/bootstrap.bundle.min.js"></script>
-      <script src="js/jquery-3.0.0.min.js"></script>
-      <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-      <script src="js/custom.js"></script>
-   </body>
+    </footer>
+    <!-- end footer -->
+
+    <!-- JS (evita duplicados de jQuery) -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="js/custom.js"></script>
+
+    <script>
+      // ---------------------------
+      // Convocatorias (cliente)
+      // ---------------------------
+      (function() {
+        const PASS = '1234'; // cámbiala si quieres
+        const KEY  = 'eam_convocatorias_v1';
+
+        const mostrarFormConvBtn = document.getElementById('mostrarFormConvBtn');
+        const formRow  = document.getElementById('formConvRow');
+        const passSec  = document.getElementById('convPassSection');
+        const passInp  = document.getElementById('convPassword');
+        const passErr  = document.getElementById('convPassError');
+        const verifBtn = document.getElementById('verificarConvPassBtn');
+        const convForm = document.getElementById('convForm');
+        const convListRow = document.getElementById('convListRow');
+        const statusSpan = document.getElementById('convFormStatus');
+        const filtroVigentesBtn = document.getElementById('filtroVigentesBtn');
+        const filtroTodasBtn = document.getElementById('filtroTodasBtn');
+
+        let filtro = 'vigentes'; // 'vigentes' | 'todas'
+        let convocatorias = cargar();
+
+        function cargar(){
+          try {
+            const raw = localStorage.getItem(KEY);
+            return raw ? JSON.parse(raw) : [];
+          } catch(e){ return []; }
+        }
+        function guardar(){
+          localStorage.setItem(KEY, JSON.stringify(convocatorias));
+        }
+
+        function esVigente(fechaISO){
+          if(!fechaISO) return false;
+          const hoy = new Date(); hoy.setHours(0,0,0,0);
+          const f   = new Date(fechaISO); f.setHours(0,0,0,0);
+          return f >= hoy;
+        }
+
+        function crearCard(c){
+          const vigente = esVigente(c.fecha);
+          const badge = vigente
+            ? '<span class="badge-vigente">Vigente</span>'
+            : '<span class="badge-vencida">Vencida</span>';
+
+          // Enlace preferente: archivo local (blob) o link externo
+          let enlace = '';
+          if (c.archivoUrl) {
+            enlace = `<a href="${c.archivoUrl}" target="_blank" rel="noopener">Ver archivo</a>`;
+          } else if (c.link && c.link.trim() !== '') {
+            enlace = `<a href="${c.link}" target="_blank" rel="noopener">Abrir enlace</a>`;
+          }
+
+          return `
+            <div class="col-md-6 col-lg-4 mb-4">
+              <div class="convocatoria-card">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                  <div class="convocatoria-title">${c.titulo}</div>
+                  ${badge}
+                </div>
+                <div class="convocatoria-meta"><strong>Tipo:</strong> ${c.tipo || 'Otro'}</div>
+                <p class="mb-2">${c.descripcion || ''}</p>
+                <div class="convocatoria-meta"><strong>Fecha límite:</strong> ${c.fecha || '-'}</div>
+                <div class="convocatoria-actions">
+                  ${enlace || '<span class="text-muted">Sin enlace</span>'}
+                </div>
+              </div>
+            </div>
+          `;
+        }
+
+        function render(){
+          let lista = convocatorias.slice().sort((a,b) => (a.fecha||'') > (b.fecha||'') ? 1 : -1);
+          if (filtro === 'vigentes') {
+            lista = lista.filter(c => esVigente(c.fecha));
+          }
+          convListRow.innerHTML = lista.length
+            ? lista.map(crearCard).join('')
+            : `<div class="col-12"><div class="alert alert-light border">No hay convocatorias ${filtro==='vigentes'?'vigentes':''} por el momento.</div></div>`;
+        }
+
+        // Mostrar formulario
+        mostrarFormConvBtn.addEventListener('click', () => {
+          formRow.style.display = 'block';
+          passSec.style.display = 'block';
+          convForm.style.display = 'none';
+          passInp.value = '';
+          passErr.classList.add('d-none');
+        });
+
+        // Verificar contraseña
+        verifBtn.addEventListener('click', () => {
+          if (passInp.value === PASS) {
+            passSec.style.display = 'none';
+            convForm.style.display = 'block';
+          } else {
+            passErr.classList.remove('d-none');
+          }
+        });
+
+        // Publicar convocatoria
+        convForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+          statusSpan.textContent = 'Publicando...';
+
+          const titulo = document.getElementById('convTitulo').value.trim();
+          const descripcion = document.getElementById('convDesc').value.trim();
+          const fecha = document.getElementById('convFecha').value;
+          const tipo = document.getElementById('convTipo').value;
+          const link = document.getElementById('convLink').value.trim();
+          const archivo = document.getElementById('convArchivo').files[0];
+
+          // Validación básica
+          if(!titulo || !descripcion || !fecha){
+            statusSpan.textContent = 'Completa los campos requeridos.';
+            statusSpan.classList.add('text-danger');
+            return;
+          }
+
+          // Si hay archivo, crear URL local (no persiste en servidor)
+          let archivoUrl = '';
+          if (archivo) {
+            try { archivoUrl = URL.createObjectURL(archivo); } catch(e){}
+          }
+
+          const nueva = { titulo, descripcion, fecha, tipo, link, archivoUrl };
+          convocatorias.push(nueva);
+          guardar();
+          render();
+
+          statusSpan.textContent = '¡Publicada!';
+          statusSpan.classList.remove('text-danger');
+          statusSpan.classList.add('text-success');
+
+          // Reset
+          convForm.reset();
+          // Ocultar formulario tras publicar
+          setTimeout(() => {
+            document.getElementById('formConvRow').style.display = 'none';
+            statusSpan.textContent = '';
+          }, 700);
+        });
+
+        // Filtros
+        filtroVigentesBtn.addEventListener('click', () => { filtro='vigentes'; render(); });
+        filtroTodasBtn.addEventListener('click',   () => { filtro='todas';    render(); });
+
+        // Datos demo (solo la primera vez)
+        if (!convocatorias || convocatorias.length === 0) {
+          convocatorias = [
+            {
+              titulo: 'Voluntariado para monitoreo de ajolotes',
+              descripcion: 'Apoyo en recorridos y registro de parámetros de calidad de agua en Xochimilco.',
+              fecha: new Date(Date.now()+14*24*60*60*1000).toISOString().slice(0,10),
+              tipo: 'Voluntariado',
+              link: 'https://ejemplo.org/convocatoria-ajolotes',
+              archivoUrl: ''
+            },
+            {
+              titulo: 'Taller de divulgación científica',
+              descripcion: 'Capacitación en comunicación de la biodiversidad para docentes.',
+              fecha: new Date(Date.now()-7*24*60*60*1000).toISOString().slice(0,10),
+              tipo: 'Taller',
+              link: '',
+              archivoUrl: ''
+            }
+          ];
+          guardar();
+        }
+
+        render();
+      })();
+    </script>
+  </body>
 </html>

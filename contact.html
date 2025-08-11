@@ -1,256 +1,280 @@
 <!DOCTYPE html>
-<html lang="en">
-   <head>
-      <!-- basic -->
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <!-- mobile metas -->
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
-      <!-- site metas -->
-      <title>Enciclopedia de Animles Mexicanos</title>
-      <meta name="keywords" content="">
-      <meta name="description" content="">
-      <meta name="author" content="">
-      <!-- bootstrap css -->
-      <link rel="stylesheet" href="css/bootstrap.min.css">
-      <!-- style css -->
-      <link rel="stylesheet" href="css/style.css">
-      <!-- Responsive-->
-      <link rel="stylesheet" href="css/responsive.css">
-      <!-- fevicon -->
-      <link rel="icon" href="images/fevicon.png" type="image/gif" />
-      <!-- Scrollbar Custom CSS -->
-      <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
-      <!-- Tweaks for older IEs-->
-      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
-      <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-      <style>
-    .resolucion {
-        width: 99%;
-        text-align: center;
-    }
+<html lang="es">
+  <head>
+    <!-- básico -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- móvil -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    /* Móvil */
-    @media (max-width: 767px) {
-        .desktop {
-            display: none !important;
-        }
-        .tablet {
-            display: none !important;
-        }
-        .movil {
-            display: block !important;
-        }
-    }
+    <title>Contacto | Enciclopedia de Animales Mexicanos</title>
+    <meta name="description" content="Ponte en contacto con la Enciclopedia de Animales Mexicanos para colaboraciones, dudas y propuestas.">
+    <meta name="author" content="Enciclopedia de Animales Mexicanos">
 
-    /* Tablet */
-    @media (min-width: 768px) and (max-width: 990px) {
-        .desktop {
-            display: none !important;
-        }
-        .movil {
-            display: none !important;
-        }
-        .tablet {
-            display: block !important;
-        }
-    }
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="icon" href="images/fevicon.png" type="image/gif">
+    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
 
-    /* Escritorio */
-    @media (min-width: 991px) {
-        .tablet {
-            display: none !important;
-        }
-        .movil {
-            display: none !important;
-        }
-        .desktop {
-            display: block !important;
-        }
-    }
-  </style>
-   </head>
-   <!-- body -->
-   <body class="main-layout in_page">
-      <!-- loader  -->
-      <div class="loader_bg">
-         <div class="loader"><img src="images/loading.gif" alt="#"/></div>
+    <style>
+      /* Ajustes mínimos */
+      img{max-width:100%;height:auto}
+      .logo img{max-width:180px;height:auto;border-radius:12px}
+      .header{position:sticky;top:0;z-index:1030;background:#0a0f0a}
+      .header.stuck{box-shadow:0 6px 20px rgba(0,0,0,.18)}
+      .titlepage h2{margin-bottom:.5rem}
+      .titlepage p{color:#555}
+      .contact .main_form .contactus,
+      .contact .main_form .textarea{background:#fff}
+      .contact .main_form .send_btn{cursor:pointer}
+      /* Responsive pequeñas mejoras */
+      @media (max-width:575px){ .row>[class*="col-"]{margin-bottom:16px} }
+      /* Accesibilidad: respeta reduced motion */
+      @media (prefers-reduced-motion: reduce){ .carousel,.carousel-item{transition:none!important} }
+    </style>
+  </head>
+  <body class="main-layout in_page">
+    <!-- header -->
+    <header>
+      <div class="header" id="siteHeader">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 col-sm-3 col logo_section">
+              <div class="full">
+                <div class="center-desk">
+                  <div class="logo">
+                    <a href="index.html" aria-label="Ir al inicio">
+                      <img src="images/Logo EAM.png" alt="Enciclopedia de Animales Mexicanos" loading="eager" decoding="async" fetchpriority="high">
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-10 offset-md-1">
+              <nav class="navigation navbar navbar-expand-md navbar-dark" aria-label="Navegación principal">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Abrir menú">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarsExample04">
+                  <ul class="navbar-nav mr-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">Nosotros</a></li>
+                    <li class="nav-item"><a class="nav-link" href="service.html">Servicios</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">Galería</a></li>
+                    <li class="nav-item"><a class="nav-link" href="testimonial.html">Fichas</a></li>
+                    <li class="nav-item active"><a class="nav-link" href="contact.html">Contacto</a></li>
+                  </ul>
+                </div>
+              </nav>
+            </div>
+          </div>
+        </div>
       </div>
-      <!-- end loader -->
-      <!-- header -->
-      <header>
-         <!-- header inner -->
-         <div class="header">
-            <div class="container">
-               <div class="row">
-                  <div class="col-md-12 col-sm-3 col logo_section">
-                     <div class="full">
-                        <div class="center-desk">
-                           <div class="logo">
-                              <a href="index.html"><img src="images/Logo EAM.png" alt="Enciclopedia de Animales Mexicanos" style="max-width:180px; border-radius:12px;" /></a>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="col-md-10 offset-md-1">
-                     <nav class="navigation navbar navbar-expand-md navbar-dark ">
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarsExample04">
-                           <ul class="navbar-nav mr-auto">
-                              <li class="nav-item ">
-                                 <a class="nav-link" href="index.html">Home</a>
-                              </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" href="about.html">About</a>
-                              </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" href="service.html">Services</a>
-                              </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" href="gallery.html">Gallery</a>
-                              </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" href="testimonial.html"> Testimonial </a>
-                              </li>
-                              <li class="nav-item active">
-                                 <a class="nav-link" href="contact.html">Contact Us</a>
-                              </li>
-                           </ul>
-                        </div>
-                     </nav>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </header>
-      <!-- end header inner -->
-      <!-- end header -->
-      <!--  contact -->
-      <div class="contact">
-         <div class="container">
-            <div class="row">
-               <div class="col-md-12">
-                  <div class="titlepage">
-                     <h2>Contact Us</h2>
-                  </div>
-               </div>
-            </div>
-            <div class="row">
-               <div class="col-md-6">
-                  <form id="request" class="main_form">
-                     <div class="row">
-                        <div class="col-md-12 ">
-                           <input class="contactus" placeholder="Name" type="type" name="Name"> 
-                        </div>
-                        <div class="col-md-12">
-                           <input class="contactus" placeholder="Email" type="type" name="Email"> 
-                        </div>
-                        <div class="col-md-12">
-                           <input class="contactus" placeholder="Phone Number" type="type" name="Phone Number">                          
-                        </div>
-                        <div class="col-md-12">
-                           <textarea class="textarea" placeholder="Message" type="type" Message="Name">Message</textarea>
-                        </div>
-                        <div class="col-md-12">
-                           <button class="send_btn">Send</button>
-                        </div>
-                     </div>
-                  </form>
-               </div>
-               <div class="col-md-6">
-                  <div class="map_main">
-                     <div class="map-responsive">
-                        <iframe src="https://www.google.com/maps/embed/v1/place?key=AIzaSyA0s1a7phLN0iaD6-UE7m4qP-z21pH0eSc&amp;q=Eiffel+Tower+Paris+France" width="600" height="345" frameborder="0" style="border:0; width: 100%;" allowfullscreen=""></iframe>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-      <!-- end contact -->
-      <!--  footer -->
-    <footer>
-   <div class="footer">
+    </header>
+    <!-- end header -->
+
+    <!-- contacto -->
+    <div class="contact" style="padding-top:24px;">
       <div class="container">
-         <div class="row">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="titlepage">
+              <h2>Contáctanos</h2>
+              <p>¿Tienes dudas, comentarios o deseas colaborar? Envíanos un mensaje.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <!-- Formulario -->
+          <div class="col-md-6">
+            <form id="request" class="main_form" novalidate>
+              <!-- honeypot simple contra bots -->
+              <input type="text" name="company" id="company" style="position:absolute;left:-9999px" tabindex="-1" autocomplete="off">
+              <div class="row">
+                <div class="col-md-12">
+                  <label class="sr-only" for="name">Nombre</label>
+                  <input class="contactus" id="name" name="name" type="text" placeholder="Nombre" required>
+                </div>
+                <div class="col-md-12">
+                  <label class="sr-only" for="email">Correo electrónico</label>
+                  <input class="contactus" id="email" name="email" type="email" placeholder="Email" required>
+                </div>
+                <div class="col-md-12">
+                  <label class="sr-only" for="phone">Teléfono</label>
+                  <input class="contactus" id="phone" name="phone" type="tel" placeholder="Teléfono (opcional)" inputmode="tel">
+                </div>
+                <div class="col-md-12">
+                  <label class="sr-only" for="subject">Asunto</label>
+                  <input class="contactus" id="subject" name="subject" type="text" placeholder="Asunto" required>
+                </div>
+                <div class="col-md-12">
+                  <label class="sr-only" for="message">Mensaje</label>
+                  <textarea class="textarea" id="message" name="message" rows="5" placeholder="Mensaje" required></textarea>
+                </div>
+                <div class="col-md-12">
+                  <button class="send_btn" type="submit" id="sendBtn">Enviar</button>
+                </div>
+                <div class="col-md-12">
+                  <p id="formStatus" role="status" aria-live="polite" style="margin-top:8px;"></p>
+                </div>
+              </div>
+            </form>
+
+            <!-- Datos directos -->
+            <div style="margin-top:16px">
+              <p style="margin:0"><strong>Email:</strong> <a href="mailto:contacto@eam.org">contacto@eam.org</a></p>
+              <p style="margin:0"><strong>WhatsApp:</strong> <a href="https://wa.me/5215555555555" target="_blank" rel="noopener">+52 1 55 5555 5555</a></p>
+            </div>
+          </div>
+
+          <!-- Mapa -->
+          <div class="col-md-6">
+            <div class="map_main">
+              <div class="map-responsive">
+                <!-- sin API key, usando query pública -->
+                <iframe
+                  title="Mapa de Xochimilco, CDMX"
+                  src="https://www.google.com/maps?q=Xochimilco,+CDMX&output=embed"
+                  width="600"
+                  height="345"
+                  frameborder="0"
+                  style="border:0;width:100%;"
+                  allowfullscreen
+                  loading="lazy">
+                </iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <!-- end contacto -->
+
+    <!-- footer -->
+    <footer>
+      <div class="footer">
+        <div class="container">
+          <div class="row">
             <!-- Redes sociales -->
             <div class="col-md-3 col-sm-6">
-               <ul class="social_icon">
-                  <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                  <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                  <li><a href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
-                  <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-               </ul>
-               <p class="variat pad_roght2">
-                  Enciclopedia de los Animales Mexicanos es un proyecto de difusión del conocimiento zoológico, histórico y cultural, comprometido con la preservación y el estudio de la biodiversidad nacional.
-               </p>
+              <ul class="social_icon">
+                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                <li><a href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
+                <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+              </ul>
+              <p class="variat pad_roght2">
+                Enciclopedia de los Animales Mexicanos es un proyecto de difusión del conocimiento zoológico, histórico y cultural, comprometido con la preservación y el estudio de la biodiversidad nacional.
+              </p>
             </div>
 
             <!-- Ayuda o contacto -->
             <div class="col-md-3 col-sm-6">
-               <h3>Contáctanos</h3>
-               <p class="variat pad_roght2">
-                  ¿Tienes dudas, comentarios o deseas colaborar? <br> Escríbenos a:<br>
-                  contacto <br>@EAM.org
-               </p>
+              <h3>Contáctanos</h3>
+              <p class="variat pad_roght2">
+                ¿Tienes dudas, comentarios o deseas colaborar? <br>
+                Escríbenos: <a href="mailto:contacto@eam.org">contacto@eam.org</a>
+              </p>
             </div>
 
             <!-- Navegación -->
             <div class="col-md-3 col-sm-6">
-               <h3>Enlaces útiles</h3>
-               <ul class="link_menu">
-                  <li><a href="index.html">Inicio</a></li>
-                  <li><a href="nosotros.html">¿Quiénes somos?</a></li>
-                  <li><a href="animales.html">Especies</a></li>
-                  <li><a href="lineas-investigacion.html">Líneas de investigación</a></li>
-                  <li><a href="colaboradores.html">Colaboradores</a></li>
-                  <li><a href="contacto.html">Contacto</a></li>
-               </ul>
+              <h3>Enlaces útiles</h3>
+              <ul class="link_menu">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="nosotros.html">¿Quiénes somos?</a></li>
+                <li><a href="animales.html">Especies</a></li>
+                <li><a href="lineas-investigacion.html">Líneas de investigación</a></li>
+                <li><a href="colaboradores.html">Colaboradores</a></li>
+                <li><a href="contact.html">Contacto</a></li>
+              </ul>
             </div>
 
-            <!-- Diseño / Filosofía -->
+            <!-- Filosofía -->
             <div class="col-md-3 col-sm-6">
-               <h3>Nuestra visión</h3>
-               <p class="variat">
-                  La EAM nace del esfuerzo interdisciplinario por documentar y preservar el conocimiento etnohistórico y científico de las especies que habitan nuestro territorio.
-               </p>
+              <h3>Nuestra visión</h3>
+              <p class="variat">
+                La EAM nace del esfuerzo interdisciplinario por documentar y preservar el conocimiento etnohistórico y científico de las especies que habitan nuestro territorio.
+              </p>
             </div>
 
             <!-- Newsletter -->
             <div class="col-md-6 offset-md-6">
-               <form id="newsletter" class="bottom_form">
-                  <input class="enter" placeholder="Tu correo electrónico" type="email" name="email">
-                  <button class="sub_btn">Suscribirme</button>
-               </form>
+              <form id="newsletter" class="bottom_form" action="#" method="post">
+                <label for="newsletter-email" class="sr-only">Correo</label>
+                <input id="newsletter-email" class="enter" placeholder="Tu correo electrónico" type="email" name="email" required>
+                <button class="sub_btn" type="submit">Suscribirme</button>
+              </form>
             </div>
-         </div>
-      </div>
+          </div>
+        </div>
 
-      <!-- Derechos de autor -->
-      <div class="copyright">
-         <div class="container">
+        <!-- Derechos -->
+        <div class="copyright">
+          <div class="container">
             <div class="row">
-               <div class="col-md-10 offset-md-1">
-                  <p>© 2025 Enciclopedia de los Animales Mexicanos. Todos los derechos reservados. Sitio desarrollado por el equipo EAM.</p>
-               </div>
+              <div class="col-md-10 offset-md-1">
+                <p>© 2025 Enciclopedia de los Animales Mexicanos. Todos los derechos reservados. Sitio desarrollado por el equipo EAM.</p>
+              </div>
             </div>
-         </div>
+          </div>
+        </div>
       </div>
-   </div>
-</footer>
-      <!-- end footer -->
-      <!-- Javascript files-->
-      <script src="js/jquery.min.js"></script>
-      <script src="js/bootstrap.bundle.min.js"></script>
-      <script src="js/jquery-3.0.0.min.js"></script>
-      <!-- sidebar -->
-      <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-      <script src="js/custom.js"></script>
-   </body>
+    </footer>
+    <!-- end footer -->
+
+    <!-- JS (sin duplicados) -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="js/custom.js"></script>
+
+    <script>
+      // Header sombra al hacer scroll
+      (function(){
+        var h=document.getElementById('siteHeader');
+        function onScroll(){ (window.scrollY>8)?h.classList.add('stuck'):h.classList.remove('stuck'); }
+        onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+      })();
+
+      // Validación/“envío” del formulario (demo local)
+      document.getElementById('request').addEventListener('submit', function(e){
+        e.preventDefault();
+        var status = document.getElementById('formStatus');
+        var btn = document.getElementById('sendBtn');
+
+        // honeypot
+        if (document.getElementById('company').value.trim()!=='') { return; }
+
+        // validaciones simples
+        var name = document.getElementById('name').value.trim();
+        var email = document.getElementById('email').value.trim();
+        var subject = document.getElementById('subject').value.trim();
+        var message = document.getElementById('message').value.trim();
+        if(!name || !email || !subject || !message){
+          status.textContent = 'Por favor completa los campos requeridos.';
+          status.style.color = '#c62828';
+          return;
+        }
+
+        btn.disabled = true;
+        status.textContent = 'Enviando...';
+        status.style.color = '#555';
+
+        // Simulación de envío local
+        setTimeout(function(){
+          status.textContent = '¡Gracias! Tu mensaje ha sido enviado.';
+          status.style.color = '#2e7d32';
+          btn.disabled = false;
+          e.target.reset();
+        }, 900);
+      });
+    </script>
+  </body>
 </html>
