@@ -24,76 +24,116 @@
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
 
+    <!-- Fuentes opcionales (UI + lectura) -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
     <style>
-      /* Ajustes mínimos para responsive y accesibilidad sin cambiar la estructura */
+      /* ====== Tokens (paleta verde) ====== */
+      :root{
+        --bg:#f7faf7;
+        --surface:#ffffff;
+        --ink:#0f172a;
+        --muted:#6b7280;
+        --line:#e5e7eb;
+
+        /* PRIMARIO VERDE */
+        --accent:#16a34a;      /* 600 */
+        --accent-600:#15803d;  /* 700 */
+        --accent-700:#166534;  /* 800 */
+
+        --radius:16px;
+        --shadow:0 10px 25px rgba(2,6,23,.08), 0 2px 8px rgba(2,6,23,.06);
+        --shadow-sm:0 6px 18px rgba(2,6,23,.08);
+      }
+      html, body{ background:var(--bg); color:var(--ink); }
+      body{ font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif; }
+      h1,h2,h3,h4{ font-weight:700 }
+      .longform{ font-family:"Merriweather", Georgia, Cambria, "Times New Roman", Times, serif; line-height:1.7 }
+
+      /* ===== Header unificado ===== */
+      .site-header{position:sticky; top:0; z-index:1030; background:linear-gradient(180deg,#ffffff,#f7fff9); border-bottom:1px solid var(--line)}
+      .site-header.stuck{box-shadow:var(--shadow)}
+      .site-header .container{max-width:1200px}
+      .mast{display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:.85rem 0}
+      .brand{display:flex; align-items:center; gap:.75rem}
+      .brand img{width:44px; height:44px; object-fit:contain; border-radius:12px}
+      .brand .title{font-weight:700; letter-spacing:.2px}
+      .brand .sub{color:var(--muted); font-size:.9rem}
+      .site-header nav.nav{display:flex; align-items:center; gap:.5rem; flex-wrap:wrap}
+      .site-header nav.nav a{padding:.5rem .75rem; border-radius:10px; color:#0f172a; text-decoration:none}
+      .site-header nav.nav a[aria-current="page"], .site-header nav.nav a:hover{background:#ecfdf5; color:var(--accent)}
+
+      /* ===== Ajustes mínimos existentes ===== */
       img { max-width: 100%; height: auto; }
       .navbar-nav .nav-link { white-space: nowrap; }
       .read_more { cursor: pointer; }
-
-      /* Navbar sticky + sombra al hacer scroll */
-      .header { position: sticky; top: 0; z-index: 1030; background:#0a0f0a; }
-      .header.stuck { box-shadow: 0 6px 20px rgba(0,0,0,.18); }
-
-      /* Corrección visual de tarjetas/galería en móviles */
       .gallery_img figure, .about_img figure { margin: 0; }
-
-      /* Ocultar loader si tarda (fallback) */
       .loader_bg { display: none; }
 
-      /* Respeta usuarios con motion reducido */
-      @media (prefers-reduced-motion: reduce) {
-        .carousel, .carousel-item { transition: none !important; }
-      }
+      /* ===== Convocatorias (buscador + grid PDFs con <embed>) ===== */
+      .convocatorias-section { background:#f7f9f8; padding:40px 0; border-top:1px solid #e9ecef; }
+      .titlepage .green{ color:var(--accent); }
+      .cv-toolbar{display:grid; grid-template-columns:1fr auto; gap:1rem; margin-top:.5rem}
+      @media (max-width:640px){ .cv-toolbar{grid-template-columns:1fr} }
+      .cv-search{display:flex; align-items:center; gap:.5rem; background:#fff; border:1px solid var(--line); border-radius:999px; padding:.5rem .75rem; box-shadow:var(--shadow-sm)}
+      .cv-search input{border:0; outline:0; width:100%; background:transparent; font-size:1rem}
+      .cv-kbd{display:inline-flex; align-items:center; gap:.25rem; font-size:.8rem; color:var(--muted); background:#f4f6f9; border:1px solid var(--line); padding:.15rem .35rem; border-radius:6px}
+      .cv-tools{display:flex; align-items:center; gap:.5rem; flex-wrap:wrap}
+      .cv-select{border:1px solid var(--line); background:#fff; border-radius:10px; padding:.55rem .7rem}
+      .cv-btn{display:inline-flex; align-items:center; gap:.5rem; padding:.55rem .8rem; border-radius:10px; border:1px solid var(--line); background:#fff; cursor:pointer}
+      .cv-chips{display:flex; gap:.5rem; flex-wrap:wrap; margin-top:.75rem}
+      .cv-chip{display:inline-flex; align-items:center; gap:.35rem; border:1px solid #bbf7d0; background:#ecfdf5; color:var(--accent); padding:.25rem .6rem; border-radius:999px; font-size:.9rem; cursor:pointer}
+      .cv-chip.active{background:#dcfce7; border-color:#86efac}
+      .cv-empty{display:none; border:1px dashed var(--line); border-radius:12px; padding:2rem; text-align:center; color:var(--muted); background:#fff; margin-top:1rem}
+
+      /* Grid de PDFs */
+      .pdf-grid{ display:grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap:1rem; padding:1.25rem 0 0; }
+      @media (max-width: 480px){ .pdf-grid{ grid-template-columns: 1fr; } }
+      .pdf-item{ background:#fff; border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; transition: transform .2s ease, box-shadow .2s ease; }
+      .pdf-item.hide{ display:none !important; }
+      .pdf-item:hover{ transform: translateY(-2px); box-shadow:0 18px 30px rgba(2,6,23,.10), 0 4px 14px rgba(2,6,23,.06); }
+      .preview{ position:relative; background:linear-gradient(180deg,#f0f7f3,#e9f7ee); min-height:220px }
+      .pdf-embed{ width:100%; height:380px; border:0; display:block; background:#f0f3f7; }
+      @media (max-width: 576px){ .pdf-embed{ height:320px; } }
+      .preview .hint{position:absolute; right:12px; bottom:12px; background:rgba(255,255,255,.85); border:1px solid var(--line); border-radius:999px; padding:.25rem .6rem; font-size:.8rem; color:var(--muted)}
+      .pdf-meta{ display:flex; flex-direction:column; gap:.6rem; padding:.9rem .9rem 1rem; }
+      .pdf-name{ font-weight:700; line-height:1.35; word-break:break-word }
+      .tag-row{ display:flex; flex-wrap:wrap; gap:.35rem }
+      .badge-tag{ border:1px solid #bbf7d0; background:#ecfdf5; color:var(--accent); border-radius:999px; padding:.15rem .5rem; font-size:.8rem; }
+      .actions{ display:flex; align-items:center; gap:.5rem; margin-top:.25rem }
+      .btn-linklike{ display:inline-flex; align-items:center; gap:.45rem; border:1px solid var(--line); padding:.45rem .75rem; border-radius:10px; background:#fff; text-decoration:none; color:var(--accent); font-weight:600; }
+      .btn-linklike:hover{ background:#f1fcf5; border-color:#cce3d3; }
+
+      /* Motion reducido */
+      @media (prefers-reduced-motion: reduce) { .carousel, .carousel-item{ transition:none!important } }
     </style>
   </head>
   <body class="main-layout">
-    <!-- header -->
-    <header>
-      <div class="header" id="siteHeader">
-        <div class="container">
-          <div class="row align-items-center">
-            <div class="col-md-12 col-sm-3 col logo_section">
-              <div class="full">
-                <div class="center-desk">
-                  <div class="logo">
-                    <a href="index.html" aria-label="Ir al inicio">
-                      <img
-                        src="images/Logo EAM.png"
-                        alt="Enciclopedia de Animales Mexicanos"
-                        style="max-width:180px; border-radius:12px;"
-                        loading="eager"
-                        decoding="async"
-                        fetchpriority="high"
-                      />
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-10 offset-md-1">
-              <nav class="navigation navbar navbar-expand-md navbar-dark" aria-label="Navegación principal">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Abrir menú">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarsExample04">
-                  <ul class="navbar-nav mr-auto">
-                     <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="about.html">Nosotros</a></li>
-                    <li class="nav-item active"><a class="nav-link" href="service.html">Servicios</a></li>
-                    <li class="nav-item"><a class="nav-link" href="gallery.html">Galería</a></li>
-                    <li class="nav-item"><a class="nav-link" href="testimonial.html">Fichas</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html">Contacto</a></li>
-                  </ul>
-                </div>
-              </nav>
+    <!-- ===== Header unificado ===== -->
+    <header id="siteHeader" class="site-header" role="banner">
+      <div class="container">
+        <div class="mast">
+          <div class="brand">
+            <a href="index.html" aria-label="Ir al inicio"><img src="images/Logo EAM.png" alt="EAM logo" loading="eager" decoding="async" fetchpriority="high"></a>
+            <div>
+              <div class="title">Enciclopedia de Animales Mexicanos</div>
+              <div class="sub">Inicio</div>
             </div>
           </div>
+          <nav class="nav" aria-label="Navegación principal">
+            <a href="index.html" aria-current="page">Inicio</a>
+            <a href="about.html">Nosotros</a>
+            <a href="service.html">Especies</a>
+            <a href="gallery.html">Galería</a>
+            <a href="testimonial.html">Descargas</a>
+            <a href="contact.html">Contacto</a>
+          </nav>
         </div>
       </div>
     </header>
-    <!-- end header -->
 
-    <!-- banner -->
+    <!-- ===== Banner (tus slides se conservan) ===== -->
     <section class="banner_main">
       <div id="myCarousel" class="carousel slide banner" data-ride="carousel" aria-label="Mensajes principales">
         <ol class="carousel-indicators">
@@ -149,16 +189,15 @@
           </div>
         </div>
         <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev" aria-label="Anterior">
-          <i class="fa fa-angle-left" aria-hidden="true"></i>
-          <span class="sr-only">Anterior</span>
+          <i class="fa fa-angle-left" aria-hidden="true"></i><span class="sr-only">Anterior</span>
         </a>
         <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next" aria-label="Siguiente">
-          <i class="fa fa-angle-right" aria-hidden="true"></i>
-          <span class="sr-only">Siguiente</span>
+          <i class="fa fa-angle-right" aria-hidden="true"></i><span class="sr-only">Siguiente</span>
         </a>
       </div>
     </section>
-    <!-- about -->
+
+    <!-- ===== About ===== -->
     <div id="about" class="about">
       <div class="container">
         <div class="row">
@@ -180,16 +219,10 @@
       </div>
     </div>
 
-    <!-- service -->
+    <!-- ===== Servicios/Contenidos ===== -->
     <div id="service" class="service">
       <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="titlepage">
-              <h2>Nuestros <span class="green">contenidos</span></h2>
-            </div>
-          </div>
-        </div>
+        <div class="row"><div class="col-md-12"><div class="titlepage"><h2>Nuestros <span class="green">contenidos</span></h2></div></div></div>
         <div class="row">
           <div class="col-md-10 offset-md-1">
             <div class="row">
@@ -221,48 +254,24 @@
                   <p>Publicación de conjuntos de datos y referencias trazables.</p>
                 </div>
               </div>
-              <div class="col-md-12">
-                <a class="read_more" href="animales.html">Explorar especies</a>
-              </div>
+              <div class="col-md-12"><a class="read_more" href="animales.html">Explorar especies</a></div>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- gallery -->
+    <!-- ===== Galería ===== -->
     <div id="gallery" class="gallery">
       <div class="container">
+        <div class="row"><div class="col-md-12"><div class="titlepage"><h2>Nuestra <span class="green">galería</span></h2><p>Imágenes ilustrativas de especies (con licencias y créditos correspondie ntes).</p></div></div></div>
         <div class="row">
-          <div class="col-md-12">
-            <div class="titlepage">
-              <h2>Nuestra <span class="green">galería</span></h2>
-              <p>Imágenes ilustrativas de especies (con licencias y créditos correspondientes).</p>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <!-- Mantengo tu layout, solo añado decoding/lazy -->
-          <div class="col-md-4 col-sm-6">
-            <div class="gallery_text">
-              <div class="galleryh3">
-                <h3>Ajolote</h3>
-                <p>Anfibio endémico de Xochimilco (Ambystoma mexicanum).</p>
-              </div>
-            </div>
-          </div>
+          <div class="col-md-4 col-sm-6"><div class="gallery_text"><div class="galleryh3"><h3>Ajolote</h3><p>Anfibio endémico de Xochimilco (Ambystoma mexicanum).</p></div></div></div>
           <div class="col-md-4 col-sm-6"><div class="gallery_img"><figure><img src="images/ajolote.png" alt="Ajolote" loading="lazy" decoding="async"/></figure></div></div>
           <div class="col-md-4 col-sm-6"><div class="gallery_img"><figure><img src="images/ajolote.png" alt="Ajolote" loading="lazy" decoding="async"/></figure></div></div>
           <div class="col-md-4 col-sm-6"><div class="gallery_img"><figure><img src="images/ajolote.png" alt="Ajolote" loading="lazy" decoding="async"/></figure></div></div>
           <div class="col-md-4 col-sm-6"><div class="gallery_img"><figure><img src="images/ajolote.png" alt="Ajolote" loading="lazy" decoding="async"/></figure></div></div>
-          <div class="col-md-4 col-sm-6">
-            <div class="gallery_text">
-              <div class="galleryh3">
-                <h3>Colibrí</h3>
-                <p>Aves nectívoras de gran importancia polinizadora.</p>
-              </div>
-            </div>
-          </div>
+          <div class="col-md-4 col-sm-6"><div class="gallery_text"><div class="galleryh3"><h3>Colibrí</h3><p>Aves nectívoras de gran importancia polinizadora.</p></div></div></div>
           <div class="col-md-4 col-sm-6"><div class="gallery_text"><div class="galleryh3"><h3>Jaguar</h3><p>Felino emblemático de Mesoamérica (Panthera onca).</p></div></div></div>
           <div class="col-md-4 col-sm-6"><div class="gallery_img"><figure><img src="images/ajolote.png" alt="Imagen de ejemplo" loading="lazy" decoding="async"/></figure></div></div>
           <div class="col-md-4 col-sm-6"><div class="gallery_img"><figure><img src="images/ajolote.png" alt="Imagen de ejemplo" loading="lazy" decoding="async"/></figure></div></div>
@@ -270,7 +279,7 @@
       </div>
     </div>
 
-    <!-- design -->
+    <!-- ===== Diseño / líneas ===== -->
     <div class="design">
       <div class="container-fluid">
         <div class="row d_flex">
@@ -282,84 +291,25 @@
                 <li data-target="#design" data-slide-to="2"></li>
               </ol>
               <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <div class="container">
-                    <div class="carousel-caption relative">
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="text_de">
-                            <div class="titlepage">
-                              <h2>Nuevas líneas de <span class="green">investigación</span></h2>
-                            </div>
-                            <p>Conservación de anfibios endémicos y monitoreo de hábitats urbanos.</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item">
-                  <div class="container">
-                    <div class="carousel-caption relative">
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="text_de">
-                            <div class="titlepage">
-                              <h2>Divulgación <span class="green">científica</span></h2>
-                            </div>
-                            <p>Material didáctico para escuelas y actividades comunitarias.</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item">
-                  <div class="container">
-                    <div class="carousel-caption relative">
-                      <div class="row">
-                        <div class="col-md-12">
-                          <div class="text_de">
-                            <div class="titlepage">
-                              <h2>Datos <span class="green">abiertos</span></h2>
-                            </div>
-                            <p>Publicación de conjuntos de datos y trazabilidad de fuentes.</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <div class="carousel-item active"><div class="container"><div class="carousel-caption relative"><div class="row"><div class="col-md-12"><div class="text_de"><div class="titlepage"><h2>Nuevas líneas de <span class="green">investigación</span></h2></div><p>Conservación de anfibios endémicos y monitoreo de hábitats urbanos.</p></div></div></div></div></div></div></div>
+                <div class="carousel-item"><div class="container"><div class="carousel-caption relative"><div class="row"><div class="col-md-12"><div class="text_de"><div class="titlepage"><h2>Divulgación <span class="green">científica</span></h2></div><p>Material didáctico para escuelas y actividades comunitarias.</p></div></div></div></div></div></div></div>
+                <div class="carousel-item"><div class="container"><div class="carousel-caption relative"><div class="row"><div class="col-md-12"><div class="text_de"><div class="titlepage"><h2>Datos <span class="green">abiertos</span></h2></div><p>Publicación de conjuntos de datos y trazabilidad de fuentes.</p></div></div></div></div></div></div></div>
               </div>
-              <a class="carousel-control-prev" href="#design" role="button" data-slide="prev" aria-label="Anterior">
-                <i class="fa fa-angle-left" aria-hidden="true"></i>
-                <span class="sr-only">Anterior</span>
-              </a>
-              <a class="carousel-control-next" href="#design" role="button" data-slide="next" aria-label="Siguiente">
-                <i class="fa fa-angle-right" aria-hidden="true"></i>
-                <span class="sr-only">Siguiente</span>
-              </a>
+              <a class="carousel-control-prev" href="#design" role="button" data-slide="prev" aria-label="Anterior"><i class="fa fa-angle-left" aria-hidden="true"></i><span class="sr-only">Anterior</span></a>
+              <a class="carousel-control-next" href="#design" role="button" data-slide="next" aria-label="Siguiente"><i class="fa fa-angle-right" aria-hidden="true"></i><span class="sr-only">Siguiente</span></a>
             </div>
           </div>
           <div class="col-md-7 pad_roght0">
-            <div class="design_img">
-              <figure><img src="images/ajolote.png" alt="Ilustración de especie" loading="lazy" decoding="async"/></figure>
-            </div>
+            <div class="design_img"><figure><img src="images/ajolote.png" alt="Ilustración de especie" loading="lazy" decoding="async"/></figure></div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- latest news -->
+    <!-- ===== Avances / noticias ===== -->
     <div class="latest_news">
       <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="titlepage">
-              <h2>Avances <span class="green">interdisciplinarios</span></h2>
-            </div>
-          </div>
-        </div>
+        <div class="row"><div class="col-md-12"><div class="titlepage"><h2>Avances <span class="green">interdisciplinarios</span></h2></div></div></div>
         <div class="row">
           <div class="col-md-4 offset-md-2">
             <div id="new" class="news_box">
@@ -395,7 +345,90 @@
       </div>
     </div>
 
-    <!-- testimonial / Fichas -->
+    <!-- ===== CONVOCATORIAS (con buscador + PDFs usando <embed>) ===== -->
+    <section class="convocatorias-section" id="convocatorias">
+      <div class="container">
+        <div class="row align-items-end">
+          <div class="col-md-8">
+            <div class="titlepage">
+              <h2>Convocatorias <span class="green">EAM</span></h2>
+              <p>Consulta convocatorias de investigación, voluntariado, talleres y colaboraciones.</p>
+            </div>
+          </div>
+          <div class="col-md-4 text-md-right text-left mb-3">
+            <div class="cv-toolbar" role="search">
+              <label class="cv-search" for="cvQ" title="Buscar en convocatorias por nombre o etiquetas">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 21l-4.35-4.35" stroke="#64748b" stroke-width="2" stroke-linecap="round"/><circle cx="10.5" cy="10.5" r="6.5" stroke="#64748b" stroke-width="2"/></svg>
+                <input id="cvQ" placeholder="Buscar (ej. taller, 2025, voluntariado)" autocomplete="off"/>
+                <span class="cv-kbd" aria-hidden="true">/</span>
+              </label>
+              <div class="cv-tools">
+                <select id="cvSort" class="cv-select" aria-label="Ordenar resultados">
+                  <option value="fecha-desc">Más próximas primero</option>
+                  <option value="fecha-asc">Más lejanas primero</option>
+                  <option value="az">Nombre (A–Z)</option>
+                  <option value="za">Nombre (Z–A)</option>
+                </select>
+                <button id="cvClearBtn" class="cv-btn" type="button" title="Limpiar filtros">Limpiar</button>
+                <span id="cvCount" class="text-muted small" aria-live="polite"></span>
+              </div>
+            </div>
+            <div id="cvChipBar" class="cv-chips" aria-label="Filtrar por etiquetas"></div>
+          </div>
+        </div>
+
+        <!-- Grid de PDFs -->
+        <div id="cvGrid" class="pdf-grid" aria-live="polite">
+          <!-- ====== EJEMPLOS con <embed> (ajusta rutas) ====== -->
+          <article class="pdf-item" data-name="Convocatoria Ajolotes 2025.pdf" data-tags="voluntariado, 2025, anfibios">
+            <div class="preview">
+              <!-- EJEMPLO EMBED LAZY -->
+              <embed class="pdf-embed lazy-embed" title="Convocatoria Ajolotes 2025" data-src="pdfs/Convocatoria-Ajolotes-2025.pdf#view=FitH" type="application/pdf" />
+              <span class="hint">Vista previa</span>
+            </div>
+            <div class="pdf-meta">
+              <div class="pdf-name">Convocatoria Ajolotes 2025.pdf</div>
+              <div class="tag-row">
+                <span class="badge-tag">voluntariado</span>
+                <span class="badge-tag">2025</span>
+                <span class="badge-tag">anfibios</span>
+              </div>
+              <div class="actions">
+                <a href="#" class="btn-linklike js-open-pdf" data-pdf="pdfs/Convocatoria-Ajolotes-2025.pdf" data-title="Convocatoria Ajolotes 2025">Ver aquí</a>
+                <a class="btn-linklike" href="pdfs/Convocatoria-Ajolotes-2025.pdf" target="_blank" rel="noopener">Abrir</a>
+                <a class="btn-linklike" href="pdfs/Convocatoria-Ajolotes-2025.pdf" download="Convocatoria Ajolotes 2025.pdf">Descargar</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="pdf-item" data-name="Taller Divulgación Docente.pdf" data-tags="taller, divulgación, docentes">
+            <div class="preview">
+              <!-- EJEMPLO EMBED LAZY -->
+              <embed class="pdf-embed lazy-embed" title="Taller de Divulgación para Docentes" data-src="pdfs/Taller-Divulgacion-Docentes.pdf#view=FitH" type="application/pdf" />
+              <span class="hint">Vista previa</span>
+            </div>
+            <div class="pdf-meta">
+              <div class="pdf-name">Taller Divulgación Docente.pdf</div>
+              <div class="tag-row">
+                <span class="badge-tag">taller</span>
+                <span class="badge-tag">divulgación</span>
+                <span class="badge-tag">docentes</span>
+              </div>
+              <div class="actions">
+                <a href="#" class="btn-linklike js-open-pdf" data-pdf="pdfs/Taller-Divulgacion-Docentes.pdf" data-title="Taller de Divulgación para Docentes">Ver aquí</a>
+                <a class="btn-linklike" href="pdfs/Taller-Divulgacion-Docentes.pdf" target="_blank" rel="noopener">Abrir</a>
+                <a class="btn-linklike" href="pdfs/Taller-Divulgacion-Docentes.pdf" download="Taller Divulgación Docente.pdf">Descargar</a>
+              </div>
+            </div>
+          </article>
+          <!-- ====== /EJEMPLOS ====== -->
+        </div>
+
+        <div id="cvEmpty" class="cv-empty">Sin resultados. Ajusta la búsqueda o quita filtros.</div>
+      </div>
+    </section>
+
+    <!-- ===== Testimonial / Fichas ===== -->
     <div id="testimonial" class="Testimonial">
       <div class="container-fluid">
         <div class="row d_flex">
@@ -411,135 +444,44 @@
                   <div class="container">
                     <div class="carousel-caption relative">
                       <div class="row">
-                        <div class="col-md-6">
-                          <div class="text_humai">
-                            <i><img src="images/ajolote.png" alt="Ajolote" loading="lazy" decoding="async"/></i>
-                            <span>Ajolote</span>
-                            <p>Ambystoma mexicanum — Especie endémica; indicador de salud de ecosistemas acuáticos.</p>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="text_humai">
-                            <i><img src="images/ajolote.png" alt="Colibrí" loading="lazy" decoding="async"/></i>
-                            <span>Colibrí</span>
-                            <p>Importante polinizador; diversidad alta en México.</p>
-                          </div>
-                        </div>
+                        <div class="col-md-6"><div class="text_humai"><i><img src="images/ajolote.png" alt="Ajolote" loading="lazy" decoding="async"/></i><span>Ajolote</span><p>Ambystoma mexicanum — Especie endémica; indicador de salud de ecosistemas acuáticos.</p></div></div>
+                        <div class="col-md-6"><div class="text_humai"><i><img src="images/ajolote.png" alt="Colibrí" loading="lazy" decoding="async"/></i><span>Colibrí</span><p>Importante polinizador; diversidad alta en México.</p></div></div>
                       </div>
                     </div>
                   </div>
                 </div>
-                <div class="carousel-item">
-                  <div class="container">
-                    <div class="carousel-caption relative">
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="text_humai">
-                            <i><img src="images/ajolote.png" alt="Jaguar" loading="lazy" decoding="async"/></i>
-                            <span>Jaguar</span>
-                            <p>Panthera onca — Felino emblemático; conservación en corredores biológicos.</p>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="text_humai">
-                            <i><img src="images/ajolote.png" alt="Perrito de la pradera" loading="lazy" decoding="async"/></i>
-                            <span>Perrito de la pradera</span>
-                            <p>Cynomys mexicanus — Ingeniero del ecosistema en pastizales.</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="carousel-item">
-                  <div class="container">
-                    <div class="carousel-caption relative">
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="text_humai">
-                            <i><img src="images/ajolote.png" alt="Vaquita marina" loading="lazy" decoding="async"/></i>
-                            <span>Vaquita marina</span>
-                            <p>Phocoena sinus — En peligro crítico; esfuerzo internacional de conservación.</p>
-                          </div>
-                        </div>
-                        <div class="col-md-6">
-                          <div class="text_humai">
-                            <i><img src="images/ajolote.png" alt="Tortuga caguama" loading="lazy" decoding="async"/></i>
-                            <span>Tortuga caguama</span>
-                            <p>Caretta caretta — Migraciones largas; protección de playas de anidación.</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <div class="carousel-item"><div class="container"><div class="carousel-caption relative"><div class="row"><div class="col-md-6"><div class="text_humai"><i><img src="images/ajolote.png" alt="Jaguar" loading="lazy" decoding="async"/></i><span>Jaguar</span><p>Panthera onca — Felino emblemático; conservación en corredores biológicos.</p></div></div><div class="col-md-6"><div class="text_humai"><i><img src="images/ajolote.png" alt="Perrito de la pradera" loading="lazy" decoding="async"/></i><span>Perrito de la pradera</span><p>Cynomys mexicanus — Ingeniero del ecosistema en pastizales.</p></div></div></div></div></div></div>
+                <div class="carousel-item"><div class="container"><div class="carousel-caption relative"><div class="row"><div class="col-md-6"><div class="text_humai"><i><img src="images/ajolote.png" alt="Vaquita marina" loading="lazy" decoding="async"/></i><span>Vaquita marina</span><p>Phocoena sinus — En peligro crítico; esfuerzo internacional de conservación.</p></div></div><div class="col-md-6"><div class="text_humai"><i><img src="images/ajolote.png" alt="Tortuga caguama" loading="lazy" decoding="async"/></i><span>Tortuga caguama</span><p>Caretta caretta — Migraciones largas; protección de playas de anidación.</p></div></div></div></div></div></div>
               </div>
-              <a class="carousel-control-prev" href="#testimon" role="button" data-slide="prev" aria-label="Anterior">
-                <i class="fa fa-angle-left" aria-hidden="true"></i>
-                <span class="sr-only">Anterior</span>
-              </a>
-              <a class="carousel-control-next" href="#testimon" role="button" data-slide="next" aria-label="Siguiente">
-                <i class="fa fa-angle-right" aria-hidden="true"></i>
-                <span class="sr-only">Siguiente</span>
-              </a>
+              <a class="carousel-control-prev" href="#testimon" role="button" data-slide="prev" aria-label="Anterior"><i class="fa fa-angle-left" aria-hidden="true"></i><span class="sr-only">Anterior</span></a>
+              <a class="carousel-control-next" href="#testimon" role="button" data-slide="next" aria-label="Siguiente"><i class="fa fa-angle-right" aria-hidden="true"></i><span class="sr-only">Siguiente</span></a>
             </div>
           </div>
-          <div class="col-md-4 ">
-            <div class="titlepage">
-              <h2>Fichas</h2>
-            </div>
-          </div>
+          <div class="col-md-4"><div class="titlepage"><h2>Fichas</h2></div></div>
         </div>
       </div>
     </div>
 
-    <!-- contact -->
+    <!-- ===== Contacto ===== -->
     <div id="contact" class="contact">
       <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="titlepage"><h2>Contáctanos</h2></div>
-          </div>
-        </div>
+        <div class="row"><div class="col-md-12"><div class="titlepage"><h2>Contáctanos</h2></div></div></div>
         <div class="row">
           <div class="col-md-6">
-            <form action="Fichas/" method="post" id="request" class="main_form" novalidate>
+            <form action="#" method="post" id="request" class="main_form" novalidate>
               <div class="row">
-                <div class="col-md-12">
-                  <label class="sr-only" for="name">Nombre</label>
-                  <input id="name" class="contactus" placeholder="Nombre" type="text" name="name" required>
-                </div>
-                <div class="col-md-12">
-                  <label class="sr-only" for="email">Email</label>
-                  <input id="email" class="contactus" placeholder="Email" type="email" name="email" required>
-                </div>
-                <div class="col-md-12">
-                  <label class="sr-only" for="phone">Teléfono</label>
-                  <input id="phone" class="contactus" placeholder="Teléfono" type="tel" name="phone">
-                </div>
-                <div class="col-md-12">
-                  <label class="sr-only" for="message">Mensaje</label>
-                  <textarea id="message" class="textarea" placeholder="Mensaje" name="message" rows="5"></textarea>
-                </div>
-                <div class="col-md-12">
-                  <button class="send_btn" type="submit">Enviar</button>
-                </div>
+                <div class="col-md-12"><label class="sr-only" for="name">Nombre</label><input id="name" class="contactus" placeholder="Nombre" type="text" name="name" required></div>
+                <div class="col-md-12"><label class="sr-only" for="email">Email</label><input id="email" class="contactus" placeholder="Email" type="email" name="email" required></div>
+                <div class="col-md-12"><label class="sr-only" for="phone">Teléfono</label><input id="phone" class="contactus" placeholder="Teléfono" type="tel" name="phone"></div>
+                <div class="col-md-12"><label class="sr-only" for="message">Mensaje</label><textarea id="message" class="textarea" placeholder="Mensaje" name="message" rows="5"></textarea></div>
+                <div class="col-md-12"><button class="send_btn" type="submit">Enviar</button></div>
               </div>
             </form>
           </div>
           <div class="col-md-6">
             <div class="map_main">
               <div class="map-responsive">
-                <iframe
-                  title="Mapa"
-                  src="https://www.google.com/maps?q=Xochimilco,+CDMX&output=embed"
-                  width="600"
-                  height="345"
-                  frameborder="0"
-                  style="border:0; width: 100%;"
-                  allowfullscreen
-                  loading="lazy">
-                </iframe>
+                <iframe title="Mapa" src="https://www.google.com/maps?q=Xochimilco,+CDMX&output=embed" width="600" height="345" frameborder="0" style="border:0; width: 100%;" allowfullscreen loading="lazy"></iframe>
               </div>
             </div>
           </div>
@@ -547,7 +489,7 @@
       </div>
     </div>
 
-    <!-- footer -->
+    <!-- ===== Footer ===== -->
     <footer>
       <div class="footer">
         <div class="container">
@@ -559,16 +501,11 @@
                 <li><a href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
                 <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
               </ul>
-              <p class="variat pad_roght2">
-                Enciclopedia de los Animales Mexicanos es un proyecto de difusión del conocimiento zoológico, histórico y cultural, comprometido con la preservación y el estudio de la biodiversidad nacional.
-              </p>
+              <p class="variat pad_roght2">Enciclopedia de los Animales Mexicanos es un proyecto de difusión del conocimiento zoológico, histórico y cultural, comprometido con la preservación y el estudio de la biodiversidad nacional.</p>
             </div>
             <div class="col-md-3 col-sm-6">
               <h3>Contáctanos</h3>
-              <p class="variat pad_roght2">
-                ¿Dudas o colaboraciones? Escríbenos:<br>
-                contacto@eam.org
-              </p>
+              <p class="variat pad_roght2">¿Dudas o colaboraciones? Escríbenos:<br>contacto@eam.org</p>
             </div>
             <div class="col-md-3 col-sm-6">
               <h3>Enlaces útiles</h3>
@@ -583,9 +520,7 @@
             </div>
             <div class="col-md-3 col-sm-6">
               <h3>Nuestra visión</h3>
-              <p class="variat">
-                Documentar y preservar el conocimiento etnohistórico y científico sobre la fauna de México, de forma abierta y verificable.
-              </p>
+              <p class="variat">Documentar y preservar el conocimiento etnohistórico y científico sobre la fauna de México, de forma abierta y verificable.</p>
             </div>
             <div class="col-md-6 offset-md-6">
               <form id="newsletter" class="bottom_form" action="#" method="post">
@@ -598,43 +533,197 @@
         </div>
         <div class="copyright">
           <div class="container">
-            <div class="row">
-              <div class="col-md-10 offset-md-1">
-                <p>© 2025 Enciclopedia de los Animales Mexicanos. Todos los derechos reservados.</p>
-              </div>
-            </div>
+            <div class="row"><div class="col-md-10 offset-md-1"><p>© 2025 Enciclopedia de los Animales Mexicanos. Todos los derechos reservados.</p></div></div>
           </div>
         </div>
       </div>
     </footer>
 
-    <!-- Javascript files (defer para mejor performance) -->
+    <!-- ===== Modal PDF (retorno directo) ===== -->
+    <div class="modal fade" id="pdfModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-fullscreen-md-down modal-xl">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 id="pdfTitle" class="modal-title">Documento</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body p-0">
+            <!-- EMBED en modal -->
+            <embed id="pdfEmbed" type="application/pdf" src="" style="width:100%; height:80vh; border:0;" />
+          </div>
+          <div class="modal-footer">
+            <a id="pdfOpenNew" class="btn btn-outline-success" target="_blank" rel="noopener">Abrir en pestaña</a>
+            <button type="button" class="btn btn-success" data-dismiss="modal">Volver</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JS (defer) -->
     <script defer src="js/jquery.min.js"></script>
     <script defer src="js/bootstrap.bundle.min.js"></script>
     <script defer src="js/jquery.mCustomScrollbar.concat.min.js"></script>
     <script defer src="js/custom.js"></script>
 
     <script>
-      // Sombra al hacer scroll en header
+      // Header sombra
       (function(){
         var h = document.getElementById('siteHeader');
-        function onScroll(){ (window.scrollY > 8) ? h.classList.add('stuck') : h.classList.remove('stuck'); }
+        function onScroll(){ if(!h) return; (window.scrollY>8)?h.classList.add('stuck'):h.classList.remove('stuck'); }
         onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
       })();
 
-      // Respeta reduced-motion en carruseles de Bootstrap
+      // Respeta reduced motion en carruseles
       (function(){
-        try {
+        try{
           var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-          if (reduce) {
-            ['myCarousel','testimon','design'].forEach(function(id){
-              var el = document.getElementById(id);
-              if (el && $(el).carousel) $(el).carousel({ interval: false, ride: false });
+          if (reduce) { ['myCarousel','testimon','design'].forEach(function(id){ var el=document.getElementById(id); if (el && $(el).carousel) $(el).carousel({ interval:false, ride:false }); }); }
+        }catch(e){}
+      })();
+
+      // ====== Convocatorias: buscador + chips + orden + lazy <embed> + modal PDF
+      (function(){
+        // Utils
+        const norm = s => (s||"").toString().normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
+        const $ = (q)=>document.querySelector(q);
+        const $$ = (q)=>Array.from(document.querySelectorAll(q));
+
+        const q = $('#cvQ');
+        const sortSel = $('#cvSort');
+        const clearBtn = $('#cvClearBtn');
+        const chipBar = $('#cvChipBar');
+        const count = $('#cvCount');
+        const emptyEl = $('#cvEmpty');
+        const grid = $('#cvGrid');
+
+        // Lazy load para <embed> (usamos data-src)
+        const obs = ('IntersectionObserver' in window) ? new IntersectionObserver((entries,o)=>{
+          for(const e of entries){
+            if(e.isIntersecting){
+              const el = e.target; const src = el.getAttribute('data-src');
+              if(src){ el.setAttribute('src', src); el.removeAttribute('data-src'); }
+              o.unobserve(el);
+            }
+          }
+        }, {rootMargin:'200px'}) : null;
+
+        function hydrateLazy(){
+          $$('.lazy-embed[data-src]').forEach(el=>{
+            if(obs) obs.observe(el);
+            else el.setAttribute('src', el.getAttribute('data-src'));
+          });
+        }
+
+        // Construye chips a partir de data-tags
+        const selected = new Set();
+        function buildChips(){
+          const tagMap = new Map();
+          $$('.pdf-item').forEach(it=>{
+            const tags = (it.getAttribute('data-tags')||'').split(',').map(t=>t.trim()).filter(Boolean);
+            for(const t of tags){ tagMap.set(t, (tagMap.get(t)||0)+1); }
+          });
+          chipBar.innerHTML='';
+          [...tagMap.keys()].sort((a,b)=>a.localeCompare(b,'es',{sensitivity:'base'})).forEach(tag=>{
+            const b=document.createElement('button'); b.type='button'; b.className='cv-chip'; b.textContent=tag; b.setAttribute('aria-pressed','false');
+            b.addEventListener('click', ()=>{
+              if(selected.has(tag)){ selected.delete(tag); b.classList.remove('active'); b.setAttribute('aria-pressed','false'); }
+              else { selected.add(tag); b.classList.add('active'); b.setAttribute('aria-pressed','true'); }
+              applyFilter();
+            });
+            chipBar.appendChild(b);
+          });
+        }
+
+        function sortItems(items){
+          const mode = sortSel ? sortSel.value : 'fecha-desc';
+          const byName = (a,b)=> norm(a.getAttribute('data-name')).localeCompare(norm(b.getAttribute('data-name')),'es');
+          const parseDate = (it)=>{
+            // Intentamos detectar fecha YYYY o en nombre; si no, usamos 2100 para evitar romper orden
+            const name = it.getAttribute('data-name')||'';
+            const m = name.match(/\b(20\d{2}|19\d{2})\b/);
+            return m ? new Date(+m[1], 0, 1) : new Date(2100,0,1);
+          };
+          if(mode==='az') return items.sort(byName);
+          if(mode==='za') return items.sort((a,b)=>-byName(a,b));
+          if(mode==='fecha-asc') return items.sort((a,b)=> parseDate(a)-parseDate(b));
+          // por defecto: próximas (mayor fecha primero)
+          return items.sort((a,b)=> parseDate(b)-parseDate(a));
+        }
+
+        function applyFilter(){
+          const needle = norm(q ? q.value : '');
+          const items = $$('.pdf-item');
+          let list = items.slice();
+
+          if(selected.size){
+            list = list.filter(it=>{
+              const raw = (it.getAttribute('data-tags')||'').split(',').map(s=>s.trim());
+              return [...selected].some(t => raw.includes(t));
             });
           }
-        } catch(e){}
+          if(needle){
+            list = list.filter(it=>{
+              const name = norm(it.getAttribute('data-name'));
+              const tags = norm(it.getAttribute('data-tags')||'');
+              return name.includes(needle) || tags.includes(needle);
+            });
+          }
+
+          // Oculta/muestra
+          const setHidden = new Set(list);
+          items.forEach(it=> it.classList.toggle('hide', !setHidden.has(it)));
+
+          // Ordenar DOM por selección actual
+          sortItems(list).forEach(el=> grid.appendChild(el));
+
+          const visible = list.length;
+          count && (count.textContent = `${visible} resultado${visible===1?'':'s'}`);
+          emptyEl && (emptyEl.style.display = visible ? 'none' : 'block');
+
+          hydrateLazy();
+        }
+
+        // Eventos UI
+        function debounce(fn, ms){ let t; return (...a)=>{ clearTimeout(t); t=setTimeout(()=>fn(...a), ms);} }
+        q && q.addEventListener('input', debounce(applyFilter,120));
+        q && q.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ e.preventDefault(); } });
+        sortSel && sortSel.addEventListener('change', applyFilter);
+        clearBtn && clearBtn.addEventListener('click', ()=>{ if(q) q.value=''; selected.clear(); $$('.cv-chip.active').forEach(c=>{ c.classList.remove('active'); c.setAttribute('aria-pressed','false'); }); applyFilter(); q && q.focus(); });
+        window.addEventListener('keydown', (e)=>{ if(e.key==='/' && document.activeElement!==q){ e.preventDefault(); q && q.focus(); } if(e.key==='Escape'){ clearBtn && clearBtn.click(); } });
+
+        // Modal PDF (con <embed>)
+        const modalEl = document.getElementById('pdfModal');
+        const pdfTitle = document.getElementById('pdfTitle');
+        const pdfEmbed = document.getElementById('pdfEmbed');
+        const pdfOpenNew = document.getElementById('pdfOpenNew');
+
+        function openPdf(url, title){
+          pdfTitle.textContent = title || 'Documento';
+          pdfEmbed.setAttribute('src', url + '#view=FitH');
+          pdfOpenNew.setAttribute('href', url);
+          // Bootstrap 4: usa jQuery
+          if (window.jQuery && $(modalEl).modal) { $(modalEl).modal('show'); }
+        }
+        if (modalEl){
+          $(modalEl).on('hidden.bs.modal', function(){ pdfEmbed.removeAttribute('src'); });
+        }
+
+        $$('.js-open-pdf').forEach(btn=>{
+          btn.addEventListener('click', (e)=>{
+            e.preventDefault();
+            const url = btn.getAttribute('data-pdf');
+            const title = btn.getAttribute('data-title') || btn.textContent.trim();
+            if(url) openPdf(url, title);
+          });
+        });
+
+        // Inicio
+        buildChips();
+        applyFilter();
+        hydrateLazy();
       })();
     </script>
   </body>
 </html>
-

@@ -6,14 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Nosotros | Enciclopedia de Animales Mexicanos</title>
     <meta name="description" content="Conoce el equipo y la misión de la Enciclopedia de Animales Mexicanos.">
+
+    <!-- Estilos base -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
-    <link rel="icon" href="images/fevicon.png" type="image/gif">
     <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+
+    <!-- Favicons / navegador -->
+    <link rel="icon" type="image/png" href="images/Logo EAM.png"><!-- CAMBIA si tu archivo es logo-eam.png -->
+    <link rel="apple-touch-icon" href="images/Logo EAM.png"><!-- idem -->
+
     <style>
-      .logo img{max-width:180px;height:auto;border-radius:12px}
+      :root{--line:#e5e7eb;--accent:#16a34a;--ink:#0f172a;--muted:#6b7280}
+      body{color:var(--ink)}
+      .site-header{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,#fff,#f9fbff);border-bottom:1px solid var(--line)}
+      .mast{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.85rem 0}
+      .brand{display:flex;align-items:center;gap:.75rem}
+      .brand img{width:44px;height:44px;object-fit:contain;border-radius:12px}
+      .brand .title{font-weight:700}
+      .brand .sub{color:var(--muted);font-size:.9rem}
+      .nav{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+      .nav a{padding:.5rem .75rem;border-radius:10px;color:#0f172a;text-decoration:none}
+      .nav a[aria-current="page"], .nav a:hover{background:#ecfdf5;color:var(--accent)}
+
       .about-card{background:#fff;border-radius:12px;box-shadow:0 6px 16px rgba(0,0,0,.06);padding:18px;height:100%}
       .about-card h3{font-size:1.15rem;margin:.4rem 0}
       .titlepage h2{margin-bottom:.5rem}
@@ -21,38 +38,30 @@
     </style>
   </head>
   <body class="main-layout in_page">
-    <div class="loader_bg"><div class="loader"><img src="images/loading.gif" alt="Cargando"></div></div>
+    <!-- loader (no bloquea si falta la imagen) -->
+    <div class="loader_bg"><div class="loader"><img src="images/loading.gif" alt="Cargando" onerror="this.parentNode.parentNode.style.display='none'"></div></div>
 
-    <!-- header igual -->
-    <header>
-      <div class="header">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12 col-sm-3 col logo_section">
-              <div class="full">
-                <div class="center-desk">
-                  <div class="logo">
-                    <a href="index.html"><img src="images/Logo EAM.png" alt="Enciclopedia de Animales Mexicanos"></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-10 offset-md-1">
-              <nav class="navigation navbar navbar-expand-md navbar-dark">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarsExample04">
-                  <ul class="navbar-nav mr-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
-                    <li class="nav-item active"><a class="nav-link" href="about.html">Nosotros</a></li>
-                    <li class="nav-item"><a class="nav-link" href="service.html">Servicios</a></li>
-                    <li class="nav-item"><a class="nav-link" href="gallery.html">Galería</a></li>
-                    <li class="nav-item"><a class="nav-link" href="testimonial.html">Fichas</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html">Contacto</a></li>
-                  </ul>
-                </div>
-              </nav>
+    <!-- Header unificado -->
+    <header id="siteHeader" class="site-header" role="banner">
+      <div class="container">
+        <div class="mast">
+          <div class="brand">
+            <a href="index.html" aria-label="Ir al inicio">
+              <img src="images/Logo EAM.png" alt="Enciclopedia de Animales Mexicanos — logotipo" loading="eager" decoding="async" fetchpriority="high"><!-- CAMBIA si tu archivo es logo-eam.png -->
+            </a>
+            <div>
+              <div class="title">Enciclopedia de Animales Mexicanos</div>
+              <div class="sub">Nosotros</div>
             </div>
           </div>
+          <nav class="nav" aria-label="Navegación principal">
+            <a href="index.html">Inicio</a>
+            <a href="about.html" aria-current="page" class="active">Nosotros</a>
+            <a href="service.html">Especies</a>
+            <a href="gallery.html">Galería</a>
+            <a href="testimonial.html">Descargas</a>
+            <a href="contact.html">Contacto</a>
+          </nav>
         </div>
       </div>
     </header>
@@ -101,8 +110,9 @@
       </div>
     </section>
 
-    <!-- footer igual -->
-    <footer  <div class="footer">
+    <!-- Footer correcto -->
+    <footer>
+      <div class="footer">
         <div class="container">
           <div class="row">
             <div class="col-md-3 col-sm-6">
@@ -124,11 +134,11 @@
               <h3>Enlaces útiles</h3>
               <ul class="link_menu">
                 <li><a href="index.html">Inicio</a></li>
-                <li><a href="nosotros.html">¿Quiénes somos?</a></li>
+                <li><a href="about.html">¿Quiénes somos?</a></li>
                 <li><a href="animales.html">Especies</a></li>
                 <li><a href="lineas-investigacion.html">Líneas de investigación</a></li>
                 <li><a href="colaboradores.html">Colaboradores</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="contact.html">Contacto</a></li>
               </ul>
             </div>
             <div class="col-md-3 col-sm-6">
@@ -137,7 +147,7 @@
             </div>
             <div class="col-md-6 offset-md-6">
               <form id="newsletter" class="bottom_form">
-                <input class="enter" placeholder="Tu correo electrónico" type="email" name="email">
+                <input class="enter" placeholder="Tu correo electrónico" type="email" name="email" required>
                 <button class="sub_btn">Suscribirme</button>
               </form>
             </div>
@@ -155,9 +165,29 @@
       </div>
     </footer>
 
+    <!-- JS con CDN fallback -> evita “no carga” si faltan archivos locales -->
     <script src="js/jquery.min.js"></script>
+    <script>window.jQuery||document.write('<script src="https://code.jquery.com/jquery-3.6.0.min.js"><\\/script>')</script>
+
     <script src="js/bootstrap.bundle.min.js"></script>
+    <script>if(typeof $.fn.modal==='undefined'){document.write('<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"><\\/script>')}</script>
+
     <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="js/custom.js"></script>
+    <script>
+      // Evita que un error en custom.js rompa la página
+      try { document.write('<script src="js/custom.js"><\\/script>'); } catch(e) {}
+    </script>
+
+    <script>
+      // Header "stuck" protegido
+      (function(){
+        var h = document.getElementById('siteHeader');
+        function onScroll(){ if(!h) return; (window.scrollY>8)?h.classList.add('stuck'):h.classList.remove('stuck'); }
+        onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+        console.log('about.html listo');
+      })();
+    </script>
   </body>
 </html>
+
+

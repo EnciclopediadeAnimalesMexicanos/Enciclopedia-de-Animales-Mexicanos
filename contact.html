@@ -21,61 +21,70 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
 
     <style>
-      /* Ajustes mínimos */
+      /* ====== Tokens y estilos del header para igualar al de PDFs ====== */
+      :root{
+        --bg:#f7faf7;          /* fondo */
+        --surface:#ffffff;     /* cartas */
+        --ink:#0f172a;         /* texto base */
+        --muted:#6b7280;       /* texto secundario */
+        --line:#e5e7eb;        /* bordes sutiles */
+        --accent:#0b5ed7;      /* azul marca */
+        --shadow:0 10px 25px rgba(2,6,23,.08), 0 2px 8px rgba(2,6,23,.06);
+      }
+
       img{max-width:100%;height:auto}
+
+      /* ====== Header igual al de PDFs ====== */
+      .site-header{position:sticky; top:0; z-index:1030; background:linear-gradient(180deg,#ffffff, #f9fbff); border-bottom:1px solid var(--line)}
+      .site-header.stuck{box-shadow:var(--shadow)}
+      .site-header .container{max-width:1200px}
+      .mast{display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:.85rem 0}
+      .brand{display:flex; align-items:center; gap:.75rem}
+      .brand img{width:44px; height:44px; object-fit:contain; border-radius:12px}
+      .brand .title{font-weight:700; letter-spacing:.2px; color:var(--ink)}
+      .brand .sub{color:var(--muted); font-size:.9rem}
+
+      /* Navegación (evita choques con Bootstrap usando mayor especificidad) */
+      .site-header nav.nav{display:flex; align-items:center; gap:.5rem; flex-wrap:wrap}
+      .site-header nav.nav a{padding:.5rem .75rem; border-radius:10px; color:#0f172a; text-decoration:none}
+      .site-header nav.nav a[aria-current="page"],
+      .site-header nav.nav a:hover{background:#eef6ff; color:#0b5ed7}
+
+      /* ====== Ajustes mínimos existentes ====== */
       .logo img{max-width:180px;height:auto;border-radius:12px}
-      .header{position:sticky;top:0;z-index:1030;background:#0a0f0a}
-      .header.stuck{box-shadow:0 6px 20px rgba(0,0,0,.18)}
       .titlepage h2{margin-bottom:.5rem}
       .titlepage p{color:#555}
       .contact .main_form .contactus,
       .contact .main_form .textarea{background:#fff}
       .contact .main_form .send_btn{cursor:pointer}
-      /* Responsive pequeñas mejoras */
       @media (max-width:575px){ .row>[class*="col-"]{margin-bottom:16px} }
-      /* Accesibilidad: respeta reduced motion */
       @media (prefers-reduced-motion: reduce){ .carousel,.carousel-item{transition:none!important} }
     </style>
   </head>
   <body class="main-layout in_page">
-    <!-- header -->
-    <header>
-      <div class="header" id="siteHeader">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12 col-sm-3 col logo_section">
-              <div class="full">
-                <div class="center-desk">
-                  <div class="logo">
-                    <a href="index.html" aria-label="Ir al inicio">
-                      <img src="images/Logo EAM.png" alt="Enciclopedia de Animales Mexicanos" loading="eager" decoding="async" fetchpriority="high">
-                    </a>
-                  </div>
-                </div>
+    <!-- ====== Header (igualado) ====== -->
+    <header id="siteHeader" class="site-header" role="banner">
+      <div class="container">
+        <div class="mast">
+          <div class="brand">
+            <a href="index.html" aria-label="Ir al inicio"><img src="images/Logo EAM.png" alt="EAM logo" loading="eager" decoding="async" fetchpriority="high"></a>
+            <div>
+              <div class="title">Enciclopedia de Animales Mexicanos</div>
+              <div class="sub">Difusión del conocimiento zoológico, histórico y cultural
               </div>
             </div>
-            <div class="col-md-10 offset-md-1">
-              <nav class="navigation navbar navbar-expand-md navbar-dark" aria-label="Navegación principal">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Abrir menú">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarsExample04">
-                  <ul class="navbar-nav mr-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="about.html">Nosotros</a></li>
-                    <li class="nav-item"><a class="nav-link" href="service.html">Servicios</a></li>
-                    <li class="nav-item"><a class="nav-link" href="gallery.html">Galería</a></li>
-                    <li class="nav-item"><a class="nav-link" href="testimonial.html">Fichas</a></li>
-                    <li class="nav-item active"><a class="nav-link" href="contact.html">Contacto</a></li>
-                  </ul>
-                </div>
-              </nav>
-            </div>
           </div>
+          <nav class="nav" aria-label="Navegación principal">
+            <a href="index.html">Inicio</a>
+            <a href="about.html">Nosotros</a>
+            <a href="service.html">Especies</a>
+            <a href="gallery.html">Galería</a>
+            <a href="testimonial.html">Descargas</a>
+            <a href="contact.html" aria-current="page">Contacto</a>
+          </nav>
         </div>
       </div>
     </header>
-    <!-- end header -->
 
     <!-- contacto -->
     <div class="contact" style="padding-top:24px;">
@@ -236,7 +245,7 @@
     <script src="js/custom.js"></script>
 
     <script>
-      // Header sombra al hacer scroll
+      // Header sombra al hacer scroll (usa #siteHeader)
       (function(){
         var h=document.getElementById('siteHeader');
         function onScroll(){ (window.scrollY>8)?h.classList.add('stuck'):h.classList.remove('stuck'); }

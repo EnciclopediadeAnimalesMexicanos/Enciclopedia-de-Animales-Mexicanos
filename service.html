@@ -1,307 +1,808 @@
 <!DOCTYPE html>
 <html lang="es">
   <head>
-    <!-- basic -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- mobile metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Región: Altiplano — Enciclopedia de Animales Mexicanos</title>
 
-    <!-- site metas -->
-    <title>Enciclopedia de Animales Mexicanos</title>
-    <meta name="keywords" content="fauna, animales mexicanos, zoología, biodiversidad, conservación">
-    <meta name="description" content="Proyecto académico para investigar, documentar y difundir la diversidad faunística de México">
-    <meta name="author" content="Equipo Interdisciplinario EAM">
-
-    <!-- bootstrap css -->
+    <!-- ====== Estilos del sitio (mismos que compartiste) ====== -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <!-- style css -->
     <link rel="stylesheet" href="css/style.css">
-    <!-- Responsive-->
     <link rel="stylesheet" href="css/responsive.css">
-    <!-- fevicon -->
-    <link rel="icon" href="images/fevicon.png" type="image/gif" />
-    <!-- Scrollbar Custom CSS -->
     <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
-    <!-- FontAwesome -->
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
 
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
     <style>
-      .resolucion { width: 99%; text-align: center; }
+      /* ===== Tokens y utilidades adicionales (coherentes con tu sistema) ===== */
+      :root{
+        /* hereda tu paleta */
+        --accent:#16a34a;      /* verde 600 */
+        --accent-600:#15803d;  /* verde 700 */
+        --accent-700:#166534;  /* verde 800 */
+        --line:#e5e7eb;
+        --ink:#0f172a;
+        --muted:#6b7280;
+        --surface:#ffffff;
+        --bg:#f7faf7;
+        --radius:16px;
+        --shadow:0 10px 25px rgba(2,6,23,.08), 0 2px 8px rgba(2,6,23,.06);
+      }
+      html,body{background:var(--bg); color:var(--ink)}
 
-      /* Móvil */
-      @media (max-width: 767px) {
-        .desktop { display: none !important; }
-        .tablet  { display: none !important; }
-        .movil   { display: block !important; }
-      }
+      .container-narrow{max-width:1100px; margin:0 auto}
+      .titlepage .green{color:var(--accent)}
+      .section{padding:40px 0}
+      .muted{color:var(--muted)}
+      .card-neo{background:#fff; border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow)}
+      .card-neo .hd{border-bottom:1px solid var(--line); padding:12px 16px; font-weight:700}
+      .pill{display:inline-block; border:1px solid #bbf7d0; background:#ecfdf5; color:var(--accent); padding:.25rem .6rem; border-radius:999px; font-weight:600; font-size:.85rem}
+      .btn-pill{display:inline-block; border:1px solid var(--line); background:#fff; padding:.5rem .9rem; border-radius:999px; color:var(--accent); font-weight:600}
+      .btn-pill:hover{background:#ecfdf5}
 
-      /* Tablet */
-      @media (min-width: 768px) and (max-width: 990px) {
-        .desktop { display: none !important; }
-        .movil   { display: none !important; }
-        .tablet  { display: block !important; }
-      }
+      /* Hero región */
+      .region-hero{background:linear-gradient(180deg,#ffffff,#f7fff9); border-bottom:1px solid var(--line)}
+      .region-hero .figure{border:1px solid var(--line); border-radius:12px; overflow:hidden; box-shadow:var(--shadow)}
+      .region-hero .cap{font-size:.9rem}
 
-      /* Escritorio */
-      @media (min-width: 991px) {
-        .tablet  { display: none !important; }
-        .movil   { display: none !important; }
-        .desktop { display: block !important; }
-      }
+      /* Índices */
+      .idx-col h3{font-weight:700; margin:.25rem 0 .35rem}
+      .idx-list{list-style:none; padding-left:0; margin:0}
+      .idx-list li{margin:.15rem 0}
+      .idx-list a{color:var(--ink); text-decoration:none}
+      .idx-list a:hover{color:var(--accent)}
 
-      /* --- Convocatorias --- */
-      .convocatorias-section {
-        background: #f7f9f8;
-        padding: 40px 0;
-        border-top: 1px solid #e9ecef;
-      }
-      .convocatoria-card {
-        border: 1px solid #e3e6e8;
-        border-radius: 14px;
-        padding: 16px;
-        background: #fff;
-        height: 100%;
-        box-shadow: 0 4px 14px rgba(0,0,0,.06);
-        transition: transform .15s ease, box-shadow .15s ease;
-      }
-      .convocatoria-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 8px 24px rgba(0,0,0,.1);
-      }
-      .convocatoria-title {
-        font-size: 1.1rem;
-        font-weight: 700;
-        margin-bottom: .25rem;
-        color: #0f5132;
-      }
-      .convocatoria-meta {
-        font-size: .9rem;
-        color: #495057;
-        margin-bottom: .5rem;
-      }
-      .badge-vigente {
-        background: #e7f5ee;
-        color: #0f5132;
-        border: 1px solid #b7e4c7;
-        padding: .25rem .5rem;
-        border-radius: 999px;
-        font-size: .78rem;
-        font-weight: 600;
-      }
-      .badge-vencida {
-        background: #fff3f3;
-        color: #842029;
-        border: 1px solid #f5c2c7;
-        padding: .25rem .5rem;
-        border-radius: 999px;
-        font-size: .78rem;
-        font-weight: 600;
-      }
-      .convocatoria-actions a {
-        text-decoration: underline;
-      }
-      .form-note {
-        font-size: .9rem;
-        color: #6c757d;
-      }
-      .logo img { max-width: 180px; height: auto; border-radius: 12px; }
+      /* "Imágenes móviles" (rotación simple) */
+      .auto-rotate{position:relative; border:1px solid var(--line); border-radius:12px; overflow:hidden; min-height:180px; background:#f4f7f6}
+      .auto-rotate img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity .6s ease}
+      .auto-rotate img.active{opacity:1}
+
+      /* Badges de infografía */
+      .infobadge{display:inline-block; border-radius:999px; padding:.25rem .6rem; font-weight:700; font-size:.8rem}
+      .infobadge.yellow{background:#fff7cc; color:#7a5b00; border:1px solid #f2df97}
+      .infobadge.gray{background:#eef2f7; color:#334155; border:1px solid #e2e8f0}
+
+      /* Paneles en gris (tres ventanas) */
+      .panel-gray{background:#f3f5f7; border:1px solid var(--line); border-radius:12px; padding:14px}
+
+      /* Estados */
+      .state-disabled{opacity:.6}
+
+      /* Enlaces de acción */
+      .btn-linklike{display:inline-flex; align-items:center; gap:.45rem; border:1px solid var(--line); padding:.45rem .75rem; border-radius:10px; background:#fff; text-decoration:none; color:var(--accent); font-weight:600}
+      .btn-linklike:hover{background:#f1fcf5; border-color:#cce3d3}
+
+      /* Fix modal header buttons (Bootstrap 4) */
+      .modal .close{outline:0}
     </style>
-  </head>
+      <!-- Favicons (logo en navegador) -->
+    <link rel="icon" type="image/png" src="LogoEAM.png">
+    <link rel="apple-touch-icon" src="LogoEAM.png.png">
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" href="LogoEAM.png">
+    <link rel="apple-touch-icon"src="LogoEAM.png">
+  <style>
+      /* ====== Header ====== */
+    .site-header{position:sticky; top:0; z-index:50; background:linear-gradient(180deg,#ffffff, #f9fbff); border-bottom:1px solid var(--line);}
+    .mast{display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:.85rem 0}
+    .brand{display:flex; align-items:center; gap:.75rem}
+    .brand img{width:44px; height:44px; object-fit:contain}
+    .brand .title{font-weight:700; letter-spacing:.2px}
+    .brand .sub{color:var(--muted); font-size:.9rem}
 
-  <body class="main-layout in_page">
-    <!-- loader  -->
-    <div class="loader_bg">
-      <div class="loader"><img src="images/loading.gif" alt="Cargando"/></div>
-    </div>
+    .nav{display:flex; align-items:center; gap:.5rem; flex-wrap:wrap}
+    .nav a{padding:.5rem .75rem; border-radius:10px; color:#0f172a}
+    /* activo/hover en VERDE */
+    .nav a[aria-current="page"], .nav a:hover{background:#ecfdf5; color:var(--accent)}
+    /* ===== Biblioteca de PDFs (Altiplano) ===== */
+    .lib-section{background:var(--bg)}
+    .lib-toolbar{display:grid; grid-template-columns: 1fr auto; gap:1rem; margin-top:.5rem}
+    @media (max-width:640px){ .lib-toolbar{grid-template-columns:1fr} }
+    .lib-search{display:flex; align-items:center; gap:.5rem; background:#fff; border:1px solid var(--line); border-radius:999px; padding:.5rem .75rem; box-shadow:var(--shadow)}
+    .lib-search input{border:0; outline:0; width:100%; background:transparent; font-size:1rem}
+    .lib-kbd{display:inline-flex; align-items:center; gap:.25rem; font-size:.8rem; color:var(--muted); background:#f4f6f9; border:1px solid var(--line); padding:.15rem .35rem; border-radius:6px}
+    .lib-tools{display:flex; align-items:center; gap:.5rem; flex-wrap:wrap}
+    .lib-select{border:1px solid var(--line); background:#fff; border-radius:10px; padding:.55rem .7rem}
+    .lib-btn{display:inline-flex; align-items:center; gap:.5rem; padding:.55rem .8rem; border-radius:10px; border:1px solid var(--line); background:#fff; cursor:pointer}
+    .lib-btn:hover{background:#f1fcf5}
+    .lib-chips{display:flex; gap:.5rem; flex-wrap:wrap; margin-top:.75rem}
+    .lib-chip{display:inline-flex; align-items:center; gap:.35rem; border:1px solid #bbf7d0; background:#ecfdf5; color:var(--accent); padding:.25rem .6rem; border-radius:999px; font-size:.9rem; cursor:pointer}
+    .lib-chip.active{background:#dcfce7; border-color:#86efac}
+    .lib-empty{display:none; border:1px dashed var(--line); border-radius:12px; padding:2rem; text-align:center; color:var(--muted); background:#fff}
+    .pdf-grid{ display:grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap:1rem; padding:1.25rem 0 2rem; }
+    @media (max-width: 480px){ .pdf-grid{ grid-template-columns: 1fr; } }
+    .pdf-item{ background:#fff; border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; transition: transform .2s ease, box-shadow .2s ease; }
+    .pdf-item.hide{ display:none !important; }
+    .pdf-item:hover{ transform: translateY(-2px); box-shadow:0 18px 30px rgba(2,6,23,.10), 0 4px 14px rgba(2,6,23,.06); }
+    .preview{ position:relative; background:linear-gradient(180deg,#f0f7f3,#e9f7ee); min-height:220px }
+    .pdf-embed{ width:100%; height:380px; border:0; display:block; background:#f0f3f7; }
+    @media (max-width: 576px){ .pdf-embed{ height:320px; } }
+    .preview .hint{position:absolute; right:12px; bottom:12px; background:rgba(255,255,255,.85); border:1px solid var(--line); border-radius:999px; padding:.25rem .6rem; font-size:.8rem; color:var(--muted)}
+    .pdf-meta{ display:flex; flex-direction:column; gap:.6rem; padding:.9rem .9rem 1rem; }
+    .pdf-name{ font-weight:700; line-height:1.35; word-break:break-word }
+    .tag-row{ display:flex; flex-wrap:wrap; gap:.35rem }
+    .badge-tag{ border:1px solid #bbf7d0; background:#ecfdf5; color:var(--accent); border-radius:999px; padding:.15rem .5rem; font-size:.8rem; }
+    .actions{ display:flex; align-items:center; gap:.5rem; margin-top:.25rem }
+  </style>
+</head>
 
-    <!-- header -->
-    <header>
-      <div class="header">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12 col-sm-3 col logo_section">
-              <div class="full">
-                <div class="center-desk">
-                  <div class="logo">
-                    <a href="index.html"><img src="images/Logo EAM.png" alt="Enciclopedia de Animales Mexicanos" /></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-10 offset-md-1">
-              <nav class="navigation navbar navbar-expand-md navbar-dark">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarsExample04">
-                  <ul class="navbar-nav mr-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="about.html">Nosotros</a></li>
-                    <li class="nav-item active"><a class="nav-link" href="service.html">Servicios</a></li>
-                    <li class="nav-item"><a class="nav-link" href="gallery.html">Galería</a></li>
-                    <li class="nav-item"><a class="nav-link" href="testimonial.html">Fichas</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html">Contacto</a></li>
-                  </ul>
-                </div>
-              </nav>
+  <body class="main-layout">
+    <!-- Enlace de salto para accesibilidad -->
+    <a href="#main" class="sr-only sr-only-focusable">Saltar al contenido</a>
+    <!-- ===== Header (idéntico al patrón EAM) ===== -->
+    <header id="siteHeader" class="site-header" role="banner">
+      <div class="container">
+        <div class="mast">
+          <div class="brand">
+            <a href="index.html" rel="home" aria-label="Ir al inicio">
+              <img src="LogoEAM.png.png" width="44" height="44" alt="Enciclopedia de Animales Mexicanos — logotipo" loading="eager" decoding="async" fetchpriority="high">
+            </a>
+            <div>
+              <div class="title">Enciclopedia de Animales Mexicanos</div>
+              <div class="sub">Región: Altiplano</div>
             </div>
           </div>
+          <nav class="nav" aria-label="Navegación principal">
+            <a href="index.html">Inicio</a>
+            <a href="about.html">Nosotros</a>
+            <a href="service.html">Especies</a>
+            <a href="gallery.html">Galería</a>
+            <a href="testimonial.html" ">Descargas</a>
+            <a href="contact.html">Contacto</a>
+          </nav>
         </div>
       </div>
     </header>
-
-    <!-- servicios -->
-    <div class="service">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
+    <main id="main" tabindex="-1">
+    <!-- ===== Hero de región ===== -->
+    <section class="region-hero section">
+      <div class="container container-narrow">
+        <div class="row align-items-center">
+          <div class="col-md-7">
             <div class="titlepage">
-              <h2>Nuestros <span class="green">Servicios</span></h2>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col-md-10 offset-md-1">
-            <div class="row">
-              <div class="col-md-4 col-sm-6">
-                <div class="service_box">
-                  <i><img src="images/service1.png" alt="Investigación"/></i>
-                  <h3>Investigación Faunística</h3>
-                  <p>Estudios científicos sobre especies animales mexicanas, con base en fuentes zoológicas, etnográficas e históricas.</p>
-                </div>
-              </div>
-              <div class="col-md-4 offset-md-1 col-sm-6">
-                <div class="service_box">
-                  <i><img src="images/service2.png" alt="Divulgación"/></i>
-                  <h3>Divulgación Educativa</h3>
-                  <p>Creación de contenidos accesibles para todo público: ilustraciones, infografías, cápsulas y podcasts.</p>
-                </div>
-              </div>
-              <div class="col-md-4 offset-md-3 col-sm-6 mar_top">
-                <div class="service_box">
-                  <i><img src="images/service3.png" alt="Accesibilidad"/></i>
-                  <h3>Accesibilidad Cultural</h3>
-                  <p>Materiales en lectura fácil, traducciones a lenguas originarias y versiones auditivas para poblaciones diversas.</p>
-                </div>
-              </div>
-              <div class="col-md-4 offset-md-1 col-sm-6 mar_top">
-                <div class="service_box">
-                  <i><img src="images/service4.png" alt="Base de datos"/></i>
-                  <h3>Base Enciclopédica</h3>
-                  <p>Fichas por especie con información científica, hábitat, presencia cultural, estado de conservación y bibliografía.</p>
-                </div>
-              </div>
-              <div class="col-md-12">
-                <a class="read_more" href="#">Ver más</a>
+              <h2>Región: <span class="green">Altiplano</span></h2>
+              <p>
+                Mesetas elevadas, clima templado-seco y matorral xerófilo. Este apartado reúne <strong>Vertebrados</strong> e <strong>Invertebrados</strong> y organiza la información en claves <em>etnohistóricas</em>, <em>bióticas</em> y <em>estéticas</em>.
+              </p>
+              <div class="actions" style="margin-top:.5rem">
+                <a class="btn-linklike" href="#vertebrados"><i class="fa fa-leaf"></i> Vertebrados</a>
+                <a class="btn-linklike" href="#invertebrados"><i class="fa fa-bug"></i> Invertebrados</a>
               </div>
             </div>
           </div>
-        </div>
-
-      </div>
-    </div>
-    <!-- end servicios -->
-
-    <!-- CONVOCATORIAS -->
-    <section class="convocatorias-section" id="convocatorias">
-      <div class="container">
-        <div class="row align-items-end">
-          <div class="col-md-8">
-            <div class="titlepage">
-              <h2>Convocatorias <span class="green">EAM</span></h2>
-              <p>Publica y consulta convocatorias de investigación, voluntariado, talleres y colaboraciones.</p>
-            </div>
+          <div class="col-md-5">
+            <figure class="figure">
+              <img src="images/altiplano-hero.jpg" alt="Paisaje del Altiplano" loading="lazy" decoding="async">
+              <figcaption class="cap muted">Altiplano — <u>Agregar referencia</u>.</figcaption>
+            </figure>
           </div>
-          <div class="col-md-4 text-md-right text-left mb-3">
-            <div class="btn-group" role="group" aria-label="Filtros">
-              <button class="btn btn-sm btn-outline-success" id="filtroVigentesBtn">Vigentes</button>
-              <button class="btn btn-sm btn-outline-secondary" id="filtroTodasBtn">Todas</button>
-            </div>
-            <button class="btn btn-sm btn-primary ml-2" id="mostrarFormConvBtn">Publicar convocatoria</button>
-          </div>
-        </div>
-
-        <!-- Formulario (oculto por contraseña) -->
-        <div class="row" id="formConvRow" style="display:none;">
-          <div class="col-lg-10 col-xl-8 mx-auto">
-            <div class="card card-body" style="border-radius:14px; box-shadow:0 4px 16px rgba(0,0,0,.08);">
-              <h5 class="mb-3">Nueva convocatoria</h5>
-
-              <div id="convPassSection">
-                <div class="form-group">
-                  <label for="convPassword">Contraseña de publicación</label>
-                  <input type="password" id="convPassword" class="form-control" placeholder="••••" required>
-                  <small id="convPassError" class="text-danger d-none">Contraseña incorrecta.</small>
-                </div>
-                <button class="btn btn-success" id="verificarConvPassBtn" type="button">Verificar</button>
-              </div>
-
-              <form id="convForm" class="mt-3" style="display:none;">
-                <div class="form-group">
-                  <label for="convTitulo">Título</label>
-                  <input type="text" id="convTitulo" class="form-control" placeholder="p. ej. Voluntariado para monitoreo de anfibios" required>
-                </div>
-
-                <div class="form-group">
-                  <label for="convDesc">Descripción breve</label>
-                  <textarea id="convDesc" class="form-control" rows="3" placeholder="Objetivo, requisitos principales, lugar..." required></textarea>
-                </div>
-
-                <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="convFecha">Fecha límite</label>
-                    <input type="date" id="convFecha" class="form-control" required>
-                  </div>
-                  <div class="form-group col-md-6">
-                    <label for="convTipo">Tipo</label>
-                    <select id="convTipo" class="form-control">
-                      <option>Investigación</option>
-                      <option>Voluntariado</option>
-                      <option>Taller</option>
-                      <option>Beca/Apoyo</option>
-                      <option>Otro</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label for="convLink">Enlace (sitio o documento)</label>
-                  <input type="url" id="convLink" class="form-control" placeholder="https://...">
-                  <small class="form-note">Recomendado: sube el PDF a tu repositorio o drive y pega el enlace.</small>
-                </div>
-
-                <div class="form-group">
-                  <label for="convArchivo">Archivo (opcional, local)</label>
-                  <input type="file" id="convArchivo" class="form-control-file" accept=".pdf,.png,.jpg,.jpeg">
-                  <small class="form-note">Si cargas un archivo local, se mostrará solo en este navegador (no se sube al servidor).</small>
-                </div>
-
-                <div class="d-flex align-items-center">
-                  <button type="submit" class="btn btn-success">Publicar</button>
-                  <span id="convFormStatus" class="ml-3 text-muted"></span>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-
-        <!-- Listado -->
-        <div class="row mt-4" id="convListRow">
-          <!-- Tarjetas se insertan aquí -->
         </div>
       </div>
     </section>
-    <!-- FIN CONVOCATORIAS -->
 
-    <!--  footer -->
+    <!-- ===== Índices ===== -->
+    <section class="section">
+      <div class="container container-narrow">
+        <div class="row">
+          <!-- Vertebrados -->
+          <div class="col-lg-6 idx-col">
+            <div class="titlepage"><h2 id="vertebrados">Índice <span class="green">Vertebrados</span></h2></div>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="auto-rotate" data-rotate>
+                  <img class="active" src="images/aves-01.jpg" alt="Aves">
+                  <img src="images/colibri-01.jpg" alt="Colibrí (códice)">
+                  <img src="images/zopilote-01.jpg" alt="Zopilote (códice)">
+                </div>
+                <h3>Aves</h3>
+                <ul class="idx-list">
+                  <li><a href="#colibri">Colibrí</a></li>
+                  <li><a href="#zopilote">Zopilote</a></li>
+                  <li><a href="#cuervo">Cuervo</a></li>
+                </ul>
+              </div>
+              <div class="col-sm-6">
+                <div class="auto-rotate" data-rotate>
+                  <img class="active" src="images/mamiferos-01.jpg" alt="Mamíferos">
+                  <img src="images/lobo-01.jpg" alt="Lobo">
+                  <img src="images/xolo-01.jpg" alt="Xoloitzcuintli">
+                </div>
+                <h3>Mamíferos</h3>
+                <ul class="idx-list">
+                  <li><a href="#coyote">Coyote</a></li>
+                  <li><a href="#lobo">Lobo</a></li>
+                  <li><a href="#xolo">Xoloitzcuintli</a></li>
+                  <li><a href="#burro">Burro</a></li>
+                </ul>
+              </div>
+              <div class="col-sm-6">
+                <div class="auto-rotate" data-rotate>
+                  <img class="active" src="images/ajolote-01.jpg" alt="Ajolote">
+                </div>
+                <h3>Anfibios</h3>
+                <ul class="idx-list"><li><a href="#ajolote">Ajolote</a></li></ul>
+              </div>
+              <div class="col-sm-6 state-disabled">
+                <div class="auto-rotate"><img class="active" src="images/placeholder-peces.jpg" alt="Peces"></div>
+                <h3>Peces</h3>
+                <p class="muted" style="margin:0">(No avanza)</p>
+              </div>
+              <div class="col-sm-6 state-disabled">
+                <div class="auto-rotate"><img class="active" src="images/placeholder-reptiles.jpg" alt="Reptiles"></div>
+                <h3>Reptiles</h3>
+                <p class="muted" style="margin:0">(No avanza)</p>
+              </div>
+            </div>
+          </div>
+          <!-- Invertebrados -->
+          <div class="col-lg-6 idx-col">
+            <div class="titlepage"><h2 id="invertebrados">Índice <span class="green">Invertebrados</span></h2></div>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="auto-rotate" data-rotate>
+                  <img class="active" src="images/arana-01.jpg" alt="Araña">
+                </div>
+                <h3>Araña</h3>
+                <p class="muted">(Sección por completar)</p>
+              </div>
+              <div class="col-sm-6">
+                <div class="auto-rotate" data-rotate>
+                  <img class="active" src="images/caracol-01.jpg" alt="Caracol">
+                </div>
+                <h3>Caracol</h3>
+                <p class="muted">(Sección por completar)</p>
+              </div>
+              <div class="col-12">
+                <div class="auto-rotate" data-rotate>
+                  <img class="active" src="images/mariposa-01.jpg" alt="Mariposa">
+                </div>
+                <div class="d-flex align-items-center" style="justify-content:space-between; margin-top:.5rem">
+                  <div>
+                    <h3 style="margin:0">Mariposa</h3>
+                    <p class="muted" style="margin:.25rem 0 0">Solo existe imagen con logo. Aquí agregaremos ficha + PDF.</p>
+                  </div>
+                  <a class="btn-linklike js-open-pdf" data-pdf="#" data-title="Las mariposas del México antiguo"><i class="fa fa-file-pdf-o"></i> PDF</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Aves ===== -->
+    <section class="section" id="aves">
+      <div class="container container-narrow">
+        <div class="titlepage"><h2>Aves <span class="green">del Altiplano</span></h2></div>
+        <div class="row">
+          <!-- Colibrí -->
+          <div class="col-md-6 col-xl-4" id="colibri">
+            <article class="card-neo" style="overflow:hidden">
+              <div class="hd">Colibrí <span class="infobadge yellow">Infografía</span></div>
+              <div class="preview" style="padding:12px">
+                <div class="auto-rotate" data-rotate style="min-height:220px">
+                  <img class="active" src="images/colibri-codice-1.jpg" alt="Colibrí (códice)">
+                  <img src="images/colibri-codice-2.jpg" alt="Colibrí (códice)">
+                </div>
+                <div class="muted" style="font-size:.85rem; margin-top:.35rem">Imagen de códice — <u>agregar referencia</u>.</div>
+              </div>
+              <div style="padding:0 16px 16px">
+                <p class="muted" style="margin:.25rem 0 8px">“Cita textual de Fray Bernardino”. Imágenes móviles y acceso al PDF con retorno.</p>
+                <div class="actions">
+                  <a class="btn-linklike js-open-pdf" data-pdf="#" data-title="Colibrí — Dossier completo"><i class="fa fa-file-pdf-o"></i> Abrir PDF</a>
+                  <a class="btn-linklike" href="#aves"><i class="fa fa-arrow-up"></i> Volver</a>
+                </div>
+              </div>
+            </article>
+          </div>
+          <!-- Zopilote -->
+          <div class="col-md-6 col-xl-4" id="zopilote">
+            <article class="card-neo" style="overflow:hidden">
+              <div class="hd">Zopilote <span class="infobadge gray">Infografía</span></div>
+              <div class="preview" style="padding:12px">
+                <div class="auto-rotate" data-rotate style="min-height:220px">
+                  <img class="active" src="images/zopilote-codice-1.jpg" alt="Zopilote (códice)">
+                  <img src="images/zopilote-codice-2.jpg" alt="Zopilote (códice)">
+                </div>
+                <div class="muted" style="font-size:.85rem; margin-top:.35rem">Imagen de códice — <u>agregar referencia</u>.</div>
+              </div>
+              <div style="padding:0 16px 16px">
+                <p class="muted" style="margin:.25rem 0 8px">Fragmento de presentación e imágenes móviles. El PDF se abre en modal (retorno garantizado).</p>
+                <div class="actions">
+                  <a class="btn-linklike js-open-pdf" data-pdf="#" data-title="Zopilote — Dossier completo"><i class="fa fa-file-pdf-o"></i> Abrir PDF</a>
+                  <a class="btn-linklike" href="#aves"><i class="fa fa-arrow-up"></i> Volver</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        <!-- Cuervo -->
+<div class="col-md-6 col-xl-4" id="cuervo">
+  <article class="card-neo" style="overflow:hidden">
+    <div class="hd">Cuervo</div>
+
+    <div class="preview" style="padding:12px">
+      <div class="auto-rotate" data-rotate style="min-height:220px">
+        <img class="active" src="images/cuervo-preview-1.jpg" alt="Vista previa del trabajo">
+        <img src="images/cuervo-preview-2.jpg" alt="Diseño del trabajo">
+      </div>
+    </div>
+
+    <div style="padding:0 16px 16px">
+      <p class="muted" style="margin:.25rem 0 8px">
+        Trabajo completo con revisión del diseño y bibliografía.
+      </p>
+      <div class="actions">
+        <!-- Abre el MODAL (visor EAM) -->
+        <a class="btn-linklike js-open-pdf"
+           data-pdf="Convocatoria Fm.pdf"
+           data-title="Cuervo — Trabajo completo">
+          <i class="fa fa-file-pdf-o"></i> Ver aquí
+        </a>
+
+        <!-- Abre en pestaña nueva -->
+        <a class="btn-linklike"
+           href="Convocatoria Fm.pdf"
+           target="_blank" rel="noopener">
+          <i class="fa fa-external-link"></i> Abrir
+        </a>
+
+        <!-- Descarga directa -->
+        <a class="btn-linklike"
+           href="Convocatoria Fm.pdf"
+           download="Cuervo — Trabajo completo.pdf">
+          <i class="fa fa-download"></i> Descargar
+        </a>
+
+        <!-- Regreso al índice de aves -->
+        <a class="btn-linklike" href="#aves">
+          <i class="fa fa-arrow-up"></i> Volver
+        </a>
+      </div>
+    </div>
+  </article>
+</div>
+
+
+    <!-- ===== Mamíferos ===== -->
+    <section class="section" id="mamiferos">
+      <div class="container container-narrow">
+        <div class="titlepage"><h2>Mamíferos <span class="green">del Altiplano</span></h2></div>
+
+        <!-- Coyote -->
+        <article class="card-neo" id="coyote" style="margin-bottom:20px; overflow:hidden">
+          <div class="hd">Coyote</div>
+          <div class="row" style="margin:0; padding:16px">
+            <div class="col-lg-4">
+              <div class="auto-rotate" data-rotate style="min-height:220px">
+                <img class="active" src="images/coyote-01.jpg" alt="Coyote">
+                <img src="images/coyote-02.jpg" alt="Coyote">
+              </div>
+              <div class="muted" style="font-size:.85rem; margin-top:.35rem">Imagen referencial — <u>agregar referencia</u>.</div>
+            </div>
+            <div class="col-lg-8">
+              <p class="muted">Introducción (referencia a Fray Bernardino). Serie de “imágenes móviles”. Se corrige: <em>contempla este</em> (separadas las palabras).</p>
+              <div class="row">
+                <div class="col-md-4"><div class="panel-gray h-100">
+                  <h4 style="margin:0 0 6px; font-weight:700">Etnohistórica</h4>
+                  <ul style="padding-left:18px; margin:0 0 8px">
+                    <li>Escultura zoomorfa — <a class="btn-linklike js-open-pdf" data-pdf="#" data-title="Escultura zoomorfa — PDF">PDF</a></li>
+                    <li>Poema «Coyotl» — <a class="btn-linklike js-open-pdf" data-pdf="#" data-title="Poema Coyotl — PDF (canónico)">Canónico</a>
+                      <a class="btn-linklike js-open-pdf" data-pdf="#" data-title="Poema Coyotl — PDF (alterno)">Alterno</a>
+                    </li>
+                    <li>Figura mítica — <a class="btn-linklike js-open-pdf" data-pdf="#" data-title="Figura mítica Coyotl — PDF">PDF</a></li>
+                  </ul>
+                  <div class="muted" style="font-size:.85rem">Activar retorno en PDFs.</div>
+                </div></div>
+                <div class="col-md-4"><div class="panel-gray h-100">
+                  <h4 style="margin:0 0 6px; font-weight:700">Biótica</h4>
+                  <p class="muted" style="margin:0">(Vacía) — incluir hábitat, dieta, estatus.</p>
+                </div></div>
+                <div class="col-md-4"><div class="panel-gray h-100">
+                  <h4 style="margin:0 0 6px; font-weight:700">Estética</h4>
+                  <p class="muted" style="margin:0">Nueve imágenes (esculturas y litografías). Descripción general.</p>
+                </div></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Ocelote (vacío) -->
+        <article class="card-neo" id="ocelote" style="margin-bottom:20px; overflow:hidden">
+          <div class="hd">Ocelote</div>
+          <div style="padding:16px"><p class="muted" style="margin:0">(Se encuentra vacío)</p></div>
+        </article>
+
+        <!-- Lobo -->
+        <article class="card-neo" id="lobo" style="margin-bottom:20px; overflow:hidden">
+          <div class="hd">Lobo</div>
+          <div class="row" style="margin:0; padding:16px">
+            <div class="col-lg-4">
+              <div class="auto-rotate" data-rotate style="min-height:220px">
+                <img class="active" src="images/lobo-01.jpg" alt="Lobo">
+                <img src="images/lobo-02.jpg" alt="Lobo">
+              </div>
+              <div class="muted" style="font-size:.85rem; margin-top:.35rem">Reemplazar imágenes (no repetir las del coyote).</div>
+            </div>
+            <div class="col-lg-8">
+              <div class="row">
+                <div class="col-md-4"><div class="panel-gray h-100">
+                  <h4 style="margin:0 0 6px; font-weight:700">Biótica</h4>
+                  <p class="muted" style="margin:0 0 8px">Pequeño abstract + 2 PDFs.</p>
+                  <a class="btn-linklike js-open-pdf" data-pdf="#" data-title="Wolf Biology — EN">EN</a>
+                  <a class="btn-linklike js-open-pdf" data-pdf="#" data-title="Biología del Lobo — ES">ES</a>
+                </div></div>
+                <div class="col-md-4"><div class="panel-gray h-100">
+                  <h4 style="margin:0 0 6px; font-weight:700">Estética</h4>
+                  <p class="muted" style="margin:0 0 8px">Leyendas, cuentos y refranes.</p>
+                  <a class="btn-linklike" href="#" onclick="return false"><i class="fa fa-exclamation-triangle"></i> Enlace roto</a>
+                </div></div>
+                <div class="col-md-4"><div class="panel-gray h-100">
+                  <h4 style="margin:0 0 6px; font-weight:700">Etnohistórica</h4>
+                  <p class="muted" style="margin:0">(Vacía) — mover aquí lo que corresponda.</p>
+                </div></div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Xoloitzcuintli -->
+        <article class="card-neo" id="xolo" style="margin-bottom:20px; overflow:hidden">
+          <div class="hd">Xoloitzcuintli</div>
+          <div class="row" style="margin:0; padding:16px">
+            <div class="col-md-4">
+              <div class="auto-rotate" data-rotate style="min-height:220px">
+                <img class="active" src="images/xolo-01.jpg" alt="Xoloitzcuintli">
+              </div>
+            </div>
+            <div class="col-md-8">
+              <p class="muted">Texto de descripción. Actualmente solo Etnohistórica + PDF.</p>
+              <a class="btn-linklike js-open-pdf" data-pdf="#" data-title="Xoloitzcuintli — PDF"><i class="fa fa-file-pdf-o"></i> PDF</a>
+              <span class="muted" style="margin-left:.5rem">Completar Biótica / Estética.</span>
+              <article class="pdf-item" data-name="Convocatoria Fm (copia).pdf" data-tags="convocatoria, revisión">
+        <div class="preview">
+          <iframe class="pdf-embed lazy-embed" title="Vista previa de Convocatoria Fm (copia).pdf" data-src="Convocatoria%20Fm.pdf#view=FitH" aria-label="Vista previa PDF"></iframe>
+          <span class="hint">Carga inteligente</span>
+        </div>
+        <div class="pdf-meta">
+          <div class="pdf-name">Convocatoria Fm (copia).pdf</div>
+          <div class="tag-row">
+            <span class="badge-tag">convocatoria</span>
+            <span class="badge-tag">revisión</span>
+          </div>
+          <div class="actions">
+            <a class="btn-linklike" href="Convocatoria%20Fm.pdf" target="_blank" rel="noopener">Abrir</a>
+            <a class="btn-linklike" href="Convocatoria%20Fm.pdf" download="Convocatoria Fm (copia).pdf">Descargar</a>
+          </div>
+        </div>
+      </article>
+            </div>
+          </div>
+        </article>
+<article class="pdf-item" data-name="Convocatoria Fm (copia).pdf" data-tags="convocatoria, revisión">
+        <div class="preview">
+          <iframe class="pdf-embed lazy-embed" title="Vista previa de Convocatoria Fm (copia).pdf" data-src="Convocatoria%20Fm.pdf#view=FitH" aria-label="Vista previa PDF"></iframe>
+          <span class="hint">Carga inteligente</span>
+        </div>
+        <div class="pdf-meta">
+          <div class="pdf-name">Convocatoria Fm (copia).pdf</div>
+          <div class="tag-row">
+            <span class="badge-tag">convocatoria</span>
+            <span class="badge-tag">revisión</span>
+          </div>
+          <div class="actions">
+            <a class="btn-linklike" href="Convocatoria%20Fm.pdf" target="_blank" rel="noopener">Abrir</a>
+            <a class="btn-linklike" href="Convocatoria%20Fm.pdf" download="Convocatoria Fm (copia).pdf">Descargar</a>
+          </div>
+        </div>
+      </article>
+        <!-- Burro -->
+        <article class="card-neo" id="burro" style="margin-bottom:20px; overflow:hidden">
+          <div class="hd">Burro</div>
+          <div class="row" style="margin:0; padding:16px">
+            <div class="col-md-4">
+              <div class="auto-rotate" data-rotate style="min-height:220px">
+                <img class="active" src="images/burro-01.jpg" alt="Burro">
+              </div>
+            </div>
+            <div class="col-md-8">
+              <p class="muted">Logo + título + breve presentación. <strong>Reparar enlace al PDF</strong>.</p>
+              <a class="btn-linklike js-open-pdf" data-pdf="#" data-title="Burro — Trabajo"><i class="fa fa-file-pdf-o"></i> PDF</a>
+              <a class="btn-linklike" href="#" onclick="return false"><i class="fa fa-exclamation-triangle"></i> Enlace no funciona</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== Anfibios ===== -->
+    <section class="section" id="anfibios">
+      <div class="container container-narrow">
+        <div class="titlepage"><h2>Anfibios <span class="green">del Altiplano</span></h2></div>
+        <article class="card-neo" id="ajolote" style="overflow:hidden">
+          <div class="row" style="margin:0; padding:16px">
+            <div class="col-lg-5">
+              <div class="auto-rotate" data-rotate style="min-height:260px">
+                <img class="active" src="images/ajolote-01.jpg" alt="Ajolote">
+                <img src="images/ajolote-02.jpg" alt="Ajolote">
+              </div>
+            </div>
+            <div class="col-lg-7">
+              <h3 style="margin-top:0">Ajolote</h3>
+              <p class="muted">Evitar duplicación del texto introductorio con panel gris (Etnohistórica). Adjuntar enlace y PDF si existe, con retorno.</p>
+              <div class="actions" style="margin-bottom:8px">
+                <a class="btn-linklike js-open-pdf" data-pdf="#" data-title="Ajolote — Estudio completo"><i class="fa fa-file-pdf-o"></i> Abrir PDF</a>
+                <a class="btn-linklike" href="#anfibios"><i class="fa fa-arrow-up"></i> Volver</a>
+              </div>
+              <div class="row">
+                <div class="col-md-6"><div class="panel-gray h-100"><h4 style="margin:0 0 6px; font-weight:700">Biótica</h4><p class="muted" style="margin:0">(¿Vacía?) — ficha científica.</p></div></div>
+                <div class="col-md-6"><div class="panel-gray h-100"><h4 style="margin:0 0 6px; font-weight:700">Estética</h4><p class="muted" style="margin:0">(¿Vacía?) — imágenes + descripciones.</p></div></div>
+              </div>
+              <div class="alert alert-warning" role="alert" style="margin-top:12px">Peces y Reptiles: enlaces no avanzan. Habilitar rutas cuando haya contenido.</div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== Invertebrados (detalle/placeholder) ===== -->
+    <section class="section">
+      <div class="container container-narrow">
+        <div class="titlepage"><h2>Invertebrados <span class="green">del Altiplano</span></h2></div>
+        <div class="alert alert-secondary"><i class="fa fa-wrench"></i> Secciones en preparación. Mariposa cuenta con un PDF de referencia (pendiente integrar).</div>
+      </div>
+    </section>
+
+    <!-- ===== Footer mínimo de navegación local ===== -->
+    <section class="section" style="padding-top:0">
+      <div class="container container-narrow">
+        <div class="row">
+          <div class="col-md-6"><a class="btn-linklike" href="testimonial.html"><i class="fa fa-arrow-left"></i> Regresar a Fichas</a></div>
+          <div class="col-md-6 text-right"><a class="btn-linklike" href="#vertebrados"><i class="fa fa-arrow-up"></i> Volver a índices</a></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== Modal PDF (idéntico a tu patrón) ===== -->
+      <!-- ================= Biblioteca de PDFs — Altiplano ================= -->
+  <section class="section lib-section" id="biblioteca-altiplano">
+    <div class="container container-narrow">
+      <div class="titlepage">
+        <h2>Biblioteca de <span class="green">PDFs del Altiplano</span></h2>
+        <p class="muted">Búsqueda y filtros por especie y enfoque (etnohistórico, biótico, estético). Los PDFs se abren en el <strong>mismo visor</strong> que las Fichas.</p>
+      </div>
+
+      <div class="lib-toolbar" role="search">
+        <label class="lib-search" for="libQ" title="Buscar por nombre o etiquetas">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 21l-4.35-4.35" stroke="#64748b" stroke-width="2" stroke-linecap="round"/><circle cx="10.5" cy="10.5" r="6.5" stroke="#64748b" stroke-width="2"/></svg>
+          <input id="libQ" placeholder="Buscar (ej. colibrí, etnohistórica, Altiplano)" autocomplete="off"/>
+          <span class="lib-kbd" aria-hidden="true">/</span>
+        </label>
+        <div class="lib-tools">
+          <select id="libSort" class="lib-select" aria-label="Ordenar resultados">
+            <option value="az">Nombre (A–Z)</option>
+            <option value="za">Nombre (Z–A)</option>
+          </select>
+          <button id="libClearBtn" class="lib-btn" type="button" title="Limpiar filtros">Limpiar</button>
+          <span id="libCount" class="small" aria-live="polite"></span>
+        </div>
+      </div>
+      <div id="libChipBar" class="lib-chips" aria-label="Filtrar por etiquetas"></div>
+
+      <section id="libGrid" class="pdf-grid" aria-live="polite">
+        <!-- ====== ITEMS DE EJEMPLO (reemplaza data-src y href con tus URLs reales) ====== -->
+        <article class="pdf-item" data-name="Colibrí — Dossier completo.pdf" data-tags="Altiplano, aves, códice, infografía">
+          <div class="preview">
+            <iframe class="pdf-embed lazy-embed" title="Colibrí — Dossier completo" data-src="#" aria-label="Vista previa PDF"></iframe>
+            <span class="hint">Vista previa</span>
+          </div>
+          <div class="pdf-meta">
+            <div class="pdf-name">Colibrí — Dossier completo.pdf</div>
+            <div class="tag-row">
+              <span class="badge-tag">Altiplano</span><span class="badge-tag">aves</span><span class="badge-tag">códice</span><span class="badge-tag">infografía</span>
+            </div>
+            <div class="actions">
+              <a href="#" class="btn-linklike js-open-pdf" data-pdf="#" data-title="Colibrí — Dossier completo"><i class="fa fa-file-pdf-o"></i> Ver aquí</a>
+              <a class="btn-linklike" href="#" target="_blank" rel="noopener">Abrir</a>
+              <a class="btn-linklike" href="#" download="Colibrí — Dossier completo.pdf">Descargar</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="pdf-item" data-name="Zopilote — Dossier completo.pdf" data-tags="Altiplano, aves, códice, infografía">
+          <div class="preview">
+            <iframe class="pdf-embed lazy-embed" title="Zopilote — Dossier completo" data-src="#" aria-label="Vista previa PDF"></iframe>
+            <span class="hint">Vista previa</span>
+          </div>
+          <div class="pdf-meta">
+            <div class="pdf-name">Zopilote — Dossier completo.pdf</div>
+            <div class="tag-row"><span class="badge-tag">Altiplano</span><span class="badge-tag">aves</span><span class="badge-tag">códice</span><span class="badge-tag">infografía</span></div>
+            <div class="actions">
+              <a href="#" class="btn-linklike js-open-pdf" data-pdf="#" data-title="Zopilote — Dossier completo"><i class="fa fa-file-pdf-o"></i> Ver aquí</a>
+              <a class="btn-linklike" href="#" target="_blank" rel="noopener">Abrir</a>
+              <a class="btn-linklike" href="#" download="Zopilote — Dossier completo.pdf">Descargar</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="pdf-item" data-name="Cuervo — Trabajo completo.pdf" data-tags="Altiplano, aves">
+          <div class="preview">
+            <iframe class="pdf-embed lazy-embed" title="Cuervo — Trabajo completo" data-src="#" aria-label="Vista previa PDF"></iframe>
+            <span class="hint">Vista previa</span>
+          </div>
+          <div class="pdf-meta">
+            <div class="pdf-name">Cuervo — Trabajo completo.pdf</div>
+            <div class="tag-row"><span class="badge-tag">Altiplano</span><span class="badge-tag">aves</span></div>
+            <div class="actions">
+              <a href="#" class="btn-linklike js-open-pdf" data-pdf="#" data-title="Cuervo — Trabajo completo"><i class="fa fa-file-pdf-o"></i> Ver aquí</a>
+              <a class="btn-linklike" href="#" target="_blank" rel="noopener">Abrir</a>
+              <a class="btn-linklike" href="#" download="Cuervo — Trabajo completo.pdf">Descargar</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="pdf-item" data-name="Coyote — Escultura zoomorfa.pdf" data-tags="Altiplano, mamíferos, etnohistórica">
+          <div class="preview">
+            <iframe class="pdf-embed lazy-embed" title="Coyote — Escultura zoomorfa" data-src="#" aria-label="Vista previa PDF"></iframe>
+            <span class="hint">Vista previa</span>
+          </div>
+          <div class="pdf-meta">
+            <div class="pdf-name">Coyote — Escultura zoomorfa.pdf</div>
+            <div class="tag-row"><span class="badge-tag">Altiplano</span><span class="badge-tag">mamíferos</span><span class="badge-tag">etnohistórica</span></div>
+            <div class="actions">
+              <a href="#" class="btn-linklike js-open-pdf" data-pdf="#" data-title="Coyote — Escultura zoomorfa"><i class="fa fa-file-pdf-o"></i> Ver aquí</a>
+              <a class="btn-linklike" href="#" target="_blank" rel="noopener">Abrir</a>
+              <a class="btn-linklike" href="#" download="Coyote — Escultura zoomorfa.pdf">Descargar</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="pdf-item" data-name="Poema Coyotl.pdf" data-tags="Altiplano, mamíferos, etnohistórica, literatura">
+          <div class="preview">
+            <iframe class="pdf-embed lazy-embed" title="Poema Coyotl" data-src="#" aria-label="Vista previa PDF"></iframe>
+            <span class="hint">Vista previa</span>
+          </div>
+          <div class="pdf-meta">
+            <div class="pdf-name">Poema Coyotl.pdf</div>
+            <div class="tag-row"><span class="badge-tag">Altiplano</span><span class="badge-tag">mamíferos</span><span class="badge-tag">etnohistórica</span><span class="badge-tag">literatura</span></div>
+            <div class="actions">
+              <a href="#" class="btn-linklike js-open-pdf" data-pdf="#" data-title="Poema Coyotl"><i class="fa fa-file-pdf-o"></i> Ver aquí</a>
+              <a class="btn-linklike" href="#" target="_blank" rel="noopener">Abrir</a>
+              <a class="btn-linklike" href="#" download="Poema Coyotl.pdf">Descargar</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="pdf-item" data-name="Figura mítica — Coyotl.pdf" data-tags="Altiplano, mamíferos, etnohistórica">
+          <div class="preview">
+            <iframe class="pdf-embed lazy-embed" title="Figura mítica — Coyotl" data-src="#" aria-label="Vista previa PDF"></iframe>
+            <span class="hint">Vista previa</span>
+          </div>
+          <div class="pdf-meta">
+            <div class="pdf-name">Figura mítica — Coyotl.pdf</div>
+            <div class="tag-row"><span class="badge-tag">Altiplano</span><span class="badge-tag">mamíferos</span><span class="badge-tag">etnohistórica</span></div>
+            <div class="actions">
+              <a href="#" class="btn-linklike js-open-pdf" data-pdf="#" data-title="Figura mítica — Coyotl"><i class="fa fa-file-pdf-o"></i> Ver aquí</a>
+              <a class="btn-linklike" href="#" target="_blank" rel="noopener">Abrir</a>
+              <a class="btn-linklike" href="#" download="Figura mítica — Coyotl.pdf">Descargar</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="pdf-item" data-name="Lobo — Biología (EN).pdf" data-tags="Altiplano, mamíferos, biótica, inglés">
+          <div class="preview">
+            <iframe class="pdf-embed lazy-embed" title="Lobo — Biología (EN)" data-src="#" aria-label="Vista previa PDF"></iframe>
+            <span class="hint">Vista previa</span>
+          </div>
+          <div class="pdf-meta">
+            <div class="pdf-name">Lobo — Biología (EN).pdf</div>
+            <div class="tag-row"><span class="badge-tag">Altiplano</span><span class="badge-tag">mamíferos</span><span class="badge-tag">biótica</span><span class="badge-tag">inglés</span></div>
+            <div class="actions">
+              <a href="#" class="btn-linklike js-open-pdf" data-pdf="#" data-title="Lobo — Biología (EN)"><i class="fa fa-file-pdf-o"></i> Ver aquí</a>
+              <a class="btn-linklike" href="#" target="_blank" rel="noopener">Abrir</a>
+              <a class="btn-linklike" href="#" download="Lobo — Biología (EN).pdf">Descargar</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="pdf-item" data-name="Lobo — Biología (ES).pdf" data-tags="Altiplano, mamíferos, biótica, español">
+          <div class="preview">
+            <iframe class="pdf-embed lazy-embed" title="Lobo — Biología (ES)" data-src="#" aria-label="Vista previa PDF"></iframe>
+            <span class="hint">Vista previa</span>
+          </div>
+          <div class="pdf-meta">
+            <div class="pdf-name">Lobo — Biología (ES).pdf</div>
+            <div class="tag-row"><span class="badge-tag">Altiplano</span><span class="badge-tag">mamíferos</span><span class="badge-tag">biótica</span><span class="badge-tag">español</span></div>
+            <div class="actions">
+              <a href="#" class="btn-linklike js-open-pdf" data-pdf="#" data-title="Lobo — Biología (ES)"><i class="fa fa-file-pdf-o"></i> Ver aquí</a>
+              <a class="btn-linklike" href="#" target="_blank" rel="noopener">Abrir</a>
+              <a class="btn-linklike" href="#" download="Lobo — Biología (ES).pdf">Descargar</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="pdf-item" data-name="Xoloitzcuintli — Documento.pdf" data-tags="Altiplano, mamíferos, etnohistórica">
+          <div class="preview">
+            <iframe class="pdf-embed lazy-embed" title="Xoloitzcuintli — Documento" data-src="#" aria-label="Vista previa PDF"></iframe>
+            <span class="hint">Vista previa</span>
+          </div>
+          <div class="pdf-meta">
+            <div class="pdf-name">Xoloitzcuintli — Documento.pdf</div>
+            <div class="tag-row"><span class="badge-tag">Altiplano</span><span class="badge-tag">mamíferos</span><span class="badge-tag">etnohistórica</span></div>
+            <div class="actions">
+              <a href="#" class="btn-linklike js-open-pdf" data-pdf="#" data-title="Xoloitzcuintli — Documento"><i class="fa fa-file-pdf-o"></i> Ver aquí</a>
+              <a class="btn-linklike" href="#" target="_blank" rel="noopener">Abrir</a>
+              <a class="btn-linklike" href="#" download="Xoloitzcuintli — Documento.pdf">Descargar</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="pdf-item" data-name="Ajolote — Estudio completo.pdf" data-tags="Altiplano, anfibios, biótica">
+          <div class="preview">
+            <iframe class="pdf-embed lazy-embed" title="Ajolote — Estudio completo" data-src="#" aria-label="Vista previa PDF"></iframe>
+            <span class="hint">Vista previa</span>
+          </div>
+          <div class="pdf-meta">
+            <div class="pdf-name">Ajolote — Estudio completo.pdf</div>
+            <div class="tag-row"><span class="badge-tag">Altiplano</span><span class="badge-tag">anfibios</span><span class="badge-tag">biótica</span></div>
+            <div class="actions">
+              <a href="#" class="btn-linklike js-open-pdf" data-pdf="#" data-title="Ajolote — Estudio completo"><i class="fa fa-file-pdf-o"></i> Ver aquí</a>
+              <a class="btn-linklike" href="#" target="_blank" rel="noopener">Abrir</a>
+              <a class="btn-linklike" href="#" download="Ajolote — Estudio completo.pdf">Descargar</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="pdf-item" data-name="Las mariposas del México antiguo.pdf" data-tags="Altiplano, invertebrados, mariposa">
+          <div class="preview">
+            <iframe class="pdf-embed lazy-embed" title="Las mariposas del México antiguo" data-src="#" aria-label="Vista previa PDF"></iframe>
+            <span class="hint">Vista previa</span>
+          </div>
+          <div class="pdf-meta">
+            <div class="pdf-name">Las mariposas del México antiguo.pdf</div>
+            <div class="tag-row"><span class="badge-tag">Altiplano</span><span class="badge-tag">invertebrados</span><span class="badge-tag">mariposa</span></div>
+            <div class="actions">
+              <a href="#" class="btn-linklike js-open-pdf" data-pdf="#" data-title="Las mariposas del México antiguo"><i class="fa fa-file-pdf-o"></i> Ver aquí</a>
+              <a class="btn-linklike" href="Convocatoria Fm.pdf" target="_blank" rel="noopener">Abrir</a>
+              <a class="btn-linklike" href="Convocatoria Fm.pdf" download="Convocatoria Fm. pdf-embed">Descargar</a>
+            </div>
+          </div>
+        </article>
+        <!-- ====== /ITEMS ====== -->
+      </section>
+
+      <div id="libEmpty" class="lib-empty">Sin resultados. Ajusta la búsqueda o quita filtros.</div>
+      <div class="muted small" id="libStat" style="margin-top:.5rem" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <div class="modal fade" id="pdfModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-fullscreen-md-down modal-xl">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 id="pdfTitle" class="modal-title">Documento</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>
+          </div>
+          <div class="modal-body p-0">
+            <embed id="pdfEmbed" type="application/pdf" src="" style="width:100%; height:80vh; border:0;" />
+          </div>
+          <div class="modal-footer">
+            <a id="pdfOpenNew" class="btn btn-outline-success" target="_blank" rel="noopener">Abrir en pestaña</a>
+            <button type="button" class="btn btn-success" data-dismiss="modal">Volver</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ===== /Modal PDF ===== -->
+    <!-- ===== Footer (igual que tu sitio) ===== -->
     <footer>
-      <div class="footer">
+          <div class="footer">
         <div class="container">
           <div class="row">
-            <!-- Redes sociales -->
             <div class="col-md-3 col-sm-6">
               <ul class="social_icon">
                 <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
@@ -309,21 +810,12 @@
                 <li><a href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
                 <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
               </ul>
-              <p class="variat pad_roght2">
-                Enciclopedia de los Animales Mexicanos es un proyecto de difusión del conocimiento zoológico, histórico y cultural, comprometido con la preservación y el estudio de la biodiversidad nacional.
-              </p>
+              <p class="variat pad_roght2">Enciclopedia de los Animales Mexicanos es un proyecto de difusión del conocimiento zoológico, histórico y cultural, comprometido con la preservación y el estudio de la biodiversidad nacional.</p>
             </div>
-
-            <!-- Ayuda o contacto -->
             <div class="col-md-3 col-sm-6">
               <h3>Contáctanos</h3>
-              <p class="variat pad_roght2">
-                ¿Tienes dudas, comentarios o deseas colaborar? <br> Escríbenos a:<br>
-                contacto <br>@EAM.org
-              </p>
+              <p class="variat pad_roght2">¿Dudas o colaboraciones? Escríbenos:<br>contacto@eam.org</p>
             </div>
-
-            <!-- Navegación -->
             <div class="col-md-3 col-sm-6">
               <h3>Enlaces útiles</h3>
               <ul class="link_menu">
@@ -332,221 +824,189 @@
                 <li><a href="animales.html">Especies</a></li>
                 <li><a href="lineas-investigacion.html">Líneas de investigación</a></li>
                 <li><a href="colaboradores.html">Colaboradores</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="contact.html">Contacto</a></li>
               </ul>
             </div>
-
-            <!-- Diseño / Filosofía -->
             <div class="col-md-3 col-sm-6">
               <h3>Nuestra visión</h3>
-              <p class="variat">
-                La EAM nace del esfuerzo interdisciplinario por documentar y preservar el conocimiento etnohistórico y científico de las especies que habitan nuestro territorio.
-              </p>
+              <p class="variat">Documentar y preservar el conocimiento etnohistórico y científico sobre la fauna de México, de forma abierta y verificable.</p>
             </div>
-
-            <!-- Newsletter -->
             <div class="col-md-6 offset-md-6">
-              <form id="newsletter" class="bottom_form">
-                <input class="enter" placeholder="Tu correo electrónico" type="email" name="email">
-                <button class="sub_btn">Suscribirme</button>
+              <form id="newsletter" class="bottom_form" action="#" method="post">
+                <label class="sr-only" for="newsletter-email">Correo</label>
+                <input id="newsletter-email" class="enter" placeholder="Tu correo electrónico" type="email" name="email" required>
+                <button class="sub_btn" type="submit">Suscribirme</button>
               </form>
             </div>
           </div>
         </div>
-
-        <!-- Derechos de autor -->
         <div class="copyright">
           <div class="container">
-            <div class="row">
-              <div class="col-md-10 offset-md-1">
-                <p>© 2025 Enciclopedia de los Animales Mexicanos. Todos los derechos reservados. Sitio desarrollado por el equipo EAM.</p>
-              </div>
-            </div>
+            <div class="row"><div class="col-md-10 offset-md-1"><p>© 2025 Enciclopedia de los Animales Mexicanos. Todos los derechos reservados.</p></div></div>
           </div>
         </div>
       </div>
     </footer>
-    <!-- end footer -->
 
-    <!-- JS (evita duplicados de jQuery) -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script src="js/custom.js"></script>
+    <!-- ===== JS (igual que tu sitio) ===== -->
+    <script defer src="js/jquery.min.js"></script>
+    <script defer src="js/bootstrap.bundle.min.js"></script>
+    <script defer src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script defer src="js/custom.js"></script>
 
     <script>
-      // ---------------------------
-      // Convocatorias (cliente)
-      // ---------------------------
-      (function() {
-        const PASS = '1234'; // cámbiala si quieres
-        const KEY  = 'eam_convocatorias_v1';
+      // Sombra en header
+      (function(){
+        var h = document.getElementById('siteHeader');
+        function onScroll(){ if(!h) return; (window.scrollY>8)?h.classList.add('stuck'):h.classList.remove('stuck'); }
+        onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+      })();
 
-        const mostrarFormConvBtn = document.getElementById('mostrarFormConvBtn');
-        const formRow  = document.getElementById('formConvRow');
-        const passSec  = document.getElementById('convPassSection');
-        const passInp  = document.getElementById('convPassword');
-        const passErr  = document.getElementById('convPassError');
-        const verifBtn = document.getElementById('verificarConvPassBtn');
-        const convForm = document.getElementById('convForm');
-        const convListRow = document.getElementById('convListRow');
-        const statusSpan = document.getElementById('convFormStatus');
-        const filtroVigentesBtn = document.getElementById('filtroVigentesBtn');
-        const filtroTodasBtn = document.getElementById('filtroTodasBtn');
+      // Reduced motion para carruseles y rotaciones
+      var prefersReduce = false;
+      try{ prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; }catch(e){}
 
-        let filtro = 'vigentes'; // 'vigentes' | 'todas'
-        let convocatorias = cargar();
-
-        function cargar(){
-          try {
-            const raw = localStorage.getItem(KEY);
-            return raw ? JSON.parse(raw) : [];
-          } catch(e){ return []; }
-        }
-        function guardar(){
-          localStorage.setItem(KEY, JSON.stringify(convocatorias));
-        }
-
-        function esVigente(fechaISO){
-          if(!fechaISO) return false;
-          const hoy = new Date(); hoy.setHours(0,0,0,0);
-          const f   = new Date(fechaISO); f.setHours(0,0,0,0);
-          return f >= hoy;
-        }
-
-        function crearCard(c){
-          const vigente = esVigente(c.fecha);
-          const badge = vigente
-            ? '<span class="badge-vigente">Vigente</span>'
-            : '<span class="badge-vencida">Vencida</span>';
-
-          // Enlace preferente: archivo local (blob) o link externo
-          let enlace = '';
-          if (c.archivoUrl) {
-            enlace = `<a href="${c.archivoUrl}" target="_blank" rel="noopener">Ver archivo</a>`;
-          } else if (c.link && c.link.trim() !== '') {
-            enlace = `<a href="${c.link}" target="_blank" rel="noopener">Abrir enlace</a>`;
-          }
-
-          return `
-            <div class="col-md-6 col-lg-4 mb-4">
-              <div class="convocatoria-card">
-                <div class="d-flex justify-content-between align-items-center mb-1">
-                  <div class="convocatoria-title">${c.titulo}</div>
-                  ${badge}
-                </div>
-                <div class="convocatoria-meta"><strong>Tipo:</strong> ${c.tipo || 'Otro'}</div>
-                <p class="mb-2">${c.descripcion || ''}</p>
-                <div class="convocatoria-meta"><strong>Fecha límite:</strong> ${c.fecha || '-'}</div>
-                <div class="convocatoria-actions">
-                  ${enlace || '<span class="text-muted">Sin enlace</span>'}
-                </div>
-              </div>
-            </div>
-          `;
-        }
-
-        function render(){
-          let lista = convocatorias.slice().sort((a,b) => (a.fecha||'') > (b.fecha||'') ? 1 : -1);
-          if (filtro === 'vigentes') {
-            lista = lista.filter(c => esVigente(c.fecha));
-          }
-          convListRow.innerHTML = lista.length
-            ? lista.map(crearCard).join('')
-            : `<div class="col-12"><div class="alert alert-light border">No hay convocatorias ${filtro==='vigentes'?'vigentes':''} por el momento.</div></div>`;
-        }
-
-        // Mostrar formulario
-        mostrarFormConvBtn.addEventListener('click', () => {
-          formRow.style.display = 'block';
-          passSec.style.display = 'block';
-          convForm.style.display = 'none';
-          passInp.value = '';
-          passErr.classList.add('d-none');
+      // Rotación simple de imágenes ("imágenes móviles")
+      (function(){
+        if(prefersReduce) return; // respeta preferencias
+        var sets = document.querySelectorAll('[data-rotate]');
+        sets.forEach(function(box){
+          var imgs = box.querySelectorAll('img');
+          if(imgs.length <= 1) return;
+          var i = 0;
+          setInterval(function(){
+            imgs[i].classList.remove('active');
+            i = (i+1) % imgs.length;
+            imgs[i].classList.add('active');
+          }, 3000);
         });
+      })();
 
-        // Verificar contraseña
-        verifBtn.addEventListener('click', () => {
-          if (passInp.value === PASS) {
-            passSec.style.display = 'none';
-            convForm.style.display = 'block';
-          } else {
-            passErr.classList.remove('d-none');
-          }
-        });
+      // Modal PDF con retorno (Bootstrap 4)
+      (function(){
+        var modalEl = document.getElementById('pdfModal');
+        var pdfTitle = document.getElementById('pdfTitle');
+        var pdfEmbed = document.getElementById('pdfEmbed');
+        var pdfOpenNew = document.getElementById('pdfOpenNew');
 
-        // Publicar convocatoria
-        convForm.addEventListener('submit', (e) => {
+        function openPdf(url, title){
+          pdfTitle.textContent = title || 'Documento';
+          pdfEmbed.setAttribute('src', (url||'#') + '#view=FitH');
+          pdfOpenNew.setAttribute('href', url||'#');
+          if (window.jQuery && $(modalEl).modal) { $(modalEl).modal('show'); }
+        }
+        // Delegación
+        document.addEventListener('click', function(e){
+          var t = e.target.closest('.js-open-pdf');
+          if(!t) return;
           e.preventDefault();
-          statusSpan.textContent = 'Publicando...';
-
-          const titulo = document.getElementById('convTitulo').value.trim();
-          const descripcion = document.getElementById('convDesc').value.trim();
-          const fecha = document.getElementById('convFecha').value;
-          const tipo = document.getElementById('convTipo').value;
-          const link = document.getElementById('convLink').value.trim();
-          const archivo = document.getElementById('convArchivo').files[0];
-
-          // Validación básica
-          if(!titulo || !descripcion || !fecha){
-            statusSpan.textContent = 'Completa los campos requeridos.';
-            statusSpan.classList.add('text-danger');
-            return;
-          }
-
-          // Si hay archivo, crear URL local (no persiste en servidor)
-          let archivoUrl = '';
-          if (archivo) {
-            try { archivoUrl = URL.createObjectURL(archivo); } catch(e){}
-          }
-
-          const nueva = { titulo, descripcion, fecha, tipo, link, archivoUrl };
-          convocatorias.push(nueva);
-          guardar();
-          render();
-
-          statusSpan.textContent = '¡Publicada!';
-          statusSpan.classList.remove('text-danger');
-          statusSpan.classList.add('text-success');
-
-          // Reset
-          convForm.reset();
-          // Ocultar formulario tras publicar
-          setTimeout(() => {
-            document.getElementById('formConvRow').style.display = 'none';
-            statusSpan.textContent = '';
-          }, 700);
+          openPdf(t.getAttribute('data-pdf'), t.getAttribute('data-title'));
         });
-
-        // Filtros
-        filtroVigentesBtn.addEventListener('click', () => { filtro='vigentes'; render(); });
-        filtroTodasBtn.addEventListener('click',   () => { filtro='todas';    render(); });
-
-        // Datos demo (solo la primera vez)
-        if (!convocatorias || convocatorias.length === 0) {
-          convocatorias = [
-            {
-              titulo: 'Voluntariado para monitoreo de ajolotes',
-              descripcion: 'Apoyo en recorridos y registro de parámetros de calidad de agua en Xochimilco.',
-              fecha: new Date(Date.now()+14*24*60*60*1000).toISOString().slice(0,10),
-              tipo: 'Voluntariado',
-              link: 'https://ejemplo.org/convocatoria-ajolotes',
-              archivoUrl: ''
-            },
-            {
-              titulo: 'Taller de divulgación científica',
-              descripcion: 'Capacitación en comunicación de la biodiversidad para docentes.',
-              fecha: new Date(Date.now()-7*24*60*60*1000).toISOString().slice(0,10),
-              tipo: 'Taller',
-              link: '',
-              archivoUrl: ''
-            }
-          ];
-          guardar();
+        // Limpieza al cerrar
+        if(window.jQuery){
+          $(modalEl).on('hidden.bs.modal', function(){ pdfEmbed.removeAttribute('src'); });
         }
-
-        render();
       })();
     </script>
-  </body>
+    <!-- ===== Biblioteca: JS de búsqueda/filtros y lazy iframes ===== -->
+  <script>
+    (function(){
+      const norm = s => (s||"").toString().normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
+      const $ = sel => document.querySelector(sel);
+      const $$ = sel => Array.from(document.querySelectorAll(sel));
+
+      const q = $('#libQ');
+      const grid = $('#libGrid');
+      const count = $('#libCount');
+      const clearBtn = $('#libClearBtn');
+      const sortSel = $('#libSort');
+      const chipBar = $('#libChipBar');
+      const emptyEl = $('#libEmpty');
+      const stat = $('#libStat');
+
+      const obs = ('IntersectionObserver' in window) ? new IntersectionObserver((entries,o)=>{
+        for(const e of entries){
+          if(e.isIntersecting){
+            const el = e.target; const src = el.getAttribute('data-src');
+            if(src){ el.setAttribute('src', src); el.removeAttribute('data-src'); }
+            o.unobserve(el);
+          }
+        }
+      }, {rootMargin:'200px'}) : null;
+
+      function hydrateLazy(){
+        $$('.lazy-embed[data-src]').forEach(el=>{ if(obs) obs.observe(el); else el.setAttribute('src', el.getAttribute('data-src')); });
+      }
+
+      const selected = new Set();
+      function buildChips(){
+        const tagMap = new Map();
+        $$('.pdf-item').forEach(it=>{
+          const tags = (it.getAttribute('data-tags')||'').split(',').map(t=>t.trim()).filter(Boolean);
+          for(const t of tags){ tagMap.set(t, (tagMap.get(t)||0)+1); }
+        });
+        chipBar.innerHTML='';
+        [...tagMap.keys()].sort((a,b)=>a.localeCompare(b,'es',{sensitivity:'base'})).forEach(tag=>{
+          const b=document.createElement('button'); b.type='button'; b.className='lib-chip'; b.textContent=tag; b.setAttribute('aria-pressed','false');
+          b.addEventListener('click', ()=>{
+            if(selected.has(tag)){ selected.delete(tag); b.classList.remove('active'); b.setAttribute('aria-pressed','false'); }
+            else { selected.add(tag); b.classList.add('active'); b.setAttribute('aria-pressed','true'); }
+            applyFilter();
+          });
+          chipBar.appendChild(b);
+        });
+      }
+
+      function sortItems(items){
+        const mode = sortSel ? sortSel.value : 'az';
+        const byName = (a,b)=> norm(a.getAttribute('data-name')).localeCompare(norm(b.getAttribute('data-name')),'es');
+        if(mode==='az') return items.sort(byName);
+        if(mode==='za') return items.sort((a,b)=>-byName(a,b));
+        return items;
+      }
+
+      function applyFilter(){
+        const needle = norm(q ? q.value : '');
+        const items = $$('.pdf-item');
+        let list = items.slice();
+
+        if(selected.size){
+          list = list.filter(it=>{
+            const raw = (it.getAttribute('data-tags')||'').split(',').map(s=>s.trim());
+            return [...selected].some(t => raw.includes(t));
+          });
+        }
+        if(needle){
+          list = list.filter(it=>{
+            const name = norm(it.getAttribute('data-name'));
+            const tags = norm(it.getAttribute('data-tags')||'');
+            return name.includes(needle) || tags.includes(needle);
+          });
+        }
+
+        const setVisible = new Set(list);
+        items.forEach(it=> it.classList.toggle('hide', !setVisible.has(it)));
+        sortItems(list).forEach(el=> grid.appendChild(el));
+
+        const visible = list.length; const total = items.length;
+        if(count) count.textContent = `${visible} documento${visible===1?'':'s'}`;
+        if(emptyEl) emptyEl.style.display = visible ? 'none' : 'block';
+        if(stat) stat.textContent = `Colección: ${total} documento${total===1?'':'s'}`;
+
+        hydrateLazy();
+      }
+
+      function debounce(fn, ms){ let t; return (...a)=>{ clearTimeout(t); t=setTimeout(()=>fn(...a), ms);} }
+      q && q.addEventListener('input', debounce(applyFilter,120));
+      q && q.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ e.preventDefault(); } });
+      sortSel && sortSel.addEventListener('change', applyFilter);
+      clearBtn && clearBtn.addEventListener('click', ()=>{ if(q) q.value=''; selected.clear(); $$('.lib-chip.active').forEach(c=>{ c.classList.remove('active'); c.setAttribute('aria-pressed','false'); }); applyFilter(); q && q.focus(); });
+      window.addEventListener('keydown', (e)=>{ if(e.key==='/' && document.activeElement!==q){ e.preventDefault(); q && q.focus(); } if(e.key==='Escape'){ clearBtn && clearBtn.click(); } });
+
+      buildChips();
+      applyFilter();
+      hydrateLazy();
+    })();
+  </script>
+</body>
 </html>

@@ -1,469 +1,346 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <!-- básicos -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- móvil (solo una meta) -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Biblioteca de PDFs | Enciclopedia de Animales Mexicanos</title>
+  <!-- Bootstrap base (opcional) -->
+  <link rel="stylesheet" href="css/bootstrap.min.css"/>
+  <style>
+    /* ====== Design tokens ====== */
+    :root{
+      --bg:#f7faf7;          /* fondo cálido */
+      --surface:#ffffff;     /* cartas */
+      --ink:#0f172a;         /* texto base */
+      --muted:#6b7280;       /* texto secundario */
+      --line:#e5e7eb;        /* bordes sutiles */
 
-    <title>Fichas | Enciclopedia de Animales Mexicanos</title>
-    <meta name="description" content="Consulta y agrega fichas verificadas de especies de la fauna mexicana.">
-    <meta name="author" content="Enciclopedia de Animales Mexicanos">
+      /* PRIMARIO VERDE */
+      --accent:#16a34a;      /* verde 600 */
+      --accent-600:#15803d;  /* verde 700 */
+      --accent-700:#166534;  /* verde 800 */
 
-    <!-- estilos -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/responsive.css">
-    <link rel="icon" href="images/fevicon.png" type="image/gif">
-    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+      --success:#16a34a;     /* verde naturaleza */
+      --warn:#b45309;
+      --radius:16px;
+      --shadow:0 10px 25px rgba(2,6,23,.08), 0 2px 8px rgba(2,6,23,.06);
+      --shadow-sm:0 6px 18px rgba(2,6,23,.08);
+      --trans:220ms cubic-bezier(.22,1,.36,1);
+    }
 
-    <!-- ajustes de esta página -->
-    <style>
-      .resolucion { width: 99%; text-align: center; }
+    /* ====== Base ====== */
+    html,body{height:100%}
+    body{margin:0; background:var(--bg); color:var(--ink); -webkit-font-smoothing:antialiased;}
+    img{max-width:100%; height:auto; display:block}
+    a{color:var(--accent); text-decoration:none}
+    a:hover{color:var(--accent-700)}
+    .container{max-width:1200px}
 
-      /* Móvil */
-      @media (max-width: 767px) {
-        .desktop { display:none!important; }
-        .tablet  { display:none!important; }
-        .movil   { display:block!important; }
-      }
-      /* Tablet */
-      @media (min-width:768px) and (max-width:990px){
-        .desktop { display:none!important; }
-        .movil   { display:none!important; }
-        .tablet  { display:block!important; }
-      }
-      /* Escritorio */
-      @media (min-width:991px){
-        .tablet  { display:none!important; }
-        .movil   { display:none!important; }
-        .desktop { display:block!important; }
-      }
+    /* ====== Header ====== */
+    .site-header{position:sticky; top:0; z-index:50; background:linear-gradient(180deg,#ffffff, #f9fbff); border-bottom:1px solid var(--line);}
+    .mast{display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:.85rem 0}
+    .brand{display:flex; align-items:center; gap:.75rem}
+    .brand img{width:44px; height:44px; object-fit:contain}
+    .brand .title{font-weight:700; letter-spacing:.2px}
+    .brand .sub{color:var(--muted); font-size:.9rem}
 
-      /* Tarjetas Fichas */
-      .animal-cards-section .card {
-        border-radius: 18px; box-shadow: 0 4px 18px rgba(0,0,0,.08);
-        border: none; transition: transform .2s, box-shadow .2s; background: #fff;
-      }
-      .animal-cards-section .card:hover {
-        transform: translateY(-6px) scale(1.02); box-shadow: 0 8px 32px rgba(0,0,0,.13);
-      }
-      .animal-cards-section .card-img-top {
-        border-radius: 18px 18px 0 0; object-fit: cover; height: 220px; background: #e8f5e9;
-      }
-      .animal-cards-section .card-title { font-size: 1.3rem; color: #1b5e20; font-weight: 700; margin-bottom: .2em; }
-      .animal-cards-section em { color: #388e3c; font-size: 1rem; }
-      .animal-cards-section ul.list-unstyled li { margin-bottom: .3em; font-size: .98rem; }
-      .animal-cards-section a { color: #1976d2; text-decoration: underline; }
-      .animal-cards-section a:hover { color: #004ba0; }
+    .nav{display:flex; align-items:center; gap:.5rem; flex-wrap:wrap}
+    .nav a{padding:.5rem .75rem; border-radius:10px; color:#0f172a}
+    /* activo/hover en VERDE */
+    .nav a[aria-current="page"], .nav a:hover{background:#ecfdf5; color:var(--accent)}
 
-      /* Formulario agregar ficha */
-      #agregarFichaForm {
-        border-radius: 18px; box-shadow: 0 4px 18px rgba(0,0,0,.09);
-        background: #f9fff9; border: 1px solid #e0e0e0;
-      }
-      #agregarFichaForm h4 { color:#1b5e20; font-weight:700; margin-bottom:1em; }
-      #agregarFichaForm label { font-weight:500; color:#388e3c; }
-      #agregarFichaForm .form-control { border-radius:8px; border:1px solid #bdbdbd; margin-bottom:.7em; }
-      #agregarFichaForm .btn-success { background:#388e3c; border:none; border-radius:8px; padding:.5em 2em; font-weight:600; letter-spacing:1px; }
-      #agregarFichaForm .btn-success:hover { background:#1b5e20; }
-      #mostrarFormBtn { background:#1976d2; border:none; border-radius:8px; padding:.5em 2em; font-weight:600; letter-spacing:1px; }
-      #mostrarFormBtn:hover { background:#004ba0; }
-      #passwordError { margin-top:.5em; color:#c62828; }
+    /* ====== Hero / Page head ====== */
+    /* degradé sutil 100% verde */
+    .hero{
+      position:relative; overflow:hidden;
+      background:
+        radial-gradient(1200px 400px at 10% -10%, #e8fff2 0%, transparent 60%),
+        radial-gradient(1000px 400px at 90% -20%, #f0fff7 0%, transparent 60%);
+    }
+    .hero-inner{padding:2rem 0 1.25rem;}
+    .hero h1{font-size:clamp(1.35rem, 2vw + 1rem, 2rem); margin:0 0 .25rem;}
+    .hero p{margin:0; color:var(--muted)}
 
-      @media (max-width: 767px) {
-        .animal-cards-section .card-img-top { height: 150px; }
-        #agregarFichaForm { padding: 1em !important; }
-      }
+    /* ====== Toolbar (search + filtros) ====== */
+    .toolbar{display:grid; grid-template-columns: 1fr auto; gap:1rem; padding:1rem 0 0}
+    @media (max-width: 640px){ .toolbar{grid-template-columns: 1fr} }
 
-      /* pequeños fixes */
-      img { max-width: 100%; height: auto; display: block; }
-      .logo img { max-width: 180px; height: auto; border-radius: 12px; }
-      .titlepage h2 { margin-bottom: .5rem; }
-      .titlepage p  { color: #555; margin-bottom: 1.25rem; }
-    </style>
-  </head>
+    .search{display:flex; align-items:center; gap:.5rem; background:var(--surface); border:1px solid var(--line); border-radius:999px; padding:.5rem .75rem; box-shadow:var(--shadow-sm)}
+    .search svg{flex:0 0 auto}
+    .search input{border:0; outline:0; width:100%; background:transparent; font-size:1rem}
+    .search .kbd{display:inline-flex; align-items:center; gap:.25rem; font-size:.8rem; color:var(--muted); background:#f4f6f9; border:1px solid var(--line); padding:.15rem .35rem; border-radius:6px}
 
-  <body class="main-layout in_page">
-    <!-- loader -->
-    <div class="loader_bg">
-      <div class="loader"><img src="images/loading.gif" alt="Cargando..."></div>
+    .tools{display:flex; align-items:center; gap:.5rem; flex-wrap:wrap}
+    .select{border:1px solid var(--line); background:var(--surface); border-radius:10px; padding:.55rem .7rem}
+    .btn{display:inline-flex; align-items:center; gap:.5rem; padding:.55rem .8rem; border-radius:10px; border:1px solid var(--line); background:var(--surface); cursor:pointer; transition:transform var(--trans), background var(--trans);}
+    .btn:hover{transform:translateY(-1px); background:#f1fcf5}
+
+    /* Tag chips (VERDE) */
+    .chips{display:flex; gap:.5rem; flex-wrap:wrap; margin-top:.75rem}
+    .chip{
+      display:inline-flex; align-items:center; gap:.35rem;
+      border:1px solid #bbf7d0;       /* borde verde claro */
+      background:#ecfdf5;              /* fondo verde muy claro */
+      color:var(--accent);             /* texto verde */
+      padding:.25rem .6rem; border-radius:999px; font-size:.9rem; cursor:pointer; user-select:none
+    }
+    .chip.active{background:#dcfce7; border-color:#86efac}
+
+    /* ====== Grid ====== */
+    .pdf-grid{ display:grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap:1rem; padding:1.25rem 0 2rem; }
+    @media (max-width: 480px){ .pdf-grid{ grid-template-columns: 1fr; } }
+
+    .pdf-item{ background:var(--surface); border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; transition: transform var(--trans), box-shadow var(--trans);}
+    .pdf-item.hide{ display:none !important; }
+    .pdf-item:hover{ transform: translateY(-2px); box-shadow:0 18px 30px rgba(2,6,23,.10), 0 4px 14px rgba(2,6,23,.06); }
+
+    .preview{ position:relative; background:linear-gradient(180deg,#f0f7f3,#e9f7ee); min-height:240px }
+    .pdf-embed{ width:100%; height:420px; border:0; display:block; background:#f0f3f7; }
+    @media (max-width: 576px){ .pdf-embed{ height:360px; } }
+    .preview .hint{position:absolute; inset:auto 12px 12px auto; background:rgba(255,255,255,.85); border:1px solid var(--line); border-radius:999px; padding:.25rem .6rem; font-size:.8rem; color:var(--muted)}
+
+    .pdf-meta{ display:flex; flex-direction:column; gap:.6rem; padding:.9rem .9rem 1rem; }
+    .pdf-name{ font-weight:600; line-height:1.35; word-break:break-word }
+    .badge-tag{
+      background:#ecfdf5;               /* verde claro */
+      border:1px solid #bbf7d0;         /* borde verde claro */
+      color:var(--accent);              /* texto verde */
+      border-radius:999px; padding:.15rem .5rem; font-size:.8rem;
+    }
+    .tag-row{ display:flex; flex-wrap:wrap; gap:.35rem }
+    .actions{ display:flex; align-items:center; gap:.5rem; margin-top:.25rem }
+    .btn-linklike{
+      display:inline-flex; align-items:center; gap:.45rem;
+      border:1px solid var(--line); padding:.45rem .75rem; border-radius:10px;
+      background:#fff; text-decoration:none; color:var(--accent); font-weight:600;
+    }
+    .btn-linklike:hover{ background:#f1fcf5; border-color:#cce3d3; }
+
+    .empty{display:none; border:1px dashed var(--line); border-radius:12px; padding:2rem; text-align:center; color:var(--muted); background:#fff}
+
+    footer{padding:2rem 0; color:var(--muted); font-size:.95rem}
+  </style>
+</head>
+<body>
+  <!-- ====== Header ====== -->
+  <header class="site-header">
+    <div class="container">
+      <div class="mast">
+        <div class="brand">
+          <a href="index.html" aria-label="Ir al inicio"><img src="images/Logo EAM.png" alt="EAM logo" loading="eager" decoding="async" fetchpriority="high"></a>
+          <div>
+            <div class="title">Enciclopedia de Animales Mexicanos</div>
+            <div class="sub">Biblioteca de PDFs</div>
+          </div>
+        </div>
+        <nav class="nav" aria-label="Navegación principal">
+          <a href="index.html">Inicio</a>
+          <a href="about.html">Nosotros</a>
+          <a href="service.html">Especies</a>
+          <a href="gallery.html">Galería</a>
+          <a href="testimonial.html">Descargas </a>
+          <a href="contact.html">Contacto</a>
+        </nav>
+      </div>
     </div>
+  </header>
 
-    <!-- header (consistente en todo el sitio) -->
-    <header>
-      <div class="header">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12 col-sm-3 col logo_section">
-              <div class="full">
-                <div class="center-desk">
-                  <div class="logo">
-                    <a href="index.html"><img src="images/Logo EAM.png" alt="Enciclopedia de Animales Mexicanos"></a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-10 offset-md-1">
-              <nav class="navigation navbar navbar-expand-md navbar-dark">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Abrir menú">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarsExample04">
-                  <ul class="navbar-nav mr-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="about.html">Nosotros</a></li>
-                    <li class="nav-item"><a class="nav-link" href="service.html">Servicios</a></li>
-                    <li class="nav-item"><a class="nav-link" href="gallery.html">Galería</a></li>
-                    <li class="nav-item active"><a class="nav-link" href="testimonial.html">Fichas</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html">Contacto</a></li>
-                  </ul>
-                </div>
-              </nav>
-            </div>
-          </div>
+  <!-- ====== Hero / Head ====== -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <h1>PDFs listos para consultar</h1>
+      <p id="stat">Cargando colección…</p>
+
+      <div class="toolbar" role="search">
+        <label class="search" for="q" title="Buscar por nombre o etiquetas">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 21l-4.35-4.35" stroke="#64748b" stroke-width="2" stroke-linecap="round"/><circle cx="10.5" cy="10.5" r="6.5" stroke="#64748b" stroke-width="2"/></svg>
+          <input id="q" placeholder="Buscar por nombre o etiquetas (ej. convocatoria, aves, 2025)" autocomplete="off"/>
+          <span class="kbd" aria-hidden="true">/</span>
+        </label>
+        <div class="tools">
+          <select id="sort" class="select" aria-label="Ordenar resultados">
+            <option value="az">Nombre (A–Z)</option>
+            <option value="za">Nombre (Z–A)</option>
+          </select>
+          <button id="clearBtn" class="btn" type="button" title="Limpiar filtros">Limpiar</button>
+          <span id="count" class="" aria-live="polite"></span>
         </div>
       </div>
-    </header>
 
-    <!-- Fichas -->
-    <section id="animal-cards" class="animal-cards-section" style="background:#f7f7f7; padding:40px 0;">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="titlepage">
-              <h2>Fichas de <span class="green">Animales Mexicanos</span></h2>
-              <p>Consulta o agrega información sobre especies representativas de la fauna mexicana.</p>
-            </div>
+      <div id="chipBar" class="chips" aria-label="Filtrar por etiquetas"></div>
+    </div>
+  </section>
+
+  <main class="container">
+    <section id="grid" class="pdf-grid" aria-live="polite">
+      <!-- ====== Ejemplos (duplica estos <article> y ajusta data-*) ====== -->
+      <article class="pdf-item" data-name="Convocatoria Fm.pdf" data-tags="convocatoria, 2025">
+        <div class="preview">
+          <iframe class="pdf-embed lazy-embed" title="Vista previa de Convocatoria Fm.pdf" data-src="Convocatoria%20Fm.pdf#view=FitH" aria-label="Vista previa PDF"></iframe>
+          <span class="hint">Carga inteligente</span>
+        </div>
+        <div class="pdf-meta">
+          <div class="pdf-name">Convocatoria Fm.pdf</div>
+          <div class="tag-row">
+            <span class="badge-tag">convocatoria</span>
+            <span class="badge-tag">2025</span>
+          </div>
+          <div class="actions">
+            <a class="btn-linklike" href="Convocatoria%20Fm.pdf" target="_blank" rel="noopener">Abrir</a>
+            <a class="btn-linklike" href="Convocatoria%20Fm.pdf" download="Convocatoria Fm.pdf">Descargar</a>
           </div>
         </div>
-        <div class="row" id="animalCardsContainer"></div>
-      </div>
+      </article>
+
+      <article class="pdf-item" data-name="Convocatoria Fm (copia).pdf" data-tags="convocatoria, revisión">
+        <div class="preview">
+          <iframe class="pdf-embed lazy-embed" title="Vista previa de Convocatoria Fm (copia).pdf" data-src="Convocatoria%20Fm.pdf#view=FitH" aria-label="Vista previa PDF"></iframe>
+          <span class="hint">Carga inteligente</span>
+        </div>
+        <div class="pdf-meta">
+          <div class="pdf-name">Convocatoria Fm (copia).pdf</div>
+          <div class="tag-row">
+            <span class="badge-tag">convocatoria</span>
+            <span class="badge-tag">revisión</span>
+          </div>
+          <div class="actions">
+            <a class="btn-linklike" href="Convocatoria%20Fm.pdf" target="_blank" rel="noopener">Abrir</a>
+            <a class="btn-linklike" href="Convocatoria%20Fm.pdf" download="Convocatoria Fm (copia).pdf">Descargar</a>
+          </div>
+        </div>
+      </article>
+      <!-- ====== /Ejemplos ====== -->
     </section>
 
-    <!-- Botón mostrar formulario -->
+    <div id="empty" class="empty">Sin resultados. Ajusta la búsqueda o quita filtros.</div>
+  </main>
+
+  <footer>
     <div class="container">
-      <div class="row">
-        <div class="col-md-12 mb-4 text-center">
-          <button id="mostrarFormBtn" class="btn btn-primary">Agregar ficha</button>
-        </div>
-      </div>
-
-      <!-- Formulario (oculto por defecto) -->
-      <div class="row" id="formRow" style="display:none;">
-        <div class="col-md-12 mb-4">
-          <form action="Fichas/" method="post" id="agregarFichaForm" class="card card-body" style="max-width:700px;margin:auto;">
-            <h4>Agregar nueva ficha</h4>
-
-            <div id="passwordSection">
-              <div class="form-group">
-                <label for="fichaPassword">Contraseña para agregar ficha</label>
-                <input type="password" class="form-control" id="fichaPassword" required>
-              </div>
-              <button type="button" id="verificarPasswordBtn" class="btn btn-success">Verificar</button>
-              <div id="passwordError" style="display:none;">Contraseña incorrecta</div>
-            </div>
-
-            <div id="fichaFields" style="display:none;">
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="nombre">Nombre común</label>
-                  <input type="text" class="form-control" id="nombre" required>
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="cientifico">Nombre científico</label>
-                  <input type="text" class="form-control" id="cientifico" required>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <label for="imagen">URL de imagen</label>
-                <input type="text" class="form-control" id="imagen" placeholder="images/tuimagen.jpg" required>
-              </div>
-
-              <div class="form-group">
-                <label for="origen">Origen y distribución</label>
-                <input type="text" class="form-control" id="origen">
-              </div>
-
-              <div class="form-group">
-                <label for="clasificacion">Clasificación zoológica</label>
-                <input type="text" class="form-control" id="clasificacion">
-              </div>
-
-              <div class="form-group">
-                <label for="reproduccion">Reproducción</label>
-                <input type="text" class="form-control" id="reproduccion">
-              </div>
-
-              <div class="form-group">
-                <label for="habitat">Hábitat</label>
-                <input type="text" class="form-control" id="habitat">
-              </div>
-
-              <div class="form-group">
-                <label for="conservacion">Estado de conservación</label>
-                <input type="text" class="form-control" id="conservacion">
-              </div>
-
-              <div class="form-group">
-                <label for="ecologica">Importancia ecológica</label>
-                <input type="text" class="form-control" id="ecologica">
-              </div>
-
-              <div class="form-group">
-                <label for="cultural">Presencia en culturas mexicanas</label>
-                <input type="text" class="form-control" id="cultural">
-              </div>
-
-              <div class="form-group">
-                <label for="investigacion">Investigación contemporánea</label>
-                <input type="text" class="form-control" id="investigacion">
-              </div>
-
-              <div class="form-group">
-                <label for="referencias">Referencias (coma; formato: texto|url)</label>
-                <input type="text" class="form-control" id="referencias" placeholder="CONABIO|https://..., UICN|https://...">
-              </div>
-
-              <button type="submit" class="btn btn-success">Agregar ficha</button>
-            </div>
-          </form>
-        </div>
-      </div>
+      <div>© <span id="year"></span> Enciclopedia de Animales Mexicanos · Organización educativa sin fines de lucro.</div>
     </div>
+  </footer>
 
-    <!-- footer (intacto) -->
-    <footer>
-      <div class="footer">
-        <div class="container">
-          <div class="row">
-            <!-- Redes sociales -->
-            <div class="col-md-3 col-sm-6">
-              <ul class="social_icon">
-                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
-              </ul>
-              <p class="variat pad_roght2">
-                Enciclopedia de los Animales Mexicanos es un proyecto de difusión del conocimiento zoológico, histórico y cultural.
-              </p>
-            </div>
+  <script>
+    // ====== Utilidades ======
+    const norm = s => (s||"")
+      .toString()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g,'')  // quita acentos
+      .toLowerCase()
+      .trim();
 
-            <div class="col-md-3 col-sm-6">
-              <h3>Contáctanos</h3>
-              <p class="variat pad_roght2">
-                ¿Dudas o colaboraciones? <br> contacto@eam.org
-              </p>
-            </div>
+    const $ = sel => document.querySelector(sel);
+    const $$ = sel => Array.from(document.querySelectorAll(sel));
 
-            <div class="col-md-3 col-sm-6">
-              <h3>Enlaces útiles</h3>
-              <ul class="link_menu">
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="nosotros.html">¿Quiénes somos?</a></li>
-                <li><a href="animales.html">Especies</a></li>
-                <li><a href="lineas-investigacion.html">Líneas de investigación</a></li>
-                <li><a href="colaboradores.html">Colaboradores</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
-              </ul>
-            </div>
+    const input = $('#q');
+    const grid  = $('#grid');
+    const count = $('#count');
+    const clear = $('#clearBtn');
+    const sortSel = $('#sort');
+    const chipBar = $('#chipBar');
+    const emptyEl = $('#empty');
+    const stat = $('#stat');
 
-            <div class="col-md-3 col-sm-6">
-              <h3>Nuestra visión</h3>
-              <p class="variat">
-                Documentar y preservar conocimiento científico y tradicional sobre la fauna de México.
-              </p>
-            </div>
-
-            <div class="col-md-6 offset-md-6">
-              <form id="newsletter" class="bottom_form">
-                <input class="enter" placeholder="Tu correo electrónico" type="email" name="email">
-                <button class="sub_btn">Suscribirme</button>
-              </form>
-            </div>
-          </div>
-        </div>
-
-        <div class="copyright">
-          <div class="container">
-            <div class="row">
-              <div class="col-md-10 offset-md-1">
-                <p>© 2025 Enciclopedia de los Animales Mexicanos. Todos los derechos reservados.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </footer>
-
-    <!-- JS (sin duplicados) -->
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-
-    <script>
-      // ========= Semillas iniciales (no se guardan; solo base) =========
-      const animalesBase = [
-        {
-          nombre: "Ajolote",
-          cientifico: "Ambystoma mexicanum",
-          imagen:  "images/ajolote.png",
-          origen: "Endémico de los lagos de Xochimilco y Chalco, CDMX.",
-          clasificacion: "Anfibio, Orden Caudata, Familia Ambystomatidae.",
-          reproduccion: "Ovíparo, fecundación externa.",
-          habitat: "Cuerpos de agua dulce con vegetación.",
-          conservacion: "En Peligro Crítico (NOM-059, UICN).",
-          ecologica: "Control de insectos y bioindicador de salud acuática.",
-          cultural: "Mitos mexicas, símbolo de regeneración.",
-          investigacion: "Regeneración de tejidos, biomedicina (UNAM, IPN).",
-          referencias: [
-            { texto: "UICN", url: "https://www.iucnredlist.org/species/1095/53947343" },
-            { texto: "CONABIO", url: "https://www.biodiversidad.gob.mx/especies/ajolote" }
-          ]
-        },
-        {
-          nombre: "Jaguar",
-          cientifico: "Panthera onca",
-          imagen: "images/jaguar.jpg",
-          origen: "Sur y sureste de México; selvas húmedas y secas.",
-          clasificacion: "Mamífero, Orden Carnivora, Familia Felidae.",
-          reproduccion: "Vivíparo, camadas de 1–4 crías.",
-          habitat: "Selvas húmedas y secas, bosques tropicales.",
-          conservacion: "En Peligro (NOM-059), Casi Amenazado (UICN).",
-          ecologica: "Depredador tope, regula poblaciones.",
-          cultural: "Dios jaguar en culturas prehispánicas, símbolo de poder.",
-          investigacion: "Monitoreo con cámaras trampa; corredores biológicos.",
-          referencias: [
-            { texto: "UICN", url: "https://www.iucnredlist.org/species/15953/123791436" },
-            { texto: "CONABIO", url: "https://www.biodiversidad.gob.mx/especies/jaguar" }
-          ]
+    // ====== Lazy load de iframes PDF ======
+    const lazyObserver = ('IntersectionObserver' in window) ? new IntersectionObserver((entries, obs)=>{
+      for (const e of entries){
+        if (e.isIntersecting){
+          const el = e.target; const src = el.getAttribute('data-src');
+          if(src){ el.setAttribute('src', src); el.removeAttribute('data-src'); }
+          obs.unobserve(el);
         }
-      ];
-
-      // ========= Persistencia local =========
-      const STORAGE_KEY = 'eam_fichas';
-
-      function cargarGuardadas() {
-        try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); }
-        catch(e){ return []; }
       }
-      function guardarNuevaFicha(ficha) {
-        const guardadas = cargarGuardadas();
-        guardadas.push(ficha);
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(guardadas));
-      }
+    }, {rootMargin: '200px'}) : null;
 
-      // ========= Utilidades =========
-      const escapeHTML = s => (s||'').replace(/[<>&"]/g, c => ({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'}[c]));
-
-      function crearFicha(animal) {
-        const safe = (k) => escapeHTML(animal[k] || '-');
-        const refs = (animal.referencias||[])
-          .map(ref => `<a href="${escapeHTML(ref.url)}" target="_blank" rel="noopener">${escapeHTML(ref.texto)}</a>`)
-          .join(', ');
-
-        return `
-          <div class="col-md-6 col-lg-4 mb-4">
-            <div class="card h-100">
-              <img src="${escapeHTML(animal.imagen)}"
-                   onerror="this.src='images/placeholder.jpg'; this.onerror=null;"
-                   class="card-img-top"
-                   alt="${escapeHTML(animal.nombre)} (${escapeHTML(animal.cientifico)})">
-              <div class="card-body">
-                <h4 class="card-title">${safe('nombre')}</h4>
-                <h6><em>${safe('cientifico')}</em></h6>
-                <ul class="list-unstyled">
-                  <li><strong>Origen y distribución:</strong> ${safe('origen')}</li>
-                  <li><strong>Clasificación zoológica:</strong> ${safe('clasificacion')}</li>
-                  <li><strong>Reproducción:</strong> ${safe('reproduccion')}</li>
-                  <li><strong>Hábitat:</strong> ${safe('habitat')}</li>
-                  <li><strong>Estado de conservación:</strong> ${safe('conservacion')}</li>
-                  <li><strong>Importancia ecológica:</strong> ${safe('ecologica')}</li>
-                  <li><strong>Presencia en culturas mexicanas:</strong> ${safe('cultural')}</li>
-                  <li><strong>Investigación contemporánea:</strong> ${safe('investigacion')}</li>
-                  <li><strong>Referencias:</strong> ${refs || '-'}</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        `;
-      }
-
-      function renderFichas() {
-        const container = document.getElementById('animalCardsContainer');
-        const animalesAll = [...cargarGuardadas(), ...animalesBase];
-        container.innerHTML = animalesAll.map(crearFicha).join('');
-      }
-
-      document.addEventListener("DOMContentLoaded", () => {
-        renderFichas();
-
-        // Mostrar formulario
-        document.getElementById('mostrarFormBtn').addEventListener('click', function() {
-          document.getElementById('formRow').style.display = 'block';
-          this.style.display = 'none';
-        });
-
-        // Verificar contraseña (DEMO)
-        document.getElementById('verificarPasswordBtn').addEventListener('click', function() {
-          const pass = document.getElementById('fichaPassword').value;
-          if (pass === "1234") {
-            document.getElementById('passwordSection').style.display = 'none';
-            document.getElementById('fichaFields').style.display = 'block';
-            document.getElementById('passwordError').style.display = 'none';
-          } else {
-            document.getElementById('passwordError').style.display = 'block';
-          }
-        });
-
-        // Envío de nueva ficha
-        document.getElementById('agregarFichaForm').addEventListener('submit', function(event) {
-          event.preventDefault();
-
-          const refsStr = document.getElementById('referencias').value.trim();
-          const referencias = refsStr
-            ? refsStr.split(',').map(r => {
-                const [texto, url] = r.split('|');
-                return { texto: escapeHTML((texto||'ref').trim()), url: (url||'#').trim() };
-              })
-            : [];
-
-          const nuevaFicha = {
-            nombre: document.getElementById('nombre').value.trim(),
-            cientifico: document.getElementById('cientifico').value.trim(),
-            imagen: document.getElementById('imagen').value.trim(),
-            origen: document.getElementById('origen').value.trim(),
-            clasificacion: document.getElementById('clasificacion').value.trim(),
-            reproduccion: document.getElementById('reproduccion').value.trim(),
-            habitat: document.getElementById('habitat').value.trim(),
-            conservacion: document.getElementById('conservacion').value.trim(),
-            ecologica: document.getElementById('ecologica').value.trim(),
-            cultural: document.getElementById('cultural').value.trim(),
-            investigacion: document.getElementById('investigacion').value.trim(),
-            referencias
-          };
-
-          guardarNuevaFicha(nuevaFicha);
-          renderFichas();
-          this.reset();
-
-          // Oculta formulario y re-muestra botón
-          document.getElementById('formRow').style.display = 'none';
-          document.getElementById('mostrarFormBtn').style.display = 'inline-block';
-
-          // Restablece secciones de seguridad
-          document.getElementById('passwordSection').style.display = 'block';
-          document.getElementById('fichaFields').style.display = 'none';
-          document.getElementById('fichaPassword').value = '';
-        });
+    function hydrateLazy(){
+      $$('.lazy-embed[data-src]').forEach(el=>{
+        if(lazyObserver){ lazyObserver.observe(el); } else { el.setAttribute('src', el.getAttribute('data-src')); }
       });
-    </script>
+    }
 
-    <script src="js/custom.js"></script>
-  </body>
+    // ====== Chips dinámicos a partir de data-tags ======
+    const selectedTags = new Set();
+    function buildChips(){
+      const tagMap = new Map();
+      $$('.pdf-item').forEach(it=>{
+        const tags = (it.getAttribute('data-tags')||'')
+          .split(',').map(t=>t.trim()).filter(Boolean);
+        for(const t of tags){ tagMap.set(t, (tagMap.get(t)||0)+1); }
+      });
+      chipBar.innerHTML = '';
+      [...tagMap.keys()].sort((a,b)=> a.localeCompare(b,'es',{sensitivity:'base'})).forEach(tag=>{
+        const chip = document.createElement('button');
+        chip.type = 'button';
+        chip.className = 'chip';
+        chip.textContent = `${tag}`;
+        chip.setAttribute('aria-pressed','false');
+        chip.addEventListener('click', ()=>{
+          if(selectedTags.has(tag)){ selectedTags.delete(tag); chip.classList.remove('active'); chip.setAttribute('aria-pressed','false'); }
+          else { selectedTags.add(tag); chip.classList.add('active'); chip.setAttribute('aria-pressed','true'); }
+          applyFilter();
+        });
+        chipBar.appendChild(chip);
+      });
+    }
+
+    // ====== Ordenar ======
+    function sortItems(){
+      const items = $$('.pdf-item');
+      const mode = sortSel.value;
+      const dir = (mode === 'az') ? 1 : -1;
+      items.sort((a,b)=>{
+        const na = norm(a.getAttribute('data-name'));
+        const nb = norm(b.getAttribute('data-name'));
+        return na.localeCompare(nb,'es') * dir;
+      }).forEach(el=>grid.appendChild(el));
+    }
+
+    // ====== Filtrar (texto + tags) ======
+    function applyFilter(){
+      const needle = norm(input.value);
+      const items = $$('.pdf-item');
+      let visible = 0;
+
+      for (const it of items) {
+        const name = norm(it.getAttribute('data-name'));
+        const tagsRaw = it.getAttribute('data-tags')||'';
+        const tagsNorm = norm(tagsRaw);
+
+        const hitText = !needle || name.includes(needle) || tagsNorm.includes(needle);
+        const hitTag = selectedTags.size===0 || [...selectedTags].some(t=> tagsRaw.split(',').map(s=>s.trim()).includes(t));
+
+        const show = hitText && hitTag;
+        it.classList.toggle('hide', !show);
+        if (show) visible++;
+      }
+      count.textContent = `${visible} documento${visible===1?'':'s'}`;
+      emptyEl.style.display = visible ? 'none' : 'block';
+      stat && (stat.textContent = `Colección: ${items.length} documento${items.length===1?'':'s'}`);
+    }
+
+    // ====== UX ======
+    function debounce(fn, ms){ let t; return (...a)=>{ clearTimeout(t); t=setTimeout(()=>fn(...a), ms); } }
+
+    input.addEventListener('input', debounce(applyFilter, 120));
+    input.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ e.preventDefault(); } });
+    clear.addEventListener('click', ()=>{ input.value=''; selectedTags.clear(); $$('.chip.active').forEach(c=>{ c.classList.remove('active'); c.setAttribute('aria-pressed','false'); }); applyFilter(); input.focus(); });
+    sortSel.addEventListener('change', ()=>{ sortItems(); });
+
+    // Acceso rápido: / para enfocar búsqueda, Esc para limpiar
+    window.addEventListener('keydown', (e)=>{
+      if (e.key === '/' && document.activeElement !== input){ e.preventDefault(); input.focus(); }
+      if (e.key === 'Escape'){ clear.click(); }
+    });
+
+    // Inicio
+    (function init(){
+      document.querySelector('#year') && (document.querySelector('#year').textContent = new Date().getFullYear());
+      buildChips();
+      sortItems();
+      applyFilter();
+      hydrateLazy();
+    })();
+  </script>
+</body>
 </html>
