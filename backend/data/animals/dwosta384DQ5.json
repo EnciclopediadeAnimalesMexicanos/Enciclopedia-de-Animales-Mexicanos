@@ -1,0 +1,15 @@
+{
+  "nombre": "Ajolote",
+  "nombre_cientifico": "Ambystoma mexicanum",
+  "especie": "anfibio",
+  "habitat": "Xochimilco",
+  "descripcion": "Anfibio neoténico endémico de México con gran capacidad de regeneración.",
+  "estatus_conservacion": "CR",
+  "tags": [
+    "endémico",
+    "regeneración"
+  ],
+  "id": "dwosta384DQ5",
+  "created_at": "2025-08-23T20:23:18.590Z",
+  "updated_at": "2025-08-23T20:23:18.590Z"
+}
