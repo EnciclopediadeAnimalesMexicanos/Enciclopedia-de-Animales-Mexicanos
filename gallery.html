@@ -1,35 +1,12 @@
 <!DOCTYPE html>
 <html lang="es">
   <head>
-    <!-- Metadatos básicos -->
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <!-- Datos del sitio -->
-    <title>Enciclopedia de Animales Mexicanos — Galería</title>
-    <meta name="keywords" content="fauna de México, especies mexicanas, conservación, biodiversidad, animales" />
-    <meta name="description" content="Galería de imágenes de especies documentadas por la Enciclopedia de Animales Mexicanos, con fines educativos y de conservación." />
-    <meta name="author" content="Enciclopedia de Animales Mexicanos" />
-
-    <!-- Bootstrap y estilos base -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/responsive.css" />
-    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css" />
-    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen" />
-
-    <!-- Fuentes (Inter + Merriweather) -->
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
-
-    <!-- Favicons (logo en navegador) -->
-    <link rel="icon" type="image/png" href="images/logo-eam.png" />
-    <link rel="apple-touch-icon" href="images/logo-eam.png" />
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Galería | Enciclopedia de Animales Mexicanos</title>
 
     <style>
-      /* ====== Tokens y Header verde unificado ====== */
       :root{
         --bg:#f7faf7; --surface:#ffffff; --ink:#0f172a; --muted:#6b7280; --line:#e5e7eb;
         --accent:#16a34a; --accent-600:#15803d; --accent-700:#166534;
@@ -39,10 +16,12 @@
       body{ font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif; }
       .longform{ font-family:"Merriweather", Georgia, Cambria, "Times New Roman", Times, serif; line-height:1.7 }
 
-      /* Header unificado (coincide con index/servicios) */
+      .container{ max-width:1200px; margin-inline:auto; padding-inline:1rem }
+      .row{ display:grid; grid-template-columns: 1fr; gap:1rem }
+      @media (min-width: 768px){ .row.cols-3{ grid-template-columns: repeat(3, 1fr) } }
+
       .site-header{position:sticky; top:0; z-index:1030; background:linear-gradient(180deg,#ffffff,#f7fff9); border-bottom:1px solid var(--line)}
       .site-header.stuck{box-shadow:var(--shadow)}
-      .site-header .container{max-width:1200px}
       .mast{display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:.85rem 0}
       .brand{display:flex; align-items:center; gap:.75rem}
       .brand img{width:44px; height:44px; object-fit:contain; border-radius:12px}
@@ -52,20 +31,92 @@
       nav.nav a{padding:.5rem .75rem; border-radius:10px; color:#0f172a; text-decoration:none}
       nav.nav a.active, nav.nav a[aria-current="page"], nav.nav a:hover{background:#ecfdf5; color:var(--accent)}
 
-      /* Ajustes mínimos de galería */
       .titlepage h2{margin-bottom:.5rem}
       .titlepage .green{color:var(--accent)}
       .titlepage p{color:#555; margin-bottom:1.25rem}
-      .gallery_text .galleryh3 h3{margin-bottom:.25rem}
-      .gallery_img figure{margin:0}
-      img{max-width:100%; height:auto; display:block}
+
+      .museum-toolbar{
+        display:flex; align-items:center; justify-content:space-between; gap:1rem; margin:1rem 0 1.25rem;
+        border:1px solid var(--line); background:var(--surface); border-radius:var(--radius); padding:.75rem .75rem;
+        box-shadow: var(--shadow);
+      }
+      .museum-tabs{display:flex; flex-wrap:wrap; gap:.5rem}
+      .museum-tabs button{
+        appearance:none; border:1px solid var(--line); background:#ecfdf5; color:var(--accent);
+        padding:.45rem .75rem; border-radius:999px; font-weight:600; letter-spacing:.2px; cursor:pointer
+      }
+      .museum-tabs button[aria-pressed="true"]{ background:var(--accent); color:#fff; border-color:transparent }
+      .museum-count{ color:var(--muted); font-size:.95rem }
+      .museum-grid{
+        display:grid; grid-template-columns: repeat(auto-fill, minmax(260px,1fr));
+        gap:1rem; margin-bottom:2rem;
+      }
+      .museum-card{
+        border:1px solid var(--line); border-radius:calc(var(--radius) - 4px);
+        background:var(--surface); overflow:hidden; position:relative; box-shadow: var(--shadow);
+        transition: transform .2s ease, box-shadow .2s ease;
+      }
+      .museum-card:hover{ transform:translateY(-2px) }
+      .museum-media{ aspect-ratio: 4 / 3; background:#f0f5f2; overflow:hidden }
+      .museum-media img{ width:100%; height:100%; object-fit:cover; display:block }
+      figure{ margin:0 }
+      figcaption{
+        padding:.9rem .95rem .95rem; border-top:1px solid var(--line);
+        display:grid; gap:.5rem;
+      }
+      .piece-title{ font-weight:800; letter-spacing:.2px }
+      .piece-meta{ color:var(--muted); font-size:.95rem; line-height:1.5 }
+      .piece-actions{ display:flex; gap:.5rem; flex-wrap:wrap }
+      .piece-actions .btn{
+        display:inline-flex; align-items:center; gap:.5rem; font-weight:600;
+        border:1px solid var(--line); background:#fff; padding:.45rem .7rem; border-radius:10px; text-decoration:none; color:var(--ink)
+      }
+      .btn:hover{ background:#f9fafb }
+      .btn.primary{ background:#ecfdf5; color:var(--accent); border-color:transparent }
+      .btn.primary:hover{ background:#d1fae5 }
+      .badge{
+        position:absolute; top:.65rem; left:.65rem; background:rgba(22,163,74,.9); color:#fff;
+        padding:.25rem .5rem; border-radius:8px; font-size:.8rem; font-weight:700; letter-spacing:.2px
+      }
+
+      /* Lightbox */
+      .lightbox{
+        position:fixed; inset:0; background:rgba(2,6,23,.6); display:none; align-items:center; justify-content:center;
+        padding:1rem; z-index:1100;
+      }
+      .lightbox[aria-hidden="false"]{ display:flex }
+      .lightbox-dialog{
+        background:var(--surface); width:min(100%, 960px); max-height:90dvh; border-radius:var(--radius);
+        overflow:hidden; box-shadow:var(--shadow); display:grid; grid-template-rows:auto 1fr auto
+      }
+      .lightbox-header, .lightbox-footer{ padding:.8rem 1rem; border-bottom:1px solid var(--line) }
+      .lightbox-footer{ border-top:1px solid var(--line); border-bottom:none }
+      .lightbox-title{ font-weight:800 }
+      .lightbox-body{ padding:0; display:grid; grid-template-columns: 1.4fr 1fr; gap:0 }
+      .lightbox-figure{ background:#000; display:flex; align-items:center; justify-content:center }
+      .lightbox-figure img{ width:100%; height:auto; object-fit:contain; max-height:70dvh }
+      .lightbox-info{ padding:1rem; overflow:auto }
+      .lightbox-close{
+        appearance:none; border:1px solid var(--line); background:#fff; border-radius:10px; padding:.35rem .6rem; cursor:pointer
+      }
+      @media (max-width: 860px){ .lightbox-body{ grid-template-columns:1fr } }
+
+      .footer{ margin-top:2rem; border-top:1px solid var(--line); background:#fff }
+      .footer .block{ padding:1rem 0 }
+      .social_icon{ list-style:none; padding:0; margin:0; display:flex; gap:.65rem }
+      .social_icon a{ text-decoration:none; color:var(--accent-700) }
+      .link_menu{ list-style:none; padding:0; margin:0; display:grid; gap:.4rem }
+      .copyright{ border-top:1px solid var(--line); padding:1rem 0; color:var(--muted); text-align:center }
+      .bottom_form{ display:flex; gap:.5rem; margin-top:.75rem }
+      .bottom_form .enter{ flex:1; padding:.55rem .7rem; border:1px solid var(--line); border-radius:10px }
+      .bottom_form .sub_btn{ padding:.55rem .9rem; border-radius:10px; border:1px solid var(--line); background:#ecfdf5; color:var(--accent); font-weight:700; cursor:pointer }
+      .bottom_form .sub_btn:hover{ background:#d1fae5 }
     </style>
   </head>
-  <body class="main-layout in_page">
-    <!-- Enlace de salto para accesibilidad -->
-    <a href="#main" class="sr-only sr-only-focusable">Saltar al contenido</a>
 
-    <!-- ===== Header unificado ===== -->
+  <body class="main-layout in_page">
+    <a href="#main" class="sr-only sr-only-focusable" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;">Saltar al contenido</a>
+
     <header id="siteHeader" class="site-header" role="banner">
       <div class="container">
         <div class="mast">
@@ -91,87 +142,121 @@
     </header>
 
     <main id="main">
-      <!-- ===== Galería ===== -->
       <div class="gallery">
         <div class="container">
           <div class="row">
-            <div class="col-md-12">
+            <div>
               <div class="titlepage">
                 <h2>Nuestra <span class="green">Galería</span></h2>
-                <p>Explora imágenes de algunas especies representativas documentadas por la EAM, acompañadas de información científica validada.</p>
+                <p>Explora piezas visuales con información verificable. Filtra por sección para navegar como en una colección museística.</p>
               </div>
-            </div>
-          </div>
 
-          <div class="row">
-            <!-- Ajolote -->
-            <div class="col-md-4 col-sm-6">
-              <div class="gallery_text">
-                <div class="galleryh3">
-                  <h3>Ajolote</h3>
-                  <p><em>Ambystoma mexicanum</em> — Anfibio endémico de Xochimilco, símbolo de conservación y biodiversidad acuática.</p>
+              <div class="museum-toolbar" role="region" aria-label="Filtros de sección">
+                <div class="museum-tabs" role="tablist" aria-label="Secciones">
+                  <button class="tab" type="button" data-filter="all" aria-pressed="true" role="tab">Todas</button>
+                  <button class="tab" type="button" data-filter="acuaticos" role="tab">Acuáticos</button>
+                  <button class="tab" type="button" data-filter="selvas" role="tab">Selvas</button>
+                  <button class="tab" type="button" data-filter="altiplano" role="tab">Altiplano</button>
                 </div>
+                <div class="museum-count" aria-live="polite">Mostrando <strong id="countShown">0</strong> piezas</div>
               </div>
-            </div>
-            <div class="col-md-4 col-sm-6">
-              <div class="gallery_img">
-                <figure><img src="images/ajolote.png" alt="Ajolote (Ambystoma mexicanum)" loading="lazy" decoding="async" /></figure>
-              </div>
-            </div>
 
-            <!-- Jaguar -->
-            <div class="col-md-4 col-sm-6">
-              <div class="gallery_text">
-                <div class="galleryh3">
-                  <h3>Jaguar</h3>
-                  <p><em>Panthera onca</em> — Felino más grande de América; indicador de salud de ecosistemas selváticos.</p>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 col-sm-6">
-              <div class="gallery_img">
-                <figure><img src="images/jaguar.png" alt="Jaguar (Panthera onca)" loading="lazy" decoding="async" /></figure>
-              </div>
-            </div>
+              <div class="museum-grid" id="museumGrid">
+                <!-- Ajolote -->
+                <article class="museum-card" tabindex="0" data-section="acuaticos">
+                  <span class="badge">Acuáticos</span>
+                  <figure class="museum-media">
+                    <img src="images/ajolote.png" alt="Ajolote (Ambystoma mexicanum). Anfibio endémico de Xochimilco." loading="lazy" decoding="async"/>
+                  </figure>
+                  <figcaption>
+                    <div class="piece-title">Ajolote <span class="piece-title-sub longform"><em>Ambystoma mexicanum</em></span></div>
+                    <p class="piece-meta">Anfibio neoténico y símbolo de conservación en humedales de Xochimilco.</p>
+                    <div class="piece-actions">
+                      <a class="btn primary" href="#" data-view="images/ajolote.png" data-title="Ajolote" data-subtitle="Ambystoma mexicanum" data-desc="Indicador de salud de ecosistemas urbanos acuáticos; alta relevancia cultural y científica.">Ver</a>
+                      <a class="btn" href="images/ajolote.png" download="ajolote.png">Descargar</a>
+                    </div>
+                  </figcaption>
+                </article>
 
-            <!-- Colibrí -->
-            <div class="col-md-4 col-sm-6">
-              <div class="gallery_text">
-                <div class="galleryh3">
-                  <h3>Colibrí</h3>
-                  <p>Ave polinizadora esencial; México alberga más de 50 especies registradas.</p>
-                </div>
+                <!-- Jaguar -->
+                <article class="museum-card" tabindex="0" data-section="selvas">
+                  <span class="badge">Selvas</span>
+                  <figure class="museum-media">
+                    <img src="images/jaguar.png" alt="Jaguar (Panthera onca). Felino de selvas tropicales." loading="lazy" decoding="async"/>
+                  </figure>
+                  <figcaption>
+                    <div class="piece-title">Jaguar <span class="piece-title-sub longform"><em>Panthera onca</em></span></div>
+                    <p class="piece-meta">Especie clave para el equilibrio trófico en Mesoamérica; paraguas de biodiversidad.</p>
+                    <div class="piece-actions">
+                      <a class="btn primary" href="#" data-view="images/jaguar.png" data-title="Jaguar" data-subtitle="Panthera onca" data-desc="Su conservación protege grandes extensiones de hábitat y múltiples especies asociadas.">Ver</a>
+                      <a class="btn" href="images/jaguar.png" download="jaguar.png">Descargar</a>
+                    </div>
+                  </figcaption>
+                </article>
+
+                <!-- Colibrí -->
+                <article class="museum-card" tabindex="0" data-section="altiplano">
+                  <span class="badge">Altiplano</span>
+                  <figure class="museum-media">
+                    <img src="2390.jpg" alt="Colibrí. Ave polinizadora esencial." loading="lazy" decoding="async"/>
+                  </figure>
+                  <figcaption>
+                    <div class="piece-title">Colibrí</div>
+                    <p class="piece-meta">Polinizador clave; en México se registran más de 50 especies.</p>
+                    <div class="piece-actions">
+                      <a class="btn primary" href="#" data-view="2390.jpg" data-title="Colibrí" data-subtitle="" data-desc="Tasa metabólica altísima; coevolución con flora tubular rica en néctar.">Ver</a>
+                      <a class="btn" href="2390.jpg" download="colibri.jpg">Descargar</a>
+                    </div>
+                  </figcaption>
+                </article>
               </div>
-            </div>
-            <div class="col-md-4 col-sm-6">
-              <div class="gallery_img">
-                <figure><img src="images/colibri.png" alt="Colibrí" loading="lazy" decoding="async" /></figure>
-              </div>
+
             </div>
           </div>
         </div>
       </div>
     </main>
 
-    <!-- ===== Footer (enlaces y contacto unificados) ===== -->
+    <!-- >>>>>> Lightbox ANTES del script (clave para que exista al inicializar) <<<<<< -->
+    <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="lightboxTitle">
+      <div class="lightbox-dialog">
+        <header class="lightbox-header">
+          <div class="lightbox-title" id="lightboxTitle">Título</div>
+        </header>
+        <div class="lightbox-body">
+          <figure class="lightbox-figure"><img id="lightboxImg" alt=""/></figure>
+          <section class="lightbox-info">
+            <h3 id="lightboxSubtitle" class="longform" style="margin:0 0 .5rem 0; font-style:italic;"></h3>
+            <p id="lightboxDesc" class="longform" style="margin:0 0 1rem 0;"></p>
+          </section>
+        </div>
+        <footer class="lightbox-footer">
+          <div style="display:flex; gap:.5rem; justify-content:flex-end;">
+            <a id="lightboxDownload" class="btn" href="#" download>Descargar</a>
+            <button type="button" class="lightbox-close" data-close>Cerrar</button>
+          </div>
+        </footer>
+      </div>
+    </div>
+
     <footer>
       <div class="footer">
         <div class="container">
-          <div class="row">
-            <div class="col-md-3 col-sm-6">
+          <div class="row cols-3">
+            <div class="block">
               <ul class="social_icon">
-                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fa fa-youtube" aria-hidden="true"></i></a></li>
-                <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                <li><a href="#" aria-label="Facebook">Facebook</a></li>
+                <li><a href="#" aria-label="Twitter">Twitter</a></li>
+                <li><a href="#" aria-label="YouTube">YouTube</a></li>
+                <li><a href="#" aria-label="Instagram">Instagram</a></li>
               </ul>
-              <p class="variat pad_roght2">Enciclopedia de los Animales Mexicanos es un proyecto de difusión del conocimiento zoológico, histórico y cultural, comprometido con la preservación y el estudio de la biodiversidad nacional.</p>
+              <p class="variat">Proyecto de difusión del conocimiento zoológico, histórico y cultural, comprometido con la biodiversidad.</p>
             </div>
-            <div class="col-md-3 col-sm-6">
+            <div class="block">
               <h3>Contáctanos</h3>
-              <p class="variat pad_roght2">¿Dudas o colaboraciones? Escríbenos:<br />contacto@eam.org</p>
+              <p>¿Dudas o colaboraciones? Escríbenos:<br/>contacto@eam.org</p>
             </div>
-            <div class="col-md-3 col-sm-6">
+            <div class="block">
               <h3>Enlaces útiles</h3>
               <ul class="link_menu">
                 <li><a href="index.html">Inicio</a></li>
@@ -181,12 +266,6 @@
                 <li><a href="colaboradores.html">Colaboradores</a></li>
                 <li><a href="contact.html">Contacto</a></li>
               </ul>
-            </div>
-            <div class="col-md-3 col-sm-6">
-              <h3>Nuestra visión</h3>
-              <p class="variat">Documentar y preservar el conocimiento etnohistórico y científico sobre la fauna de México, de forma abierta y verificable.</p>
-            </div>
-            <div class="col-md-6 offset-md-6">
               <form id="newsletter" class="bottom_form" action="#" method="post">
                 <label class="sr-only" for="newsletter-email">Correo</label>
                 <input id="newsletter-email" class="enter" placeholder="Tu correo electrónico" type="email" name="email" required />
@@ -197,21 +276,11 @@
         </div>
         <div class="copyright">
           <div class="container">
-            <div class="row">
-              <div class="col-md-10 offset-md-1">
-                <p>© 2025 Enciclopedia de los Animales Mexicanos. Todos los derechos reservados.</p>
-              </div>
-            </div>
+            <p>© 2025 Enciclopedia de los Animales Mexicanos. Todos los derechos reservados.</p>
           </div>
         </div>
       </div>
     </footer>
-
-    <!-- ===== JS ===== -->
-    <script defer src="js/jquery.min.js"></script>
-    <script defer src="js/bootstrap.bundle.min.js"></script>
-    <script defer src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script defer src="js/custom.js"></script>
 
     <script>
       // Header sombra al hacer scroll
@@ -220,9 +289,79 @@
         function onScroll(){ if(!h) return; (window.scrollY>8)?h.classList.add('stuck'):h.classList.remove('stuck'); }
         onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
       })();
-      // Respeta reduced motion en posibles carruseles (si los añades en galería)
+
+      // Galería: filtros y lightbox (el lightbox YA existe en el DOM)
       (function(){
-        try{ var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; if (reduce) { /* sin carruseles aquí */ } }catch(e){}
+        const grid = document.getElementById('museumGrid');
+        const tabs = document.querySelectorAll('.museum-tabs .tab');
+        const countEl = document.getElementById('countShown');
+        const cards = () => Array.from(grid.querySelectorAll('.museum-card'));
+        const lb = document.getElementById('lightbox');
+        const lbImg = document.getElementById('lightboxImg');
+        const lbTitle = document.getElementById('lightboxTitle');
+        const lbSubtitle = document.getElementById('lightboxSubtitle');
+        const lbDesc = document.getElementById('lightboxDesc');
+        const lbDown = document.getElementById('lightboxDownload');
+
+        function updateCount(){
+          const visible = cards().filter(c => c.style.display !== 'none').length;
+          if (countEl) countEl.textContent = visible;
+        }
+        function applyFilter(filter){
+          cards().forEach(card=>{
+            const sec = card.getAttribute('data-section') || '';
+            const show = (filter==='all') || (sec===filter);
+            card.style.display = show ? '' : 'none';
+          });
+          updateCount();
+        }
+        tabs.forEach(btn=>{
+          btn.addEventListener('click', ()=>{
+            tabs.forEach(b=>b.setAttribute('aria-pressed','false'));
+            btn.setAttribute('aria-pressed','true');
+            applyFilter(btn.dataset.filter);
+          });
+        });
+        applyFilter('all');
+
+        grid.addEventListener('click', (e)=>{
+          const a = e.target.closest('a[data-view]');
+          if(!a) return;
+          e.preventDefault();
+          e.stopPropagation();
+          const src = a.getAttribute('data-view');
+          const title = a.getAttribute('data-title') || '';
+          const sub = a.getAttribute('data-subtitle') || '';
+          const desc = a.getAttribute('data-desc') || '';
+
+          lbImg.src = src;
+          lbImg.alt = (title ? title + '. ' : '') + (desc || '');
+          lbTitle.textContent = title || 'Pieza';
+          lbSubtitle.textContent = sub || '';
+          lbDesc.textContent = desc || '';
+          lbDown.href = src;
+
+          lb.setAttribute('aria-hidden','false');
+          lb.querySelector('[data-close]').focus();
+        });
+
+        lb.addEventListener('click', (e)=>{
+          if(e.target === lb || e.target.hasAttribute('data-close')){
+            lb.setAttribute('aria-hidden','true');
+            lbImg.removeAttribute('src');
+          }
+        });
+        document.addEventListener('keydown', (e)=>{
+          if(e.key === 'Escape' && lb.getAttribute('aria-hidden')==='false'){
+            lb.setAttribute('aria-hidden','true');
+            lbImg.removeAttribute('src');
+          }
+        });
+      })();
+
+      // Respeta reduced motion
+      (function(){
+        try{ var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; if (reduce) { /* sin animaciones extra */ } }catch(e){}
       })();
     </script>
   </body>
