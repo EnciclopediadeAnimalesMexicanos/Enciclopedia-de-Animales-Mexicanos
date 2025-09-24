@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Repositorio A/H — Enciclopedia de Animales Mexicanos</title>
+  <meta name="description" content="Repositorio de materiales sobre Animalidad y Humanidad: Jurídicas, Filosóficas y Arquitectónicas.">
+  <meta name="author" content="Enciclopedia de Animales Mexicanos">
+
+  <!-- Bootstrap (CDN, un solo archivo) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Iconos mínimos -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+
+  <style>
+    /* ====== Tokens (paleta) ====== */
+    :root{
+      --bg:#f7faf7;
+      --surface:#ffffff;
+      --ink:#0f172a;
+      --muted:#6b7280;
+      --line:#e5e7eb;
+
+      /* PRIMARIO VERDE */
+      --accent:#16a34a;      /* 600 */
+      --accent-600:#15803d;  /* 700 */
+      --accent-700:#166534;  /* 800 */
+
+      --radius:16px;
+      --shadow:0 10px 25px rgba(2,6,23,.08), 0 2px 8px rgba(2,6,23,.06);
+      --shadow-sm:0 6px 18px rgba(2,6,23,.08);
+    }
+    html, body{ background:var(--bg); color:var(--ink); }
+    body{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif; }
+    h1,h2,h3,h4{ font-weight:700 }
+    .green{ color:var(--accent); }
+
+    /* ===== Header unificado (estilos) ===== */
+    .site-header{position:sticky; top:0; z-index:1030; background:linear-gradient(180deg,#ffffff,#f7fff9); border-bottom:1px solid var(--line)}
+    .site-header .container{max-width:1200px}
+    .mast{display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:.85rem 0}
+    .brand{display:flex; align-items:center; gap:.75rem}
+    .brand img{width:44px; height:44px; object-fit:contain; border-radius:12px}
+    .brand .title{font-weight:700; letter-spacing:.2px}
+    .brand .sub{color:var(--muted); font-size:.9rem}
+    .nav a{padding:.5rem .75rem; border-radius:10px; color:#0f172a; text-decoration:none}
+    .nav a[aria-current="page"], .nav a:hover{background:#ecfdf5; color:var(--accent)}
+
+    /* ===== Repositorio A/H ===== */
+    .repo-hero{padding:32px 0 8px;}
+    .repo-section{ background:#f7f9f8; padding:24px 0 40px; border-top:1px solid var(--line); }
+    .cv-toolbar{display:grid; grid-template-columns:1fr auto; gap:1rem; margin-top:.5rem}
+    @media (max-width:640px){ .cv-toolbar{grid-template-columns:1fr} }
+    .cv-search{display:flex; align-items:center; gap:.5rem; background:#fff; border:1px solid var(--line); border-radius:999px; padding:.5rem .75rem; box-shadow:var(--shadow-sm)}
+    .cv-search input{border:0; outline:0; width:100%; background:transparent; font-size:1rem}
+    .cv-kbd{display:inline-flex; align-items:center; gap:.25rem; font-size:.8rem; color:var(--muted); background:#f4f6f9; border:1px solid var(--line); padding:.15rem .35rem; border-radius:6px}
+    .cv-tools{display:flex; align-items:center; gap:.5rem; flex-wrap:wrap}
+    .cv-btn{display:inline-flex; align-items:center; gap:.5rem; padding:.55rem .8rem; border-radius:10px; border:1px solid var(--line); background:#fff; cursor:pointer}
+    .cv-chips{display:flex; gap:.5rem; flex-wrap:wrap; margin-top:.75rem}
+    .cv-chip{display:inline-flex; align-items:center; gap:.35rem; border:1px solid #bbf7d0; background:#ecfdf5; color:var(--accent); padding:.25rem .6rem; border-radius:999px; font-size:.9rem; cursor:pointer}
+    .cv-chip.active{background:#dcfce7; border-color:#86efac}
+
+    .pdf-grid{ display:grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap:1rem; padding:1.25rem 0 0; }
+    @media (max-width: 480px){ .pdf-grid{ grid-template-columns: 1fr; } }
+    .pdf-item{ background:#fff; border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; transition: transform .2s ease, box-shadow .2s ease; }
+    .pdf-item.hide{ display:none !important; }
+    .pdf-item:hover{ transform: translateY(-2px); box-shadow:0 18px 30px rgba(2,6,23,.10), 0 4px 14px rgba(2,6,23,.06); }
+    .preview{ position:relative; background:linear-gradient(180deg,#f0f7f3,#e9f7ee); min-height:220px }
+    .pdf-embed{ width:100%; height:380px; border:0; display:block; background:#f0f3f7; }
+    @media (max-width: 576px){ .pdf-embed{ height:320px; } }
+    .preview .hint{position:absolute; right:12px; bottom:12px; background:rgba(255,255,255,.85); border:1px solid var(--line); border-radius:999px; padding:.25rem .6rem; font-size:.8rem; color:var(--muted)}
+    .pdf-meta{ display:flex; flex-direction:column; gap:.6rem; padding:.9rem .9rem 1rem; }
+    .pdf-name{ font-weight:700; line-height:1.35; word-break:break-word }
+    .tag-row{ display:flex; flex-wrap:wrap; gap:.35rem }
+    .badge-tag{ border:1px solid #bbf7d0; background:#ecfdf5; color:var(--accent); border-radius:999px; padding:.15rem .5rem; font-size:.8rem; }
+    .actions{ display:flex; align-items:center; gap:.5rem; margin-top:.25rem }
+    .btn-linklike{ display:inline-flex; align-items:center; gap:.45rem; border:1px solid var(--line); padding:.45rem .75rem; border-radius:10px; background:#fff; text-decoration:none; color:var(--accent); font-weight:600; }
+    .btn-linklike:hover{ background:#f1fcf5; border-color:#cce3d3; }
+    .cv-empty{display:none; border:1px dashed var(--line); border-radius:12px; padding:2rem; text-align:center; color:var(--muted); background:#fff; margin-top:1rem}
+
+    /* Modal */
+    .modal-content{border-radius:16px}
+  </style>
+</head>
+<body>
+
+  <!-- ===== Header unificado ===== -->
+  <header id="siteHeader" class="site-header" role="banner">
+    <div class="container">
+      <div class="mast">
+        <div class="brand">
+          <a href="index.html" aria-label="Ir al inicio">
+            <img src="images/Logo EAM.png" alt="EAM logo" loading="eager" decoding="async" fetchpriority="high">
+          </a>
+          <div>
+            <div class="title">Enciclopedia de Animales Mexicanos</div>
+            <div class="sub">Inicio</div>
+          </div>
+        </div>
+        <nav class="nav" aria-label="Navegación principal">
+          <a href="index.html" aria-current="page">Inicio</a>
+          <a href="about.html">Nosotros</a>
+          <a href="service.html">Especies</a>
+          <a href="gallery.html">Galería</a>
+          <a href="testimonial.html">Descargas</a>
+          <a href="contact.html">Contacto</a>
+          <a href="humanidad-animalidad.html">Animalidad y Humanidad</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section class="repo-hero">
+    <div class="container">
+      <div class="row align-items-end">
+        <div class="col-md-8">
+          <h1 class="h2 mb-2">Animalidad y <span class="green">Humanidad</span></h1>
+          <p class="mb-0">Plantilla única para anexar materiales (PDFs, flyers, carteles) organizados por ámbitos <strong>Jurídicas</strong>, <strong>Filosóficas</strong> y <strong>Arquitectónicas</strong>, con buscador y descarga.</p>
+        </div>
+        <div class="col-md-4 text-md-right text-left mt-3 mt-md-0">
+          <a class="btn-linklike" href="#repositorio-ah">Ir al repositorio</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Repositorio A/H ===== -->
+  <section id="repositorio-ah" class="repo-section">
+    <div class="container">
+      <div class="row align-items-end">
+        <div class="col-md-8">
+          <div class="titlepage">
+            <h2>Repositorio <span class="green">A/H</span></h2>
+            <p class="mb-0">Sube y organiza tus materiales. Usa las categorías y el buscador para filtrar.</p>
+          </div>
+        </div>
+        <div class="col-md-4 text-md-right text-left mb-3">
+          <div class="cv-toolbar" role="search">
+            <label class="cv-search" for="ahQ" title="Buscar por nombre o etiquetas">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 21l-4.35-4.35" stroke="#64748b" stroke-width="2" stroke-linecap="round"/><circle cx="10.5" cy="10.5" r="6.5" stroke="#64748b" stroke-width="2"/></svg>
+              <input id="ahQ" placeholder="Buscar (ej. normativa, fenomenología, planos)" autocomplete="off"/>
+              <span class="cv-kbd" aria-hidden="true">/</span>
+            </label>
+            <div class="cv-tools">
+              <button id="ahClearBtn" class="cv-btn" type="button" title="Limpiar filtros">Limpiar</button>
+              <span id="ahCount" class="text-muted small" aria-live="polite"></span>
+            </div>
+          </div>
+          <!-- Chips de categoría -->
+          <div id="ahCats" class="cv-chips" aria-label="Filtrar por categoría">
+            <button type="button" class="cv-chip" data-cat="all" aria-pressed="true">Todas</button>
+            <button type="button" class="cv-chip" data-cat="juridicas" aria-pressed="false">Jurídicas</button>
+            <button type="button" class="cv-chip" data-cat="filosoficas" aria-pressed="false">Filosóficas</button>
+            <button type="button" class="cv-chip" data-cat="arquitectonicas" aria-pressed="false">Arquitectónicas</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Grid -->
+      <div id="ahGrid" class="pdf-grid" aria-live="polite">
+        <!-- ====== EJEMPLOS: duplica estos <article> y cambia data-* y rutas ====== -->
+
+        <!-- Jurídicas -->
+        <article class="pdf-item" data-name="Norma Bienestar 2025.pdf"
+                 data-tags="normativa, bienestar, 2025"
+                 data-cat="juridicas">
+          <div class="preview">
+            <embed class="pdf-embed lazy-embed" title="Norma de Bienestar Animal 2025"
+                   data-src="pdfs/juridicas/Norma-Bienestar-2025.pdf#view=FitH" type="application/pdf" />
+            <span class="hint">Vista previa</span>
+          </div>
+          <div class="pdf-meta">
+            <div class="pdf-name">Norma Bienestar 2025.pdf</div>
+            <div class="tag-row">
+              <span class="badge-tag">normativa</span>
+              <span class="badge-tag">bienestar</span>
+              <span class="badge-tag">2025</span>
+            </div>
+            <div class="actions">
+              <a href="#" class="btn-linklike js-open-pdf" data-pdf="pdfs/juridicas/Norma-Bienestar-2025.pdf" data-title="Norma de Bienestar Animal 2025">Ver aquí</a>
+              <a class="btn-linklike" href="pdfs/juridicas/Norma-Bienestar-2025.pdf" target="_blank" rel="noopener">Abrir</a>
+              <a class="btn-linklike" href="pdfs/juridicas/Norma-Bienestar-2025.pdf" download="Norma Bienestar 2025.pdf">Descargar</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Filosóficas -->
+        <article class="pdf-item" data-name="Ensayo Fenomenología Animal.pdf"
+                 data-tags="fenomenología, ética, método"
+                 data-cat="filosoficas">
+          <div class="preview">
+            <embed class="pdf-embed lazy-embed" title="Ensayo de Fenomenología Animal"
+                   data-src="pdfs/filosoficas/Ensayo-Fenomenologia-Animal.pdf#view=FitH" type="application/pdf" />
+            <span class="hint">Vista previa</span>
+          </div>
+          <div class="pdf-meta">
+            <div class="pdf-name">Ensayo Fenomenología Animal.pdf</div>
+            <div class="tag-row">
+              <span class="badge-tag">fenomenología</span>
+              <span class="badge-tag">ética</span>
+              <span class="badge-tag">método</span>
+            </div>
+            <div class="actions">
+              <a href="#" class="btn-linklike js-open-pdf" data-pdf="pdfs/filosoficas/Ensayo-Fenomenologia-Animal.pdf" data-title="Ensayo de Fenomenología Animal">Ver aquí</a>
+              <a class="btn-linklike" href="pdfs/filosoficas/Ensayo-Fenomenologia-Animal.pdf" target="_blank" rel="noopener">Abrir</a>
+              <a class="btn-linklike" href="pdfs/filosoficas/Ensayo-Fenomenologia-Animal.pdf" download="Ensayo Fenomenología Animal.pdf">Descargar</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Arquitectónicas -->
+        <article class="pdf-item" data-name="Plano Hábitat Centro Interpretación.pdf"
+                 data-tags="diseño, refugios, museografía"
+                 data-cat="arquitectonicas">
+          <div class="preview">
+            <embed class="pdf-embed lazy-embed" title="Plano de Hábitat (Centro de Interpretación)"
+                   data-src="pdfs/arquitectonicas/Plano-Habitat-CI.pdf#view=FitH" type="application/pdf" />
+            <span class="hint">Vista previa</span>
+          </div>
+          <div class="pdf-meta">
+            <div class="pdf-name">Plano Hábitat Centro Interpretación.pdf</div>
+            <div class="tag-row">
+              <span class="badge-tag">diseño</span>
+              <span class="badge-tag">refugios</span>
+              <span class="badge-tag">museografía</span>
+            </div>
+            <div class="actions">
+              <a href="#" class="btn-linklike js-open-pdf" data-pdf="pdfs/arquitectonicas/Plano-Habitat-CI.pdf" data-title="Plano de Hábitat (Centro de Interpretación)">Ver aquí</a>
+              <a class="btn-linklike" href="pdfs/arquitectonicas/Plano-Habitat-CI.pdf" target="_blank" rel="noopener">Abrir</a>
+              <a class="btn-linklike" href="pdfs/arquitectonicas/Plano-Habitat-CI.pdf" download="Plano Hábitat Centro Interpretación.pdf">Descargar</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- ====== /EJEMPLOS ====== -->
+      </div>
+
+      <div id="ahEmpty" class="cv-empty">Sin resultados. Ajusta la búsqueda o quita filtros.</div>
+    </div>
+  </section>
+
+  <!-- ===== Modal PDF (reutilizable) ===== -->
+  <div class="modal fade" id="pdfModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-fullscreen-md-down modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 id="pdfTitle" class="modal-title">Documento</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body p-0">
+          <embed id="pdfEmbed" type="application/pdf" src="" style="width:100%; height:80vh; border:0;" />
+        </div>
+        <div class="modal-footer">
+          <a id="pdfOpenNew" class="btn btn-outline-success" target="_blank" rel="noopener">Abrir en pestaña</a>
+          <button type="button" class="btn btn-success" data-dismiss="modal">Volver</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== JS (CDN) ===== -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" defer></script>
+
+  <script>
+    // Ejecuta cuando el bundle esté listo
+    window.addEventListener('load', function(){
+      // ====== Buscador + chips + lazy <embed> + modal PDF
+      (function(){
+        const norm = s => (s||"").toString().normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
+        const $ = (q)=>document.querySelector(q);
+        const $$ = (q)=>Array.from(document.querySelectorAll(q));
+
+        const q = $('#ahQ');
+        const clearBtn = $('#ahClearBtn');
+        const count = $('#ahCount');
+        const emptyEl = $('#ahEmpty');
+
+        let currentCat = 'all';
+
+        const obs = ('IntersectionObserver' in window) ? new IntersectionObserver((entries,o)=>{
+          for(const e of entries){
+            if(e.isIntersecting){
+              const el = e.target; const src = el.getAttribute('data-src');
+              if(src){ el.setAttribute('src', src); el.removeAttribute('data-src'); }
+              o.unobserve(el);
+            }
+          }
+        }, {rootMargin:'200px'}) : null;
+
+        function hydrateLazy(){
+          $$('#ahGrid .lazy-embed[data-src]').forEach(el=>{
+            if(obs) obs.observe(el);
+            else el.setAttribute('src', el.getAttribute('data-src'));
+          });
+        }
+
+        function applyFilter(){
+          const needle = norm(q ? q.value : '');
+          const items = $$('#ahGrid .pdf-item');
+          let list = items.slice();
+
+          if(currentCat !== 'all'){
+            list = list.filter(it => (it.getAttribute('data-cat')||'').toLowerCase() === currentCat);
+          }
+          if(needle){
+            list = list.filter(it=>{
+              const name = norm(it.getAttribute('data-name'));
+              const tags = norm(it.getAttribute('data-tags')||'');
+              return name.includes(needle) || tags.includes(needle);
+            });
+          }
+
+          const visibleSet = new Set(list);
+          items.forEach(it => it.classList.toggle('hide', !visibleSet.has(it)));
+
+          const visible = list.length;
+          if(count) count.textContent = `${visible} resultado${visible===1?'':'s'}`;
+          if(emptyEl) emptyEl.style.display = visible ? 'none' : 'block';
+
+          hydrateLazy();
+        }
+
+        function debounce(fn, ms){ let t; return (...a)=>{ clearTimeout(t); t=setTimeout(()=>fn(...a), ms);} }
+
+        q && q.addEventListener('input', debounce(applyFilter,120));
+        q && q.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ e.preventDefault(); } });
+        window.addEventListener('keydown', (e)=>{ if(e.key==='/' && document.activeElement!==q){ e.preventDefault(); q && q.focus(); } if(e.key==='Escape'){ clearBtn && clearBtn.click(); } });
+
+        const catBar = $('#ahCats');
+        if(catBar){
+          catBar.addEventListener('click', (e)=>{
+            const btn = e.target.closest('.cv-chip');
+            if(!btn) return;
+            $$('#ahCats .cv-chip').forEach(b=>{ b.classList.remove('active'); b.setAttribute('aria-pressed','false'); });
+            btn.classList.add('active');
+            btn.setAttribute('aria-pressed','true');
+            currentCat = (btn.getAttribute('data-cat')||'all').toLowerCase();
+            applyFilter();
+          });
+          const allBtn = $('#ahCats .cv-chip[data-cat="all"]');
+          if(allBtn){ allBtn.classList.add('active'); allBtn.setAttribute('aria-pressed','true'); }
+        }
+
+        clearBtn && clearBtn.addEventListener('click', ()=>{
+          if(q) q.value = '';
+          const allBtn = $('#ahCats .cv-chip[data-cat="all"]');
+          if(allBtn){ allBtn.click(); }
+          applyFilter();
+          q && q.focus();
+        });
+
+        const modalEl = document.getElementById('pdfModal');
+        const pdfTitle = document.getElementById('pdfTitle');
+        const pdfEmbed = document.getElementById('pdfEmbed');
+        const pdfOpenNew = document.getElementById('pdfOpenNew');
+        function openPdf(url, title){
+          if(!modalEl || !pdfTitle || !pdfEmbed || !pdfOpenNew) return;
+          pdfTitle.textContent = title || 'Documento';
+          pdfEmbed.setAttribute('src', url + '#view=FitH');
+          pdfOpenNew.setAttribute('href', url);
+          if(window.jQuery && $(modalEl).modal){ $(modalEl).modal('show'); }
+        }
+        if (modalEl && window.jQuery){
+          $(modalEl).on('hidden.bs.modal', function(){ if(pdfEmbed) pdfEmbed.removeAttribute('src'); });
+        }
+        $$('#ahGrid .js-open-pdf').forEach(btn=>{
+          btn.addEventListener('click', (e)=>{
+            e.preventDefault();
+            const url = btn.getAttribute('data-pdf');
+            const title = btn.getAttribute('data-title') || btn.textContent.trim();
+            if(url) openPdf(url, title);
+          });
+        });
+
+        applyFilter();
+        hydrateLazy();
+      })();
+    });
+  </script>
+</body>
+</html>
