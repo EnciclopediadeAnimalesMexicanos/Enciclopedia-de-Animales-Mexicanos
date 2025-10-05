@@ -3,7 +3,6 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- mobile metas -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Enciclopedia de Animales Mexicanos</title>
@@ -24,34 +23,31 @@
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
 
-    <!-- Fuentes opcionales (UI + lectura) -->
+    <!-- Fuentes -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
     <style>
-      /* ====== Tokens (paleta verde) ====== */
       :root{
         --bg:#f7faf7;
         --surface:#ffffff;
         --ink:#0f172a;
         --muted:#6b7280;
         --line:#e5e7eb;
-
-        /* PRIMARIO VERDE */
-        --accent:#16a34a;      /* 600 */
-        --accent-600:#15803d;  /* 700 */
-        --accent-700:#166534;  /* 800 */
-
+        --accent:#16a34a;
+        --accent-600:#15803d;
+        --accent-700:#166534;
         --radius:16px;
         --shadow:0 10px 25px rgba(2,6,23,.08), 0 2px 8px rgba(2,6,23,.06);
         --shadow-sm:0 6px 18px rgba(2,6,23,.08);
+        --focus:0 0 0 3px rgba(22,163,74,.2), 0 1px 2px rgba(2,6,23,.08);
       }
       html, body{ background:var(--bg); color:var(--ink); }
       body{ font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif; }
       h1,h2,h3,h4{ font-weight:700 }
       .longform{ font-family:"Merriweather", Georgia, Cambria, "Times New Roman", Times, serif; line-height:1.7 }
 
-      /* ===== Header unificado ===== */
+      /* ===== Header ===== */
       .site-header{position:sticky; top:0; z-index:1030; background:linear-gradient(180deg,#ffffff,#f7fff9); border-bottom:1px solid var(--line)}
       .site-header.stuck{box-shadow:var(--shadow)}
       .site-header .container{max-width:1200px}
@@ -64,21 +60,47 @@
       .site-header nav.nav a{padding:.5rem .75rem; border-radius:10px; color:#0f172a; text-decoration:none}
       .site-header nav.nav a[aria-current="page"], .site-header nav.nav a:hover{background:#ecfdf5; color:var(--accent)}
 
-      /* ===== Ajustes mínimos existentes ===== */
+      /* ===== Buscador (mejorado) ===== */
+      .site-search{ padding:.35rem 0 1rem; position:relative; overflow:visible; }
+      .cv-search{ display:flex; align-items:center; gap:.6rem; background:#fff; border:1px solid var(--line); border-radius:999px; padding:.35rem .75rem; box-shadow:var(--shadow-sm); transition:box-shadow .15s, border-color .15s; width:min(620px,100%); }
+      .cv-search:focus-within{ box-shadow:var(--focus); border-color:#cce3d3; }
+      .cv-search svg{ flex:0 0 auto }
+      .cv-search input{ border:0; outline:none; width:100%; padding:.35rem; background:transparent; font-size:1rem }
+      .cv-kbd{ font-size:.75rem; color:#64748b; border:1px solid var(--line); border-radius:6px; padding:.05rem .35rem; background:#f8fafc }
+
+      .search-panel{
+        position:absolute; left:0; top:calc(100% + .4rem); width:min(720px,100%);
+        background:#fff; border:1px solid var(--line); border-radius:14px; box-shadow:var(--shadow);
+        z-index:1060; display:none; overflow:hidden;
+      }
+      .search-panel .sp-header{
+        display:flex; align-items:center; justify-content:space-between;
+        padding:.6rem .8rem; border-bottom:1px solid var(--line); background:#fcfefc;
+      }
+      .search-panel .sp-header strong{ font-weight:700; color:#0f172a; font-size:.95rem }
+      .search-panel .sp-header button{ border:0; background:transparent; font-size:1.1rem; line-height:1; cursor:pointer; color:#64748b; }
+      .search-panel .sp-list{ max-height:360px; overflow:auto; padding:.25rem }
+      .sp-item{ display:grid; grid-template-columns: 1.3rem auto; gap:.65rem; padding:.6rem .75rem; cursor:pointer; align-items:flex-start; }
+      .sp-item:hover{ background:#f7faf7 }
+      .sp-item.active{ background:#ecfdf5; }
+      .sp-ico{ width:1.2rem; text-align:center; color:#16a34a; margin-top:.15rem }
+      .sp-type{ font-size:.7rem; text-transform:uppercase; letter-spacing:.04em; color:#64748b; border:1px solid var(--line); border-radius:6px; padding:.05rem .35rem; margin-right:.5rem }
+      .sp-main{ min-width:0 }
+      .sp-title{ font-weight:600; color:#0f172a; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+      .sp-meta{ font-size:.82rem; color:#64748b; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+      .sp-tags{ display:flex; gap:.35rem; flex-wrap:wrap; margin-top:.25rem }
+      .sp-chip{ border:1px solid #bbf7d0; background:#ecfdf5; color:#166534; border-radius:999px; padding:.12rem .45rem; font-size:.75rem }
+      .hl{ background: #fef9c3; border-radius:4px; padding:0 .15rem; }
+
+      /* Ajustes base existentes */
       img { max-width: 100%; height: auto; }
-      .navbar-nav .nav-link { white-space: nowrap; }
       .read_more { cursor: pointer; }
       .gallery_img figure, .about_img figure { margin: 0; }
       .loader_bg { display: none; }
 
-      /* ===== Convocatorias (buscador + grid PDFs con <embed>) ===== */
+      /* Convocatorias */
       .convocatorias-section { background:#f7f9f8; padding:40px 0; border-top:1px solid #e9ecef; }
       .titlepage .green{ color:var(--accent); }
-      .cv-toolbar{display:grid; grid-template-columns:1fr auto; gap:1rem; margin-top:.5rem}
-      @media (max-width:640px){ .cv-toolbar{grid-template-columns:1fr} }
-      .cv-search{display:flex; align-items:center; gap:.5rem; background:#fff; border:1px solid var(--line); border-radius:999px; padding:.5rem .75rem; box-shadow:var(--shadow-sm)}
-      .cv-search input{border:0; outline:0; width:100%; background:transparent; font-size:1rem}
-      .cv-kbd{display:inline-flex; align-items:center; gap:.25rem; font-size:.8rem; color:var(--muted); background:#f4f6f9; border:1px solid var(--line); padding:.15rem .35rem; border-radius:6px}
       .cv-tools{display:flex; align-items:center; gap:.5rem; flex-wrap:wrap}
       .cv-select{border:1px solid var(--line); background:#fff; border-radius:10px; padding:.55rem .7rem}
       .cv-btn{display:inline-flex; align-items:center; gap:.5rem; padding:.55rem .8rem; border-radius:10px; border:1px solid var(--line); background:#fff; cursor:pointer}
@@ -87,7 +109,6 @@
       .cv-chip.active{background:#dcfce7; border-color:#86efac}
       .cv-empty{display:none; border:1px dashed var(--line); border-radius:12px; padding:2rem; text-align:center; color:var(--muted); background:#fff; margin-top:1rem}
 
-      /* Grid de PDFs */
       .pdf-grid{ display:grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap:1rem; padding:1.25rem 0 0; }
       @media (max-width: 480px){ .pdf-grid{ grid-template-columns: 1fr; } }
       .pdf-item{ background:#fff; border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; transition: transform .2s ease, box-shadow .2s ease; }
@@ -96,7 +117,7 @@
       .preview{ position:relative; background:linear-gradient(180deg,#f0f7f3,#e9f7ee); min-height:220px }
       .pdf-embed{ width:100%; height:380px; border:0; display:block; background:#f0f3f7; }
       @media (max-width: 576px){ .pdf-embed{ height:320px; } }
-      .preview .hint{position:absolute; right:12px; bottom:12px; background:rgba(255,255,255,.85); border:1px solid var(--line); border-radius:999px; padding:.25rem .6rem; font-size:.8rem; color:var(--muted)}
+      .preview .hint{position:absolute; right:12px; bottom:12px; background:rgba(255,255,255,.85); border:1px solid var(--line); border-radius:999px; padding:.25rem .6rem; font-size:.8rem; color:#64748b}
       .pdf-meta{ display:flex; flex-direction:column; gap:.6rem; padding:.9rem .9rem 1rem; }
       .pdf-name{ font-weight:700; line-height:1.35; word-break:break-word }
       .tag-row{ display:flex; flex-wrap:wrap; gap:.35rem }
@@ -105,17 +126,18 @@
       .btn-linklike{ display:inline-flex; align-items:center; gap:.45rem; border:1px solid var(--line); padding:.45rem .75rem; border-radius:10px; background:#fff; text-decoration:none; color:var(--accent); font-weight:600; }
       .btn-linklike:hover{ background:#f1fcf5; border-color:#cce3d3; }
 
-      /* Motion reducido */
       @media (prefers-reduced-motion: reduce) { .carousel, .carousel-item{ transition:none!important } }
     </style>
   </head>
   <body class="main-layout">
-    <!-- ===== Header unificado ===== -->
+    <!-- ===== Header ===== -->
     <header id="siteHeader" class="site-header" role="banner">
       <div class="container">
         <div class="mast">
           <div class="brand">
-            <a href="index.html" aria-label="Ir al inicio"><img src="images/Logo EAM.png" alt="EAM logo" loading="eager" decoding="async" fetchpriority="high"></a>
+            <a href="index.html" aria-label="Ir al inicio">
+              <img src="images/Logo EAM.png" alt="EAM logo" loading="eager" decoding="async" fetchpriority="high" style="width:190px; height:auto;">
+            </a>
             <div>
               <div class="title">Enciclopedia de Animales Mexicanos</div>
               <div class="sub">Inicio</div>
@@ -123,18 +145,38 @@
           </div>
           <nav class="nav" aria-label="Navegación principal">
             <a href="index.html" aria-current="page">Inicio</a>
+            <a href="humanidad-animalidad.html">Animalidad y Humanidad</a>
             <a href="about.html">Nosotros</a>
             <a href="service.html">Especies</a>
-            <a href="gallery.html">Galería</a>
-            <a href="testimonial.html">Descargas</a>
             <a href="contact.html">Contacto</a>
-             <a href="humanidad-animalidad.html">Animalidad y Humanidad</a>
           </nav>
+        </div>
+
+        <!-- ===== Buscador ===== -->
+        <div class="site-search" role="search">
+          <label class="cv-search header-search" for="headerQ" title="Buscar en el sitio">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 21l-4.35-4.35" stroke="#64748b" stroke-width="2" stroke-linecap="round"/><circle cx="10.5" cy="10.5" r="6.5" stroke="#64748b" stroke-width="2"/></svg>
+            <input id="headerQ" placeholder="Busca secciones, fichas y convocatorias…" autocomplete="off" />
+            <span class="cv-kbd" aria-hidden="true">/</span>
+          </label>
+
+          <!-- Panel resultados -->
+          <div id="searchPanel" class="search-panel" aria-live="polite">
+            <div class="sp-header">
+              <strong id="spCount">Escribe para buscar</strong>
+              <button id="spClose" type="button" aria-label="Cerrar">✕</button>
+            </div>
+            <div id="spList" class="sp-list" role="list"></div>
+            <div id="spFooter" class="sp-footer" hidden>
+              <a href="#convocatorias" id="spSeeAll">Ver todos en Convocatorias</a>
+            </div>
+          </div>
         </div>
       </div>
     </header>
+ 
 
-    <!-- ===== Banner (tus slides se conservan) ===== -->
+    <!-- ===== Banner ===== -->
     <section class="banner_main">
       <div id="myCarousel" class="carousel slide banner" data-ride="carousel" aria-label="Mensajes principales">
         <ol class="carousel-indicators">
@@ -198,6 +240,11 @@
       </div>
     </section>
 
+    <!-- Indicador -->
+    <div class="text-center py-2" style="background:#f8fff9;border-bottom:1px solid var(--line)">
+      <small>¿Buscas convocatorias? Más abajo o <a href="#convocatorias" class="read_more" style="padding:.35rem .6rem">ir a convocatorias</a></small>
+    </div>
+
     <!-- ===== About ===== -->
     <div id="about" class="about">
       <div class="container">
@@ -210,17 +257,13 @@
               </p>
               <a class="read_more" href="nosotros.html">Conoce más</a>
             </div>
-          </div>
-          <div class="col-md-7">
-            <div class="about_img">
-              <figure><img src="images/Logo EAM.png" alt="Logotipo de la EAM" loading="lazy" decoding="async" /></figure>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- ===== Servicios/Contenidos ===== -->
+    <!-- ===== Servicios ===== -->
     <div id="service" class="service">
       <div class="container">
         <div class="row"><div class="col-md-12"><div class="titlepage"><h2>Nuestros <span class="green">contenidos</span></h2></div></div></div>
@@ -265,7 +308,7 @@
     <!-- ===== Galería ===== -->
     <div id="gallery" class="gallery">
       <div class="container">
-        <div class="row"><div class="col-md-12"><div class="titlepage"><h2>Nuestra <span class="green">galería</span></h2><p>Imágenes ilustrativas de especies (con licencias y créditos correspondie ntes).</p></div></div></div>
+        <div class="row"><div class="col-md-12"><div class="titlepage"><h2>Nuestra <span class="green">galería</span></h2><p>Imágenes ilustrativas de especies (con licencias y créditos correspondientes).</p></div></div></div>
         <div class="row">
           <div class="col-md-4 col-sm-6"><div class="gallery_text"><div class="galleryh3"><h3>Ajolote</h3><p>Anfibio endémico de Xochimilco (Ambystoma mexicanum).</p></div></div></div>
           <div class="col-md-4 col-sm-6"><div class="gallery_img"><figure><img src="images/ajolote.png" alt="Ajolote" loading="lazy" decoding="async"/></figure></div></div>
@@ -307,7 +350,7 @@
       </div>
     </div>
 
-    <!-- ===== Avances / noticias ===== -->
+    <!-- ===== Avances ===== -->
     <div class="latest_news">
       <div class="container">
         <div class="row"><div class="col-md-12"><div class="titlepage"><h2>Avances <span class="green">interdisciplinarios</span></h2></div></div></div>
@@ -345,8 +388,8 @@
         </div>
       </div>
     </div>
-
-    <!-- ===== CONVOCATORIAS (con buscador + PDFs usando <embed>) ===== -->
+        <!-- Grid de PDFs (ejemplos) -->
+  <!-- ===== CONVOCATORIAS ===== -->
     <section class="convocatorias-section" id="convocatorias">
       <div class="container">
         <div class="row align-items-end">
@@ -357,43 +400,28 @@
             </div>
           </div>
           <div class="col-md-4 text-md-right text-left mb-3">
-            <div class="cv-toolbar" role="search">
-              <label class="cv-search" for="cvQ" title="Buscar en convocatorias por nombre o etiquetas">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 21l-4.35-4.35" stroke="#64748b" stroke-width="2" stroke-linecap="round"/><circle cx="10.5" cy="10.5" r="6.5" stroke="#64748b" stroke-width="2"/></svg>
-                <input id="cvQ" placeholder="Buscar (ej. taller, 2025, voluntariado)" autocomplete="off"/>
-                <span class="cv-kbd" aria-hidden="true">/</span>
-              </label>
-              <div class="cv-tools">
-                <select id="cvSort" class="cv-select" aria-label="Ordenar resultados">
-                  <option value="fecha-desc">Más próximas primero</option>
-                  <option value="fecha-asc">Más lejanas primero</option>
-                  <option value="az">Nombre (A–Z)</option>
-                  <option value="za">Nombre (Z–A)</option>
-                </select>
-                <button id="cvClearBtn" class="cv-btn" type="button" title="Limpiar filtros">Limpiar</button>
-                <span id="cvCount" class="text-muted small" aria-live="polite"></span>
-              </div>
+            <div class="cv-tools" role="group" aria-label="Herramientas de filtrado">
+              <select id="cvSort" class="cv-select" aria-label="Ordenar resultados">
+                <option value="fecha-desc">Más próximas primero</option>
+                <option value="fecha-asc">Más lejanas primero</option>
+                <option value="az">Nombre (A–Z)</option>
+                <option value="za">Nombre (Z–A)</option>
+              </select>
+              <button id="cvClearBtn" class="cv-btn" type="button" title="Limpiar filtros">Limpiar</button>
+              <span id="cvCount" class="text-muted small" aria-live="polite"></span>
             </div>
             <div id="cvChipBar" class="cv-chips" aria-label="Filtrar por etiquetas"></div>
           </div>
         </div>
-
-        <!-- Grid de PDFs -->
         <div id="cvGrid" class="pdf-grid" aria-live="polite">
-          <!-- ====== EJEMPLOS con <embed> (ajusta rutas) ====== -->
-          <article class="pdf-item" data-name="Convocatoria Ajolotes 2025.pdf" data-tags="voluntariado, 2025, anfibios">
+          <article class="pdf-item" data-name="Convocatoria Ajolotes 2025.pdf" data-tags="voluntariado, 2025, anfibios" data-date="2025-06-01">
             <div class="preview">
-              <!-- EJEMPLO EMBED LAZY -->
               <embed class="pdf-embed lazy-embed" title="Convocatoria Ajolotes 2025" data-src="pdfs/Convocatoria-Ajolotes-2025.pdf#view=FitH" type="application/pdf" />
               <span class="hint">Vista previa</span>
             </div>
             <div class="pdf-meta">
               <div class="pdf-name">Convocatoria Ajolotes 2025.pdf</div>
-              <div class="tag-row">
-                <span class="badge-tag">voluntariado</span>
-                <span class="badge-tag">2025</span>
-                <span class="badge-tag">anfibios</span>
-              </div>
+              <div class="tag-row"><span class="badge-tag">voluntariado</span><span class="badge-tag">2025</span><span class="badge-tag">anfibios</span></div>
               <div class="actions">
                 <a href="#" class="btn-linklike js-open-pdf" data-pdf="pdfs/Convocatoria-Ajolotes-2025.pdf" data-title="Convocatoria Ajolotes 2025">Ver aquí</a>
                 <a class="btn-linklike" href="pdfs/Convocatoria-Ajolotes-2025.pdf" target="_blank" rel="noopener">Abrir</a>
@@ -402,19 +430,14 @@
             </div>
           </article>
 
-          <article class="pdf-item" data-name="Taller Divulgación Docente.pdf" data-tags="taller, divulgación, docentes">
+          <article class="pdf-item" data-name="Taller Divulgación Docente.pdf" data-tags="taller, divulgación, docentes" data-date="2025-04-10">
             <div class="preview">
-              <!-- EJEMPLO EMBED LAZY -->
               <embed class="pdf-embed lazy-embed" title="Taller de Divulgación para Docentes" data-src="pdfs/Taller-Divulgacion-Docentes.pdf#view=FitH" type="application/pdf" />
               <span class="hint">Vista previa</span>
             </div>
             <div class="pdf-meta">
               <div class="pdf-name">Taller Divulgación Docente.pdf</div>
-              <div class="tag-row">
-                <span class="badge-tag">taller</span>
-                <span class="badge-tag">divulgación</span>
-                <span class="badge-tag">docentes</span>
-              </div>
+              <div class="tag-row"><span class="badge-tag">taller</span><span class="badge-tag">divulgación</span><span class="badge-tag">docentes</span></div>
               <div class="actions">
                 <a href="#" class="btn-linklike js-open-pdf" data-pdf="pdfs/Taller-Divulgacion-Docentes.pdf" data-title="Taller de Divulgación para Docentes">Ver aquí</a>
                 <a class="btn-linklike" href="pdfs/Taller-Divulgacion-Docentes.pdf" target="_blank" rel="noopener">Abrir</a>
@@ -422,14 +445,13 @@
               </div>
             </div>
           </article>
-          <!-- ====== /EJEMPLOS ====== -->
         </div>
 
         <div id="cvEmpty" class="cv-empty">Sin resultados. Ajusta la búsqueda o quita filtros.</div>
       </div>
     </section>
 
-    <!-- ===== Testimonial / Fichas ===== -->
+    <!-- ===== Fichas ===== -->
     <div id="testimonial" class="Testimonial">
       <div class="container-fluid">
         <div class="row d_flex">
@@ -540,7 +562,7 @@
       </div>
     </footer>
 
-    <!-- ===== Modal PDF (retorno directo) ===== -->
+    <!-- ===== Modal PDF ===== -->
     <div class="modal fade" id="pdfModal" tabindex="-1" aria-hidden="true">
       <div class="modal-dialog modal-fullscreen-md-down modal-xl">
         <div class="modal-content">
@@ -551,7 +573,6 @@
             </button>
           </div>
           <div class="modal-body p-0">
-            <!-- EMBED en modal -->
             <embed id="pdfEmbed" type="application/pdf" src="" style="width:100%; height:80vh; border:0;" />
           </div>
           <div class="modal-footer">
@@ -562,7 +583,7 @@
       </div>
     </div>
 
-    <!-- JS (defer) -->
+    <!-- JS -->
     <script defer src="js/jquery.min.js"></script>
     <script defer src="js/bootstrap.bundle.min.js"></script>
     <script defer src="js/jquery.mCustomScrollbar.concat.min.js"></script>
@@ -576,7 +597,7 @@
         onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
       })();
 
-      // Respeta reduced motion en carruseles
+      // Reduced motion
       (function(){
         try{
           var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -584,14 +605,25 @@
         }catch(e){}
       })();
 
-      // ====== Convocatorias: buscador + chips + orden + lazy <embed> + modal PDF
-      (function(){
-        // Utils
-        const norm = s => (s||"").toString().normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
-        const $ = (q)=>document.querySelector(q);
-        const $$ = (q)=>Array.from(document.querySelectorAll(q));
+      // ===== UTILIDADES =====
+      const norm = s => (s||"").toString().normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
+      const $  = (q)=>document.querySelector(q);
+      const $$ = (q)=>Array.from(document.querySelectorAll(q));
 
-        const q = $('#cvQ');
+      // ===== RUTAS DIRECTAS POR PALABRA CLAVE =====
+      const KEY_ROUTES = [
+        { terms:['fichas','ficha','especies'], title:'Fichas', url:'#testimonial', type:'Sección', meta:'Fichas destacadas' },
+        { terms:['animalidad y humanidad','animalidad','humanidad'], title:'Animalidad y Humanidad', url:'humanidad-animalidad.html', type:'Sección', meta:'Sección' },
+        { terms:['filosofia','filosofía'], title:'Filosofía', url:'humanidad-animalidad.html#filosofia', type:'Sección', meta:'Humanidad' },
+        { terms:['literatura'], title:'Literatura', url:'humanidad-animalidad.html#literatura', type:'Sección', meta:'Humanidad' },
+        { terms:['artes','arte'], title:'Artes', url:'humanidad-animalidad.html#artes', type:'Sección', meta:'Humanidad' },
+        { terms:['juridicas','jurídicas','derecho'], title:'Jurídicas', url:'humanidad-animalidad.html#juridicas', type:'Sección', meta:'Humanidad' },
+        { terms:['arquitectura'], title:'Arquitectura', url:'humanidad-animalidad.html#arquitectura', type:'Sección', meta:'Humanidad' },
+      ];
+
+      // ===== CONVOCATORIAS (chips + filtro + lazy embed + modal) =====
+      (function(){
+        const headerQ = $('#headerQ');
         const sortSel = $('#cvSort');
         const clearBtn = $('#cvClearBtn');
         const chipBar = $('#cvChipBar');
@@ -599,7 +631,6 @@
         const emptyEl = $('#cvEmpty');
         const grid = $('#cvGrid');
 
-        // Lazy load para <embed> (usamos data-src)
         const obs = ('IntersectionObserver' in window) ? new IntersectionObserver((entries,o)=>{
           for(const e of entries){
             if(e.isIntersecting){
@@ -617,7 +648,6 @@
           });
         }
 
-        // Construye chips a partir de data-tags
         const selected = new Set();
         function buildChips(){
           const tagMap = new Map();
@@ -641,7 +671,6 @@
           const mode = sortSel ? sortSel.value : 'fecha-desc';
           const byName = (a,b)=> norm(a.getAttribute('data-name')).localeCompare(norm(b.getAttribute('data-name')),'es');
           const parseDate = (it)=>{
-            // Intentamos detectar fecha YYYY o en nombre; si no, usamos 2100 para evitar romper orden
             const name = it.getAttribute('data-name')||'';
             const m = name.match(/\b(20\d{2}|19\d{2})\b/);
             return m ? new Date(+m[1], 0, 1) : new Date(2100,0,1);
@@ -649,12 +678,11 @@
           if(mode==='az') return items.sort(byName);
           if(mode==='za') return items.sort((a,b)=>-byName(a,b));
           if(mode==='fecha-asc') return items.sort((a,b)=> parseDate(a)-parseDate(b));
-          // por defecto: próximas (mayor fecha primero)
           return items.sort((a,b)=> parseDate(b)-parseDate(a));
         }
 
         function applyFilter(){
-          const needle = norm(q ? q.value : '');
+          const needle = norm(headerQ ? headerQ.value : '');
           const items = $$('.pdf-item');
           let list = items.slice();
 
@@ -672,11 +700,8 @@
             });
           }
 
-          // Oculta/muestra
           const setHidden = new Set(list);
           items.forEach(it=> it.classList.toggle('hide', !setHidden.has(it)));
-
-          // Ordenar DOM por selección actual
           sortItems(list).forEach(el=> grid.appendChild(el));
 
           const visible = list.length;
@@ -686,15 +711,22 @@
           hydrateLazy();
         }
 
-        // Eventos UI
         function debounce(fn, ms){ let t; return (...a)=>{ clearTimeout(t); t=setTimeout(()=>fn(...a), ms);} }
-        q && q.addEventListener('input', debounce(applyFilter,120));
-        q && q.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ e.preventDefault(); } });
-        sortSel && sortSel.addEventListener('change', applyFilter);
-        clearBtn && clearBtn.addEventListener('click', ()=>{ if(q) q.value=''; selected.clear(); $$('.cv-chip.active').forEach(c=>{ c.classList.remove('active'); c.setAttribute('aria-pressed','false'); }); applyFilter(); q && q.focus(); });
-        window.addEventListener('keydown', (e)=>{ if(e.key==='/' && document.activeElement!==q){ e.preventDefault(); q && q.focus(); } if(e.key==='Escape'){ clearBtn && clearBtn.click(); } });
 
-        // Modal PDF (con <embed>)
+        headerQ && headerQ.addEventListener('input', debounce(applyFilter,120));
+        sortSel && sortSel.addEventListener('change', applyFilter);
+        clearBtn && clearBtn.addEventListener('click', ()=>{
+          if(headerQ) headerQ.value='';
+          selected.clear();
+          $$('.cv-chip.active').forEach(c=>{ c.classList.remove('active'); c.setAttribute('aria-pressed','false'); });
+          applyFilter();
+          headerQ && headerQ.focus();
+        });
+        window.addEventListener('keydown', (e)=>{
+          if(e.key==='/' && document.activeElement!==headerQ){ e.preventDefault(); headerQ && headerQ.focus(); }
+          if(e.key==='Escape'){ clearBtn && clearBtn.click(); }
+        });
+
         const modalEl = document.getElementById('pdfModal');
         const pdfTitle = document.getElementById('pdfTitle');
         const pdfEmbed = document.getElementById('pdfEmbed');
@@ -704,13 +736,11 @@
           pdfTitle.textContent = title || 'Documento';
           pdfEmbed.setAttribute('src', url + '#view=FitH');
           pdfOpenNew.setAttribute('href', url);
-          // Bootstrap 4: usa jQuery
           if (window.jQuery && $(modalEl).modal) { $(modalEl).modal('show'); }
         }
         if (modalEl){
           $(modalEl).on('hidden.bs.modal', function(){ pdfEmbed.removeAttribute('src'); });
         }
-
         $$('.js-open-pdf').forEach(btn=>{
           btn.addEventListener('click', (e)=>{
             e.preventDefault();
@@ -720,10 +750,259 @@
           });
         });
 
-        // Inicio
+        window.filterConvocatorias = function(term){
+          const header = $('#headerQ');
+          if(header){ header.value = term || ''; }
+          applyFilter();
+        };
+
         buildChips();
         applyFilter();
         hydrateLazy();
+      })();
+
+      // ===== BUSCADOR DEL HEADER (panel + rutas + teclado) =====
+      (function(){
+        const headerQ = $('#headerQ');
+        const panel   = $('#searchPanel');
+        const spList  = $('#spList');
+        const spCount = $('#spCount');
+        const spClose = $('#spClose');
+        const spFooter= $('#spFooter');
+        const spSeeAll= $('#spSeeAll');
+
+        function highlight(text, q){
+          const n = norm(text), m = norm(q);
+          if(!m) return text;
+          const i = n.indexOf(m);
+          if(i<0) return text;
+          return text.substring(0,i) + '<span class="hl">' + text.substring(i, i+m.length) + '</span>' + text.substring(i+m.length);
+        }
+
+        function applyConvFilter(term){
+          if (typeof window.filterConvocatorias === 'function'){
+            window.filterConvocatorias(term || '');
+          }
+        }
+
+        // Índice base (nav + convocatorias + animales) + rutas por palabra
+        const index = [];
+        function buildIndex(){
+          index.length = 0;
+
+          // Rutas clave sugeridas
+          KEY_ROUTES.forEach(r=>{
+            index.push({ type:r.type, title:r.title, url:r.url, meta:r.meta||'', tags:[], __route: true, terms:r.terms });
+          });
+
+          // Menú principal
+          $$('header nav a').forEach(a=>{
+            index.push({
+              type:'Sección',
+              title:a.textContent.trim(),
+              url:a.getAttribute('href')||'#',
+              meta:'Navegación',
+              tags:[]
+            });
+          });
+
+          // Convocatorias
+          $$('#cvGrid .pdf-item').forEach(card=>{
+            const name = card.getAttribute('data-name') || card.querySelector('.pdf-name')?.textContent || 'Documento';
+            const tagsRaw = (card.getAttribute('data-tags') || '').split(',').map(t=>t.trim()).filter(Boolean);
+            index.push({
+              type:'Convocatoria',
+              title:name,
+              url:'#convocatorias',
+              meta:tagsRaw.join(', '),
+              tags:tagsRaw
+            });
+          });
+
+          // Animales
+          $$('#gallery .galleryh3 h3').forEach(h=>{
+            index.push({ type:'Animal', title:h.textContent.trim(), url:'#gallery', meta:'Galería', tags:[] });
+          });
+          $$('#testimonial .text_humai span').forEach(s=>{
+            index.push({ type:'Animal', title:s.textContent.trim(), url:'#testimonial', meta:'Fichas', tags:[] });
+          });
+        }
+        buildIndex();
+
+        function bestKeyRoute(q){
+          const m = norm(q);
+          if(!m) return null;
+          for(const r of KEY_ROUTES){
+            if(r.terms.some(t => norm(t).startsWith(m) || m.includes(norm(t)) )){
+              return r;
+            }
+          }
+          return null;
+        }
+
+        function search(q){
+          const needle = norm(q);
+          if(!needle) return [];
+
+          const scored = index.map(it=>{
+            const hay = norm(it.title + ' ' + (it.meta||'') + ' ' + (it.tags||[]).join(' '));
+            let score = 0;
+            if(hay.includes(needle)) score += 10;
+            if(norm(it.title).startsWith(needle)) score += 6;
+            if(it.__route && hay.includes(needle)) score += 12;
+            if(it.type==='Convocatoria' && hay.includes(needle)) score += 2;
+            return {item:it, score};
+          }).filter(x=>x.score>0);
+
+          scored.sort((a,b)=> b.score - a.score || a.item.title.localeCompare(b.item.title,'es'));
+          return scored.map(x=>x.item);
+        }
+
+        function convocatoriaMatches(term){
+          const needle = norm(term);
+          const items = $$('#cvGrid .pdf-item');
+          const out = [];
+          items.forEach(it=>{
+            const name = norm(it.getAttribute('data-name'));
+            const tags = norm(it.getAttribute('data-tags')||'');
+            if(!needle || name.includes(needle) || tags.includes(needle)){
+              out.push({ title: it.getAttribute('data-name') || 'Documento', meta:  it.getAttribute('data-tags') || '' });
+            }
+          });
+          return out;
+        }
+
+        function iconFor(type){
+          if(type==='Sección') return '<i class="fa fa-compass sp-ico" aria-hidden="true"></i>';
+          if(type==='Convocatoria') return '<i class="fa fa-file-pdf-o sp-ico" aria-hidden="true"></i>';
+          return '<i class="fa fa-paw sp-ico" aria-hidden="true"></i>';
+        }
+
+        let activeIndex = -1;
+
+        function renderPanel(term){
+          const q = term || '';
+          const key = bestKeyRoute(q);
+          const results = q ? search(q) : [];
+          const convos  = q ? convocatoriaMatches(q) : [];
+          const top = (key && !results.some(r=>r.url===key.url))
+            ? [ {type:key.type,title:key.title,url:key.url,meta:key.meta||'',tags:[], __route:true} , ...results].slice(0,12)
+            : results.slice(0,12);
+
+          spCount.textContent = q ? `${results.length} resultado${results.length===1?'':'s'}` : 'Escribe para buscar';
+
+          if (q && top.length === 0){
+            spList.innerHTML = `
+              <div class="sp-item" role="listitem" style="cursor:default">
+                <div class="sp-ico"></div>
+                <div class="sp-main">
+                  <div class="sp-title">Sin resultados</div>
+                  <div class="sp-meta">Prueba con otro término o pulsa Enter para ver convocatorias filtradas</div>
+                </div>
+              </div>`;
+          } else {
+            spList.innerHTML = top.map((it,i)=>{
+              const chips = (it.type==='Convocatoria' && it.tags && it.tags.length)
+                ? `<div class="sp-tags">${it.tags.slice(0,4).map(t=>`<span class="sp-chip">${t}</span>`).join('')}</div>`
+                : '';
+              const titleHL = highlight(it.title, q);
+              const metaHL  = highlight(it.meta||'', q);
+              return `
+                <div class="sp-item" role="listitem" data-i="${i}">
+                  ${iconFor(it.type)}
+                  <div class="sp-main">
+                    <div><span class="sp-type">${it.type}</span> <span class="sp-title" title="${it.title}">${titleHL}</span></div>
+                    <div class="sp-meta">${metaHL}</div>
+                    ${chips}
+                  </div>
+                </div>`;
+            }).join('');
+          }
+
+          if (q && convos.length){
+            spFooter.hidden = false;
+            spSeeAll.onclick = (e)=>{ e.preventDefault(); applyConvFilter(q); location.hash = '#convocatorias'; hidePanel(); };
+            spSeeAll.textContent = `Ver ${convos.length} en Convocatorias`;
+          } else {
+            spFooter.hidden = true;
+          }
+
+          spList.querySelectorAll('.sp-item[data-i]').forEach(row=>{
+            row.addEventListener('click', ()=>{
+              const i = +row.getAttribute('data-i');
+              const it = top[i];
+              if(!it) return;
+              if(it.type === 'Convocatoria'){ applyConvFilter(q || it.title); location.hash = '#convocatorias'; }
+              else if(it.url){ location.href = it.url; }
+              hidePanel();
+            });
+          });
+
+          activeIndex = -1;
+          if(q.length>=1){ showPanel(); } else { hidePanel(); }
+        }
+
+        function showPanel(){ panel.style.display='block'; }
+        function hidePanel(){ panel.style.display='none'; }
+
+        function moveSelection(dir){
+          const rows = Array.from(spList.querySelectorAll('.sp-item[data-i]'));
+          if(!rows.length) return;
+          activeIndex += dir;
+          if(activeIndex < 0) activeIndex = rows.length - 1;
+          if(activeIndex >= rows.length) activeIndex = 0;
+          rows.forEach(r=>r.classList.remove('active'));
+          const active = rows[activeIndex];
+          active.classList.add('active');
+          active.scrollIntoView({ block:'nearest' });
+        }
+        function activateSelection(q){
+          const rows = Array.from(spList.querySelectorAll('.sp-item[data-i]'));
+          if(rows.length && activeIndex>=0){
+            rows[activeIndex].click();
+            return;
+          }
+          const key = bestKeyRoute(q);
+          if(key){ location.href = key.url; hidePanel(); return; }
+          if(q && typeof window.filterConvocatorias === 'function'){
+            window.filterConvocatorias(q); location.hash = '#convocatorias'; hidePanel();
+          }
+        }
+
+        if(headerQ){
+          const deb = (fn,ms)=>{ let t; return (...a)=>{ clearTimeout(t); t=setTimeout(()=>fn(...a),ms);} };
+          headerQ.addEventListener('input', deb((e)=>{
+            const val = e.target.value;
+            applyConvFilter(val);
+            renderPanel(val);
+          }, 120));
+
+          headerQ.addEventListener('keydown', (e)=>{
+            if(e.key==='Enter'){ e.preventDefault(); activateSelection(headerQ.value.trim()); }
+            else if(e.key==='ArrowDown'){ e.preventDefault(); moveSelection(1); }
+            else if(e.key==='ArrowUp'){ e.preventDefault(); moveSelection(-1); }
+            else if(e.key==='Escape'){ hidePanel(); }
+          });
+
+          headerQ.addEventListener('focus', ()=>{
+            if(headerQ.value && headerQ.value.length>=1){ showPanel(); }
+          });
+        }
+
+        spClose && spClose.addEventListener('click', hidePanel);
+        document.addEventListener('click', (ev)=>{
+          const within = panel.contains(ev.target) || (ev.target===headerQ) || (headerQ && headerQ.contains(ev.target));
+          if(!within) hidePanel();
+        });
+
+        // Atajo global "/"
+        document.addEventListener('keydown', (e)=>{
+          const t = document.activeElement && document.activeElement.tagName;
+          if(e.key==='/' && document.activeElement!==headerQ && t!=='INPUT' && t!=='TEXTAREA'){
+            e.preventDefault();
+            headerQ && headerQ.focus();
+          }
+        });
       })();
     </script>
   </body>

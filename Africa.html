@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Biblioteca África — Enciclopedia de Animales Mexicanos</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f7faf7; --surface:#fff; --line:#e5e7eb;
+      --accent:#16a34a; --accent-700:#166534;
+      --radius:16px; --shadow:0 10px 25px rgba(2,6,23,.08);
+    }
+    body{background:var(--bg);color:#0f172a;font-family:'Segoe UI',Roboto,sans-serif}
+    .pdf-item{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;margin-bottom:1rem}
+    .pdf-item:hover{transform:translateY(-2px);box-shadow:0 18px 30px rgba(2,6,23,.10)}
+    .preview{background:linear-gradient(180deg,#f0f7f3,#e9f7ee);min-height:220px;display:flex;align-items:center;justify-content:center}
+    .pdf-meta{padding:1rem}
+    .btn-linklike{display:inline-flex;align-items:center;gap:.45rem;border:1px solid var(--line);padding:.45rem .75rem;border-radius:10px;background:#fff;text-decoration:none;color:var(--accent);font-weight:600;margin-right:.25rem}
+    .btn-linklike:hover{background:#f1fcf5;border-color:#cce3d3}
+  </style>
+</head>
+<body>
+  <header class="site-header py-3 mb-4" style="background:linear-gradient(180deg,#ffffff,#f7fff9);border-bottom:1px solid var(--line)">
+    <div class="container d-flex align-items-center justify-content-between">
+      <h1 class="h4 m-0">Biblioteca África</h1>
+  <a href="index.html" aria-current="page">Inicio</a>
+           <a href="humanidad-animalidad.html">Animalidad y Humanidad</a>
+          <a href="about.html">Nosotros</a>
+          <a href="service.html">Especies</a>
+          <a href="contact.html">Contacto</a>
+    </div>
+  </header>
+
+  <main class="container mb-5">
+    <h2 class="h5 mb-3">Gestor de PDFs — África</h2>
+    <form id="africaForm" class="p-3 mb-4 bg-white border rounded" style="box-shadow:var(--shadow)" enctype="multipart/form-data">
+      <div class="form-group">
+        <label for="pdfName">Nombre del archivo</label>
+        <input type="text" id="pdfName" class="form-control" placeholder="Ej. Informe sobre Fauna Africana.pdf" required>
+      </div>
+      <div class="form-group">
+        <label for="pdfUrl">URL o ruta del PDF</label>
+        <input type="url" id="pdfUrl" class="form-control" placeholder="pdfs/africa/informe.pdf" required>
+      </div>
+      <div class="form-group">
+        <label for="pdfTags">Etiquetas</label>
+        <input type="text" id="pdfTags" class="form-control" placeholder="fauna, conservación, 2025">
+      </div>
+      <button type="submit" class="btn btn-success">Añadir PDF</button>
+      <button type="button" id="clearList" class="btn btn-outline-success ml-2">Vaciar lista</button>
+    </form>
+
+    <div class="cv-toolbar mb-2 d-flex justify-content-between align-items-center">
+      <input id="search" type="text" class="form-control w-50" placeholder="Buscar por nombre o etiquetas">
+      <span id="count" class="text-muted small"></span>
+    </div>
+
+    <div id="pdfList"></div>
+    <div id="emptyMsg" class="text-muted border rounded p-4 bg-white" style="display:none">No hay archivos cargados para África.</div>
+  </main>
+
+  <script>
+    (function(){
+      const form = document.getElementById('africaForm');
+      const listEl = document.getElementById('pdfList');
+      const emptyMsg = document.getElementById('emptyMsg');
+      const search = document.getElementById('search');
+      const count = document.getElementById('count');
+      const clearBtn = document.getElementById('clearList');
+      const KEY='pdf_africa';
+
+      function load(){
+        try{return JSON.parse(localStorage.getItem(KEY)||'[]');}catch(e){return[]}
+      }
+      function save(data){localStorage.setItem(KEY,JSON.stringify(data));}
+
+      function render(){
+        const data=load();
+        const needle=(search.value||'').toLowerCase().trim();
+        const filtered=data.filter(x=>x.name.toLowerCase().includes(needle)||x.tags.toLowerCase().includes(needle));
+        listEl.innerHTML='';
+        if(!filtered.length){emptyMsg.style.display='block';count.textContent='0 resultados';return;}
+        emptyMsg.style.display='none';count.textContent=`${filtered.length} resultado${filtered.length===1?'':'s'}`;
+        filtered.forEach((it,i)=>{
+          const art=document.createElement('article');art.className='pdf-item';
+          art.innerHTML=`<div class='preview'><embed class='pdf-embed' src='${it.url}#view=FitH' type='application/pdf'></div>
+          <div class='pdf-meta'><div class='pdf-name font-weight-bold'>${it.name}</div>
+          <div class='text-muted small mb-2'>${it.tags}</div>
+          <div class='actions'>
+          <a class='btn-linklike' href='${it.url}' target='_blank'>Abrir</a>
+          <a class='btn-linklike' href='${it.url}' download>Descargar</a>
+          <button class='btn-linklike text-danger' data-index='${i}'>Eliminar</button>
+          </div></div>`;
+          art.querySelector('button').addEventListener('click',()=>{const arr=load();arr.splice(i,1);save(arr);render();});
+          listEl.appendChild(art);
+        });
+      }
+
+      form.addEventListener('submit',e=>{
+        e.preventDefault();
+        const name=document.getElementById('pdfName').value.trim();
+        const url=document.getElementById('pdfUrl').value.trim();
+        const tags=document.getElementById('pdfTags').value.trim();
+        if(!name||!url)return;
+        const arr=load();arr.unshift({name,url,tags});save(arr);
+        form.reset();render();
+      });
+
+      search.addEventListener('input',render);
+      clearBtn.addEventListener('click',()=>{if(confirm('¿Vaciar lista de África?')){save([]);render();}});
+      render();
+    })();
+  </script>
+</body>
+</html>
+

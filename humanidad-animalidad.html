@@ -100,12 +100,11 @@
         </div>
         <nav class="nav" aria-label="Navegación principal">
           <a href="index.html" aria-current="page">Inicio</a>
+           <a href="humanidad-animalidad.html">Animalidad y Humanidad</a>
           <a href="about.html">Nosotros</a>
           <a href="service.html">Especies</a>
-          <a href="gallery.html">Galería</a>
-          <a href="testimonial.html">Descargas</a>
           <a href="contact.html">Contacto</a>
-          <a href="humanidad-animalidad.html">Animalidad y Humanidad</a>
+         
         </nav>
       </div>
     </div>
@@ -117,10 +116,54 @@
       <div class="row align-items-end">
         <div class="col-md-8">
           <h1 class="h2 mb-2">Animalidad y <span class="green">Humanidad</span></h1>
+          <p class="text-muted mb-3">Repositorio organizado por categorías y búsqueda rápida.</p>
+        </div>
         <div class="col-md-4 text-md-right text-left mt-3 mt-md-0">
           <a class="btn-linklike" href="#repositorio-ah">Ir al repositorio</a>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ===== Explorador geográfico (continentes) ===== -->
+  <section id="explorador-geo" class="py-3" aria-labelledby="explorador-title">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-end mb-2">
+        <h2 id="explorador-title" class="h4 mb-0">Explorador geográfico <span class="green">(continentes)</span></h2>
+        <small class="text-muted">Haz clic sobre el mapa o usa accesos rápidos</small>
+      </div>
+
+      <style>
+        .geo-wrap{position:relative; border:1px solid var(--line); border-radius:12px; background:#fff; box-shadow:var(--shadow); overflow:hidden}
+        .geo-img{display:block; width:100%; height:auto}
+        .geo-hotspot{position:absolute; display:inline-flex; align-items:center; justify-content:center; padding:.25rem .5rem; border-radius:999px; font-weight:700; background:#ecfdf5; color:var(--accent); border:1px solid #bbf7d0; text-decoration:none}
+        .geo-hotspot:hover{background:#dcfce7}
+        .geo-quick{display:flex; gap:.5rem; flex-wrap:wrap; margin-top:.75rem}
+        .geo-quick a{display:inline-flex; align-items:center; gap:.35rem; border:1px solid var(--line); padding:.35rem .6rem; border-radius:999px; background:#fff; text-decoration:none}
+        .geo-quick a:hover{background:#f8fafb}
+      </style>
+
+      <div class="geo-wrap">
+        <!-- Coloca el archivo en 'images/mapa-continentes.png' o cambia la ruta -->
+        <img class="geo-img" src="mapa-continentes.jpg" alt="Mapa con América, Europa, África, Asia y Oceanía" loading="lazy" decoding="async">
+
+        <!-- Hotspots aproximados por porcentajes (responsive) -->
+        <a class="geo-hotspot" href="America.html" style="left:18%; top:46%" aria-label="América">América</a>
+        <a class="geo-hotspot" href="Europa.html" style="left:52%; top:23%" aria-label="Europa">Europa</a>
+        <a class="geo-hotspot" href="Africa.html" style="left:52%; top:48%" aria-label="África">África</a>
+        <a class="geo-hotspot" href="Asia.html" style="left:67%; top:33%" aria-label="Asia">Asia</a>
+        <a class="geo-hotspot" href="Oceania.html" style="left:80%; top:63%" aria-label="Oceanía">Oceanía</a>
+        <a class="geo-hotspot" href="pages/antartida/index.html" style="left:50%; top:86%" aria-label="Antártida">Antártida</a>
+      </div>
+
+      <nav class="geo-quick" aria-label="Accesos rápidos a continentes">
+        <a href="pages/america/index.html">América</a>
+        <a href="pages/europa/index.html">Europa</a>
+        <a href="pages/africa/index.html">África</a>
+        <a href="pages/asia/index.html">Asia</a>
+        <a href="pages/oceania/index.html">Oceanía</a>
+        <a href="pages/antartida/index.html">Antártida</a>
+      </nav>
     </div>
   </section>
 
@@ -239,6 +282,155 @@
     </div>
   </section>
 
+  <!-- ===== Secciones A / H / A (del Word) ===== -->
+  <section id="aha-secciones" class="py-4">
+    <div class="container">
+      <header class="mb-3">
+        <h2 class="h4 mb-1">Animalidad – Humanidad – Ambiente</h2>
+        <p class="text-muted mb-0">Estructura solicitada en el documento: cada disciplina con texto introductorio, una tira de imágenes y un bloque de dossiers que llevan a su página.</p>
+      </header>
+
+      <style>
+        .aha-banner{display:inline-flex; align-items:center; gap:.5rem; padding:.25rem .6rem; background:#f0fdf4; border:1px solid #bbf7d0; color:#166534; border-radius:999px; font-weight:600; font-size:.85rem}
+        .aha-img{height:160px; background:repeating-linear-gradient(135deg,#f0f7f3,#f0f7f3 8px,#e7f5ed 8px,#e7f5ed 16px); border:1px dashed var(--line); border-radius:12px; display:flex; align-items:center; justify-content:center; color:#6b7280; font-weight:600}
+        .aha-dossier{border:1px solid var(--line); border-radius:12px; background:#fff; box-shadow:var(--shadow); padding:.9rem}
+        .aha-dossier a{display:inline-flex; align-items:center; gap:.45rem; border:1px solid var(--line); padding:.45rem .75rem; border-radius:10px; background:#fff; text-decoration:none; color:var(--accent); font-weight:600}
+        .aha-dossier a:hover{background:#f1fcf5; border-color:#cce3d3}
+      </style>
+
+      <!-- ===== FILOSOFÍA ===== -->
+      <article id="sec-filosofia" class="mb-5">
+        <div class="d-flex justify-content-between align-items-baseline mb-2">
+          <h3 class="h5 mb-0">Filosofía</h3>
+          <span class="aha-banner" aria-label="Ámbitos">Animalidad · Humanidad · Ambiente</span>
+        </div>
+        <div class="mb-3">
+          <p class="mb-1">Texto introductorio de los temas y problemas que aborda, marco crítico, autores relevantes, entre otros.</p>
+          <p class="mb-1">Texto introductorio de los temas y problemas que aborda, marco crítico, autores relevantes, entre otros.</p>
+          <p class="mb-0">Texto introductorio de los temas y problemas que aborda, marco crítico, autores relevantes, entre otros.</p>
+        </div>
+        <div class="row">
+          <div class="col-6 col-md-3 mb-3"><div class="aha-img" role="img" aria-label="imagen">imagen</div></div>
+          <div class="col-6 col-md-3 mb-3"><div class="aha-img" role="img" aria-label="imagen">imagen</div></div>
+          <div class="col-6 col-md-3 mb-3"><div class="aha-img" role="img" aria-label="imagen">imagen</div></div>
+          <div class="col-6 col-md-3 mb-3"><div class="aha-img" role="img" aria-label="imagen">imagen</div></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 col-md-3 mb-3"><div class="aha-dossier"><div class="font-weight-bold">Dossier 1</div><a href="dossiers/filosofia/dossier-1.html">Ir al dossier</a></div></div>
+          <div class="col-sm-6 col-md-3 mb-3"><div class="aha-dossier"><div class="font-weight-bold">Dossier 2</div><a href="dossiers/filosofia/dossier-2.html">Ir al dossier</a></div></div>
+          <div class="col-sm-6 col-md-3 mb-3"><div class="aha-dossier"><div class="font-weight-bold">Dossier 3</div><a href="dossiers/filosofia/dossier-3.html">Ir al dossier</a></div></div>
+          <div class="col-sm-6 col-md-3 mb-3"><div class="aha-dossier"><div class="font-weight-bold">Dossier 4</div><a href="dossiers/filosofia/dossier-4.html">Ir al dossier</a></div></div>
+        </div>
+      </article>
+
+      <!-- ===== HISTORIA ===== -->
+      <article id="sec-historia" class="mb-5">
+        <div class="d-flex justify-content-between align-items-baseline mb-2">
+          <h3 class="h5 mb-0">Historia</h3>
+          <span class="aha-banner">Animalidad · Humanidad · Ambiente</span>
+        </div>
+        <div class="mb-3"><p class="mb-1">Texto introductorio de su enfoque y métodos.</p></div>
+        <div class="row">
+          <div class="col-6 col-md-3 mb-3"><div class="aha-img" aria-label="imagen">imagen</div></div>
+          <div class="col-6 col-md-3 mb-3"><div class="aha-img" aria-label="imagen">imagen</div></div>
+          <div class="col-6 col-md-3 mb-3"><div class="aha-img" aria-label="imagen">imagen</div></div>
+          <div class="col-6 col-md-3 mb-3"><div class="aha-img" aria-label="imagen">imagen</div></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 col-md-3 mb-3"><div class="aha-dossier"><div class="font-weight-bold">Dossier</div><a href="#">Ir al dossier</a></div></div>
+          <div class="col-sm-6 col-md-3 mb-3"><div class="aha-dossier"><div class="font-weight-bold">Dossier</div><a href="#">Ir al dossier</a></div></div>
+          <div class="col-sm-6 col-md-3 mb-3"><div class="aha-dossier"><div class="font-weight-bold">Dossier</div><a href="#">Ir al dossier</a></div></div>
+          <div class="col-sm-6 col-md-3 mb-3"><div class="aha-dossier"><div class="font-weight-bold">Dossier</div><a href="#">Ir al dossier</a></div></div>
+        </div>
+      </article>
+
+      <!-- ===== LITERATURA ===== -->
+      <article id="sec-literatura" class="mb-5">
+        <div class="d-flex justify-content-between align-items-baseline mb-2">
+          <h3 class="h5 mb-0">Literatura</h3>
+          <span class="aha-banner">Animalidad · Humanidad · Ambiente</span>
+        </div>
+        <div class="mb-3"><p class="mb-1">Texto introductorio sobre definición, propósito, alcance y herramientas; y sus posibilidades críticas.</p></div>
+        <div class="row">
+          <div class="col-6 col-md-3 mb-3"><div class="aha-img">imagen</div></div>
+          <div class="col-6 col-md-3 mb-3"><div class="aha-img">imagen</div></div>
+          <div class="col-6 col-md-3 mb-3"><div class="aha-img">imagen</div></div>
+          <div class="col-6 col-md-3 mb-3"><div class="aha-img">imagen</div></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 col-md-3 mb-3"><div class="aha-dossier"><div class="font-weight-bold">Dossier</div><a href="#">Ir al dossier</a></div></div>
+          <div class="col-sm-6 col-md-3 mb-3"><div class="aha-dossier"><div class="font-weight-bold">Dossier</div><a href="#">Ir al dossier</a></div></div>
+          <div class="col-sm-6 col-md-3 mb-3"><div class="aha-dossier"><div class="font-weight-bold">Dossier</div><a href="#">Ir al dossier</a></div></div>
+          <div class="col-sm-6 col-md-3 mb-3"><div class="aha-dossier"><div class="font-weight-bold">Dossier</div><a href="#">Ir al dossier</a></div></div>
+        </div>
+      </article>
+
+      <!-- ===== ARTES ===== -->
+      <article id="sec-artes" class="mb-5">
+        <div class="d-flex justify-content-between align-items-baseline mb-2">
+          <h3 class="h5 mb-0">Artes</h3>
+          <span class="aha-banner">Animalidad · Humanidad · Ambiente</span>
+        </div>
+        <div class="mb-3"><p class="mb-1">Texto introductorio.</p></div>
+        <div class="row">
+          <div class="col-6 col-md-3 mb-3"><div class="aha-img">imagen</div></div>
+          <div class="col-6 col-md-3 mb-3"><div class="aha-img">imagen</div></div>
+          <div class="col-6 col-md-3 mb-3"><div class="aha-img">imagen</div></div>
+          <div class="col-6 col-md-3 mb-3"><div class="aha-img">imagen</div></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 col-md-3 mb-3"><div class="aha-dossier"><div class="font-weight-bold">Dossier</div><a href="#">Ir al dossier</a></div></div>
+          <div class="col-sm-6 col-md-3 mb-3"><div class="aha-dossier"><div class="font-weight-bold">Dossier</div><a href="#">Ir al dossier</a></div></div>
+          <div class="col-sm-6 col-md-3 mb-3"><div class="aha-dossier"><div class="font-weight-bold">Dossier</div><a href="#">Ir al dossier</a></div></div>
+          <div class="col-sm-6 col-md-3 mb-3"><div class="aha-dossier"><div class="font-weight-bold">Dossier</div><a href="#">Ir al dossier</a></div></div>
+        </div>
+      </article>
+
+      <!-- ===== JURÍDICA ===== -->
+      <article id="sec-juridica" class="mb-5">
+        <div class="d-flex justify-content-between align-items-baseline mb-2">
+          <h3 class="h5 mb-0">Jurídica</h3>
+          <span class="aha-banner">Animalidad · Humanidad · Ambiente</span>
+        </div>
+        <div class="mb-3"><p class="mb-1">Texto introductorio, problemáticas que aborda.</p></div>
+        <div class="row">
+          <div class="col-6 col-md-3 mb-3"><div class="aha-img">imagen</div></div>
+          <div class="col-6 col-md-3 mb-3"><div class="aha-img">imagen</div></div>
+          <div class="col-6 col-md-3 mb-3"><div class="aha-img">imagen</div></div>
+          <div class="col-6 col-md-3 mb-3"><div class="aha-img">imagen</div></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 col-md-3 mb-3"><div class="aha-dossier"><div class="font-weight-bold">Dossier</div><a href="#">Ir al dossier</a></div></div>
+          <div class="col-sm-6 col-md-3 mb-3"><div class="aha-dossier"><div class="font-weight-bold">Dossier</div><a href="#">Ir al dossier</a></div></div>
+          <div class="col-sm-6 col-md-3 mb-3"><div class="aha-dossier"><div class="font-weight-bold">Dossier</div><a href="#">Ir al dossier</a></div></div>
+          <div class="col-sm-6 col-md-3 mb-3"><div class="aha-dossier"><div class="font-weight-bold">Dossier</div><a href="#">Ir al dossier</a></div></div>
+        </div>
+      </article>
+
+      <!-- ===== URBANISMO Y ARQUITECTURA ===== -->
+      <article id="sec-urbanismo" class="mb-4">
+        <div class="d-flex justify-content-between align-items-baseline mb-2">
+          <h3 class="h5 mb-0">Urbanismo y Arquitectura</h3>
+          <span class="aha-banner">Animalidad · Humanidad · Ambiente</span>
+        </div>
+        <div class="mb-3"><p class="mb-1">Texto introductorio.</p></div>
+        <div class="row">
+          <div class="col-6 col-md-3 mb-3"><div class="aha-img">imagen</div></div>
+          <div class="col-6 col-md-3 mb-3"><div class="aha-img">imagen</div></div>
+          <div class="col-6 col-md-3 mb-3"><div class="aha-img">imagen</div></div>
+          <div class="col-6 col-md-3 mb-3"><div class="aha-img">imagen</div></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 col-md-3 mb-3"><div class="aha-dossier"><div class="font-weight-bold">Dossier</div><a href="#">Ir al dossier</a></div></div>
+          <div class="col-sm-6 col-md-3 mb-3"><div class="aha-dossier"><div class="font-weight-bold">Dossier</div><a href="#">Ir al dossier</a></div></div>
+          <div class="col-sm-6 col-md-3 mb-3"><div class="aha-dossier"><div class="font-weight-bold">Dossier</div><a href="#">Ir al dossier</a></div></div>
+          <div class="col-sm-6 col-md-3 mb-3"><div class="aha-dossier"><div class="font-weight-bold">Dossier</div><a href="#">Ir al dossier</a></div></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
   <!-- ===== Modal PDF (reutilizable) ===== -->
   <div class="modal fade" id="pdfModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-fullscreen-md-down modal-xl">
@@ -269,7 +461,7 @@
     window.addEventListener('load', function(){
       // ====== Buscador + chips + lazy <embed> + modal PDF
       (function(){
-        const norm = s => (s||"").toString().normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
+        const norm = s => (s||"").toString().normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().trim();
         const $ = (q)=>document.querySelector(q);
         const $$ = (q)=>Array.from(document.querySelectorAll(q));
 
