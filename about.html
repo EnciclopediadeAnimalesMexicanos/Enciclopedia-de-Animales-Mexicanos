@@ -19,6 +19,82 @@
     <link rel="apple-touch-icon" href="images/Logo EAM.png"><!-- idem -->
 
     <style>
+      /* === ESTILO EDITORIAL DE LA ENCICLOPEDIA === */
+
+.enc-container{
+  max-width:900px;
+  margin:2rem auto;
+  padding:1rem 1.5rem;
+  font-family: "Inter", sans-serif;
+  color:var(--ink);
+}
+
+/* Secciones */
+.enc-block{
+  background:#ffffff;
+  border:1px solid var(--line);
+  border-left:8px solid var(--accent);
+  padding:2rem;
+  margin-bottom:2.5rem;
+  border-radius:0.6rem;
+  box-shadow:0 2px 4px rgba(0,0,0,0.04);
+  transition:0.3s;
+}
+
+.enc-block:hover{
+  box-shadow:0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* Títulos */
+.enc-block h2{
+  font-size:1.8rem;
+  font-weight:800;
+  margin-bottom:1rem;
+  color:var(--accent);
+  letter-spacing:-0.5px;
+}
+
+/* Subtítulos */
+.enc-block h3{
+  font-size:1.3rem;
+  font-weight:700;
+  margin-top:1.8rem;
+  margin-bottom:0.8rem;
+  color:#b2358d; /* complementario del verde */
+}
+
+/* Párrafos y listas */
+.enc-block p,
+.enc-block li{
+  line-height:1.7;
+  margin-bottom:0.7rem;
+  color:var(--ink);
+}
+
+.enc-block ul{
+  margin-left:1.2rem;
+  padding-left:1.2rem;
+  border-left:3px solid #e3a72f; /* complementario del azul marino */
+}
+
+/* Bloques de citas */
+.enc-quote{
+  background:#f5f5f4;
+  padding:1.2rem 1.5rem;
+  border-left:6px solid #b2358d;
+  margin:1.4rem 0;
+  font-style:italic;
+  color:var(--muted);
+  border-radius:0.4rem;
+}
+
+/* Divider elegante opcional */
+.enc-divider{
+  margin:2rem 0;
+  border-top:1px dashed var(--line);
+  opacity:0.7;
+}
+      /* === ESTILO ADICIONAL PÁGINA NOSOTROS === */
       :root{--line:#e5e7eb;--accent:#16a34a;--ink:#0f172a;--muted:#6b7280}
       body{color:var(--ink)}
       .site-header{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,#fff,#f9fbff);border-bottom:1px solid var(--line)}
@@ -57,7 +133,6 @@
           <nav class="nav" aria-label="Navegación principal">
             <a href="index.html">Inicio</a>
             <a href="about.html" aria-current="page" class="active">Nosotros</a>
-            <a href="service.html">Especies</a>
             <a href="contact.html">Contacto</a>
             <a href="humanidad-animalidad.html">Animalidad y Humanidad</a>
           </nav>
@@ -75,38 +150,95 @@
           </div>
         </div></div>
 
-        <div class="row">
-          <div class="col-md-10 offset-md-1">
-            <div class="row">
-              <div class="col-md-4 col-sm-6">
-                <div class="about-card">
-                  <h3>Misión</h3>
-                  <p>Hacer accesible el conocimiento zoológico y cultural de las especies mexicanas, promoviendo la conservación.</p>
-                </div>
-              </div>
-              <div class="col-md-4 offset-md-1 col-sm-6">
-                <div class="about-card">
-                  <h3>Metodología</h3>
-                  <p>Revisión bibliográfica, consulta de bases oficiales (CONABIO, UICN), validación y referencias trazables.</p>
-                </div>
-              </div>
-              <div class="col-md-4 offset-md-3 col-sm-6 mar_top">
-                <div class="about-card">
-                  <h3>Colaboraciones</h3>
-                  <p>Trabajo con instituciones, comunidades y especialistas para proyectos de impacto regional y nacional.</p>
-                </div>
-              </div>
-              <div class="col-md-4 offset-md-1 col-sm-6 mar_top">
-                <div class="about-card">
-                  <h3>Transparencia</h3>
-                  <p>Publicamos fuentes y actualizaciones periódicas; fomentamos datos abiertos cuando es posible.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
 
-      </div>
+  <!-- OBJETIVOS GENERALES -->
+  <div class="enc-block">
+    <h2>Objetivos generales</h2>
+    <ul>
+      <li>Construir un recurso de divulgación, formación y reflexión científica en torno a la condición humana en su entorno animal.</li>
+      <li>Conformar un instrumento de consulta enciclopédica sobre especies endémicas de México, para un público amplio y no necesariamente especializado.</li>
+      <li>Establecer focos de discusión científico-humanística sobre la relación humanidad-animalidad.</li>
+    </ul>
+  </div>
+
+  <!-- OBJETIVOS ESPECÍFICOS -->
+  <div class="enc-block">
+    <h2>Objetivos específicos</h2>
+    <ul>
+      <li>Desarrollar un trabajo de colaboración interdisciplinar en torno a un ejercicio formativo de comunidades científicas.</li>
+      <li>Generar recursos de investigación y formación disciplinar en áreas especializadas.</li>
+      <li>Formar recursos humanos en herramientas de divulgación y comunicación del conocimiento científico.</li>
+    </ul>
+  </div>
+
+  <!-- METODOLOGÍA -->
+  <div class="enc-block">
+    <h2>Metodología</h2>
+    <p>Se comprende aquí en dos niveles, el que corresponde a la gestión de la información y la base documental amplia que requerirá el proyecto, y, por otro lado, la propia de cada una de las disciplinas convocadas a colaborar. La intención de cada entrada se centra en temas delimitados y preguntas relativas a los problemas contemporáneos (éticos, sociales, jurídicos) que presenta la relación humanidad / animalidad.</p>
+    <p>LGyAC</p>
+  </div>
+
+  <!-- MARCO CRÍTICO -->
+  <div class="enc-block">
+    <h2>Marco Crítico</h2>
+
+    <h3>Plan Nacional de Desarrollo (2018-2024)</h3>
+    <div class="enc-quote">
+      “La sostenibilidad se define como la satisfacción de las necesidades presentes sin comprometer la capacidad de las generaciones futuras para satisfacer sus propias necesidades. Esta fórmula resume insoslayables mandatos éticos, sociales, ambientales y económicos que deben ser aplicados en el presente para garantizar un futuro mínimamente habitable y armónico, que se guiará por una idea de desarrollo que subsane las injusticias sociales e impulse el desarrollo económico sin provocar afectaciones a la convivencia pacífica, a los lazos de solidaridad, a la diversidad cultural del entorno.”
+    </div>
+
+    <h3>Programa de las Naciones Unidas para el Medio Ambiente (Área 2)</h3>
+    <div class="enc-quote">
+      “Producir un cambio transformativo para la naturaleza y las personas”; en su deriva operativa, el objetivo 15, de los 17 ODS instaurados por UNESCO, establece una línea específica de trabajo que “Se centrará en desarrollar la voluntad y la capacidad políticas para restaurar la relación de los seres humanos con la naturaleza.”
+    </div>
+  </div>
+
+  <div class="enc-divider"></div>
+
+  <!-- POLÍTICA EDITORIAL -->
+  <div class="enc-block">
+    <h2>EAM. Política editorial</h2>
+
+    <h3>Código ético</h3>
+    <p>La Enciclopedia de los Animales Mexicanos es un instrumento pedagógico formativo que tiene como objetivo primordial la promoción y divulgación del conocimiento científico-antropológico sobre la biodiversidad mexicana. Cualquier científico que labore en áreas de humanidades, ciencias sociales o ciencias de la vida puede colaborar con la EAM, publicación permanentemente abierta a contribuciones tanto nacionales como internacionales.</p>
+    <p>La Enciclopedia de los Animales Mexicanos invita a sus autores, editores y revisores a leer los códigos éticos específicos a cada función editorial de las implicadas en la construcción colectiva de este instrumento.</p>
+
+    <!-- AUTORES -->
+    <h3>Responsabilidades de los autores</h3>
+    <p>Los textos presentados la Enciclopedia de los Animales Mexicanos, deben ser fruto de una investigación original e inédita por parte del autor. Los datos e información contenidos en el manuscrito deben haber sido obtenidos de manera ética, por lo tanto, se espera que los autores asuman la responsabilidad total de la información expuesta en las entradas enciclopédicas propuestas.</p>
+    <p>Los autores deben abstenerse de involucrarse en faltas de conducta científicas e infringir la ética de publicación. Deben presentar sus resultados con claridad, sin falsificación y con honestidad.</p>
+    <p>Con el envío los autores asumen que su investigación no ha sido publicada antes y que no está siendo evaluada por otra revista y en caso de que se quiera anular la publicación de su trabajo, debe notificarse con tiempo a la editorial de la revista.</p>
+    <p>El plagio es una falta de ética científica, por lo tanto, será inadmisible cualquier elemento que.</p>
+    <p>Los autores deben evitar tergiversar a los autores citados, manipular o distorsionar la información. Deben proporcionar autoría y reconocimientos apropiados, por lo tanto, cualquier persona que haya contribuido en la investigación, debe ser reconocida como coautor y las citas obtenidas de otros textos, deben ser legibles y correctas.</p>
+    <p>En caso de que la entrada propuesta esté realizada por mas de un autor, los implicados deben otorgar su consentimiento para la publicación de la misma.</p>
+    <p>Se debe notificar al editor cuando se tenga algún conflicto de intereses directo o indirecto con los del equipo la dirección editorial de la EAM, autores o árbitros.</p>
+    <p>Los autores están obligados a participar en el proceso de revisión por pares para todos los materiales enviados.</p>
+
+    <!-- EDITORES -->
+    <h3>Responsabilidades de los editores</h3>
+    <p>El consejo editorial deberá esforzarse para satisfacer las necesidades de los autores y los lectores, para mejorar constantemente la revista y asegurar la calidad de los materiales publicados, deben trabajar en impulsar las normas académicas y científicas del la EAM.</p>
+    <p>El comité editorial publicará las normas del proceso de revisión por pares con la finalidad de que los autores conozcan los criterios de evaluación. El comité editorial estará siempre dispuesto a justificar por escrito cualquier controversia surgida en el proceso de evaluación.</p>
+    <p>La decisión de los editores al rechazar o aceptar un artículo debe estar basada únicamente en la investigación y su contenido, esto, en relación a la claridad, la originalidad y rigurosidad de las entradas propuestas.</p>
+    <p>Los investigadors que componen la dirección editorial de la EAM deben guardar completa confidencialidad sobre los textos recibidos y su contenido, hasta que hayan sido aceptados para su publicación, o bien, rechazados bajo estrictos criterios de dictaminación. No se revelará a los dictaminadores la identidad de los autores, ni la identidad de los dictaminadores a los autores.</p>
+    <p>Ningún miembro del consejo editorial debe utilizar información de cualquier investigación recibida, salvo cuando el autor haya dado su consentimiento.</p>
+    <p>Los editores que toman decisiones finales de rechazo o aceptación de las investigaciones, deben retirarse de las decisiones editoriales si se tiene conflicto de interés en relación a los artículos en consideración, y la ponderación final la tomará otro editor imparcial.</p>
+    <p>Los editores serán responsables de informar a los autores sobre la fase en la que se encuentra la gestión editorial de su investigación dentro de la EAM, así como las resoluciones y dictámenes de la misma.</p>
+    <p>El editor en jefe de la revista tiene la ultima palabra sobre la publicación o el rechazo que cada investigación que es inviada a la EAM. Es su deber respetar a todas las personas que forman parte de esta publicación, tanto a revisores como a autores, recae en él la responsabilidad de llamar la atención a los revisores y a otros editores cuando se están infringiendo las normas establecidas o no se están respetado los derechos de cada participante.</p>
+
+    <!-- REVISORES -->
+    <h3>Responsabilidades de los revisores</h3>
+    <p>Todos los revisores deben conocer la política editorial y la declaración ética y mala práctica de la EAM.</p>
+    <p>Los revisores deben notificar al editor cualquier conducta no ética por parte de los autores y otorgar toda la información posible para rechazar una investigación. Deberán de comprometerse a mantener la confidencialidad de cada trabajo recibido.</p>
+    <p>El revisor debe tratar cualquier manuscrito recibido para dictamen como un documento confidencial. El contenido puede discutirse con otros especialistas sólo con la autorización explícita del comité editorial de la dirección editorial de la EAM.</p>
+    <p>Los revisores deberán tener potenciales en el ámbito de la experiencia científica o experiencia laboral significativa en un campo relevante especializado. Deben haber realizado recientemente investigaciones y / o trabajos relativos al tema en cuestión. Los revisores potenciales deben proporcionar información personal y profesional que sea precisa y que brinde una representación justa de su experiencia.</p>
+    <p>En caso de que un revisor no esté calificado para el trabajo correspondiente, deberá retirarse o declinar el proceso de revisión.</p>
+    <p>Todo revisor deberá notificar al editor en un plazo de cinco días, si está disponible para revisar la investigación.</p>
+    <p>Las recomendaciones y las observaciones hechas para el autor deberán estar fundamentadas. Cada revisor deben estar dispuestos a explicar, abundar y si así se requiere, rectificar el dictamen otorgado.</p>
+
+  </div>
+
+</div>
+
     </section>
 <!-- ===== Dirección Editorial y Coordinaciones ===== -->
 <section class="service" id="equipo">
