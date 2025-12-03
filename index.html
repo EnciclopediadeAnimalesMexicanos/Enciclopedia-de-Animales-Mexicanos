@@ -110,22 +110,48 @@
       .sp-chip{ border:1px solid #bbf7d0; background:#ecfdf5; color:#166534; border-radius:999px; padding:.12rem .45rem; font-size:.75rem }
       .hl{ background: #fef9c3; border-radius:4px; padding:0 .15rem; }
 
-      /* Ajustes base existentes */
-      img { max-width: 100%; height: auto; }
-      .read_more { cursor: pointer; }
-      .gallery_img figure, .about_img figure { margin: 0; }
-      .loader_bg { display: none; }
-#myCarousel .carousel-item {
-    height: auto;            /* El carrusel ocupa el alto completo de la pantalla */
-    min-height: auto;        /* Evita que se vea muy pequeño en pantallas pequeñas */
-    position: relative;
+/* ===== Ajustes base ===== */
+img { 
+    max-width: 100%; 
+    height: auto; 
+}
+
+.read_more { 
+    cursor: pointer; 
+}
+
+.gallery_img figure, 
+.about_img figure { 
+    margin: 0; 
+}
+
+.loader_bg { 
+    display: none; 
+}
+
+/* ===== Fix para móviles: altura real del viewport ===== */
+:root {
+    --vh: 1vh;
+}
+
+/* ===== Carrusel ===== */
+#myousel .carousel-item {
+    height: auto !important;
+    min-height: auto !important;
+    padding: 0;
+
+    /* ❗ IMPORTANTE: NO CAMBIAR DISPLAY ❗ */
+    /* Bootstrap lo controla */
 }
 
 #myCarousel .carousel-item img {
-    width: auto;
+    width: 100%;
     height: auto;
-    object-fit: auto;        /* La imagen llena el espacio sin deformarse */
+    object-fit: contain;  /* mantiene proporciones */
+    display: block;
+    margin: 0 auto;
 }
+
 
       /* Convocatorias */
       .convocatorias-section { background:#f7f9f8; padding:40px 0; border-top:1px solid #e9ecef; }
@@ -158,6 +184,15 @@
       @media (prefers-reduced-motion: reduce) { .carousel, .carousel-item{ transition:none!important } }
     </style>
   </head>
+  <script>
+  function ajustarVH() {
+    let vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+  }
+  ajustarVH();
+  window.addEventListener('resize', ajustarVH);
+</script>
+
   <body class="main-layout">
      
     <!-- ===== Header ===== -->
@@ -166,7 +201,7 @@
         <div class="mast">
           <div class="brand">
             <a href="index.html" aria-label="Ir al inicio">
-              <img src="images/Logo EAM.png" alt="EAM logo" loading="eager" decoding="async" fetchpriority="high" style="width:190px; height:auto;">
+              <img src="images/Logo EAM.png" alt="EAM logo" loading="eager" decoding="async" fetchpriority="high" style="width:80px; height:auto;">
             </a>
             <div>
               <div class="title">Enciclopedia de Animales Mexicanos</div>
