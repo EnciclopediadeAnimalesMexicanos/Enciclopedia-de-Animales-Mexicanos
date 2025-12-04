@@ -136,8 +136,8 @@ img {
 
 /* ===== Carrusel ===== */
 #myousel .carousel-item {
-    height: auto !important;
-    min-height: auto !important;
+    height: 100dvh!important;
+    min: height 100px;!important;
     padding: 0;
 
     /* ❗ IMPORTANTE: NO CAMBIAR DISPLAY ❗ */
@@ -145,12 +145,91 @@ img {
 }
 
 #myCarousel .carousel-item img {
-    width: 100%;
-    height: auto;
+    width: 200vw;  /* ancho relativo al viewport */
+    height: 200vh;  /* altura relativa al viewport */
     object-fit: contain;  /* mantiene proporciones */
     display: block;
     margin: 0 auto;
 }
+/* ==========================================
+   CARRUSEL — COMPACTO + DEGRADADO BRILLANTE
+   ========================================== */
+
+/* Fondo con degradado más luminoso e integrado */
+.banner_main,
+#myCarousel,
+.carousel-inner {
+  background: linear-gradient(
+    135deg,
+    #0a4a32 0%,
+    #0f7b4a 25%,
+    #16a34a 45%,
+    #2bcf9f 70%,
+    #86f7d1 100%
+  ) !important;
+  padding: 12px 0;
+}
+
+/* Carrusel más compacto */
+.carousel-img {
+  width: 30%;
+  height: 10vh;            /* ↓ antes 70vh */
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+
+/* Espacio reducido en captions */
+.carousel-caption {
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.45),
+    rgba(0,0,0,0.05)
+  );
+  padding-bottom: 20px;     /* ↓ antes 40px */
+  border-radius: 0 0 12px 12px;
+}
+
+/* Texto más sobrio y pequeño */
+.carousel-caption h1 {
+  font-size: 2.3rem;        /* ↓ antes 3rem */
+  font-weight: 200;
+  color: #ffffff;
+  text-shadow: 0 3px 10px rgba(0,0,0,0.45);
+}
+
+.carousel-caption span {
+  background: rgba(0,0,0,0.35);
+  padding: 4px 10px;        /* ↓ tamaño */
+  border-radius: 6px;
+  font-size: 0.85rem;
+  color: #eafff3;
+}
+
+/* Indicadores */
+.carousel-indicators li {
+  width: 10px;
+  height: 10px;
+  background-color: rgba(255,255,255,0.4);
+}
+.carousel-indicators .active {
+  background-color: white;
+  transform: scale(1.2);
+}
+
+/* Flechas refinadas */
+.carousel-control-prev:hover i,
+.carousel-control-next:hover i {
+  color: #b8ffd8;
+}
+/* Quita el espacio gigante debajo del carrusel */
+.banner_main,
+.banner,
+#myCarousel,
+.carousel-inner {
+  height:      
+
+
 
 
       /* Convocatorias */
@@ -242,7 +321,7 @@ img {
 
     <!-- ===== Banner ===== -->
    <section class="banner_main" id="banner">
-  <div id="myCarousel" class="carousel slide banner" data-ride="carousel" aria-label="Mensajes principales">
+  <div id="myCarousel" class="carousel slide" data-ride="carousel" aria-label="Mensajes principales">
 
     <ol class="carousel-indicators">
       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -252,29 +331,26 @@ img {
 
     <div class="carousel-inner">
 
-      <!-- ITEM 1 -->
       <div class="carousel-item active">
         <img src="images/banner 2aj.png" class="carousel-img" alt="Enciclopedia de Animales Mexicanos">
-        <div class="carousel-caption d-none d-md-block">
-          <h1>Enciclopedia de<br>Animales Mexicanos</h1>
+        <div class="carousel-caption">
+          <span>Descubre nuestra fauna</span>
         </div>
       </div>
 
-      <!-- ITEM 2 -->
       <div class="carousel-item">
-        <img src="LogoEAM.png.png" class="carousel-img" alt="Fichas verificadas">
-        <div class="carousel-caption d-none d-md-block">
+        <img src="images/Logo EAM.png" class="carousel-img" alt="Fichas verificadas" style="object-fit: contain; padding: 20px;">
+        <div class="carousel-caption">
+          <h1>Conocimiento Verificado</h1>
+          <span>Ciencia y cultura al alcance de todos</span>
         </div>
       </div>
 
-      <!-- ITEM 3 -->
       <div class="carousel-item">
-<img src="images/AJ1.jpg" class="carousel-img" alt="Colabora con la EAM">
-        <div class="carousel-caption d-none d-md-block">
+        <img src="images/AJ1.jpg" class="carousel-img" alt="Colabora con la EAM">
+        <div class="carousel-caption">
           <h1>Colabora con la EAM</h1>
-          <span>IManaus- Amazonas.
-Foto de Sobesi, Octubre, 2024</span>
-      
+          <span>Manaus - Amazonas. Foto de Sobesi, Octubre, 2024</span>
         </div>
       </div>
 
@@ -293,7 +369,40 @@ Foto de Sobesi, Octubre, 2024</span>
 
   </div>
 </section>
+<div class="div-icon">
+  <i class="fa fa-paw" aria-hidden="true"></i>
+</div>
 
+<div id="about" class="about_section layout_padding">
+  <div class="container">
+    <div class="row align-items-center">
+      
+      <div class="col-md-7">
+        <div class="titlepage">
+          <h2>Enfoque <span class="green">Etnohistórico</span></h2>
+        </div>
+        <div class="about_text longform">
+          <p>
+            La <strong>Enciclopedia de los Animales Mexicanos</strong> concentra de un modo sistemático y ordenado la información científica, etnohistórica, geográfica y ambiental de la fauna endémica en las diferentes bio-regiones del país.
+          </p>
+          <p>
+            La particularidad de la demarcación endémica de esta enciclopedia es de carácter etnohistórico, antropológico y cultural; busca recorrer los modos de <em>co-existencia e inclusión significativa</em> de la vida animal en el horizonte de la vida humana y sus representaciones míticas e iconográficas, centralmente en Mesoamérica, pero buscando continuamente el contraste entre horizontes culturales diversos.
+          </p>
+          <a class="read_more" href="about.html">Leer más sobre nosotros</a>
+        </div>
+      </div>
+
+      <div class="col-md-5">
+        <div class="about_img">
+          <figure>
+            <img src="images/jaguar-859412_1280.jpg" alt="Iconografía y fauna" loading="lazy">
+          </figure>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
     <!-- ===== Servicios ===== -->
     <div id="service" class="service">
       <div class="container">
@@ -620,18 +729,24 @@ Foto de Sobesi, Octubre, 2024</span>
               </div>
             </div>
           </article>
-          <article class="pdf-item" data-name="Taller Divulgación Docente.pdf" data-tags="taller, divulgación, docentes" data-date="2025-04-10">
+          
+        </div>
+
+        <div id="cvEmpty" class="cv-empty">Sin resultados. Ajusta la búsqueda o quita filtros.</div>
+      </div>
+    </section>
+    <article class="pdf-item" data-name="Colibri.pdf" data-tags="Aves, Colibri, Mexico" data-date="2025-04-10">
             <div class="preview">
-              <embed class="pdf-embed lazy-embed" title="Taller de Divulgación para Docentes" data-src="pdfs/Taller-Divulgacion-Docentes.pdf#view=FitH" type="application/pdf" />
+              <embed class="pdf-embed lazy-embed" title="Colibri" data-src="COLIBRÍ pdf.pdf#view=FitH" type="application/pdf" />
               <span class="hint">Vista previa</span>
             </div>
             <div class="pdf-meta">
-              <div class="pdf-name">Taller Divulgación Docente.pdf</div>
-              <div class="tag-row"><span class="badge-tag">taller</span><span class="badge-tag">divulgación</span><span class="badge-tag">docentes</span></div>
+              <div class="pdf-name">Colibri.pdf</div>
+              <div class="tag-row"><span class="badge-tag">Mexico</span><span class="badge-tag">Aves</span><span class="badge-tag">Colibri</span></div>
               <div class="actions>
-                <a href="#" class="btn-linklike js-open-pdf" data-pdf="pdfs/Taller-Divulgacion-Docentes.pdf" data-title="Taller de Divulgación para Docentes">Ver aquí</a>
-                <a class="btn-linklike" href="pdfs/Taller-Divulgacion-Docentes.pdf" target="_blank" rel="noopener">Abrir</a>
-                <a class="btn-linklike" href="pdfs/Taller-Divulgacion-Docentes.pdf" download="Taller Divulgación Docente.pdf">Descargar</a>
+                <a href="#" class="btn-linklike js-open-pdf" data-pdf="Colibri" data-title="Taller de Divulgación para Docentes">Ver aquí</a>
+                <a class="btn-linklike" href="COLIBRÍ pdf.pdf" target="_blank" rel="noopener">Abrir</a>
+                <a class="btn-linklike" href="COLIBRÍ pdf.pdf" download="Colibri.pdf">Descargar</a>
               </div>
             </div>
           </article>
@@ -640,6 +755,66 @@ Foto de Sobesi, Octubre, 2024</span>
         <div id="cvEmpty" class="cv-empty">Sin resultados. Ajusta la búsqueda o quita filtros.</div>
       </div>
     </section>
+<article class="pdf-item" data-name="Lobo.pdf" data-tags="Lobo, Biotica, Mamiferos" data-date="2025-04-10">
+            <div class="preview">
+ <embed class="pdf-embed lazy-embed" title="Lobo" data-src="LOBO BIÓTICA.pdf#view=FitH" type="application/pdf" />
+              <span class="hint">Vista previa</span>
+            </div>
+            <div class="pdf-meta">
+              <div class="pdf-name">Lobo.pdf</div>
+              <div class="tag-row"><span class="badge-tag">Mamifero</span><span class="badge-tag">Lobo</span><span class="badge-tag"></span></div>
+              <div class="actions>
+                <a href="#" class="btn-linklike js-open-pdf" data-pdf="LOBO BIÓTICA.pdf" data-title="Lobo">Ver aquí</a>
+                <a class="btn-linklike" href="LOBO BIÓTICA.pdf" target="_blank" rel="noopener">Abrir</a>
+                <a class="btn-linklike" href="LOBO BIÓTICA.pdf" download="Taller Divulgación Docente.pdf">Descargar</a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div id="cvEmpty" class="cv-empty">Sin resultados. Ajusta la búsqueda o quita filtros.</div>
+      </div>
+    </section>
+<div id="cvGrid" class="pdf-grid" aria-live="polite">
+          <article class="pdf-item" data-name="Ajolote " data-tags="Ajolote, AMBYSTOMA , anfibios" data-date="2025-06-01">
+            <div class="preview">
+              <embed class="pdf-embed lazy-embed" title="AMBYSTOMA DESCARGABLE.pdf" data-src="AMBYSTOMA DESCARGABLE.pdf#view=FitH" type="application/pdf" />
+              <span class="hint">Vista previa</span>
+            </div>
+            <div class="pdf-meta">
+              <div class="pdf-name">AMBYSTOMA.pdf</div>
+              <div class="tag-row"><span class="badge-tag">Biotica</span><span class="badge-tag">2025</span><span class="badge-tag">anfibios</span></div>
+              <div class="actions">
+                <a href="#" class="btn-linklike js-open-pdf" data-pdf="AMBYSTOMA DESCARGABLE.pdf" data-title="AMBYSTOMA .pdf">Ver aquí</a>
+                <a class="btn-linklike" href="AMBYSTOMA DESCARGABLE.pdf" target="_blank" rel="noopener">Abrir</a>
+                <a class="btn-linklike" href="AMBYSTOMA DESCARGABLE.pdf" download="AMBYSTOMA DESCARGABLE.pdf">Descargar</a>
+              </div>
+            </div>
+          </article>
+        <div id="cvEmpty" class="cv-empty">Sin resultados. Ajusta la búsqueda o quita filtros.</div>
+      </div>
+    </section>
+<article class="pdf-item" data-name="XOLOITZCUINTLI.pdf" data-tags="Mamiferos, Mexico, Xoloitzcuintli" data-date="2025-04-10">
+            <div class="preview">
+              <embed class="pdf-embed lazy-embed" title="XOLOITZCUINTLI.pdf" data-src="XOLOITZCUINTLI.pdf#view=FitH" type="application/pdf" />
+              <span class="hint">Vista previa</span>
+            </div>
+            <div class="pdf-meta">
+              <div class="pdf-name">XOLOITZCUINTLI.pdf</div>
+              <div class="tag-row"><span class="badge-tag">XOLOITZCUINTLI</span><span class="badge-tag">divulgación</span><span class="badge-tag">Mexico</span></div>
+              <div class="actions>
+                <a href="#" class="btn-linklike js-open-pdf" data-pdf="pdfs/Taller-Divulgacion-Docentes.pdf" data-title="XOLOITZCUINTLI.pdf">Ver aquí</a>
+                <a class="btn-linklike" href="XOLOITZCUINTLI.pdf" target="_blank" rel="noopener">Abrir</a>
+                <a class="btn-linklike" href="XOLOITZCUINTLI.pdf" download="Taller Divulgación Docente.pdf">Descargar</a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div id="cvEmpty" class="cv-empty">Sin resultados. Ajusta la búsqueda o quita filtros.</div>
+      </div>
+    </section>
+
 
     <!-- ===== Fichas ===== -->
     <div id="testimonial" class="Testimonial">
