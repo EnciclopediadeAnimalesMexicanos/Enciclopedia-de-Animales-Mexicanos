@@ -109,6 +109,274 @@
       .sp-tags{ display:flex; gap:.35rem; flex-wrap:wrap; margin-top:.25rem }
       .sp-chip{ border:1px solid #bbf7d0; background:#ecfdf5; color:#166534; border-radius:999px; padding:.12rem .45rem; font-size:.75rem }
       .hl{ background: #fef9c3; border-radius:4px; padding:0 .15rem; }
+      /* ===== ESTILOS MEJORADOS PARA FICHAS EAM ===== */
+
+/* Contenedor de la rejilla */
+.pdf-grid {
+    display: grid;
+    /* Responsive automático: columnas de mínimo 300px */
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); 
+    gap: 2rem; /* Más espacio entre tarjetas */
+    padding: 1.5rem 0;
+}
+
+/* La Tarjeta (Ficha) */
+.pdf-item {
+    background: #ffffff;
+    border: 1px solid rgba(0,0,0,0.04); /* Borde casi invisible */
+    border-radius: 16px; /* Bordes más redondeados */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Transición suave */
+    display: flex;
+    flex-direction: column; /* Asegura que el footer quede abajo */
+}
+
+.pdf-item:hover {
+    transform: translateY(-5px); /* Se levanta al pasar el mouse */
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    border-color: var(--accent); /* Borde verde sutil al hover */
+}
+
+.pdf-item.hide {
+    display: none !important;
+}
+
+/* Área de Vista Previa (Arriba) */
+.preview {
+    position: relative;
+    background: #f1f5f9;
+    height: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.pdf-embed {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: 0;
+}
+
+/* Etiqueta flotante "Vista previa" */
+.preview .hint {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(4px);
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent-700);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    pointer-events: none;
+}
+
+/* Cuerpo de la Tarjeta */
+.pdf-meta {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex-grow: 1; /* Empuja el footer hacia abajo */
+}
+
+.pdf-name {
+    font-family: "Merriweather", serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--ink);
+    line-height: 1.4;
+}
+
+/* Etiquetas (Tags) */
+.tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.badge-tag {
+    background: #ecfdf5;
+    color: var(--accent-700);
+    border: 1px solid #bbf7d0;
+    padding: 2px 8px;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+/* Botones de Acción (Footer) */
+.actions {
+    margin-top: auto; /* Empuja los botones al final */
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos botones iguales */
+    gap: 0.75rem;
+    padding-top: 0.5rem;
+}
+
+/* Botón Principal (Ver) */
+.btn-primary-action {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.6rem;
+    background: var(--accent);
+    color: white !important;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+}
+.btn-primary-action:hover {
+    background: var(--accent-600);
+    text-decoration: none;
+}
+
+/* Botón Secundario (Descargar) */
+.btn-secondary-action {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.6rem;
+    background: white;
+    color: var(--muted) !important;
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.2s;
+}
+.btn-secondary-action:hover {
+    border-color: var(--accent);
+    color: var(--accent) !important;
+    background: #f0fdf4;
+    text-decoration: none;
+}
+### 2. El CSS Necesario
+Agrega esto a tu `<style>` para que los controles se vean como botones modernos ("píldoras") y no como formularios antiguos.
+
+```css
+/* ===== DISEÑO MEJORADO DE TOOLBAR ===== */
+
+/* Contenedor de herramientas flex */
+.cv-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    background: #ffffff;
+    padding: 8px 12px;
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+    width: fit-content; /* Se ajusta al contenido */
+    margin-left: auto; /* Empuja a la derecha en desktop */
+}
+
+@media (max-width: 991px) {
+    .cv-toolbar { margin-left: 0; width: 100%; }
+}
+
+/* Badge de contador */
+.result-badge {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--muted);
+    padding-right: 8px;
+    border-right: 1px solid var(--line);
+    margin-right: 4px;
+    white-space: nowrap;
+}
+
+/* Selector estilizado (sin borde por defecto) */
+.cv-select-wrapper {
+    position: relative;
+}
+
+.cv-select {
+    appearance: none;
+    -webkit-appearance: none;
+    background: transparent;
+    border: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--ink);
+    padding-right: 1.2rem;
+    cursor: pointer;
+    outline: none;
+}
+
+.cv-select-wrapper::after {
+    content: '\f107'; /* Icono flecha abajo */
+    font-family: 'FontAwesome';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--accent);
+    pointer-events: none;
+    font-size: 0.8rem;
+}
+
+/* Botón Limpiar (Icono circular) */
+.cv-btn-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid var(--line);
+    background: #f8fafc;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.cv-btn-icon:hover {
+    background: #fee2e2; /* Rojo muy suave */
+    color: #ef4444;
+    border-color: #fca5a5;
+}
+
+/* Área de Chips */
+.cv-chips-area {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+/* Estilo del Chip individual (Generado por JS) */
+.cv-chip {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+    border-radius: 20px;
+    background: #fff;
+    border: 1px solid var(--line);
+    color: var(--ink);
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+}
+
+.cv-chip:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.cv-chip.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+    box-shadow: 0 2px 6px rgba(22, 163, 74, 0.3);
+}
 
 /* ===== Ajustes base ===== */
 img { 
@@ -137,7 +405,7 @@ img {
 /* ===== Carrusel ===== */
 #myousel .carousel-item {
     height: 100dvh!important;
-    min: height 100px;!important;
+    min: height 100px;  importan
     padding: 0;
 
     /* ❗ IMPORTANTE: NO CAMBIAR DISPLAY ❗ */
@@ -542,279 +810,267 @@ img {
       </div>
     </div>
 
-    <!-- ===== CONVOCATORIAS ===== -->
-    <section class="convocatorias-section" id="convocatorias">
-      <div class="container">
-        <div class="row align-items-end">
-          <div class="col-md-8">
-            <div class="titlepage">
-              <h2 id="convocatorias-titulo">FICHAS<span class="green">EAM</span></h2>
-              <p>Consulta convocatorias de investigación, voluntariado, talleres y colaboraciones.</p>
-            </div>
-          </div>
-          <div class="col-md-4 text-md-right text-left mb-3">
-            <div class="cv-tools" role="group" aria-label="Herramientas de filtrado">
-              <select id="cvSort" class="cv-select" aria-label="Ordenar resultados">
-                <option value="fecha-desc">Más próximas primero</option>
-                <option value="fecha-asc">Más lejanas primero</option>
-                <option value="az">Nombre (A–Z)</option>
-                <option value="za">Nombre (Z–A)</option>
-              </select>
-              <button id="cvClearBtn" class="cv-btn" type="button" title="Limpiar filtros">Limpiar</button>
-              <span id="cvCount" class="text-muted small" aria-live="polite"></span>
-            </div>
-            <div id="cvChipBar" class="cv-chips" aria-label="Filtrar por etiquetas"></div>
+<section class="convocatorias-section" id="convocatorias">
+  <div class="container">
+    
+    <div class="section-header-modern mb-4">
+      <div class="row align-items-center">
+        
+        <div class="col-lg-6 col-md-12 mb-3 mb-lg-0">
+          <div class="titlepage text-left">
+            <h2 id="convocatorias-titulo">FICHAS <span class="green">EAM</span></h2>
+            <p class="mb-0">Acervo digital de especies, ensayos y recursos.</p>
           </div>
         </div>
 
-        <div id="cvGrid" class="pdf-grid" aria-live="polite">
-          <article class="pdf-item" data-name="Vaca" data-tags="Vaca, 2025, Mamifero" data-date="2025-06-01">
+        <div class="col-lg-6 col-md-12">
+          <div class="cv-toolbar justify-content-lg-end justify-content-start">
+            
+            <span id="cvCount" class="result-badge" aria-live="polite">Cargando...</span>
+
+            <div class="cv-select-wrapper">
+              <select id="cvSort" class="cv-select" aria-label="Ordenar resultados">
+                <option value="fecha-desc">📅 Recientes</option>
+                <option value="fecha-asc">📅 Antiguas</option>
+                <option value="az">🔤 Nombre (A–Z)</option>
+              </select>
+            </div>
+
+            <button id="cvClearBtn" class="cv-btn-icon" type="button" title="Limpiar filtros">
+              <i class="fa fa-times" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col-12">
+          <div id="cvChipBar" class="cv-chips-area">
+            </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="cvGrid" class="pdf-grid" aria-live="polite">
+      
+
+          <article class="pdf-item" data-name="Vaca" data-tags="Vaca, 2025, Mamiferos" data-date="2025-06-01">
             <div class="preview">
               <embed class="pdf-embed lazy-embed" title="Vaca" data-src="VACA .pdf#view=FitH" type="application/pdf" />
-              <span class="hint">Vista previa</span>
+              <span class="hint"><i class="fa fa-eye"></i> Vista previa</span>
             </div>
             <div class="pdf-meta">
               <div class="pdf-name">Vaca.pdf</div>
-              <div class="tag-row"><span class="badge-tag">Biotica</span><span class="badge-tag">2025</span><span class="badge-tag">Mamiferos</span></div>
+              <div class="tag-row"><span class="badge-tag">Biótica</span><span class="badge-tag">Mamíferos</span></div>
               <div class="actions">
-                <a href="#" class="btn-linklike js-open-pdf" data-pdf="VACA .pdf" data-title="AJOLOTE BIOTICA">Ver aquí</a>
-                <a class="btn-linklike" href="VACA .pdf" target="_blank" rel="noopener">Abrir</a>
-                <a class="btn-linklike" href="VACA .pdf" download="AJOLOTE. BIÓTICA. SUSTITUIR.pdf">Descargar</a>
+                <a href="#" class="btn-primary-action js-open-pdf" data-pdf="VACA .pdf" data-title="Vaca">Ver</a>
+                <a class="btn-secondary-action" href="VACA .pdf" download>Descargar</a>
               </div>
             </div>
           </article>
-          <div id="cvGrid" class="pdf-grid" aria-live="polite">
-          <article class="pdf-item" data-name="Monarca" data-tags="Monarca, 2025, anfibios" data-date="2025-06-01">
+
+          <article class="pdf-item" data-name="Monarca" data-tags="Monarca, 2025, Insectos" data-date="2025-06-01">
             <div class="preview">
               <embed class="pdf-embed lazy-embed" title="Mariposa Monarca" data-src="MONARCA. ETNOHISTÓRICA.pdf#view=FitH" type="application/pdf" />
-              <span class="hint">Vista previa</span>
+              <span class="hint"><i class="fa fa-eye"></i> Vista previa</span>
             </div>
             <div class="pdf-meta">
-              <div class="pdf-name">Mariposa Monarca.pdf</div>
-              <div class="tag-row"><span class="badge-tag">Biotica</span><span class="badge-tag">2025</span><span class="badge-tag">anfibios</span></div>
+              <div class="pdf-name">Mariposa Monarca</div>
+              <div class="tag-row"><span class="badge-tag">Etnohistórica</span><span class="badge-tag">Insectos</span></div>
               <div class="actions">
-                <a href="#" class="btn-linklike js-open-pdf" data-pdf="MONARCA. ETNOHISTÓRICA.pdf" data-title="Monarca>Ver aquí</a>
-                <a class="btn-linklike" href="MONARCA. ETNOHISTÓRICA.pdf" target="_blank" rel="noopener">Abrir</a>
-                <a class="btn-linklike" href="MONARCA. ETNOHISTÓRICA.pdf" download="AJOLOTE. BIÓTICA. SUSTITUIR.pdf">Descargar</a>
+                <a href="#" class="btn-primary-action js-open-pdf" data-pdf="MONARCA. ETNOHISTÓRICA.pdf" data-title="Mariposa Monarca">Ver</a>
+                <a class="btn-secondary-action" href="MONARCA. ETNOHISTÓRICA.pdf" download>Descargar</a>
               </div>
             </div>
           </article>
-            <div id="cvGrid" class="pdf-grid" aria-live="polite">
-          <article class="pdf-item" data-name="Ajolote " data-tags="Ajolote, 2025, anfibios" data-date="2025-06-01">
+
+          <article class="pdf-item" data-name="Ajolote" data-tags="Ajolote, 2025, anfibios" data-date="2025-06-01">
             <div class="preview">
-              <embed class="pdf-embed lazy-embed" title="Ajolote Biotica" data-src="AJOLOTE. BIÓTICA. SUSTITUIR.pdf#view=FitH" type="application/pdf" />
-              <span class="hint">Vista previa</span>
+              <embed class="pdf-embed lazy-embed" title="Ajolote" data-src="AJOLOTE. BIÓTICA. SUSTITUIR.pdf#view=FitH" type="application/pdf" />
+              <span class="hint"><i class="fa fa-eye"></i> Vista previa</span>
             </div>
             <div class="pdf-meta">
-              <div class="pdf-name">El axolote.pdf</div>
-              <div class="tag-row"><span class="badge-tag">Biotica</span><span class="badge-tag">2025</span><span class="badge-tag">anfibios</span></div>
+              <div class="pdf-name">El Axolote</div>
+              <div class="tag-row"><span class="badge-tag">Biótica</span><span class="badge-tag">Anfibios</span></div>
               <div class="actions">
-                <a href="#" class="btn-linklike js-open-pdf" data-pdf="AJOLOTE. BIÓTICA. SUSTITUIR.pdf" data-title="AJOLOTE BIOTICA">Ver aquí</a>
-                <a class="btn-linklike" href="AJOLOTE. BIÓTICA. SUSTITUIR.pdf" target="_blank" rel="noopener">Abrir</a>
-                <a class="btn-linklike" href="AJOLOTE. BIÓTICA. SUSTITUIR.pdf" download="AJOLOTE. BIÓTICA. SUSTITUIR.pdf">Descargar</a>
+                <a href="#" class="btn-primary-action js-open-pdf" data-pdf="AJOLOTE. BIÓTICA. SUSTITUIR.pdf" data-title="El Axolote">Ver</a>
+                <a class="btn-secondary-action" href="AJOLOTE. BIÓTICA. SUSTITUIR.pdf" download>Descargar</a>
               </div>
             </div>
           </article>
-          <div id="cvGrid" class="pdf-grid" aria-live="polite">
+
           <article class="pdf-item" data-name="Cuervo" data-tags="Cuervo, 2025, Aves" data-date="2025-06-01">
             <div class="preview">
-              <embed class="pdf-embed lazy-embed" title="Cuervo Biotica" data-src="CUERVO.BIÓTICA.pdf#view=FitH" type="application/pdf" />
-              <span class="hint">Vista previa</span>
+              <embed class="pdf-embed lazy-embed" title="Cuervo" data-src="CUERVO.BIÓTICA.pdf#view=FitH" type="application/pdf" />
+              <span class="hint"><i class="fa fa-eye"></i> Vista previa</span>
             </div>
             <div class="pdf-meta">
-              <div class="pdf-name">Cuervo.pdf</div>
-              <div class="tag-row"><span class="badge-tag">Biotica</span><span class="badge-tag">2025</span><span class="badge-tag">Aves</span></div>
+              <div class="pdf-name">Cuervo</div>
+              <div class="tag-row"><span class="badge-tag">Biótica</span><span class="badge-tag">Aves</span></div>
               <div class="actions">
-                <a href="#" class="btn-linklike js-open-pdf" data-pdf="CUERVO.BIÓTICA.pdf" data-title="CUERVO.BIÓTICA.pdf">Ver aquí</a>
-                <a class="btn-linklike" href="CUERVO.BIÓTICA.pdf" target="_blank" rel="noopener">Abrir</a>
-                <a class="btn-linklike" href="CUERVO.BIÓTICA.pdf" download="CUERVO.BIÓTICA.pdf">Descargar</a>
+                <a href="#" class="btn-primary-action js-open-pdf" data-pdf="CUERVO.BIÓTICA.pdf" data-title="Cuervo">Ver</a>
+                <a class="btn-secondary-action" href="CUERVO.BIÓTICA.pdf" download>Descargar</a>
               </div>
             </div>
           </article>
-  </article>
-            <div id="cvGrid" class="pdf-grid" aria-live="polite">
-          <article class="pdf-item" data-name="Habitar nuestra animalidad" data-tags="Habitar, Animalidad,Filosofia, 2025," data-date="2025-06-01">
+
+          <article class="pdf-item" data-name="Habitar nuestra animalidad" data-tags="Habitar, Animalidad, Filosofia, 2025" data-date="2025-06-01">
             <div class="preview">
-              <embed class="pdf-embed lazy-embed" title="Ajolote Biotica" data-src="HABITAR .pdf#view=FitH" type="application/pdf" />
-              <span class="hint">Vista previa</span>
+              <embed class="pdf-embed lazy-embed" title="Habitar" data-src="HABITAR .pdf#view=FitH" type="application/pdf" />
+              <span class="hint"><i class="fa fa-eye"></i> Vista previa</span>
             </div>
             <div class="pdf-meta">
               <div class="pdf-name">Habitar nuestra animalidad</div>
-              <div class="tag-row"><span class="badge-tag">Filosofia</span><span class="badge-tag">2025</span><span class="badge-tag">habitar</span></div>
+              <div class="tag-row"><span class="badge-tag">Filosofía</span><span class="badge-tag">Ensayo</span></div>
               <div class="actions">
-                <a href="#" class="btn-linklike js-open-pdf" data-pdf="AJOLOTE. BIÓTICA. SUSTITUIR.pdf" data-title="AJOLOTE BIOTICA">Ver aquí</a>
-                <a class="btn-linklike" href="HABITAR .pdf" target="_blank" rel="noopener">Abrir</a>
-                <a class="btn-linklike" href="HABITAR .pdf" download="AJOLOTE. BIÓTICA. SUSTITUIR.pdf">Descargar</a>
+                <a href="#" class="btn-primary-action js-open-pdf" data-pdf="HABITAR .pdf" data-title="Habitar nuestra animalidad">Ver</a>
+                <a class="btn-secondary-action" href="HABITAR .pdf" download>Descargar</a>
               </div>
             </div>
           </article>
-  </article>
-            <div id="cvGrid" class="pdf-grid" aria-live="polite">
-          <article class="pdf-item" data-name="George Stubbs " data-tags="Arte, 2025, Caballos" data-date="2025-06-01">
+
+          <article class="pdf-item" data-name="George Stubbs" data-tags="Arte, 2025, Caballos" data-date="2025-06-01">
             <div class="preview">
               <embed class="pdf-embed lazy-embed" title="George Stubbs" data-src="GEORGE STUBBS .pdf#view=FitH" type="application/pdf" />
-              <span class="hint">Vista previa</span>
+              <span class="hint"><i class="fa fa-eye"></i> Vista previa</span>
             </div>
             <div class="pdf-meta">
-              <div class="pdf-name">George Stubbs.pdf</div>
-              <div class="tag-row"><span class="badge-tag">Caballos</span><span class="badge-tag">2025</span><span class="badge-tag">Arte</span></div>
+              <div class="pdf-name">George Stubbs</div>
+              <div class="tag-row"><span class="badge-tag">Arte</span><span class="badge-tag">Caballos</span></div>
               <div class="actions">
-                <a href="#" class="btn-linklike js-open-pdf" data-pdf="AJOLOTE. BIÓTICA. SUSTITUIR.pdf" data-title="AJOLOTE BIOTICA">Ver aquí</a>
-                <a class="btn-linklike" href="GEORGE STUBBS .pdf" target="_blank" rel="noopener">Abrir</a>
-                <a class="btn-linklike" href="GEORGE STUBBS .pdf" download="GEORGE STUBBS .pdf">Descargar</a>
+                <a href="#" class="btn-primary-action js-open-pdf" data-pdf="GEORGE STUBBS .pdf" data-title="George Stubbs">Ver</a>
+                <a class="btn-secondary-action" href="GEORGE STUBBS .pdf" download>Descargar</a>
               </div>
             </div>
           </article>
-                   <div id="cvGrid" class="pdf-grid" aria-live="polite">
-          <article class="pdf-item" data-name="Esceptisismo " data-tags="Filosofia, 2025, Animalidad" data-date="2025-06-01">
+
+          <article class="pdf-item" data-name="Esceptisismo" data-tags="Filosofia, 2025, Animalidad" data-date="2025-06-01">
             <div class="preview">
               <embed class="pdf-embed lazy-embed" title="Esceptisismo" data-src="ESCEPTISISMO .pdf#view=FitH" type="application/pdf" />
-              <span class="hint">Vista previa</span>
+              <span class="hint"><i class="fa fa-eye"></i> Vista previa</span>
             </div>
             <div class="pdf-meta">
-              <div class="pdf-name">Esceptisismo</div>
-              <div class="tag-row"><span class="badge-tag">Filosofia</span><span class="badge-tag">2025</span><span class="badge-tag">Animalidad</span></div>
+              <div class="pdf-name">Escepticismo</div>
+              <div class="tag-row"><span class="badge-tag">Filosofía</span><span class="badge-tag">Animalidad</span></div>
               <div class="actions">
-                <a href="#" class="btn-linklike js-open-pdf" data-pdf="AJOLOTE. BIÓTICA. SUSTITUIR.pdf" data-title="AJOLOTE BIOTICA">Ver aquí</a>
-                <a class="btn-linklike" href="ESCEPTISISMO .pdf" target="_blank" rel="noopener">Abrir</a>
-                <a class="btn-linklike" href="ESCEPTISISMO .pdf" download="GEORGE STUBBS .pdf">Descargar</a>
+                <a href="#" class="btn-primary-action js-open-pdf" data-pdf="ESCEPTISISMO .pdf" data-title="Escepticismo">Ver</a>
+                <a class="btn-secondary-action" href="ESCEPTISISMO .pdf" download>Descargar</a>
               </div>
             </div>
           </article>
-                   <div id="cvGrid" class="pdf-grid" aria-live="polite">
-          <article class="pdf-item" data-name="Coyote " data-tags="Mamifero, 2025," data-date="2025-06-01">
+
+          <article class="pdf-item" data-name="Coyote" data-tags="Mamifero, 2025, Biotica" data-date="2025-06-01">
             <div class="preview">
-              <embed class="pdf-embed lazy-embed" title="George Stubbs" data-src="coyote.pdf#view=FitH" type="application/pdf" />
-              <span class="hint">Vista previa</span>
+              <embed class="pdf-embed lazy-embed" title="Coyote" data-src="coyote.pdf#view=FitH" type="application/pdf" />
+              <span class="hint"><i class="fa fa-eye"></i> Vista previa</span>
             </div>
             <div class="pdf-meta">
-              <div class="pdf-name">Coyote.pdf</div>
-              <div class="tag-row"><span class="badge-tag">Mamiferos</span><span class="badge-tag">2025</span><span class="badge-tag">Biotica</span></div>
+              <div class="pdf-name">Coyote</div>
+              <div class="tag-row"><span class="badge-tag">Mamíferos</span><span class="badge-tag">Biótica</span></div>
               <div class="actions">
-                <a href="#" class="btn-linklike js-open-pdf" data-pdf="coyote.pdf" data-title="coyote. pdf">Ver aquí</a>
-                <a class="btn-linklike" href="coyote.pdf" target="_blank" rel="noopener">Abrir</a>
-                <a class="btn-linklike" href="coyote.pdf" download="coyote.pdf">Descargar</a>
+                <a href="#" class="btn-primary-action js-open-pdf" data-pdf="coyote.pdf" data-title="Coyote">Ver</a>
+                <a class="btn-secondary-action" href="coyote.pdf" download>Descargar</a>
               </div>
             </div>
           </article>
-                   <div id="cvGrid" class="pdf-grid" aria-live="polite">
-          <article class="pdf-item" data-name="Burro " data-tags="Biologia, 2025, Mamifero" data-date="2025-06-01">
+
+          <article class="pdf-item" data-name="Burro" data-tags="Biologia, 2025, Mamifero" data-date="2025-06-01">
             <div class="preview">
-              <embed class="pdf-embed lazy-embed" title="George Stubbs" data-src="BURRO .pdf#view=FitH" type="application/pdf" />
-              <span class="hint">Vista previa</span>
+              <embed class="pdf-embed lazy-embed" title="Burro" data-src="BURRO .pdf#view=FitH" type="application/pdf" />
+              <span class="hint"><i class="fa fa-eye"></i> Vista previa</span>
             </div>
             <div class="pdf-meta">
-              <div class="pdf-name">Burro.pdf</div>
-              <div class="tag-row"><span class="badge-tag">Biologia</span><span class="badge-tag">2025</span><span class="badge-tag">Mamiferos</span></div>
+              <div class="pdf-name">Burro</div>
+              <div class="tag-row"><span class="badge-tag">Biología</span><span class="badge-tag">Mamíferos</span></div>
               <div class="actions">
-                <a href="#" class="btn-linklike js-open-pdf" data-pdf="BURRO .pdf" data-title="Burro">Ver aquí</a>
-                <a class="btn-linklike" href="BURRO .pdf" target="_blank" rel="noopener">Abrir</a>
-                <a class="btn-linklike" href="BURRO .pdf" download="BURRO .pdf">Descargar</a>
+                <a href="#" class="btn-primary-action js-open-pdf" data-pdf="BURRO .pdf" data-title="Burro">Ver</a>
+                <a class="btn-secondary-action" href="BURRO .pdf" download>Descargar</a>
               </div>
             </div>
           </article>
-                   <div id="cvGrid" class="pdf-grid" aria-live="polite">
+
           <article class="pdf-item" data-name="Asombro Compasión" data-tags="filosofia, 2025, Asombro" data-date="2025-06-01">
             <div class="preview">
               <embed class="pdf-embed lazy-embed" title="Asombro Compasión" data-src="ASOMBRO COMPASION .pdf#view=FitH" type="application/pdf" />
-              <span class="hint">Vista previa</span>
+              <span class="hint"><i class="fa fa-eye"></i> Vista previa</span>
             </div>
             <div class="pdf-meta">
               <div class="pdf-name">Asombro Compasión</div>
-              <div class="tag-row"><span class="badge-tag">Filosofia</span><span class="badge-tag">2025</span><span class="badge-tag">Animalidad</span></div>
+              <div class="tag-row"><span class="badge-tag">Filosofía</span><span class="badge-tag">Animalidad</span></div>
               <div class="actions">
-                <a href="#" class="btn-linklike js-open-pdf" data-pdf="ASOMBRO COMPASION. pdf" data-title="Asombro Compasion">Ver aquí</a>
-                <a class="btn-linklike" href="ASOMBRO COMPASION .pdf" target="_blank" rel="noopener">Abrir</a>
-                <a class="btn-linklike" href="ASOMBRO COMPASION .pdf" download="ASOMBRO COMPASIO.pdf">Descargar</a>
+                <a href="#" class="btn-primary-action js-open-pdf" data-pdf="ASOMBRO COMPASION .pdf" data-title="Asombro Compasión">Ver</a>
+                <a class="btn-secondary-action" href="ASOMBRO COMPASION .pdf" download>Descargar</a>
               </div>
             </div>
           </article>
-          
-        </div>
 
-        <div id="cvEmpty" class="cv-empty">Sin resultados. Ajusta la búsqueda o quita filtros.</div>
-      </div>
-    </section>
-    <article class="pdf-item" data-name="Colibri.pdf" data-tags="Aves, Colibri, Mexico" data-date="2025-04-10">
+          <article class="pdf-item" data-name="Colibrí" data-tags="Aves, Colibri, Mexico" data-date="2025-04-10">
             <div class="preview">
-              <embed class="pdf-embed lazy-embed" title="Colibri" data-src="COLIBRÍ pdf.pdf#view=FitH" type="application/pdf" />
-              <span class="hint">Vista previa</span>
+              <embed class="pdf-embed lazy-embed" title="Colibrí" data-src="COLIBRÍ pdf.pdf#view=FitH" type="application/pdf" />
+              <span class="hint"><i class="fa fa-eye"></i> Vista previa</span>
             </div>
             <div class="pdf-meta">
-              <div class="pdf-name">Colibri.pdf</div>
-              <div class="tag-row"><span class="badge-tag">Mexico</span><span class="badge-tag">Aves</span><span class="badge-tag">Colibri</span></div>
-              <div class="actions>
-                <a href="#" class="btn-linklike js-open-pdf" data-pdf="Colibri" data-title="Taller de Divulgación para Docentes">Ver aquí</a>
-                <a class="btn-linklike" href="COLIBRÍ pdf.pdf" target="_blank" rel="noopener">Abrir</a>
-                <a class="btn-linklike" href="COLIBRÍ pdf.pdf" download="Colibri.pdf">Descargar</a>
-              </div>
-            </div>
-          </article>
-        </div>
-
-        <div id="cvEmpty" class="cv-empty">Sin resultados. Ajusta la búsqueda o quita filtros.</div>
-      </div>
-    </section>
-<article class="pdf-item" data-name="Lobo.pdf" data-tags="Lobo, Biotica, Mamiferos" data-date="2025-04-10">
-            <div class="preview">
- <embed class="pdf-embed lazy-embed" title="Lobo" data-src="LOBO BIÓTICA.pdf#view=FitH" type="application/pdf" />
-              <span class="hint">Vista previa</span>
-            </div>
-            <div class="pdf-meta">
-              <div class="pdf-name">Lobo.pdf</div>
-              <div class="tag-row"><span class="badge-tag">Mamifero</span><span class="badge-tag">Lobo</span><span class="badge-tag"></span></div>
-              <div class="actions>
-                <a href="#" class="btn-linklike js-open-pdf" data-pdf="LOBO BIÓTICA.pdf" data-title="Lobo">Ver aquí</a>
-                <a class="btn-linklike" href="LOBO BIÓTICA.pdf" target="_blank" rel="noopener">Abrir</a>
-                <a class="btn-linklike" href="LOBO BIÓTICA.pdf" download="Taller Divulgación Docente.pdf">Descargar</a>
-              </div>
-            </div>
-          </article>
-        </div>
-
-        <div id="cvEmpty" class="cv-empty">Sin resultados. Ajusta la búsqueda o quita filtros.</div>
-      </div>
-    </section>
-<div id="cvGrid" class="pdf-grid" aria-live="polite">
-          <article class="pdf-item" data-name="Ajolote " data-tags="Ajolote, AMBYSTOMA , anfibios" data-date="2025-06-01">
-            <div class="preview">
-              <embed class="pdf-embed lazy-embed" title="AMBYSTOMA DESCARGABLE.pdf" data-src="AMBYSTOMA DESCARGABLE.pdf#view=FitH" type="application/pdf" />
-              <span class="hint">Vista previa</span>
-            </div>
-            <div class="pdf-meta">
-              <div class="pdf-name">AMBYSTOMA.pdf</div>
-              <div class="tag-row"><span class="badge-tag">Biotica</span><span class="badge-tag">2025</span><span class="badge-tag">anfibios</span></div>
+              <div class="pdf-name">Colibrí</div>
+              <div class="tag-row"><span class="badge-tag">Aves</span><span class="badge-tag">México</span></div>
               <div class="actions">
-                <a href="#" class="btn-linklike js-open-pdf" data-pdf="AMBYSTOMA DESCARGABLE.pdf" data-title="AMBYSTOMA .pdf">Ver aquí</a>
-                <a class="btn-linklike" href="AMBYSTOMA DESCARGABLE.pdf" target="_blank" rel="noopener">Abrir</a>
-                <a class="btn-linklike" href="AMBYSTOMA DESCARGABLE.pdf" download="AMBYSTOMA DESCARGABLE.pdf">Descargar</a>
+                <a href="#" class="btn-primary-action js-open-pdf" data-pdf="COLIBRÍ pdf.pdf" data-title="Colibrí">Ver</a>
+                <a class="btn-secondary-action" href="COLIBRÍ pdf.pdf" download>Descargar</a>
               </div>
             </div>
           </article>
-        <div id="cvEmpty" class="cv-empty">Sin resultados. Ajusta la búsqueda o quita filtros.</div>
-      </div>
-    </section>
-<article class="pdf-item" data-name="XOLOITZCUINTLI.pdf" data-tags="Mamiferos, Mexico, Xoloitzcuintli" data-date="2025-04-10">
+
+          <article class="pdf-item" data-name="Lobo" data-tags="Lobo, Biotica, Mamiferos" data-date="2025-04-10">
             <div class="preview">
-              <embed class="pdf-embed lazy-embed" title="XOLOITZCUINTLI.pdf" data-src="XOLOITZCUINTLI.pdf#view=FitH" type="application/pdf" />
-              <span class="hint">Vista previa</span>
+              <embed class="pdf-embed lazy-embed" title="Lobo" data-src="LOBO BIÓTICA.pdf#view=FitH" type="application/pdf" />
+              <span class="hint"><i class="fa fa-eye"></i> Vista previa</span>
             </div>
             <div class="pdf-meta">
-              <div class="pdf-name">XOLOITZCUINTLI.pdf</div>
-              <div class="tag-row"><span class="badge-tag">XOLOITZCUINTLI</span><span class="badge-tag">divulgación</span><span class="badge-tag">Mexico</span></div>
-              <div class="actions>
-                <a href="#" class="btn-linklike js-open-pdf" data-pdf="pdfs/Taller-Divulgacion-Docentes.pdf" data-title="XOLOITZCUINTLI.pdf">Ver aquí</a>
-                <a class="btn-linklike" href="XOLOITZCUINTLI.pdf" target="_blank" rel="noopener">Abrir</a>
-                <a class="btn-linklike" href="XOLOITZCUINTLI.pdf" download="Taller Divulgación Docente.pdf">Descargar</a>
+              <div class="pdf-name">Lobo</div>
+              <div class="tag-row"><span class="badge-tag">Mamíferos</span><span class="badge-tag">Biótica</span></div>
+              <div class="actions">
+                <a href="#" class="btn-primary-action js-open-pdf" data-pdf="LOBO BIÓTICA.pdf" data-title="Lobo">Ver</a>
+                <a class="btn-secondary-action" href="LOBO BIÓTICA.pdf" download>Descargar</a>
               </div>
             </div>
           </article>
+
+          <article class="pdf-item" data-name="Ambystoma" data-tags="Ajolote, Ambystoma, anfibios" data-date="2025-06-01">
+            <div class="preview">
+              <embed class="pdf-embed lazy-embed" title="Ambystoma" data-src="AMBYSTOMA DESCARGABLE.pdf#view=FitH" type="application/pdf" />
+              <span class="hint"><i class="fa fa-eye"></i> Vista previa</span>
+            </div>
+            <div class="pdf-meta">
+              <div class="pdf-name">Ambystoma (Descargable)</div>
+              <div class="tag-row"><span class="badge-tag">Biótica</span><span class="badge-tag">Anfibios</span></div>
+              <div class="actions">
+                <a href="#" class="btn-primary-action js-open-pdf" data-pdf="AMBYSTOMA DESCARGABLE.pdf" data-title="Ambystoma">Ver</a>
+                <a class="btn-secondary-action" href="AMBYSTOMA DESCARGABLE.pdf" download>Descargar</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="pdf-item" data-name="Xoloitzcuintli" data-tags="Mamiferos, Mexico, Xoloitzcuintli" data-date="2025-04-10">
+            <div class="preview">
+              <embed class="pdf-embed lazy-embed" title="Xoloitzcuintli" data-src="XOLOITZCUINTLI.pdf#view=FitH" type="application/pdf" />
+              <span class="hint"><i class="fa fa-eye"></i> Vista previa</span>
+            </div>
+            <div class="pdf-meta">
+              <div class="pdf-name">Xoloitzcuintli</div>
+              <div class="tag-row"><span class="badge-tag">Caninos</span><span class="badge-tag">Divulgación</span><span class="badge-tag">México</span></div>
+              <div class="actions">
+                <a href="#" class="btn-primary-action js-open-pdf" data-pdf="XOLOITZCUINTLI.pdf" data-title="Xoloitzcuintli">Ver</a>
+                <a class="btn-secondary-action" href="XOLOITZCUINTLI.pdf" download>Descargar</a>
+              </div>
+            </div>
+          </article>
+
+        </div> <div id="cvEmpty" class="cv-empty">
+           <i class="fa fa-search" style="font-size: 2rem; margin-bottom: 10px; opacity: 0.5;"></i><br>
+           Sin resultados. Ajusta la búsqueda o quita filtros.
         </div>
 
-        <div id="cvEmpty" class="cv-empty">Sin resultados. Ajusta la búsqueda o quita filtros.</div>
       </div>
     </section>
-
 
     <!-- ===== Fichas ===== -->
     <div id="testimonial" class="Testimonial">
