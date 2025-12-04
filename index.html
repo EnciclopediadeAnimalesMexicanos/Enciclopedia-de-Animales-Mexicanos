@@ -397,20 +397,69 @@ img {
     display: none; 
 }
 
-/* ===== Fix para móviles: altura real del viewport ===== */
-:root {
-    --vh: 1vh;
-}
+/* =========================================
+       CORRECCIONES MÓVILES (ANTI-DISTORSIÓN)
+       ========================================= */
+    
+    /* 1. Evitar scroll horizontal indeseado */
+    html, body {
+        overflow-x: hidden;
+        width: 100%;
+        position: relative;
+    }
 
-/* ===== Carrusel ===== */
-#myousel .carousel-item {
-    height: 100dvh!important;
-    min: height 100px;  importan
-    padding: 0;
+    /* 2. Arreglar el Carrusel (Banner) en móviles */
+    #myCarousel .carousel-item {
+        height: auto !important; /* Quita la altura forzada */
+        min-height: 250px;       /* Altura mínima para que no desaparezca */
+    }
 
-    /* ❗ IMPORTANTE: NO CAMBIAR DISPLAY ❗ */
-    /* Bootstrap lo controla */
-}
+    #myCarousel .carousel-item img {
+        width: 100% !important;  /* Ajustar al ancho del contenedor */
+        height: auto !important; /* Mantener proporción */
+        max-height: 500px;       /* Límite en PC */
+        object-fit: cover;       /* Recortar si es necesario, no estirar */
+    }
+
+    /* 3. Ajustar la Cabecera de Fichas en móviles */
+    @media (max-width: 768px) {
+        .section-header-modern {
+            text-align: center; /* Centrar todo en móvil */
+        }
+
+        .titlepage {
+            text-align: center !important;
+            margin-bottom: 15px;
+        }
+
+        /* Barra de herramientas adaptable */
+        .cv-toolbar {
+            justify-content: center; /* Centrar controles */
+            width: 100%;
+            margin-left: 0;
+            padding: 10px;
+        }
+
+        /* Hacer que el select ocupe ancho completo para fácil toque */
+        .cv-select-wrapper, .cv-select {
+            width: 100%;
+            max-width: 100%;
+        }
+        
+        .cv-toolbar {
+            display: grid; /* Cambiar a grid en móvil para mejor control */
+            grid-template-columns: auto 1fr auto; /* Badge - Select - Botón */
+            gap: 10px;
+        }
+    }
+
+    /* 4. Ajustar la Rejilla (Grid) para pantallas muy angostas */
+    @media (max-width: 380px) {
+        .pdf-grid {
+            /* Bajar el mínimo de 300px a 100% para celulares pequeños */
+            grid-template-columns: 1fr; 
+        }
+    }
 
 #myCarousel .carousel-item img {
     width: 200vw;  /* ancho relativo al viewport */
