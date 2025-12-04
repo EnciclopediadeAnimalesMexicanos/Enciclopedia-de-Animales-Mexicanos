@@ -578,6 +578,66 @@ img {
       .btn-linklike:hover{ background:#f1fcf5; border-color:#cce3d3; }
 
       @media (prefers-reduced-motion: reduce) { .carousel, .carousel-item{ transition:none!important } }
+      /* ===== FRANJA DE IMPACTO ===== */
+.impact-section {
+    background: var(--accent-700); /* Verde oscuro corporativo */
+    background: linear-gradient(135deg, #166534 0%, #14532d 100%);
+    padding: 60px 0;
+    margin: 40px 0; /* Separación vertical */
+    color: #ffffff;
+    border-radius: 0; /* Opcional: 16px si quieres que flote */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Decoración de fondo sutil */
+.impact-section::before {
+    content: '\f1b0'; /* Icono de pata de animal fontawesome */
+    font-family: 'FontAwesome';
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    font-size: 15rem;
+    color: rgba(255,255,255,0.03);
+    transform: rotate(20deg);
+}
+
+.impact-box {
+    position: relative;
+    z-index: 2;
+    padding: 10px;
+}
+
+/* Líneas divisorias solo en escritorio */
+@media (min-width: 768px) {
+    .border-side {
+        border-left: 1px solid rgba(255,255,255,0.15);
+        border-right: 1px solid rgba(255,255,255,0.15);
+    }
+}
+
+.impact-icon {
+    font-size: 2rem;
+    color: #86efac; /* Verde claro brillante */
+    margin-bottom: 10px;
+    display: block;
+}
+
+.impact-number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    font-family: "Inter", sans-serif;
+}
+
+.impact-text {
+    font-family: "Merriweather", serif;
+    font-size: 1rem;
+    opacity: 0.9;
+    margin-bottom: 0;
+    font-style: italic;
+}
     </style>
   </head>
   <script>
@@ -720,145 +780,40 @@ img {
     </div>
   </div>
 </div>
-    <!-- ===== Servicios ===== -->
-    <div id="service" class="service">
-      <div class="container">
-        <div class="row"><div class="col-md-12"><div class="titlepage"><h2 id="nuestros-contenidos">Nuestros <span class="green">contenidos</span></h2></div></div></div>
-        <div class="row">
-          <div class="col-md-10 offset-md-1">
-            <div class="row">
-              <div class="col-md-4 col-sm-6">
-                <div class="service_box">
-                  <i><img src="ficha.jpg" alt="Fichas de especies" loading="lazy" decoding="async"/></i>
-                  <h3>Fichas de especies</h3>
-                  <p>Información validada: taxonomía, distribución, hábitat y estado UICN.</p>
-                </div>
-              </div>
-              <div class="col-md-4 offset-md-1 col-sm-6">
-                <div class="service_box">
-                  <i><img src="images/christmas-background-1204029_1280.jpg" alt="Recursos educativos" loading="lazy" decoding="async"/></i>
-                  <h3>Recursos educativos</h3>
-                  <p>Guías y materiales para docentes y divulgadores.</p>
-                </div>
-              </div>
-              <div class="col-md-4 offset-md-3 col-sm-6 mar_top">
-                <div class="service_box">
-                  <i><img src="images/teamwork-3213924_1280.jpg" alt="Colaboraciones" loading="lazy" decoding="async"/></i>
-                  <h3>Colaboraciones</h3>
-                  <p>Proyectos interdisciplinarios con instituciones y comunidades.</p>
-                </div>
-              </div>
-              <div class="col-md-4 offset-md-1 col-sm-6 mar_top">
-                <div class="service_box">
-                  <i><img src="images/privacy-policy-445157_1280.jpg" alt="Datos abiertos" loading="lazy" decoding="async"/></i>
-                  <h3>Datos abiertos</h3>
-                  <p>Publicación de conjuntos de datos y referencias trazables.</p>
-                </div>
-              </div>
-            </div>
-          </div>
+    <div class="py-5"></div>
+    
+<div class="impact-section">
+  <div class="container">
+    <div class="row text-center">
+      
+      <div class="col-md-4 col-sm-12 mb-4 mb-md-0">
+        <div class="impact-box">
+          <i class="fa fa-paw impact-icon" aria-hidden="true"></i>
+          <span class="impact-number counter"></span>
+          <p class="impact-text">Especies Documentadas</p>
         </div>
       </div>
-    </div>
 
-    <!-- ===== Galería ===== -->
-    <div id="gallery" class="gallery">
-      <div class="container">
-        <div class="row"><div class="col-md-12"><div class="titlepage"><h2 id="nuestra-galeria">Nuestra <span class="green">galería</span></h2><p>Imágenes ilustrativas de especies (con licencias y créditos correspondientes).</p></div></div></div>
-        <div class="row">
-          <div class="col-md-4 col-sm-6"><div class="gallery_text"><div class="galleryh3"><h3 id="gal-ajolote">Ajolote</h3><p>Anfibio endémico de Xochimilco (Ambystoma mexicanum).</p></div></div></div>
-          <div class="col-md-4 col-sm-6"><div class="gallery_img"><figure><img src="images/ajolote.png" alt="Ajolote" loading="lazy" decoding="async"/></figure></div></div>
-          <div class="col-md-4 col-sm-6"><div class="gallery_img"><figure><img src="images/horses-1414889_1280.jpg" alt="Ajolote" loading="lazy" decoding="async"/></figure></div></div>
-          <div class="col-md-4 col-sm-6"><div class="gallery_img"><figure><img src="images/hummingbird-4469204_1280.jpg" alt="Ajolote" loading="lazy" decoding="async"/></figure></div></div>
-          <div class="col-md-4 col-sm-6"><div class="gallery_img"><figure><img src="images/pigs-8092713_1280.jpg" alt="Ajolote" loading="lazy" decoding="async"/></figure></div></div>
-          <div class="col-md-4 col-sm-6"><div class="gallery_text"><div class="galleryh3"><h3 id="gal-colibri">Colibrí</h3><p>Aves nectívoras de gran importancia polinizadora.</p></div></div></div>
-          <div class="col-md-4 col-sm-6"><div class="gallery_text"><div class="galleryh3"><h3 id="gal-jaguar">Jaguar</h3><p>Felino emblemático de Mesoamérica (Panthera onca).</p></div></div></div>
-          <div class="col-md-4 col-sm-6"><div class="gallery_img"><figure><img src="images/jaguar-859412_1280.jpg" alt="Imagen de ejemplo" loading="lazy" decoding="async"/></figure></div></div>
-          <div class="col-md-4 col-sm-6"><div class="gallery_img"><figure><img src="images/cat-6463284_1280.jpg" alt="Imagen de ejemplo" loading="lazy" decoding="async"/></figure></div></div>
+      <div class="col-md-4 col-sm-12 mb-4 mb-md-0">
+        <div class="impact-box border-side">
+          <i class="fa fa-book impact-icon" aria-hidden="true"></i>
+          <span class="impact-number counter"></span>
+          <p class="impact-text">Ensayos Etnohistóricos</p>
         </div>
       </div>
-    </div>
 
-    <!-- ===== Diseño / líneas ===== -->
-    <div class="design" id="lineas">
-      <div class="container-fluid">
-        <div class="row d_flex">
-          <div class="col-md-5">
-            <div id="design" class="carousel slide banner_design" data-ride="carousel" aria-label="Líneas de investigación">
-              <ol class="carousel-indicators">
-                <li data-target="#design" data-slide-to="0" class="active"></li>
-                <li data-target="#design" data-slide-to="1"></li>
-                <li data-target="#design" data-slide-to="2"></li>
-              </ol>
-              <div class="carousel-inner">
-                <div class="carousel-item active"><div class="container"><div class="carousel-caption relative"><div class="row"><div class="col-md-12"><div class="text_de"><div class="titlepage"><h2 id="lineas-investigacion">Nuevas líneas de <span class="green">investigación</span></h2></div><p>Conservación de anfibios endémicos y monitoreo de hábitats urbanos.</p></div></div></div></div></div></div></div>
-                <div class="carousel-item"><div class="container"><div class="carousel-caption relative"><div class="row"><div class="col-md-12"><div class="text_de"><div class="titlepage"><h2 id="divulgacion-cientifica">Divulgación <span class="green">científica</span></h2></div><p>Material didáctico para escuelas y actividades comunitarias.</p></div></div></div></div></div></div></div>
-                <div class="carousel-item"><div class="container"><div class="carousel-caption relative"><div class="row"><div class="col-md-12"><div class="text_de"><div class="titlepage"><h2 id="datos-abiertos">Datos <span class="green">abiertos</span></h2></div><p>Publicación de conjuntos de datos y trazabilidad de fuentes.</p></div></div></div></div></div></div></div>
-              </div>
-              <a class="carousel-control-prev" href="#design" role="button" data-slide="prev" aria-label="Anterior"><i class="fa fa-angle-left" aria-hidden="true"></i><span class="sr-only">Anterior</span></a>
-              <a class="carousel-control-next" href="#design" role="button" data-slide="next" aria-label="Siguiente"><i class="fa fa-angle-right" aria-hidden="true"></i><span class="sr-only">Siguiente</span></a>
-            </div>
-          </div>
-          <div class="col-md-7 pad_roght0">
-            <div class="design_img"><figure><img src="images/salamander-548333_1280.jpg" alt="Ilustración de especie" loading="lazy" decoding="async"/></figure></div>
-          </div>
+      <div class="col-md-4 col-sm-12">
+        <div class="impact-box">
+          <i class="fa fa-users impact-icon" aria-hidden="true"></i>
+          <span class="impact-number counter"></span>
+          <p class="impact-text">Colaboracion Interdisicplianr</p>
         </div>
       </div>
+
     </div>
-
-    <!-- ===== Avances ===== -->
-    <div class="latest_news" id="avances">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="titlepage">
-              <h2 id="avances-titulo">Avances <span class="green">interdisciplinarios</span></h2>
-            </div>
-          </div>
-        </div>
-
-        <div class="row">
-          <!-- Avance 1 -->
-          <div class="col-md-4 offset-md-2">
-            <div id="avance-ajolotes" class="news_box">
-              <div class="news_img">
-                <figure><img src="images/axolotl-2412189_1280.jpg" alt="Proyecto anfibios" loading="lazy" decoding="async"/></figure>
-              </div>
-              <div class="news_room">
-                <span>Conservación</span>
-                <ul>
-                  <li><a href="#">Like <i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-                  <li><a href="#">Comment <i class="fa fa-comments-o" aria-hidden="true"></i></a></li>
-                  <li><a href="#">Share <i class="fa fa-share-alt" aria-hidden="true"></i></a></li>
-                </ul>
-                <h3>Programa de monitoreo de ajolotes</h3>
-                <p>Colaboración con laboratorios locales para evaluar calidad de agua y poblaciones.</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Avance 2 -->
-          <div class="col-md-4">
-            <div id="avance-talleres-escuelas" class="news_box">
-              <div class="news_img mr_le">
-                <figure><img src="images/kids-2985782_1280.jpg" alt="Material educativo" loading="lazy" decoding="async"/></figure>
-              </div>
-              <div class="news_room">
-                <span>Divulgación</span>
-                <ul>
-                  <li><a href="#">Like <i class="fa fa-heart-o" aria-hidden="true"></i></a></li>
-                  <li><a href="#">Comment <i class="fa fa-comments-o" aria-hidden="true"></i></a></li>
-                  <li><a href="#">Share <i class="fa fa-share-alt" aria-hidden="true"></i></a></li>
-                </ul>
-                <h3>Talleres para escuelas</h3>
-                <p>Actividades sobre biodiversidad urbana y especies emblemáticas.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
+  </div>
+</div>
+<div class="py-5"></div>
 <section class="convocatorias-section" id="convocatorias">
   <div class="container">
     
